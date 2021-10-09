@@ -53,7 +53,7 @@ public class Usuario implements Serializable {
     @Column(name = "fecha_creacion")
     @Temporal(TemporalType.DATE)
     private Date fechaCreacion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente")
     private List<Solicitud> solicitudList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSolucionador")
     private List<Solicitud> solicitudList1;
@@ -166,7 +166,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "DAO.Usuario[ idUsuario=" + idUsuario + " ]";
+        return "DTO.Usuario[ idUsuario=" + idUsuario + " ]";
     }
     
 }

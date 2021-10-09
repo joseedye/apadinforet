@@ -235,7 +235,7 @@ public class Persona implements Serializable {
 
     @Override
     public String toString() {
-        return "DAO.Persona[ idPersona=" + idPersona + " ]";
+        return "DTO.Persona[ idPersona=" + idPersona + " ]";
     }
     
 }

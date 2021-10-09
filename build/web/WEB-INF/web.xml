@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+   
+    
+     <!---filtro para cuando no esta activa la sesion 
+    <filter>
+        <filter-name>Login</filter-name>
+        <filter-class>Filter.Login</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>Login</filter-name>     
+        <url-pattern>/index</url-pattern>
+        <url-pattern>/index.jsp</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>TimeOut</filter-name>
+        <filter-class>Filter.TimeOut</filter-class>
+    </filter>
+
+<filter-mapping>
+        <filter-name>TimeOut</filter-name> 
+ </filter-mapping>
+ 
+ 
+  -->
+ 
+ 
+ 
+    <servlet>
+        <servlet-name>SignIn</servlet-name>
+        <servlet-class>Controlador.SignIn</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SignIn</servlet-name>
+        <url-pattern>/SignIn</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SignIn</servlet-name>
+        <url-pattern>/SignIn.do</url-pattern>
+    </servlet-mapping>
+    
+    
+    
+    
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    
+    <dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.12</version>
+    <scope>test</scope>
+</dependency>
+
+</web-app>
