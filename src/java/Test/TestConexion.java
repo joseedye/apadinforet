@@ -20,6 +20,6 @@ public class TestConexion {
     public static void main(String[] args) {
         EntityManagerFactory emf = Conexion.getConexion().getBd();
         PersonaJpaController p = new PersonaJpaController(emf);
-        System.out.println(p.findPersona(1091444444).getNombres());
+        System.out.println(p.findPersona("10910000001").getNombres());
     }
 }

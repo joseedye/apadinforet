@@ -31,7 +31,6 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Persona.findAll", query = "SELECT p FROM Persona p"),
-    @NamedQuery(name = "Persona.findByIdPersona", query = "SELECT p FROM Persona p WHERE p.idPersona = :idPersona"),
     @NamedQuery(name = "Persona.findByNombres", query = "SELECT p FROM Persona p WHERE p.nombres = :nombres"),
     @NamedQuery(name = "Persona.findByApellido1", query = "SELECT p FROM Persona p WHERE p.apellido1 = :apellido1"),
     @NamedQuery(name = "Persona.findByApellido2", query = "SELECT p FROM Persona p WHERE p.apellido2 = :apellido2"),
@@ -45,10 +44,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Persona.findByEmail", query = "SELECT p FROM Persona p WHERE p.email = :email")})
 public class Persona implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "id_persona")
-    private Integer idPersona;
     @Basic(optional = false)
     @Column(name = "nombres")
     private String nombres;
@@ -65,21 +60,22 @@ public class Persona implements Serializable {
     @Basic(optional = false)
     @Column(name = "tipo_doc")
     private String tipoDoc;
+    @Id
     @Basic(optional = false)
     @Column(name = "numero_doc")
-    private int numeroDoc;
+    private String numeroDoc;
     @Basic(optional = false)
     @Column(name = "genero")
-    private boolean genero;
+    private String genero;
     @Basic(optional = false)
     @Column(name = "direccion")
     private String direccion;
     @Basic(optional = false)
     @Column(name = "telefono1")
-    private int telefono1;
+    private String telefono1;
     @Basic(optional = false)
     @Column(name = "telefono2")
-    private int telefono2;
+    private String telefono2;
     @Basic(optional = false)
     @Column(name = "email")
     private String email;
@@ -89,37 +85,26 @@ public class Persona implements Serializable {
     public Persona() {
     }
 
-    public Persona(Integer idPersona) {
-        this.idPersona = idPersona;
+    public Persona(String numeroDoc) {
+        this.numeroDoc = numeroDoc;
     }
 
-    public Persona(Integer idPersona, String nombres, String apellido1, String apellido2, Date fechaNac, String tipoDoc, int numeroDoc, boolean genero, String direccion, int telefono1,  String email) {
-        this.idPersona = idPersona;
+    public Persona(String numeroDoc, String nombres, String apellido1, String apellido2, Date fechaNac, String tipoDoc, String genero, String direccion, String telefono1, String telefono2, String email) {
+        this.numeroDoc = numeroDoc;
         this.nombres = nombres;
         this.apellido1 = apellido1;
         this.apellido2 = apellido2;
         this.fechaNac = fechaNac;
         this.tipoDoc = tipoDoc;
-        this.numeroDoc = numeroDoc;
         this.genero = genero;
         this.direccion = direccion;
         this.telefono1 = telefono1;
-       
+        this.telefono2 = telefono2;
         this.email = email;
     }
 
-    public Persona(String nombres, String apellido1, String apellido2, Date fechaNac, String tipoDoc, int numeroDoc, boolean genero, String direccion, int telefono1,  String email) {
-   this(null,nombres,apellido1, apellido2, fechaNac,  tipoDoc, numeroDoc, genero,  direccion, telefono1, email);
-    }
-        
-    public Integer getIdPersona() {
-        return idPersona;
-    }
-
-    public void setIdPersona(Integer idPersona) {
-        this.idPersona = idPersona;
-    }
-
+         
+    
     public String getNombres() {
         return nombres;
     }
@@ -160,19 +145,19 @@ public class Persona implements Serializable {
         this.tipoDoc = tipoDoc;
     }
 
-    public int getNumeroDoc() {
+    public String getNumeroDoc() {
         return numeroDoc;
     }
 
-    public void setNumeroDoc(int numeroDoc) {
+    public void setNumeroDoc(String numeroDoc) {
         this.numeroDoc = numeroDoc;
     }
 
-    public boolean getGenero() {
+    public String getGenero() {
         return genero;
     }
 
-    public void setGenero(boolean genero) {
+    public void setGenero(String genero) {
         this.genero = genero;
     }
 
@@ -184,19 +169,19 @@ public class Persona implements Serializable {
         this.direccion = direccion;
     }
 
-    public int getTelefono1() {
+    public String getTelefono1() {
         return telefono1;
     }
 
-    public void setTelefono1(int telefono1) {
+    public void setTelefono1(String telefono1) {
         this.telefono1 = telefono1;
     }
 
-    public int getTelefono2() {
+    public String getTelefono2() {
         return telefono2;
     }
 
-    public void setTelefono2(int telefono2) {
+    public void setTelefono2(String telefono2) {
         this.telefono2 = telefono2;
     }
 
@@ -220,7 +205,7 @@ public class Persona implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idPersona != null ? idPersona.hashCode() : 0);
+        hash += (numeroDoc != null ? numeroDoc.hashCode() : 0);
         return hash;
     }
 
@@ -231,7 +216,7 @@ public class Persona implements Serializable {
             return false;
         }
         Persona other = (Persona) object;
-        if ((this.idPersona == null && other.idPersona != null) || (this.idPersona != null && !this.idPersona.equals(other.idPersona))) {
+        if ((this.numeroDoc == null && other.numeroDoc != null) || (this.numeroDoc != null && !this.numeroDoc.equals(other.numeroDoc))) {
             return false;
         }
         return true;
@@ -239,7 +224,7 @@ public class Persona implements Serializable {
 
     @Override
     public String toString() {
-        return "DTO.Persona[ idPersona=" + idPersona + " ]";
+        return "DTO.Persona[ numeroDoc=" + numeroDoc + " ]";
     }
     
 }

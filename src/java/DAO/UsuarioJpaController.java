@@ -50,7 +50,7 @@ public class UsuarioJpaController implements Serializable {
             em.getTransaction().begin();
             Persona idPersona = usuario.getIdPersona();
             if (idPersona != null) {
-                idPersona = em.getReference(idPersona.getClass(), idPersona.getIdPersona());
+                idPersona = em.getReference(idPersona.getClass(), idPersona.getNumeroDoc());
                 usuario.setIdPersona(idPersona);
             }
             TipoUsuario idTipoUsuario = usuario.getIdTipoUsuario();
@@ -145,7 +145,7 @@ public class UsuarioJpaController implements Serializable {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
             if (idPersonaNew != null) {
-                idPersonaNew = em.getReference(idPersonaNew.getClass(), idPersonaNew.getIdPersona());
+                idPersonaNew = em.getReference(idPersonaNew.getClass(), idPersonaNew.getNumeroDoc());
                 usuario.setIdPersona(idPersonaNew);
             }
             if (idTipoUsuarioNew != null) {
@@ -303,21 +303,8 @@ public class UsuarioJpaController implements Serializable {
             em.close();
         }
     }
-    
-    public int getUsuarioCount() {
-        EntityManager em = getEntityManager();
-        try {
-            CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Usuario> rt = cq.from(Usuario.class);
-            cq.select(em.getCriteriaBuilder().count(rt));
-            Query q = em.createQuery(cq);
-            return ((Long) q.getSingleResult()).intValue();
-        } finally {
-            em.close();
-        }
-    }
-    
-     public Usuario findUsuario(String user) {
+
+    public Usuario findUsuario(String user) {
         EntityManager em = getEntityManager();
         try {
             List<Usuario> listUsuarios = em.createNamedQuery("Usuario.findByUser", Usuario.class).setParameter("user", user).getResultList();
@@ -331,5 +318,18 @@ public class UsuarioJpaController implements Serializable {
             em.close();
         }
     }
-    
+
+    public int getUsuarioCount() {
+        EntityManager em = getEntityManager();
+        try {
+            CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
+            Root<Usuario> rt = cq.from(Usuario.class);
+            cq.select(em.getCriteriaBuilder().count(rt));
+            Query q = em.createQuery(cq);
+            return ((Long) q.getSingleResult()).intValue();
+        } finally {
+            em.close();
+        }
+    }
+
 }

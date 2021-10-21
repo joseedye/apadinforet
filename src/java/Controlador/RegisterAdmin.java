@@ -45,7 +45,7 @@ public class RegisterAdmin extends HttpServlet {
 
             String nombre = request.getParameter("Nom");
             String tipodoc = request.getParameter("Tipodoc");
-            int documento = Integer.valueOf(request.getParameter("Doc"));
+            String documento = request.getParameter("Doc");
             String fecha = request.getParameter("Fecha");
             String apellido1 = request.getParameter("Ape1");
             String email = request.getParameter("Email");
@@ -59,10 +59,10 @@ public class RegisterAdmin extends HttpServlet {
             Date fecNacimiento = formato.parse(fecha);
             PersonaJpaController personajpa = new PersonaJpaController(emf);
 
-            Persona personaDTO = new Persona(nombre, apellido1, apellido2, fecNacimiento, tipodoc, documento, true, direccion, 11, email);
-            personaDTO.setTelefono2(11);
+            Persona personaDTO = new Persona(documento,nombre, apellido1, apellido2, fecNacimiento, tipodoc, genero, direccion,telefono1 ,telefono2, email);
             personajpa.create(personaDTO);
 
+            //crear el usuario
             
             
             

@@ -61,7 +61,7 @@ public class PersonaJpaController implements Serializable {
             }
             em.getTransaction().commit();
         } catch (Exception ex) {
-            if (findPersona(persona.getIdPersona()) != null) {
+            if (findPersona(persona.getNumeroDoc()) != null) {
                 throw new PreexistingEntityException("Persona " + persona + " already exists.", ex);
             }
             throw ex;
@@ -77,7 +77,7 @@ public class PersonaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Persona persistentPersona = em.find(Persona.class, persona.getIdPersona());
+            Persona persistentPersona = em.find(Persona.class, persona.getNumeroDoc());
             List<Usuario> usuarioListOld = persistentPersona.getUsuarioList();
             List<Usuario> usuarioListNew = persona.getUsuarioList();
             List<String> illegalOrphanMessages = null;
@@ -115,7 +115,7 @@ public class PersonaJpaController implements Serializable {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = persona.getIdPersona();
+                String id = persona.getNumeroDoc();
                 if (findPersona(id) == null) {
                     throw new NonexistentEntityException("The persona with id " + id + " no longer exists.");
                 }
@@ -128,7 +128,7 @@ public class PersonaJpaController implements Serializable {
         }
     }
 
-    public void destroy(Integer id) throws IllegalOrphanException, NonexistentEntityException {
+    public void destroy(String id) throws IllegalOrphanException, NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -136,7 +136,7 @@ public class PersonaJpaController implements Serializable {
             Persona persona;
             try {
                 persona = em.getReference(Persona.class, id);
-                persona.getIdPersona();
+                persona.getNumeroDoc();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The persona with id " + id + " no longer exists.", enfe);
             }
@@ -184,7 +184,7 @@ public class PersonaJpaController implements Serializable {
         }
     }
 
-    public Persona findPersona(Integer id) {
+    public Persona findPersona(String id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(Persona.class, id);

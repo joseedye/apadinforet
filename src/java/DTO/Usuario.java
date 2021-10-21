@@ -57,7 +57,7 @@ public class Usuario implements Serializable {
     private List<Solicitud> solicitudList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSolucionador")
     private List<Solicitud> solicitudList1;
-    @JoinColumn(name = "id_persona", referencedColumnName = "id_persona")
+    @JoinColumn(name = "id_persona", referencedColumnName = "numero_doc")
     @ManyToOne(optional = false)
     private Persona idPersona;
     @JoinColumn(name = "id_tipo_usuario", referencedColumnName = "id_tipo_usuario")
