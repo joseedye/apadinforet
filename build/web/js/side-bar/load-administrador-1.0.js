@@ -1,5 +1,5 @@
 var sidebar = '<div class="sidebar-header">'+
-                '<h3 style="color: #fff !important">AVECS</h3>'+
+                '<h3 style="color: #fff !important">INFORET</h3>'+
                     '<strong style="color: #fff !important">CS</strong>'+
 
               '  </div>'+

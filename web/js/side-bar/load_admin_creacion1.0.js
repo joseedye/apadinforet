@@ -30,8 +30,8 @@ var sidebar =   '<div class="sidebar-header">'+
                             '&nbspUsuarios'+
                         '</a>'+
                         '<ul class="collapse list-unstyled" id="usersSubMenu">'+
-                            '<li>'+
-                                '<a href="administrador_registrar">Registro Administrador</a>'+
+                            '<li id="registroadmin">'+
+                                '<a href="administrador_registrar"  >Registro Administrador</a>'+
                             '</li>'+
                             '<li>'+
                                 '<a href="estudiantes_registrar">Registro Cliente</a>'+
@@ -60,7 +60,7 @@ var sidebar =   '<div class="sidebar-header">'+
                         '</a>'+
                     '</li>'+
                     '<li id="liempresas" >'+                        
-                        '<a href="#CompaniesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">'+
+                        '<a href="#CompaniesSubmenu" >'+
                             '<i class="fas fa-briefcase"></i>'+
                             '&nbspCliente'+
                         '</a>'+
@@ -80,46 +80,13 @@ var sidebar =   '<div class="sidebar-header">'+
                         '</a>'+
                     '</li>'+                    
                 '</ul>';
-
-
-function loadPerfil(){    
+      
+function load(){    
     document.getElementById('sidebar').innerHTML = sidebar;
     document.getElementById('liperfil').className = "active";
-    document.getElementsByTagName('a')[0].href = "#";
 }
-
-function loadDocumentos(){    
+function loadRegistro(){    
     document.getElementById('sidebar').innerHTML = sidebar;
-    document.getElementById('lidocumentos').className = "active";
-    document.getElementById('documentsSubmenu').className += " show";
-}
-
-function loadUsuarios(){    
-    document.getElementById('sidebar').innerHTML = sidebar;
-    document.getElementById('liusuarios').className = "active";
+    document.getElementById('registroadmin').className = "active";
     document.getElementById('usersSubMenu').className += " show";
 }
-
-function loadSolicitudes(i){ 
-    document.getElementById('sidebar').innerHTML = sidebar;
-    document.getElementById('lisolicitudes').className = "active";
-  
-    if(i===1){
-        loadVisitas();
-    }
-}
-
-function loadVisitas(){    
-    document.getElementById('sidebar').innerHTML = sidebar;
-    document.getElementById('livisitas').className = "active";
-}
-
-function loadEmpresas(){    
-    document.getElementById('sidebar').innerHTML = sidebar;
-    document.getElementById('liempresas').className = "active";
-    document.getElementById('CompaniesSubmenu').className += " show";
-}
-
-
-
-

@@ -31,10 +31,16 @@ var sidebar =   '<div class="sidebar-header">'+
                         '</a>'+
                         '<ul class="collapse list-unstyled" id="usersSubMenu">'+
                             '<li>'+
-                                '<a href="usuario_registrar">Registrar Usuario</a>'+
+                                '<a href="administrador_registrar">Registro Administrador</a>'+
                             '</li>'+
                             '<li>'+
-                                '<a href="estudiantes_registrar">Registro Empleados</a>'+
+                                '<a href="estudiantes_registrar">Registro Cliente</a>'+
+                            '</li>'+
+                            '<a href="estudiantes_registrar">Registro Proveedor</a>'+
+                            '</li>'+
+                            '<a href="estudiantes_registrar">Registro Gerente</a>'+
+                            '</li>'+
+                            '<a href="estudiantes_registrar">Registro Empleado</a>'+
                             '</li>'+
                             '<li>'+
                                 '<a href="../QueryUsers.do">Consultar</a>'+

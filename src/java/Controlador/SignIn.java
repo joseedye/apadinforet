@@ -45,15 +45,14 @@ public class SignIn extends HttpServlet {
                     case "cliente":
                         res.sendRedirect("Cliente/perfil");
                         break;
-
                     case "proveedor":
-                        res.sendRedirect("Proveedor/Perfil");
+                        res.sendRedirect("Proveedor/perfil");
                         break;
                     case "gerente":
-                        res.sendRedirect("Gerente/Perfil");
+                        res.sendRedirect("Gerente/perfil");
                         break;
                     case "empleado":
-                        res.sendRedirect("Empleado/Perfil");
+                        res.sendRedirect("Empleado/perfil");
                         break;
 
                     default:
