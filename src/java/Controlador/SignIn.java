@@ -27,28 +27,44 @@ public class SignIn extends HttpServlet {
             String password = req.getParameter("pass");
 
             //busco que el usuario exista
-            usuario = usuarioDao.findUsuario(1);
+            usuario = usuarioDao.findUsuario(user);
             //comparo contraseña
-            //me traigo todods los atriutos de ese usuario
-                    
-            Map<String, String> usuarioMap = Utileria.usuarioToMap(usuario);
-            //los envio por la sesion
-            req.getSession().setAttribute("user", usuarioMap);
+            if (password.equals(usuario.getPassword())) {
 
-            TipoUsuario tipoUsuario = usuario.getIdTipoUsuario();
-            //redirijo segun sea el usuario
-            switch (tipoUsuario.getDesTipoUsuario()) {
-                case "administrador":
-                    res.sendRedirect("Administrador/perfil");
-                    break;
+                //me traigo todods los atriutos de ese usuario
+                Map<String, String> usuarioMap = Utileria.usuarioToMap(usuario);
+                //los envio por la sesion
+                req.getSession().setAttribute("user", usuarioMap);
 
-                default:
-                    break;
+                TipoUsuario tipoUsuario = usuario.getIdTipoUsuario();
+                //redirijo segun sea el usuario
+                switch (tipoUsuario.getDesTipoUsuario()) {
+                    case "administrador":
+                        res.sendRedirect("Administrador/perfil");
+                        break;
+                    case "cliente":
+                        res.sendRedirect("Cliente/perfil");
+                        break;
+
+                    case "proveedor":
+                        res.sendRedirect("Proveedor/Perfil");
+                        break;
+                    case "gerente":
+                        res.sendRedirect("Gerente/Perfil");
+                        break;
+                    case "empleado":
+                        res.sendRedirect("Empleado/Perfil");
+                        break;
+
+                    default:
+                        break;
+                }
+
             }
 
         } catch (Exception e) {
             req.getSession().setAttribute("msg", "Error, intentar de nuevo!");
-            res.sendRedirect("gato");
+            res.sendRedirect("/index.jsp");
         }
     }
 

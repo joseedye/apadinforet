@@ -303,7 +303,7 @@ public class UsuarioJpaController implements Serializable {
             em.close();
         }
     }
-
+    
     public int getUsuarioCount() {
         EntityManager em = getEntityManager();
         try {
@@ -312,6 +312,21 @@ public class UsuarioJpaController implements Serializable {
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
+        } finally {
+            em.close();
+        }
+    }
+    
+     public Usuario findUsuario(String user) {
+        EntityManager em = getEntityManager();
+        try {
+            List<Usuario> listUsuarios = em.createNamedQuery("Usuario.findByUser", Usuario.class).setParameter("user", user).getResultList();
+
+            if (listUsuarios.isEmpty()) {
+                return null;
+            } else {
+                return listUsuarios.get(0);
+            }
         } finally {
             em.close();
         }

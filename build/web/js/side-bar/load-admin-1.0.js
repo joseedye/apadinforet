@@ -1,5 +1,5 @@
 var sidebar =   '<div class="sidebar-header">'+
-                    '<h3 style="color: #fff !important">AVECS</h3>'+
+                    '<h3 style="color: #fff !important">INFORET</h3>'+
                     '<strong style="color: #fff !important">CS</strong>'+
                 '</div>'+
 
@@ -34,7 +34,7 @@ var sidebar =   '<div class="sidebar-header">'+
                                 '<a href="usuario_registrar">Registrar Usuario</a>'+
                             '</li>'+
                             '<li>'+
-                                '<a href="estudiantes_registrar">Registro Estudiantes</a>'+
+                                '<a href="estudiantes_registrar">Registro Empleados</a>'+
                             '</li>'+
                             '<li>'+
                                 '<a href="../QueryUsers.do">Consultar</a>'+
@@ -50,17 +50,17 @@ var sidebar =   '<div class="sidebar-header">'+
                      '<li id="livisitas" >'+
                         '<a href="../QueryVisitas.do">'+
                             '<i class="fa fa-building"></i>'+
-                            '&nbspVisitas'+
+                            '&nbspVentas'+
                         '</a>'+
                     '</li>'+
                     '<li id="liempresas" >'+                        
                         '<a href="#CompaniesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">'+
                             '<i class="fas fa-briefcase"></i>'+
-                            '&nbspEmpresas'+
+                            '&nbspCliente'+
                         '</a>'+
                         '<ul class="collapse list-unstyled" id="CompaniesSubmenu">'+
                             '<li>'+
-                                '<a href="empresa_registrar">Registrar Empresa</a>'+
+                                '<a href="empresa_registrar">Registrar Cliente</a>'+
                             '</li>'+
                             '<li>'+
                                 '<a href="../QueryCompanies.do">Consultar</a>'+
