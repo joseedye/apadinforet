@@ -49,7 +49,7 @@
                         <div class="img-profile">
                             <img src="/img/fotoadmin.jpg<%//=userImg%>">                        
                         </div>
-                        
+
                     </div>
                 </nav>
 
@@ -63,57 +63,81 @@
                                         <h4>Perfil Administrador</h4>
                                     </div>
                                 </div>
-                                
-                                
+
+
                                 <div id="gSignIn"></div>
-                                
-                                
+
+
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
 
                                         <label for="">Nombre</label>
-                                        <input type="text" name="nombres" class="form-control" id="" placeholder="Nombre" value="<%=user.get("nombres")%>" maxlength="100" required>
+                                        <input type="text" name="Nom" class="form-control" id="" placeholder="Nombre" value="<%=user.get("nombres")%>" maxlength="100" required>
 
+                                        
+                                        
+                                        
+                                        <label for="">Tipo Documento</label>
+                                        <select class="form-control" name="Tipodoc" id="Tipodoc" required>
+                                            
+                                            <% if (user.get("tipoDocumento").equals("cc")) {%>
+                                            <option selected value="cc" name="cc">C.C</option>
+                                            <option value="ce" name="ce">C.E</option>
+                                            <option value="nit" name="nit">NIT</option>
+                                            <%} if(user.get("tipoDocumento").equals("ce")){%>
+                                            <option value="cc" name="cc">C.C</option>
+                                            <option  selected value="ce"  name="ce">C.E</option>
+                                            <option value="nit" name="nit">NIT</option>
+                                             <%} if(user.get("tipoDocumento").equals("nit")){%>
+                                            <option value="cc" name="cc">C.C</option>
+                                            <option value="ce" name="ce">C.E</option>
+                                            <option selected value="nit" name="nit">NIT</option>
+                                             <%}%>
+                                        </select>
+
+                                        
+                                        
+                                        
                                         <label for="">Documento</label>
-                                        <input type="number" name="numDocumento" pattern="[0-9]+" class="form-control" id="" placeholder="Documento" value="<%=user.get("numDocumento")%>" onKeyUp="if (this.value.length > 10) {
-                                                    this.value = this.value.substr(0, 10);
-                                                } else if (this.value < 0) {
-                                                    this.value = '0';
-                                                }" required>
+                                        <input type="number" name="Doc" pattern="[0-9]+" class="form-control"  readonly=»readonly» id="" placeholder="Documento" value="<%=user.get("numDocumento")%>" >
 
                                         <label for="">Fecha de Nacimiento</label>
-                                        <input class="form-control" type="date" name="FechaNac" value="<%=user.get("fecNacimiento") + ""%>" required>
+                                        <input class="form-control" type="date" name="Fecha" value="<%=user.get("fecNacimiento") + ""%>" required>
 
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="">Primer Apellido</label>
-                                        <input type="text" name="ap1" class="form-control" id="" placeholder="Primer Apellido" value="<%=user.get("apellido1") + ""%>" maxlength="15" required>
+                                        <input type="text" name="Ape1" class="form-control" id="" placeholder="Primer Apellido" value="<%=user.get("apellido1") + ""%>" maxlength="15" required>
 
                                         <label for="">Género</label>
-                                        <select class="form-control" name="genero">
+                                        <select class="form-control" name="Genero">
                                             <option disabled >Seleccionar</option>
-                                            <%// if (user.get("genero").equals("Masculino")) {%>
+                                            <% if (user.get("genero").equals("Masculino")) {%>
                                             <option selected value="Masculino" name="masculino">Masculino</option>
                                             <option value="Femenino" name="femenino">Femenino</option>
-                                            <%//} else { %>
+                                            <%} else { %>
                                             <option value="Masculino" name="masculino">Masculino</option>
                                             <option selected value="Femenino" name="femenino">Femenino</option>
-                                            <%//}%>
+                                            <%}%>
                                         </select>
 
                                         <label for="">Teléfono</label>
-                                        <input type="number" name="tl1" pattern="[0-9]+" class="form-control" id="" onKeyUp="if (this.value.length > 10) { this.value = this.value.substr(0, 10); } else if (this.value < 0) { this.value = '0'; }" placeholder="Teléfono" value="<%=user.get("telefono1")%>" required >
+                                        <input type="number" name="Tel1" pattern="[0-9]+" class="form-control" id="" onKeyUp="if (this.value.length > 10) {
+                                                    this.value = this.value.substr(0, 10);
+                                                } else if (this.value < 0) {
+                                                    this.value = '0';
+                                                }" placeholder="Teléfono" value="<%=user.get("telefono1")%>" required >
                                     </div>
 
                                     <div class="form-group col-md-4">
                                         <label for="">Segundo Apellido</label>
-                                        <input type="text" name="ap2" class="form-control" id="" placeholder="Segundo Apellido" value="<%=user.get("apellido2")%>" maxlength="15" required>
+                                        <input type="text" name="Ape2" class="form-control" id="" placeholder="Segundo Apellido" value="<%=user.get("apellido2")%>" maxlength="15" required>
 
                                         <label for="">Email</label>
-                                        <input type="email" name="email" pattern="+.@ufps.edu.co" class="form-control" id="emaill" placeholder="@ufps.edu.co"value="<%=user.get("email")%>" maxlength="70" required>
+                                        <input type="email" name="Email"  readonly=»readonly» pattern="+.@ufps.edu.co" class="form-control" id="emaill" placeholder="@ufps.edu.co"value="<%=user.get("email")%>" maxlength="70" required>
 
                                         <label for="">Teléfono 2</label>
-                                        <input type="number" name="tl2" pattern="[0-9]+" class="form-control" id="" value="<%=user.get("telefono2")%>" onKeyUp="if (this.value.length > 10) {
+                                        <input type="number" name="Tel2" pattern="[0-9]+" class="form-control" id="" value="<%=user.get("telefono2")%>" onKeyUp="if (this.value.length > 10) {
                                                     this.value = this.value.substr(0, 10);
                                                 } else if (this.value < 0) {
                                                     this.value = '0';
@@ -122,7 +146,7 @@
                                 </div>
 
                                 <label for="">Dirección</label>
-                                <input type="text" name="direccion" class="form-control" id="" value="<%=user.get("direccion")%>" placeholder="Dirrección" maxlength="150">
+                                <input type="text" name="Dire" class="form-control" id="" value="<%=user.get("direccion")%>" placeholder="Dirrección" maxlength="150">
                                 <br></br>
                                 <a href="#ventana" class="btn btn-primary" data-toggle="modal">Actualizar</a>
                                 <a href="perfil" class="btn btn-primary">Cancelar</a>
@@ -142,7 +166,7 @@
                                                 <p>Esta seguro de modificar sus datos personales?</p>
                                             </div>
                                             <div class="modal-footer">            
-                                                <button type="button" onclick="validarEmail()" class="btn btn-primary">Si</button>
+                                                <button type="submit"  class="btn btn-primary">Si</button>
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                                             </div>
                                         </div>
@@ -194,18 +218,9 @@
         <script src="../js/side-bar/load-admin-1.0.js"></script>
         <!-- jQuery Side-bar -->    
         <script>
-            $(document).ready(function () {
-                $("#ventana2").modal('show');
-            });
-            
-            function validarEmail() {
-                var cor = document.getElementById('emaill').value;                
-                if (/^\w+([\.-]?\w+)*@ufps.edu.co/.test(cor)) {
-                    document.form1.submit();
-                } else {
-                    alert("La dirección de email " + cor + " no es correcta.");
-                }
-            }
+                                            $(document).ready(function () {
+                                                $("#ventana2").modal('show');
+                                            });
         </script> 
 
     </body>

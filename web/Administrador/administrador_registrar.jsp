@@ -67,8 +67,8 @@
                                     <label for="">Tipo Documento</label>
                                     <select class="form-control" name="Tipodoc" id="Tipodoc" required>
                                         <option disabled selected norequired>Seleccione</option>
-                                        <option value="cedula" name="cedula">C.C</option>
-                                        <option value="extrangeria" name="extrangeria">C.E</option>
+                                        <option value="cc" name="cedula">C.C</option>
+                                        <option value="ce" name="extrangeria">C.E</option>
                                         <option value="nit" name="nit">NIT</option>
                                     </select>
 
@@ -106,7 +106,7 @@
                                     <input type="text" class="form-control" name="Ape2" id="" placeholder="Segundo Apellido" required>
 
                                     <label for="">Email</label>
-                                    <input type="email" pattern="+.@ufps.edu.co" name="Email" class="form-control" id="Email"
+                                    <input type="email" pattern="+.@edu.co" name="Email" class="form-control" id="Email"
                                            placeholder="email@gmail.com" required>
 
                                     <label for="">Teléfono 2</label>

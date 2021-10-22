@@ -29,10 +29,9 @@ public class Utileria {
         map.put("fecNacimiento", dateToString(user.getIdPersona().getFechaNac()));
         map.put("tipoDocumento", user.getIdPersona().getTipoDoc());
         map.put("numDocumento", user.getIdPersona().getNumeroDoc() + "");
-        // map.put("genero", user.getIdPersona().getGenero(); cambiar a string
+        map.put("genero", user.getIdPersona().getGenero()); 
         map.put("direccion", user.getIdPersona().getDireccion());
         map.put("email", user.getIdPersona().getEmail());
-        //cambiar a string
         map.put("telefono1", user.getIdPersona().getTelefono1() + "");
         map.put("telefono2", user.getIdPersona().getTelefono2() + "");
         //map.put("activo", user.getActivo() + ""); crear en la bd
