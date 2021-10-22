@@ -8,8 +8,11 @@ package Controlador;
 import DAO.Conexion;
 import DAO.PersonaJpaController;
 import DAO.TipoUsuarioJpaController;
+import DAO.UsuarioJpaController;
 import DTO.Persona;
 import DTO.TipoUsuario;
+import DTO.Usuario;
+import Util.Utileria;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
@@ -40,8 +43,8 @@ public class RegisterAdmin extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             EntityManagerFactory emf = Conexion.getConexion().getBd();
-
-            TipoUsuario tipousuario = new TipoUsuario(1, "administrador");
+            TipoUsuarioJpaController usuarioJpa = new TipoUsuarioJpaController(emf);
+            TipoUsuario tipousuario = usuarioJpa.findTipoUsuario(1);
 
             String nombre = request.getParameter("Nom");
             String tipodoc = request.getParameter("Tipodoc");
@@ -59,71 +62,33 @@ public class RegisterAdmin extends HttpServlet {
             Date fecNacimiento = formato.parse(fecha);
             PersonaJpaController personajpa = new PersonaJpaController(emf);
 
-            Persona personaDTO = new Persona(documento,nombre, apellido1, apellido2, fecNacimiento, tipodoc, genero, direccion,telefono1 ,telefono2, email);
+            Persona personaDTO = new Persona(documento, nombre, apellido1, apellido2, fecNacimiento, tipodoc, genero, direccion, telefono1, telefono2, email);
             personajpa.create(personaDTO);
 
             //crear el usuario
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-//            //Creacion usuario si es tipo docente
-//            DocenteJpaController docentejpa = new DocenteJpaController(emf);
-//            Docente docente = new Docente();
-////            if Integer idPersona, String nombres, String apellido1, String apellido2, Date fechaNac, String tipoDoc, int numeroDoc, boolean genero, String direccion, int telefono1,  String email) {
-//            (tipo == 2) {
-//                int codigo = Integer.valueOf(request.getParameter("codigo"));
-//                docente.setCodigoDocente(codigo);
-//                docente.setIdPersona(personaDTO);
-//
-//                try {
-//                    docentejpa.create(docente);
-//                } catch (Exception e) {
-//                    int idLastPersona = personajpa.getPersonaLast().getIdPersona();
-//                    personajpa.destroy(idLastPersona);
-//
-//                    String cause = e.getCause().getCause().getMessage();
-//                    request.getSession().setAttribute("msg", "Error, el dato: " + Utileria.msgExPersistence(cause) + " ya existe!");
-//                    response.sendRedirect("Administrador/usuario_registrar");
-//                    return;
-//                }
-//            }
-//
-//            String password = Utileria.randomString();
-//            String sincifrar = password;
-//            password = DigestUtils.sha1Hex(password);
-//            Date fecCreacion = new Date();
-//
-//            UsuarioJpaController usuariojpa = new UsuarioJpaController(emf);
-//            Usuario usuarioDTO = new Usuario(email, password, fecCreacion, true);
-//            usuarioDTO.setIdPersona(personajpa.findPersona(documento));
-//            usuarioDTO.setIdPersona(personaDTO);
-//            usuarioDTO.setIdTipoUsuario(tipoDTO);
-//
-//            try {
-//                usuariojpa.create(usuarioDTO);
-//            } catch (Exception e) {
-//                personaDTO = personajpa.getPersonaLast();
-//                personajpa.destroy(personaDTO.getIdPersona());
-//                docente = docentejpa.findDocenteByPersona(personaDTO.getIdPersona());
-//                docentejpa.destroy(docente.getIdDocente());
-//
-//                String cause = e.getCause().getCause().getMessage();
-//                request.getSession().setAttribute("msg", "Error, el dato: " + Utileria.msgExPersistence(cause) + " ya existe!");
-//                response.sendRedirect("Administrador/usuario_registrar");
-//                return;
-//            }
-//
-//            //Send Mail with credentials
+            UsuarioJpaController usuariojpa = new UsuarioJpaController(emf);
+            Date fecCreacion = new Date();
+            Usuario usuarioDto = new Usuario(email, documento, fecCreacion);
+            usuarioDto.setIdTipoUsuario(tipousuario);
+            usuarioDto.setIdPersona(personaDTO);
+            usuarioDto.setIdUsuario(usuariojpa.getUsuarioLast().getIdUsuario()+1);
+            try {
+                
+                usuariojpa.create(usuarioDto);
+                
+            } catch (Exception e) {
+                
+                personajpa.destroy(personaDTO.getNumeroDoc());
+                
+                String cause = e.getCause().getCause().getMessage();
+                
+                request.getSession().setAttribute("msg", "Error, el dato: " + Utileria.msgExPersistence(cause) + " ya existe!");
+                
+                response.sendRedirect("Administrador/administrador_registrar");
+                
+                return;
+            }
+//Send Mail with credentials
 //            String dominio = "https://avecs.azurewebsites.net/";
 //            String titulo = "Nuevo Usuario - Avecs";
 //            String cuerpo = "Bienvenido a Avecs, sus datos para "
@@ -131,12 +96,11 @@ public class RegisterAdmin extends HttpServlet {
 //                    + "\n \n Visita " + dominio;
 //            Utileria.enviarCorreo(email, titulo, cuerpo);
 //
-//            request.getSession().setAttribute("msg", "Usuario registrado exitosamente!");
-//            response.sendRedirect("Administrador/usuario_registrar");
-
+            request.getSession().setAttribute("msg", "Usuario registrado exitosamente!");
+            response.sendRedirect("Administrador/administrador_registrar");
         } catch (Exception e) {
-           // String cause = e.getCause().getCause().getMessage();
-//            request.getSession().setAttribute("msg", "Error, el dato: " + Utileria.msgExPersistence(cause) + " ya existe!");
+            String cause = e.getCause().getCause().getMessage();
+            request.getSession().setAttribute("msg", "Error, el dato: " + Utileria.msgExPersistence(cause) + " ya existe!");
             response.sendRedirect("/Error/errorRedir");
         }
     }

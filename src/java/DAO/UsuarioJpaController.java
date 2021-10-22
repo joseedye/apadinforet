@@ -319,6 +319,15 @@ public class UsuarioJpaController implements Serializable {
         }
     }
 
+     public Usuario getUsuarioLast() {
+        EntityManager em = getEntityManager();
+        try {
+            return (Usuario) em.createNativeQuery("Select * from usuario order by id_usuario desc limit 1", Usuario.class).getResultList().get(0);
+        } finally {
+            em.close();
+        }
+    }
+     
     public int getUsuarioCount() {
         EntityManager em = getEntityManager();
         try {

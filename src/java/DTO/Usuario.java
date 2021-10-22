@@ -77,6 +77,11 @@ public class Usuario implements Serializable {
         this.password = password;
         this.fechaCreacion = fechaCreacion;
     }
+    
+    //craqr el campo actibo en la bd
+public Usuario(String user, String password, Date fecCreacion) {
+        this(null,user,password,fecCreacion);
+    }
 
     public Integer getIdUsuario() {
         return idUsuario;

@@ -16,10 +16,7 @@ import java.util.Map;
  * @author rozo
  */
 public class Utileria {
-    
-    
-    
-    
+
     public static Map<String, String> usuarioToMap(Usuario user) {
         Map<String, String> map = new HashMap<>();
         map.put("idUsuario", user.getIdUsuario().toString());
@@ -31,25 +28,31 @@ public class Utileria {
         map.put("apellido2", user.getIdPersona().getApellido2());
         map.put("fecNacimiento", dateToString(user.getIdPersona().getFechaNac()));
         map.put("tipoDocumento", user.getIdPersona().getTipoDoc());
-        map.put("numDocumento", user.getIdPersona().getNumeroDoc()+ "");
-       // map.put("genero", user.getIdPersona().getGenero(); cambiar a string
+        map.put("numDocumento", user.getIdPersona().getNumeroDoc() + "");
+        // map.put("genero", user.getIdPersona().getGenero(); cambiar a string
         map.put("direccion", user.getIdPersona().getDireccion());
         map.put("email", user.getIdPersona().getEmail());
         //cambiar a string
-        map.put("telefono1", user.getIdPersona().getTelefono1()+"");
-        map.put("telefono2", user.getIdPersona().getTelefono2()+"");
+        map.put("telefono1", user.getIdPersona().getTelefono1() + "");
+        map.put("telefono2", user.getIdPersona().getTelefono2() + "");
         //map.put("activo", user.getActivo() + ""); crear en la bd
         map.put("contra", user.getPassword());
 
         return map;
     }
-    
-   private static String dateToString(Date date) {
+
+    private static String dateToString(Date date) {
         if (date == null) {
             return null;
         }
 
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         return formato.format(date);
+    }
+
+    public static String msgExPersistence(String cause) {
+        int inicio = cause.indexOf("entry") + 5;
+        int fin = cause.indexOf("for");
+        return cause.substring(inicio, fin);
     }
 }
