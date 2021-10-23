@@ -74,30 +74,32 @@
                                         <label for="">Nombre</label>
                                         <input type="text" name="Nom" class="form-control" id="" placeholder="Nombre" value="<%=user.get("nombres")%>" maxlength="100" required>
 
-                                        
-                                        
-                                        
+
+
+
                                         <label for="">Tipo Documento</label>
                                         <select class="form-control" name="Tipodoc" id="Tipodoc" required>
-                                            
+
                                             <% if (user.get("tipoDocumento").equals("cc")) {%>
                                             <option selected value="cc" name="cc">C.C</option>
                                             <option value="ce" name="ce">C.E</option>
                                             <option value="nit" name="nit">NIT</option>
-                                            <%} if(user.get("tipoDocumento").equals("ce")){%>
+                                            <%}
+                                                if (user.get("tipoDocumento").equals("ce")) {%>
                                             <option value="cc" name="cc">C.C</option>
                                             <option  selected value="ce"  name="ce">C.E</option>
                                             <option value="nit" name="nit">NIT</option>
-                                             <%} if(user.get("tipoDocumento").equals("nit")){%>
+                                            <%}
+                                                 if (user.get("tipoDocumento").equals("nit")) {%>
                                             <option value="cc" name="cc">C.C</option>
                                             <option value="ce" name="ce">C.E</option>
                                             <option selected value="nit" name="nit">NIT</option>
-                                             <%}%>
+                                            <%}%>
                                         </select>
 
-                                        
-                                        
-                                        
+
+
+
                                         <label for="">Documento</label>
                                         <input type="number" name="Doc" pattern="[0-9]+" class="form-control"  readonly=»readonly» id="" placeholder="Documento" value="<%=user.get("numDocumento")%>" >
 
@@ -173,6 +175,22 @@
                                     </div>
                                 </div>
                                 <!-- Modal  --> 
+                            </form>
+                            <form  name="form2" action="../UpdatePassword.do" method="post">
+                                <div class="form-row changPassword">
+                                    <div class="form-group col-md-4">
+                                        <label for="exampleInputPassword1">Contraseña anterior</label>
+                                        <input type="password" name="ContraAnt" class="form-control" required>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="exampleInputPassword1">Contraseña nueva</label>
+                                        <input type="password" name="ContraNueva" class="form-control" required>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label>&nbsp;</label><br>
+                                        <button type="submit" name="Cambiar" class="btn btn-primary">Cambiar</button>
+                                    </div>
+                                </div>
                             </form>
                         </div>
 

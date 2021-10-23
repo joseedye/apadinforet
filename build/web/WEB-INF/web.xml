@@ -59,14 +59,14 @@
         <servlet-name>UpdateProfile</servlet-name>
         <servlet-class>Controlador.UpdateProfile</servlet-class>
     </servlet>
-    
     <servlet>
         <servlet-name>errorr</servlet-name>
         <jsp-file>/Error/errorRedir.jsp</jsp-file>
     </servlet>
-    
-    
-    
+    <servlet>
+        <servlet-name>UpdatePassword</servlet-name>
+        <servlet-class>Controlador.UpdatePassword</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>perfila</servlet-name>
         <url-pattern>/Administrador</url-pattern>
@@ -76,9 +76,6 @@
         <servlet-name>registrara</servlet-name>
         <url-pattern>/Administrador/administrador_registrar</url-pattern>
     </servlet-mapping>
-    
-    
-    
     <!---  toma el nombre y lo convierte a ruta de navegador PERFIL CLIENTE -->
     <servlet-mapping>
         <servlet-name>perfilc</servlet-name>
@@ -104,9 +101,6 @@
         <servlet-name>errorr</servlet-name>
         <url-pattern>/Error/errorRedir</url-pattern>
     </servlet-mapping>
-
-    
-    
     <!---  controladores  -->
     <!---  SINGNIN  -->
     <servlet>
@@ -142,6 +136,10 @@
     <servlet-mapping>
         <servlet-name>UpdateProfile</servlet-name>
         <url-pattern>/UpdateProfile.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdatePassword</servlet-name>
+        <url-pattern>/UpdatePassword.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
