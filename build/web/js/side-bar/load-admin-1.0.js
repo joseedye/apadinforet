@@ -31,7 +31,7 @@ var sidebar =   '<div class="sidebar-header">'+
                         '</a>'+
                         '<ul class="collapse list-unstyled" id="usersSubMenu">'+
                             '<li>'+
-                                '<a href="administrador_registrar">Registro Administrador</a>'+
+                                '<a href="../LoadCountry.do">Registro Administrador</a>'+
                             '</li>'+
                             '<li>'+
                                 '<a href="estudiantes_registrar">Registro Cliente</a>'+

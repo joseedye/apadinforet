@@ -4,6 +4,8 @@
     Author     : rozo
 --%>
 
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Map"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -31,6 +33,7 @@
             <%
                 Map<String, String> user = (Map<String, String>) request.getSession().getAttribute("user");
                 String userImg = (String) request.getSession().getAttribute("userImg");
+                Map<String, String> listPaises = (Map<String, String>) request.getSession().getAttribute("country");
             %>
 
             <!-- Page Content  -->
@@ -93,12 +96,29 @@
                                         <option value="Masculino" name="masculino">Masculino</option>
                                         <option value="Femenino" name="femenino">Femenino</option>
                                     </select>
+                                    <label for="">Pais</label>
+                                    <select class="form-control" name="Pais" id="pais" required>
+                                        <option disabled selected norequired>Seleccione</option>
+
+                                        <%if (!listPaises.isEmpty()) {
+                                                int i = 0;
+                                                while (i != listPaises.size() / 2) {
+
+                                                    String pais = listPaises.get("pais" + i);
+                                                    String num = listPaises.get("cod" + i++);
+                                        %>
+
+                                        <option value="<%= num%>" name="<%= num%>"> <%= pais%> </option>   
+
+                                        <% }
+                                            }
+                                        %>
+
+
+                                    </select>
+
                                     <label for="">Teléfono</label>
-                                    <input type="number" name="Tel1" min="0" class="form-control" id="" onKeyUp="if (this.value.length > 10) {
-                                                this.value = this.value.substr(0, 10);
-                                            } else if (this.value < 0) {
-                                                this.value = '0';
-                                            }" placeholder="Teléfono" required>
+                                    <input type="number" name="Tel1" min="0" class="form-control" id="Tel1" >
                                 </div>
 
                                 <div class="form-group col-md-4">
@@ -110,7 +130,7 @@
                                            placeholder="email@gmail.com" required>
 
                                     <label for="">Teléfono 2</label>
-                                    <input type="number" min="0" name="Tel2" class="form-control" id="" onKeyUp="if (this.value.length > 10) {
+                                    <input type="number" min="0" name="Tel2" class="form-control" id="num2" onKeyUp="if (this.value.length > 10) {
                                                 this.value = this.value.substr(0, 10);
                                             } else if (this.value < 0) {
                                                 this.value = '0';
@@ -166,7 +186,8 @@
 
         <%
             String msg = (String) request.getSession().getAttribute("msg");
-            if (msg != null) {
+            if (msg
+                    != null) {
         %>
 
         <!-- Modal success -->                        
@@ -188,28 +209,34 @@
         <!-- Modal success -->
 
         <%   }
-            request.getSession().removeAttribute("msg");
+
+            request.getSession()
+                    .removeAttribute("msg");
         %>
 
         <!-- jQuery Side-bar -->
-        <script src="../js/side-bar/jquery-3.3.1.slim.min.js"></script>
+        <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
         <script src="../js/side-bar/popper.min.js"></script>
         <script src="../js/side-bar/menu-button.js"></script>
         <script src="../js/side-bar/bootstrap.min.js"></script>   
         <script src="../js/side-bar/load-admin-1.0.js"></script> 
         <script src="../js/side-bar/load_admin_creacion1.0.js"></script>   
+
         <!-- jQuery Side-bar -->    
 
         <script>
                                         $(document).ready(function () {
+
                                             $("#ventana2").modal('show');
                                             $('#activamodal').click(function () {
                                                 var cor = document.getElementById('Tipodoc').value;
                                                 var gen = document.getElementById('genero').value;
-console.log("prueba");
+                                                console.log("prueba");
                                                 var isGenero = gen !== "Seleccione";
                                                 var istipodoc = cor !== "Seleccione";
-
                                                 if (!isGenero) {
                                                     alert("Seleccionar un género!");
                                                 }
@@ -221,10 +248,26 @@ console.log("prueba");
                                                 }
 
                                             });
+
                                         });
 
 
-                                       
+
+        </script>          
+        <script>
+            var select = document.getElementById('pais');
+            select.addEventListener('change',
+                    function () {
+
+
+                        console.log("entre a pais")
+                        var selectedOption = this.options[select.selectedIndex];
+                        var opcion = selectedOption.value;
+                        document.getElementById('Tel1').value = opcion;
+
+
+                    });
+
 
 
         </script>

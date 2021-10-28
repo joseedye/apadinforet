@@ -67,6 +67,10 @@
         <servlet-name>UpdatePassword</servlet-name>
         <servlet-class>Controlador.UpdatePassword</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoadCountry</servlet-name>
+        <servlet-class>Controlador.LoadCountry</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>perfila</servlet-name>
         <url-pattern>/Administrador</url-pattern>
@@ -140,6 +144,10 @@
     <servlet-mapping>
         <servlet-name>UpdatePassword</servlet-name>
         <url-pattern>/UpdatePassword.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadCountry</servlet-name>
+        <url-pattern>/LoadCountry.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
