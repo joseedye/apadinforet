@@ -1,5 +1,5 @@
 var sidebar =   '<div class="sidebar-header">'+
-                    '<h3 style="color: #fff !important">AVECS</h3>'+
+                    '<h3 style="color: #fff !important">INFORET</h3>'+
                     '<strong style="color: #fff !important">CS</strong>'+
                 '</div>'+
 
@@ -31,10 +31,16 @@ var sidebar =   '<div class="sidebar-header">'+
                         '</a>'+
                         '<ul class="collapse list-unstyled" id="usersSubMenu">'+
                             '<li>'+
-                                '<a href="usuario_registrar">Registrar Usuario</a>'+
+                                '<a href="../LoadCountry.do">Registro Administrador</a>'+
                             '</li>'+
                             '<li>'+
-                                '<a href="estudiantes_registrar">Registro Estudiantes</a>'+
+                                '<a href="estudiantes_registrar">Registro Cliente</a>'+
+                            '</li>'+
+                            '<a href="estudiantes_registrar">Registro Proveedor</a>'+
+                            '</li>'+
+                            '<a href="estudiantes_registrar">Registro Gerente</a>'+
+                            '</li>'+
+                            '<a href="estudiantes_registrar">Registro Empleado</a>'+
                             '</li>'+
                             '<li>'+
                                 '<a href="../QueryUsers.do">Consultar</a>'+
@@ -50,17 +56,17 @@ var sidebar =   '<div class="sidebar-header">'+
                      '<li id="livisitas" >'+
                         '<a href="../QueryVisitas.do">'+
                             '<i class="fa fa-building"></i>'+
-                            '&nbspVisitas'+
+                            '&nbspVentas'+
                         '</a>'+
                     '</li>'+
                     '<li id="liempresas" >'+                        
                         '<a href="#CompaniesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">'+
                             '<i class="fas fa-briefcase"></i>'+
-                            '&nbspEmpresas'+
+                            '&nbspCliente'+
                         '</a>'+
                         '<ul class="collapse list-unstyled" id="CompaniesSubmenu">'+
                             '<li>'+
-                                '<a href="empresa_registrar">Registrar Empresa</a>'+
+                                '<a href="empresa_registrar">Registrar Cliente</a>'+
                             '</li>'+
                             '<li>'+
                                 '<a href="../QueryCompanies.do">Consultar</a>'+

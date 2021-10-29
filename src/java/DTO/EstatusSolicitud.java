@@ -114,7 +114,7 @@ public class EstatusSolicitud implements Serializable {
 
     @Override
     public String toString() {
-        return "DAO.EstatusSolicitud[ idEstatus=" + idEstatus + " ]";
+        return "DTO.EstatusSolicitud[ idEstatus=" + idEstatus + " ]";
     }
     
 }

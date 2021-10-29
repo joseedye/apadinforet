@@ -101,7 +101,7 @@ public class TipoUsuario implements Serializable {
 
     @Override
     public String toString() {
-        return "DAO.TipoUsuario[ idTipoUsuario=" + idTipoUsuario + " ]";
+        return "DTO.TipoUsuario[ idTipoUsuario=" + idTipoUsuario + " ]";
     }
     
 }

@@ -86,7 +86,7 @@ public class UserSistem implements Serializable {
 
     @Override
     public String toString() {
-        return "DAO.UserSistem[ idUsis=" + idUsis + " ]";
+        return "DTO.UserSistem[ idUsis=" + idUsis + " ]";
     }
     
 }

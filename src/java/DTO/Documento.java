@@ -142,7 +142,7 @@ public class Documento implements Serializable {
 
     @Override
     public String toString() {
-        return "DAO.Documento[ idDocumento=" + idDocumento + " ]";
+        return "DTO.Documento[ idDocumento=" + idDocumento + " ]";
     }
     
 }

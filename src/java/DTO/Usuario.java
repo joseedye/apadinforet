@@ -53,11 +53,11 @@ public class Usuario implements Serializable {
     @Column(name = "fecha_creacion")
     @Temporal(TemporalType.DATE)
     private Date fechaCreacion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente")
     private List<Solicitud> solicitudList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSolucionador")
     private List<Solicitud> solicitudList1;
-    @JoinColumn(name = "id_persona", referencedColumnName = "id_persona")
+    @JoinColumn(name = "id_persona", referencedColumnName = "numero_doc")
     @ManyToOne(optional = false)
     private Persona idPersona;
     @JoinColumn(name = "id_tipo_usuario", referencedColumnName = "id_tipo_usuario")
@@ -76,6 +76,11 @@ public class Usuario implements Serializable {
         this.user = user;
         this.password = password;
         this.fechaCreacion = fechaCreacion;
+    }
+    
+    //craqr el campo actibo en la bd
+public Usuario(String user, String password, Date fecCreacion) {
+        this(null,user,password,fecCreacion);
     }
 
     public Integer getIdUsuario() {
@@ -166,7 +171,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "DAO.Usuario[ idUsuario=" + idUsuario + " ]";
+        return "DTO.Usuario[ idUsuario=" + idUsuario + " ]";
     }
     
 }
