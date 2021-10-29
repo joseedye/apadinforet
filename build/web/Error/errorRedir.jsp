@@ -21,7 +21,7 @@
         <title>Error</title>
         <style>
             body {
-                background-image: url(/img/walpeper2.jpg);
+                background-image: url(/img/fondo.png);
                 background-repeat: no-repeat;
                 background-size: cover;
             }
@@ -92,7 +92,7 @@
         <script src="/js/side-bar/jquery-3.3.1.slim.min.js"></script>
         <script src="/js/side-bar/popper.min.js"></script>
         <script src="/js/side-bar/bootstrap.min.js"></script>   
-        <script src="/js/side-bar/load_docente_1.0.js"></script> 
+       
         `<!-- jQuery Side-bar --> 
         <script>
             $(document).ready(function () {

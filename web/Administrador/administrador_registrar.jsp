@@ -222,7 +222,6 @@
         <script src="../js/side-bar/popper.min.js"></script>
         <script src="../js/side-bar/menu-button.js"></script>
         <script src="../js/side-bar/bootstrap.min.js"></script>   
-        <script src="../js/side-bar/load-admin-1.0.js"></script> 
         <script src="../js/side-bar/load_admin_creacion1.0.js"></script>   
 
         <!-- jQuery Side-bar -->    

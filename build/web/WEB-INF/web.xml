@@ -50,7 +50,13 @@
         <servlet-name>perfile</servlet-name>
         <jsp-file>/Empleado/perfil.jsp</jsp-file>
     </servlet>
-    <!---  toma el nombre y lo convierte a ruta de navegador PERFIL ADMINISTRADOR -->
+    <!---  
+    
+    
+    toma el nombre y lo convierte a ruta de navegador PERFIL ADMINISTRADOR
+
+
+    -->
     <servlet>
         <servlet-name>RegisterAdmin</servlet-name>
         <servlet-class>Controlador.RegisterAdmin</servlet-class>
@@ -67,9 +73,17 @@
         <servlet-name>UpdatePassword</servlet-name>
         <servlet-class>Controlador.UpdatePassword</servlet-class>
     </servlet>
+    <!--- 
+
+
+
+    toma el nombre y lo convierte a ruta de navegador PERFIL CLIENTE 
+    
+    
+    -->
     <servlet>
-        <servlet-name>LoadCountry</servlet-name>
-        <servlet-class>Controlador.LoadCountry</servlet-class>
+        <servlet-name>LoadCountries</servlet-name>
+        <servlet-class>Controlador.LoadCountries</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>perfila</servlet-name>
@@ -146,8 +160,8 @@
         <url-pattern>/UpdatePassword.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>LoadCountry</servlet-name>
-        <url-pattern>/LoadCountry.do</url-pattern>
+        <servlet-name>LoadCountries</servlet-name>
+        <url-pattern>/LoadCountries.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

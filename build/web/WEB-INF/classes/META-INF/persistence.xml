@@ -8,7 +8,7 @@
     <class>DTO.Persona</class>
     <class>DTO.Usuario</class>
     <class>DTO.TipoUsuario</class>
-    <class>DTO.UserSistem</class>
+    <class>DTO.UserSistem</class> 
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
 <!--      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/inforetbd?zeroDateTimeBehavior=convertToNull"/>
