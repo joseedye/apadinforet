@@ -22,7 +22,7 @@ puede crear, editar, consultar y eliminar usuarios admiistradores , y actualizar
 
 ### Capturas
 
-![image]([app](https://user-images.githubusercontent.com/34385915/140248261-c630f78e-6617-47d2-98dd-4dfc387faeae.png))
+![image](https://user-images.githubusercontent.com/34385915/140248261-c630f78e-6617-47d2-98dd-4dfc387faeae.png)
 
 
 ## Tecnologías
