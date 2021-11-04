@@ -9,7 +9,8 @@
 4. [Instalación](#instalación)
 5. [Colaboración](#colaboración)
 
-### General
+### General!
+
 * Aplicacion java web para practicas profesionales de la universidad Francisco de Paula Santander [ver mas](https://www.java.com/es/download/help/java_webstart_es.html) 
 para la empresa nortesantandereana inforet sas
 
@@ -21,7 +22,7 @@ puede crear, editar, consultar y eliminar usuarios admiistradores , y actualizar
 
 ### Capturas
 
-![image](https://user-images.githubusercontent.com/46111379/11-4a44-933b-98853dd28401.png)
+![image]([app](https://user-images.githubusercontent.com/34385915/140248261-c630f78e-6617-47d2-98dd-4dfc387faeae.png))
 
 
 ## Tecnologías
