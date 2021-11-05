@@ -5,6 +5,7 @@
  */
 package Util;
 
+import DTO.Persona;
 import DTO.Usuario;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -41,8 +42,10 @@ public class Utileria {
         map.put("email", user.getIdPersona().getEmail());
         map.put("telefono1", user.getIdPersona().getTelefono1() + "");
         map.put("telefono2", user.getIdPersona().getTelefono2() + "");
-        //map.put("activo", user.getActivo() + ""); crear en la bd
+        map.put("activo", user.getActivo() + ""); 
         map.put("contra", user.getPassword());
+        map.put("pais", user.getIdPersona().getPais());
+        map.put("comentario",user.getIdPersona().getComentario());
 
         return map;
     }
@@ -62,11 +65,10 @@ public class Utileria {
         return cause.substring(inicio, fin);
     }
 
-    public static Map<String,String> getPaises() {
+    public static Map<String, String> getPaises() {
 
-        
         //Map<String, Map<String, String>> mapT = new HashMap<>();
-         Map<String, String> mapI = new HashMap<>();
+        Map<String, String> mapI = new HashMap<>();
         try {
 
             URL url = new URL("https://gist.githubusercontent.com/brenes/1095110/raw/c8f208b03485ba28f97c500ab7271e8bce43b9c6/paises.csv");
@@ -76,24 +78,19 @@ public class Utileria {
             String lectura = in.readLine();
             String salida[] = new String[2];
             String parte[];
-int i=0;
+            int i = 0;
             while ((lectura = in.readLine()) != null) {
 
                 parte = lectura.split(",");
-                
+
                 salida[0] = parte[0].substring(1, parte[0].length() - 1);
                 salida[1] = parte[5].substring(1, parte[5].length() - 1);;
-                
-                //System.out.println(salida[0]+""+salida[1]);
-                
-                mapI.put("pais"+ i, salida[0]);
-                mapI.put("cod"+ i++, salida[1]);
-                
-               
-               
+
+                mapI.put("pais" + i, salida[0]);
+                mapI.put("cod" + i++, salida[1]);
+
             }
-            
-            
+
             in.close();
 
         } catch (Exception e) {
@@ -102,4 +99,5 @@ int i=0;
 
         return mapI;
     }
+
 }

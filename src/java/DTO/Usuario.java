@@ -36,8 +36,11 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario"),
     @NamedQuery(name = "Usuario.findByUser", query = "SELECT u FROM Usuario u WHERE u.user = :user"),
     @NamedQuery(name = "Usuario.findByPassword", query = "SELECT u FROM Usuario u WHERE u.password = :password"),
-    @NamedQuery(name = "Usuario.findByFechaCreacion", query = "SELECT u FROM Usuario u WHERE u.fechaCreacion = :fechaCreacion")})
+    @NamedQuery(name = "Usuario.findByFechaCreacion", query = "SELECT u FROM Usuario u WHERE u.fechaCreacion = :fechaCreacion"),
+    @NamedQuery(name = "Usuario.findByActivo", query = "SELECT u FROM Usuario u WHERE u.activo = :activo")})
 public class Usuario implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
+    private List<Notificacion> notificacionList;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -53,6 +56,9 @@ public class Usuario implements Serializable {
     @Column(name = "fecha_creacion")
     @Temporal(TemporalType.DATE)
     private Date fechaCreacion;
+    @Basic(optional = false)
+    @Column(name = "activo")
+    private String activo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente")
     private List<Solicitud> solicitudList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSolucionador")
@@ -71,16 +77,16 @@ public class Usuario implements Serializable {
         this.idUsuario = idUsuario;
     }
 
-    public Usuario(Integer idUsuario, String user, String password, Date fechaCreacion) {
+    public Usuario(Integer idUsuario, String user, String password, Date fechaCreacion, String activo) {
         this.idUsuario = idUsuario;
         this.user = user;
         this.password = password;
         this.fechaCreacion = fechaCreacion;
+        this.activo = activo;
     }
     
-    //craqr el campo actibo en la bd
-public Usuario(String user, String password, Date fecCreacion) {
-        this(null,user,password,fecCreacion);
+    public Usuario(String user, String password, Date fecCreacion,String activo) {
+        this(null,user,password,fecCreacion,activo);
     }
 
     public Integer getIdUsuario() {
@@ -113,6 +119,14 @@ public Usuario(String user, String password, Date fecCreacion) {
 
     public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
+    }
+
+    public String getActivo() {
+        return activo;
+    }
+
+    public void setActivo(String activo) {
+        this.activo = activo;
     }
 
     @XmlTransient
@@ -172,6 +186,15 @@ public Usuario(String user, String password, Date fecCreacion) {
     @Override
     public String toString() {
         return "DTO.Usuario[ idUsuario=" + idUsuario + " ]";
+    }
+
+    @XmlTransient
+    public List<Notificacion> getNotificacionList() {
+        return notificacionList;
+    }
+
+    public void setNotificacionList(List<Notificacion> notificacionList) {
+        this.notificacionList = notificacionList;
     }
     
 }

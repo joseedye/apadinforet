@@ -36,7 +36,8 @@
 
             <!-- Page Content  -->
             <div id="content">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <nav  class="navbar navbar-expand-lg navbar-light bg-light">
+
                     <div class="container-fluid">
 
                         <button type="button" id="sidebarCollapse" class="btn btn-info">
@@ -46,6 +47,45 @@
                         <div>
                             <h5><%=user.get("nombres").toUpperCase() + ""%></h5>
                         </div>
+
+                        <div  >
+
+                            <%
+                                String msg3 = (String) request.getSession().getAttribute("msg3");
+                                String id3 = (String) request.getSession().getAttribute("id3");
+                                if (msg3!=null) {
+                            %>
+
+                            <button type="button"  data-toggle="popover" title="Nueva notificacion"
+                                    
+                                    data-trigger="focus" data-html="true"
+                                    
+                                    data-content="
+                                    <div class=form-row >
+                                     <div class=form col-md-8 >
+                                    <label><%=msg3%></label> 
+                                     </div>
+                                      <div class=form col-md-4>
+                                      <form action='../AceptUser.do?id=<%=id3 %>' method='post' >
+                                    <input type='submit' name='Nom' class=form-control placeholder=Nombre value=VER class=`btn btn-danger btn-circle btn-xl`>
+                                  </form>
+                                    </div>
+                                    </div>"
+                                    >
+                           
+                                <i  class="icon fa fa-bell fa-fw ">  
+                                </i>
+                            </button>
+                            <%  } else { %>
+                            <button type="button"  data-toggle="popover" title="No tienes notificaciones" data-trigger="focus"
+                                    data-content="vacio! " class="btn btn-danger btn-circle btn-xl">
+                                <i  class="icon fa fa-bell fa-fw ">  
+                                </i>
+                            </button>
+                            <%  } %>
+                        </div>
+
+
                         <div class="img-profile">
                             <img src="/img/fotoadmin.jpg<%//=userImg%>">                        
                         </div>
@@ -72,56 +112,33 @@
                                     <div class="form-group col-md-4">
 
                                         <label for="">Nombre</label>
-                                        <input type="text" name="Nom" class="form-control" id="" placeholder="Nombre" value="<%=user.get("nombres")%>" maxlength="100" required>
+                                        <input type="text" name="Nom" class="form-control" readonly=»readonly» id="" placeholder="Nombre" value="<%=user.get("nombres").toUpperCase() + ""%>" maxlength="100" required>
 
 
 
 
                                         <label for="">Tipo Documento</label>
-                                        <select class="form-control" name="Tipodoc" id="Tipodoc" required>
-
-                                            <% if (user.get("tipoDocumento").equals("cc")) {%>
-                                            <option selected value="cc" name="cc">C.C</option>
-                                            <option value="ce" name="ce">C.E</option>
-                                            <option value="nit" name="nit">NIT</option>
-                                            <%}
-                                                if (user.get("tipoDocumento").equals("ce")) {%>
-                                            <option value="cc" name="cc">C.C</option>
-                                            <option  selected value="ce"  name="ce">C.E</option>
-                                            <option value="nit" name="nit">NIT</option>
-                                            <%}
-                                                 if (user.get("tipoDocumento").equals("nit")) {%>
-                                            <option value="cc" name="cc">C.C</option>
-                                            <option value="ce" name="ce">C.E</option>
-                                            <option selected value="nit" name="nit">NIT</option>
-                                            <%}%>
-                                        </select>
-
-
-
+                                        <input type="text" name="Tipodoc" class="form-control" readonly=»readonly» id=""  value="<%=user.get("tipoDocumento")%>" maxlength="100" required>
 
                                         <label for="">Documento</label>
                                         <input type="number" name="Doc" pattern="[0-9]+" class="form-control"  readonly=»readonly» id="" placeholder="Documento" value="<%=user.get("numDocumento")%>" >
 
                                         <label for="">Fecha de Nacimiento</label>
-                                        <input class="form-control" type="date" name="Fecha" value="<%=user.get("fecNacimiento") + ""%>" required>
+                                        <input class="form-control" type="date" readonly=»readonly» name="Fecha" value="<%=user.get("fecNacimiento") + ""%>" required>
 
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="">Primer Apellido</label>
-                                        <input type="text" name="Ape1" class="form-control" id="" placeholder="Primer Apellido" value="<%=user.get("apellido1") + ""%>" maxlength="15" required>
+                                        <input type="text" name="Ape1" class="form-control" id="" readonly=»readonly» value="<%=user.get("apellido1") + ""%>" maxlength="15" required>
 
                                         <label for="">Género</label>
-                                        <select class="form-control" name="Genero">
-                                            <option disabled >Seleccionar</option>
-                                            <% if (user.get("genero").equals("Masculino")) {%>
-                                            <option selected value="Masculino" name="masculino">Masculino</option>
-                                            <option value="Femenino" name="femenino">Femenino</option>
-                                            <%} else { %>
-                                            <option value="Masculino" name="masculino">Masculino</option>
-                                            <option selected value="Femenino" name="femenino">Femenino</option>
-                                            <%}%>
-                                        </select>
+                                        <input type="text" name="Genero" class="form-control" id="" readonly=»readonly» value="<%=user.get("genero")%>" maxlength="15" required>
+
+
+                                        <label for="">Pais</label>
+                                        <input type="text" name="pais" class="form-control" id="" readonly=»readonly» value="<%=user.get("pais")%>" maxlength="100" required>
+
+
 
                                         <label for="">Teléfono</label>
                                         <input type="number" name="Tel1" pattern="[0-9]+" class="form-control" id="" onKeyUp="if (this.value.length > 10) {
@@ -133,10 +150,10 @@
 
                                     <div class="form-group col-md-4">
                                         <label for="">Segundo Apellido</label>
-                                        <input type="text" name="Ape2" class="form-control" id="" placeholder="Segundo Apellido" value="<%=user.get("apellido2")%>" maxlength="15" required>
+                                        <input type="text" name="Ape2" class="form-control" id="" readonly=»readonly» value="<%=user.get("apellido2")%>" maxlength="15" required>
 
                                         <label for="">Email</label>
-                                        <input type="email" name="Email"  readonly=»readonly» pattern="+.@ufps.edu.co" class="form-control" id="emaill" placeholder="@ufps.edu.co"value="<%=user.get("email")%>" maxlength="70" required>
+                                        <input type="email" name="Email"  pattern="+.@ufps.edu.co" class="form-control" id="emaill" placeholder="@ufps.edu.co"value="<%=user.get("email")%>" maxlength="70" required>
 
                                         <label for="">Teléfono 2</label>
                                         <input type="number" name="Tel2" pattern="[0-9]+" class="form-control" id="" value="<%=user.get("telefono2")%>" onKeyUp="if (this.value.length > 10) {
@@ -174,7 +191,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Modal  --> 
+
+
+
+                                <!-- Modal  confirmacion contraseña--> 
                             </form>
                             <form  name="form2" action="../UpdatePassword.do" method="post">
                                 <div class="form-row changPassword">
@@ -221,6 +241,35 @@
                         <%   }
                             request.getSession().removeAttribute("msg");
                         %>
+
+
+
+
+
+
+                        <!-- Modal notificacion -->                        
+                        <div class="modal fade" id="ventana3" tabindex="-1" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Alerta</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Nuevo usuario creado</p>
+                                    </div>
+                                    <div class="modal-footer">            
+                                        <button type="submit"  class="btn btn-primary">ver</button>
+                                        <button type="button" class="btn btn-primary">Mas tarde</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal notificacion -->
+
+
                     </div>
                 </div>
                 <!-- Content  -->
@@ -229,16 +278,35 @@
         </div>
 
         <!-- jQuery Side-bar -->
-        <script src="../js/side-bar/jquery-3.3.1.slim.min.js"></script>
-        <script src="../js/side-bar/popper.min.js"></script>
-        <script src="../js/side-bar/menu-button.js"></script>
-        <script src="../js/side-bar/bootstrap.min.js"></script> 
-        <script src="../js/side-bar/load-admin-1.0.js"></script>
+        <script src="../js/side-bar/extra/jquery-3.3.1.slim.min.js"></script>
+        <!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
+
+        <script src="../js/side-bar/extra/popper.min.js"></script>
+        <script src="../js/side-bar/extra/menu-button.js"></script>
+        <script src="../js/side-bar/extra/bootstrap.min.js"></script> 
+        <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>-->
+
+        <script src="../js/side-bar/admin/load-admin-1.0.js"></script>
         <!-- jQuery Side-bar -->    
         <script>
                                             $(document).ready(function () {
                                                 $("#ventana2").modal('show');
                                             });
+
+        </script> 
+
+        <script>
+            $(document).ready(function () {
+                $('[data-toggle="popover"]').popover();
+            });
+        </script>
+
+
+        <script>
+
+            function mostrarnoti() {
+                $("#ventana3").modal('show');
+            }
         </script> 
 
     </body>

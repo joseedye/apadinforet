@@ -9,6 +9,7 @@ import DAO.Conexion;
 import DAO.PersonaJpaController;
 import DAO.UsuarioJpaController;
 import DTO.Persona;
+import DTO.TipoUsuario;
 import DTO.Usuario;
 import Util.Utileria;
 import java.io.IOException;
@@ -46,43 +47,53 @@ public class UpdateProfile extends HttpServlet {
             UsuarioJpaController usuarioDao = new UsuarioJpaController(emf);
             PersonaJpaController personaDao = new PersonaJpaController(emf);
 
-            String nombre = req.getParameter("Nom");
-            String tipodoc = req.getParameter("Tipodoc");
-            String documento = req.getParameter("Doc");
-            String fecha = req.getParameter("Fecha");
-            String apellido1 = req.getParameter("Ape1");
             String email = req.getParameter("Email");
             String telefono1 = req.getParameter("Tel1");
-            String telefono2 = req.getParameter("Tel2");
-            String genero = req.getParameter("Genero");
-            String apellido2 = req.getParameter("Ape2");
+            String telefono2 = req.getParameter("Tel2");        
             String direccion = req.getParameter("Dire");
 
             int idUsuario = Integer.valueOf(user.get("idUsuario"));
-            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-            Date fecNacimiento = formato.parse(fecha);
 
             Usuario usuario = usuarioDao.findUsuario(idUsuario);
             Persona persona = personaDao.findPersona(usuario.getIdPersona().getNumeroDoc());
 
-            persona.setNombres(nombre);
-            persona.setTipoDoc(tipodoc);
-            persona.setNumeroDoc(documento);
-            persona.setFechaNac(fecNacimiento);
+
             persona.setEmail(email);
-            persona.setApellido1(apellido1);
-            persona.setApellido2(apellido2);
             persona.setTelefono1(telefono1);
             persona.setTelefono2(telefono2);
-            persona.setGenero(genero);
             persona.setDireccion(direccion);
-
             personaDao.edit(persona);
 
             user = Utileria.usuarioToMap(usuarioDao.findUsuario(idUsuario));
-            req.getSession().setAttribute("user", user);
+            
+             TipoUsuario tipoUsuario = usuario.getIdTipoUsuario();
+
+             req.getSession().setAttribute("user", user);
             req.getSession().setAttribute("msg", "Perfil actualizado exitosamente!");
-            res.sendRedirect("Administrador/perfil");
+            
+                //redirijo segun sea el usuario
+                switch (tipoUsuario.getDesTipoUsuario()) {
+                    case "administrador":
+                        res.sendRedirect("Notification.do");
+                        break;
+                    case "cliente":
+                        res.sendRedirect("Notification.do");
+                        break;
+                    case "proveedor":
+                        res.sendRedirect("Notification.do");
+                        break;
+                    case "gerente":
+                        res.sendRedirect("Notification.do");
+                        break;
+                    case "empleado_planta":
+                        res.sendRedirect("Notification.do");
+                        break;
+
+                    default:
+                        break;
+                }
+            
+        
 
         } catch (Exception e) {
             req.getSession().setAttribute("msg", "Error, al actualizar usuario!");

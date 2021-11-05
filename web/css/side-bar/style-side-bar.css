@@ -16,6 +16,13 @@ p {
     color: #999;
 }
 
+.background-img{
+
+    position:absolute;
+    right:10px;
+    bottom: 10px 
+}
+
 a,
 a:hover,
 a:focus {

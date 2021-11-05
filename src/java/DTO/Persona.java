@@ -41,7 +41,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Persona.findByDireccion", query = "SELECT p FROM Persona p WHERE p.direccion = :direccion"),
     @NamedQuery(name = "Persona.findByTelefono1", query = "SELECT p FROM Persona p WHERE p.telefono1 = :telefono1"),
     @NamedQuery(name = "Persona.findByTelefono2", query = "SELECT p FROM Persona p WHERE p.telefono2 = :telefono2"),
-    @NamedQuery(name = "Persona.findByEmail", query = "SELECT p FROM Persona p WHERE p.email = :email")})
+    @NamedQuery(name = "Persona.findByEmail", query = "SELECT p FROM Persona p WHERE p.email = :email"),
+    @NamedQuery(name = "Persona.findByPais", query = "SELECT p FROM Persona p WHERE p.pais = :pais"),
+    @NamedQuery(name = "Persona.findByComentario", query = "SELECT p FROM Persona p WHERE p.comentario = :comentario")})
 public class Persona implements Serializable {
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
@@ -79,6 +81,10 @@ public class Persona implements Serializable {
     @Basic(optional = false)
     @Column(name = "email")
     private String email;
+    @Column(name = "pais")
+    private String pais;
+    @Column(name = "comentario")
+    private String comentario;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPersona")
     private List<Usuario> usuarioList;
 
@@ -103,8 +109,6 @@ public class Persona implements Serializable {
         this.email = email;
     }
 
-         
-    
     public String getNombres() {
         return nombres;
     }
@@ -191,6 +195,22 @@ public class Persona implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
     }
 
     @XmlTransient

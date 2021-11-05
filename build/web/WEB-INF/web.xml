@@ -30,6 +30,14 @@
         <servlet-name>registrara</servlet-name>
         <jsp-file>/Administrador/administrador_registrar.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>adminacept</servlet-name>
+        <jsp-file>/Administrador/admin_acept_cliente.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>registrare</servlet-name>
+        <jsp-file>/Administrador/empleado_registrar.jsp</jsp-file>
+    </servlet>
     <!---  VISTAS convertidor de ruta a nombre PERFIL CLIENTE  -->
     <servlet>
         <servlet-name>perfilc</servlet-name>
@@ -85,6 +93,18 @@
         <servlet-name>LoadCountries</servlet-name>
         <servlet-class>Controlador.LoadCountries</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegisterEmploye</servlet-name>
+        <servlet-class>Controlador.RegisterEmploye</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AceptUser</servlet-name>
+        <servlet-class>Controlador.AceptUser</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Notification</servlet-name>
+        <servlet-class>Controlador.Notification</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>perfila</servlet-name>
         <url-pattern>/Administrador</url-pattern>
@@ -93,6 +113,10 @@
     <servlet-mapping>
         <servlet-name>registrara</servlet-name>
         <url-pattern>/Administrador/administrador_registrar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>registrare</servlet-name>
+        <url-pattern>/Administrador/empleado_registrar</url-pattern>
     </servlet-mapping>
     <!---  toma el nombre y lo convierte a ruta de navegador PERFIL CLIENTE -->
     <servlet-mapping>
@@ -104,6 +128,10 @@
         <servlet-name>perfilp</servlet-name>
         <url-pattern>/Proveedor</url-pattern>
         <url-pattern>/Proveedor/perfil</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adminacept</servlet-name>
+        <url-pattern>/Administrador/aceptar</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>perfilg</servlet-name>
@@ -163,6 +191,18 @@
         <servlet-name>LoadCountries</servlet-name>
         <url-pattern>/LoadCountries.do</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterEmploye</servlet-name>
+        <url-pattern>/RegisterEmploye.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AceptUser</servlet-name>
+        <url-pattern>/AceptUser.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Notification</servlet-name>
+        <url-pattern>/Notification.do</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -175,4 +215,5 @@
         <version>4.12</version>
         <scope>test</scope>
     </dependency>
-</web-app>
+}
+    </web-app>

@@ -70,9 +70,9 @@
                                     <label for="">Tipo Documento</label>
                                     <select class="form-control" name="Tipodoc" id="Tipodoc" required>
                                         <option disabled selected norequired>Seleccione</option>
-                                        <option value="cc" name="cedula">C.C</option>
-                                        <option value="ce" name="extrangeria">C.E</option>
-                                        <option value="nit" name="nit">NIT</option>
+                                        <option value="CC" name="cedula">C.C</option>
+                                        <option value="CE" name="extrangeria">C.E</option>
+                                        <option value="NIT" name="nit">NIT</option>
                                     </select>
 
                                     <label for="">Documento</label>
@@ -219,10 +219,10 @@
             src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
         crossorigin="anonymous"></script>
-        <script src="../js/side-bar/popper.min.js"></script>
-        <script src="../js/side-bar/menu-button.js"></script>
-        <script src="../js/side-bar/bootstrap.min.js"></script>   
-        <script src="../js/side-bar/load_admin_creacion1.0.js"></script>   
+        <script src="../js/side-bar/extra/popper.min.js"></script>
+        <script src="../js/side-bar/extra/menu-button.js"></script>
+        <script src="../js/side-bar/extra/bootstrap.min.js"></script>   
+        <script src="../js/side-bar/admin/load_admin_creacion1.0.js"></script>   
 
         <!-- jQuery Side-bar -->    
 

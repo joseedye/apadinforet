@@ -24,29 +24,7 @@ var sidebar =   '<div class="sidebar-header">'+
                             '</li>'+
                         '</ul>'+
                     '</li>'+
-                    '<li id="liusuarios" >'+                        
-                        '<a href="#usersSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">'+
-                            '<i class="fas fa-users"></i>'+
-                            '&nbspUsuarios'+
-                        '</a>'+
-                        '<ul class="collapse list-unstyled" id="usersSubMenu">'+
-                            '<li id="registroadmin">'+
-                                '<a href="administrador_registrar"  >Registro Administrador</a>'+
-                            '</li>'+
-                            '<li>'+
-                                '<a href="estudiantes_registrar">Registro Cliente</a>'+
-                            '</li>'+
-                            '<a href="estudiantes_registrar">Registro Proveedor</a>'+
-                            '</li>'+
-                            '<a href="estudiantes_registrar">Registro Gerente</a>'+
-                            '</li>'+
-                            '<a href="estudiantes_registrar">Registro Empleado</a>'+
-                            '</li>'+
-                            '<li>'+
-                                '<a href="../QueryUsers.do">Consultar</a>'+
-                            '</li>'+                            
-                        '</ul>'+
-                    '</li>'+
+                    
                     '<li id="lisolicitudes" >'+
                         '<a href="../QuerySolicitudes.do">'+
                             '<i class="fas fa-question"></i>'+
@@ -60,15 +38,12 @@ var sidebar =   '<div class="sidebar-header">'+
                         '</a>'+
                     '</li>'+
                     '<li id="liempresas" >'+                        
-                        '<a href="#CompaniesSubmenu" >'+
+                        '<a href="#CompaniesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">'+
                             '<i class="fas fa-briefcase"></i>'+
                             '&nbspCliente'+
                         '</a>'+
                         '<ul class="collapse list-unstyled" id="CompaniesSubmenu">'+
-                            '<li>'+
-                                '<a href="empresa_registrar">Registrar Cliente</a>'+
-                            '</li>'+
-                            '<li>'+
+                           '<li>'+
                                 '<a href="../QueryCompanies.do">Consultar</a>'+
                             '</li>'+
                         '</ul>'+
@@ -80,13 +55,40 @@ var sidebar =   '<div class="sidebar-header">'+
                         '</a>'+
                     '</li>'+                    
                 '</ul>';
-      
-function load(){    
+
+
+function loadPerfil(){    
     document.getElementById('sidebar').innerHTML = sidebar;
     document.getElementById('liperfil').className = "active";
+    document.getElementsByTagName('a')[0].href = "#";
 }
-function loadRegistro(){    
+
+function loadDocumentos(){    
     document.getElementById('sidebar').innerHTML = sidebar;
-    document.getElementById('registroadmin').className = "active";
-    document.getElementById('usersSubMenu').className += " show";
+    document.getElementById('lidocumentos').className = "active";
+    document.getElementById('documentsSubmenu').className += " show";
 }
+
+function loadSolicitudes(i){ 
+    document.getElementById('sidebar').innerHTML = sidebar;
+    document.getElementById('lisolicitudes').className = "active";
+  
+    if(i===1){
+        loadVisitas();
+    }
+}
+
+function loadVisitas(){    
+    document.getElementById('sidebar').innerHTML = sidebar;
+    document.getElementById('livisitas').className = "active";
+}
+
+function loadEmpresas(){    
+    document.getElementById('sidebar').innerHTML = sidebar;
+    document.getElementById('liempresas').className = "active";
+    document.getElementById('CompaniesSubmenu').className += " show";
+}
+
+
+
+

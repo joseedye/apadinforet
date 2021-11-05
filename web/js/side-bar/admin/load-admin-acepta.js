@@ -31,7 +31,7 @@ var sidebar =   '<div class="sidebar-header">'+
                         '</a>'+
                         '<ul class="collapse list-unstyled" id="usersSubMenu">'+
                             '<li>'+
-                                '<a href="../LoadCountries.do">Registro Administrador</a>'+
+                                '<a href="../LoadCountries.do?id=1">Registro Administrador</a>'+
                             '</li>'+
                             '<li>'+
                                 '<a href="estudiantes_registrar">Registro Cliente</a>'+
@@ -40,7 +40,7 @@ var sidebar =   '<div class="sidebar-header">'+
                             '</li>'+
                             '<a href="estudiantes_registrar">Registro Gerente</a>'+
                             '</li>'+
-                            '<a href="estudiantes_registrar">Registro Empleado</a>'+
+                            '<a href="../LoadCountries.do?id=2">Registro Empleado</a>'+
                             '</li>'+
                             '<li>'+
                                 '<a href="../QueryUsers.do">Consultar</a>'+
@@ -88,37 +88,7 @@ function loadPerfil(){
     document.getElementsByTagName('a')[0].href = "#";
 }
 
-function loadDocumentos(){    
-    document.getElementById('sidebar').innerHTML = sidebar;
-    document.getElementById('lidocumentos').className = "active";
-    document.getElementById('documentsSubmenu').className += " show";
-}
 
-function loadUsuarios(){    
-    document.getElementById('sidebar').innerHTML = sidebar;
-    document.getElementById('liusuarios').className = "active";
-    document.getElementById('usersSubMenu').className += " show";
-}
-
-function loadSolicitudes(i){ 
-    document.getElementById('sidebar').innerHTML = sidebar;
-    document.getElementById('lisolicitudes').className = "active";
-  
-    if(i===1){
-        loadVisitas();
-    }
-}
-
-function loadVisitas(){    
-    document.getElementById('sidebar').innerHTML = sidebar;
-    document.getElementById('livisitas').className = "active";
-}
-
-function loadEmpresas(){    
-    document.getElementById('sidebar').innerHTML = sidebar;
-    document.getElementById('liempresas').className = "active";
-    document.getElementById('CompaniesSubmenu').className += " show";
-}
 
 
 

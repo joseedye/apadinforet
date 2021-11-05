@@ -16,9 +16,10 @@ import javax.persistence.criteria.Root;
 import DTO.Persona;
 import DTO.TipoUsuario;
 import DTO.Solicitud;
-import DTO.Usuario;
 import java.util.ArrayList;
 import java.util.List;
+import DTO.Notificacion;
+import DTO.Usuario;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
@@ -43,6 +44,9 @@ public class UsuarioJpaController implements Serializable {
         }
         if (usuario.getSolicitudList1() == null) {
             usuario.setSolicitudList1(new ArrayList<Solicitud>());
+        }
+        if (usuario.getNotificacionList() == null) {
+            usuario.setNotificacionList(new ArrayList<Notificacion>());
         }
         EntityManager em = null;
         try {
@@ -70,6 +74,12 @@ public class UsuarioJpaController implements Serializable {
                 attachedSolicitudList1.add(solicitudList1SolicitudToAttach);
             }
             usuario.setSolicitudList1(attachedSolicitudList1);
+            List<Notificacion> attachedNotificacionList = new ArrayList<Notificacion>();
+            for (Notificacion notificacionListNotificacionToAttach : usuario.getNotificacionList()) {
+                notificacionListNotificacionToAttach = em.getReference(notificacionListNotificacionToAttach.getClass(), notificacionListNotificacionToAttach.getIdNotificacion());
+                attachedNotificacionList.add(notificacionListNotificacionToAttach);
+            }
+            usuario.setNotificacionList(attachedNotificacionList);
             em.persist(usuario);
             if (idPersona != null) {
                 idPersona.getUsuarioList().add(usuario);
@@ -95,6 +105,15 @@ public class UsuarioJpaController implements Serializable {
                 if (oldIdSolucionadorOfSolicitudList1Solicitud != null) {
                     oldIdSolucionadorOfSolicitudList1Solicitud.getSolicitudList1().remove(solicitudList1Solicitud);
                     oldIdSolucionadorOfSolicitudList1Solicitud = em.merge(oldIdSolucionadorOfSolicitudList1Solicitud);
+                }
+            }
+            for (Notificacion notificacionListNotificacion : usuario.getNotificacionList()) {
+                Usuario oldIdUsuarioOfNotificacionListNotificacion = notificacionListNotificacion.getIdUsuario();
+                notificacionListNotificacion.setIdUsuario(usuario);
+                notificacionListNotificacion = em.merge(notificacionListNotificacion);
+                if (oldIdUsuarioOfNotificacionListNotificacion != null) {
+                    oldIdUsuarioOfNotificacionListNotificacion.getNotificacionList().remove(notificacionListNotificacion);
+                    oldIdUsuarioOfNotificacionListNotificacion = em.merge(oldIdUsuarioOfNotificacionListNotificacion);
                 }
             }
             em.getTransaction().commit();
@@ -124,6 +143,8 @@ public class UsuarioJpaController implements Serializable {
             List<Solicitud> solicitudListNew = usuario.getSolicitudList();
             List<Solicitud> solicitudList1Old = persistentUsuario.getSolicitudList1();
             List<Solicitud> solicitudList1New = usuario.getSolicitudList1();
+            List<Notificacion> notificacionListOld = persistentUsuario.getNotificacionList();
+            List<Notificacion> notificacionListNew = usuario.getNotificacionList();
             List<String> illegalOrphanMessages = null;
             for (Solicitud solicitudListOldSolicitud : solicitudListOld) {
                 if (!solicitudListNew.contains(solicitudListOldSolicitud)) {
@@ -139,6 +160,14 @@ public class UsuarioJpaController implements Serializable {
                         illegalOrphanMessages = new ArrayList<String>();
                     }
                     illegalOrphanMessages.add("You must retain Solicitud " + solicitudList1OldSolicitud + " since its idSolucionador field is not nullable.");
+                }
+            }
+            for (Notificacion notificacionListOldNotificacion : notificacionListOld) {
+                if (!notificacionListNew.contains(notificacionListOldNotificacion)) {
+                    if (illegalOrphanMessages == null) {
+                        illegalOrphanMessages = new ArrayList<String>();
+                    }
+                    illegalOrphanMessages.add("You must retain Notificacion " + notificacionListOldNotificacion + " since its idUsuario field is not nullable.");
                 }
             }
             if (illegalOrphanMessages != null) {
@@ -166,6 +195,13 @@ public class UsuarioJpaController implements Serializable {
             }
             solicitudList1New = attachedSolicitudList1New;
             usuario.setSolicitudList1(solicitudList1New);
+            List<Notificacion> attachedNotificacionListNew = new ArrayList<Notificacion>();
+            for (Notificacion notificacionListNewNotificacionToAttach : notificacionListNew) {
+                notificacionListNewNotificacionToAttach = em.getReference(notificacionListNewNotificacionToAttach.getClass(), notificacionListNewNotificacionToAttach.getIdNotificacion());
+                attachedNotificacionListNew.add(notificacionListNewNotificacionToAttach);
+            }
+            notificacionListNew = attachedNotificacionListNew;
+            usuario.setNotificacionList(notificacionListNew);
             usuario = em.merge(usuario);
             if (idPersonaOld != null && !idPersonaOld.equals(idPersonaNew)) {
                 idPersonaOld.getUsuarioList().remove(usuario);
@@ -202,6 +238,17 @@ public class UsuarioJpaController implements Serializable {
                     if (oldIdSolucionadorOfSolicitudList1NewSolicitud != null && !oldIdSolucionadorOfSolicitudList1NewSolicitud.equals(usuario)) {
                         oldIdSolucionadorOfSolicitudList1NewSolicitud.getSolicitudList1().remove(solicitudList1NewSolicitud);
                         oldIdSolucionadorOfSolicitudList1NewSolicitud = em.merge(oldIdSolucionadorOfSolicitudList1NewSolicitud);
+                    }
+                }
+            }
+            for (Notificacion notificacionListNewNotificacion : notificacionListNew) {
+                if (!notificacionListOld.contains(notificacionListNewNotificacion)) {
+                    Usuario oldIdUsuarioOfNotificacionListNewNotificacion = notificacionListNewNotificacion.getIdUsuario();
+                    notificacionListNewNotificacion.setIdUsuario(usuario);
+                    notificacionListNewNotificacion = em.merge(notificacionListNewNotificacion);
+                    if (oldIdUsuarioOfNotificacionListNewNotificacion != null && !oldIdUsuarioOfNotificacionListNewNotificacion.equals(usuario)) {
+                        oldIdUsuarioOfNotificacionListNewNotificacion.getNotificacionList().remove(notificacionListNewNotificacion);
+                        oldIdUsuarioOfNotificacionListNewNotificacion = em.merge(oldIdUsuarioOfNotificacionListNewNotificacion);
                     }
                 }
             }
@@ -248,6 +295,13 @@ public class UsuarioJpaController implements Serializable {
                     illegalOrphanMessages = new ArrayList<String>();
                 }
                 illegalOrphanMessages.add("This Usuario (" + usuario + ") cannot be destroyed since the Solicitud " + solicitudList1OrphanCheckSolicitud + " in its solicitudList1 field has a non-nullable idSolucionador field.");
+            }
+            List<Notificacion> notificacionListOrphanCheck = usuario.getNotificacionList();
+            for (Notificacion notificacionListOrphanCheckNotificacion : notificacionListOrphanCheck) {
+                if (illegalOrphanMessages == null) {
+                    illegalOrphanMessages = new ArrayList<String>();
+                }
+                illegalOrphanMessages.add("This Usuario (" + usuario + ") cannot be destroyed since the Notificacion " + notificacionListOrphanCheckNotificacion + " in its notificacionList field has a non-nullable idUsuario field.");
             }
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
@@ -304,6 +358,20 @@ public class UsuarioJpaController implements Serializable {
         }
     }
 
+    public int getUsuarioCount() {
+        EntityManager em = getEntityManager();
+        try {
+            CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
+            Root<Usuario> rt = cq.from(Usuario.class);
+            cq.select(em.getCriteriaBuilder().count(rt));
+            Query q = em.createQuery(cq);
+            return ((Long) q.getSingleResult()).intValue();
+        } finally {
+            em.close();
+        }
+    }
+    
+    
     public Usuario findUsuario(String user) {
         EntityManager em = getEntityManager();
         try {
@@ -318,8 +386,8 @@ public class UsuarioJpaController implements Serializable {
             em.close();
         }
     }
-
-     public Usuario getUsuarioLast() {
+    
+        public Usuario getUsuarioLast() {
         EntityManager em = getEntityManager();
         try {
             return (Usuario) em.createNativeQuery("Select * from usuario order by id_usuario desc limit 1", Usuario.class).getResultList().get(0);
@@ -327,18 +395,7 @@ public class UsuarioJpaController implements Serializable {
             em.close();
         }
     }
-     
-    public int getUsuarioCount() {
-        EntityManager em = getEntityManager();
-        try {
-            CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Usuario> rt = cq.from(Usuario.class);
-            cq.select(em.getCriteriaBuilder().count(rt));
-            Query q = em.createQuery(cq);
-            return ((Long) q.getSingleResult()).intValue();
-        } finally {
-            em.close();
-        }
-    }
-
+    
+    
+    
 }

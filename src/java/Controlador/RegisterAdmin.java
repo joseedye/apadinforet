@@ -67,7 +67,7 @@ public class RegisterAdmin extends HttpServlet {
             //crear el usuario
             UsuarioJpaController usuariojpa = new UsuarioJpaController(emf);
             Date fecCreacion = new Date();
-            Usuario usuarioDto = new Usuario(email, documento, fecCreacion);
+            Usuario usuarioDto = new Usuario(email, documento, fecCreacion,"activo");
             usuarioDto.setIdTipoUsuario(tipousuario);
             usuarioDto.setIdPersona(personaDTO);
             usuarioDto.setIdUsuario(usuariojpa.getUsuarioLast().getIdUsuario()+1);

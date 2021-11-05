@@ -1,5 +1,6 @@
 package DTO;
 
+import DTO.Notificacion;
 import DTO.Persona;
 import DTO.Solicitud;
 import DTO.TipoUsuario;
@@ -9,7 +10,7 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2021-10-29T14:21:28")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2021-11-01T23:12:10")
 @StaticMetamodel(Usuario.class)
 public class Usuario_ { 
 
@@ -18,8 +19,10 @@ public class Usuario_ {
     public static volatile SingularAttribute<Usuario, TipoUsuario> idTipoUsuario;
     public static volatile SingularAttribute<Usuario, Integer> idUsuario;
     public static volatile SingularAttribute<Usuario, Date> fechaCreacion;
+    public static volatile ListAttribute<Usuario, Notificacion> notificacionList;
     public static volatile ListAttribute<Usuario, Solicitud> solicitudList;
     public static volatile SingularAttribute<Usuario, String> user;
     public static volatile SingularAttribute<Usuario, Persona> idPersona;
+    public static volatile SingularAttribute<Usuario, String> activo;
 
 }

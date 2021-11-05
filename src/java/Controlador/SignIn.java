@@ -36,31 +36,13 @@ public class SignIn extends HttpServlet {
                 //los envio por la sesion
                 req.getSession().setAttribute("user", usuarioMap);
 
-                TipoUsuario tipoUsuario = usuario.getIdTipoUsuario();
-                //redirijo segun sea el usuario
-                switch (tipoUsuario.getDesTipoUsuario()) {
-                    case "administrador":
-                        res.sendRedirect("Administrador/perfil");
-                        break;
-                    case "cliente":
-                        res.sendRedirect("Cliente/perfil");
-                        break;
-                    case "proveedor":
-                        res.sendRedirect("Proveedor/perfil");
-                        break;
-                    case "gerente":
-                        res.sendRedirect("Gerente/perfil");
-                        break;
-                    case "empleado":
-                        res.sendRedirect("Empleado/perfil");
-                        break;
+                res.sendRedirect("Notification.do");
+                
 
-                    default:
-                        break;
-                }
-
+            }else{
+            req.getSession().setAttribute("msg", "Error, Usuario o contraseña incorrectos!");
+            res.sendRedirect("/index.jsp");
             }
-
         } catch (Exception e) {
             req.getSession().setAttribute("msg", "Error, intentar de nuevo!");
             res.sendRedirect("/index.jsp");

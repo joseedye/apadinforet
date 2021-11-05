@@ -73,11 +73,21 @@
         <%
             }
             request.getSession().removeAttribute("msg");
+            String msg3 = (String) request.getSession().getAttribute("msg3");
+            if (msg3 != null) {
+                
+            }
         %>
   -->  
-        <script src="js/side-bar/jquery-3.3.1.slim.min.js"></script>
-        <script src="js/side-bar/bootstrap.min.js"></script> 
-        <script src="js/google-login.js"></script>  
+        <script src="js/side-bar/extra/jquery-3.3.1.slim.min.js"></script>
+        <script src="js/side-bar/extra/bootstrap.min.js"></script> 
+        <script>
+               $(document).ready(function () {
+                $("#ventana").modal('show');
+               
+            });
+        </script>
+
     </body>
 </html>
 

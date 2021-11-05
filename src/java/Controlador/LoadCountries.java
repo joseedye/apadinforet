@@ -32,12 +32,30 @@ public class LoadCountries extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-    
 
         Map<String, String> algo = Utileria.getPaises();
-        request.getSession().setAttribute("country", algo);
-        response.sendRedirect("Administrador/administrador_registrar");
-        
+        String id = request.getParameter("id");
+        if (id == null) {
+
+            request.getSession().setAttribute("country", algo);
+            response.sendRedirect("Administrador/administrador_registrar");
+
+        } else {
+
+            switch (id) {
+
+                case "1":
+                    request.getSession().setAttribute("country", algo);
+                    response.sendRedirect("Administrador/administrador_registrar");
+                    break;
+                case "2":
+                    request.getSession().setAttribute("country", algo);
+                    response.sendRedirect("Administrador/empleado_registrar");
+                    break;
+            }
+
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
