@@ -41,7 +41,7 @@ public class Utileria {
         map.put("email", user.getIdPersona().getEmail());
         map.put("telefono1", user.getIdPersona().getTelefono1() + "");
         map.put("telefono2", user.getIdPersona().getTelefono2() + "");
-        //map.put("activo", user.getActivo() + ""); crear en la bd
+        //map.put("activo", user.getActivo() + ""); crear en la bd ya
         map.put("contra", user.getPassword());
 
         return map;
