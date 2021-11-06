@@ -39,8 +39,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuario.findByFechaCreacion", query = "SELECT u FROM Usuario u WHERE u.fechaCreacion = :fechaCreacion"),
     @NamedQuery(name = "Usuario.findByActivo", query = "SELECT u FROM Usuario u WHERE u.activo = :activo")})
 public class Usuario implements Serializable {
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
-    private List<Notificacion> notificacionList;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -61,7 +60,7 @@ public class Usuario implements Serializable {
     private String activo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente")
     private List<Solicitud> solicitudList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSolucionador")
+    @OneToMany(mappedBy = "idSolucionador")
     private List<Solicitud> solicitudList1;
     @JoinColumn(name = "id_persona", referencedColumnName = "numero_doc")
     @ManyToOne(optional = false)
@@ -69,6 +68,8 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "id_tipo_usuario", referencedColumnName = "id_tipo_usuario")
     @ManyToOne(optional = false)
     private TipoUsuario idTipoUsuario;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
+    private List<Notificacion> notificacionList;
 
     public Usuario() {
     }
@@ -84,9 +85,9 @@ public class Usuario implements Serializable {
         this.fechaCreacion = fechaCreacion;
         this.activo = activo;
     }
-    
-    public Usuario(String user, String password, Date fecCreacion,String activo) {
-        this(null,user,password,fecCreacion,activo);
+
+    public Usuario(String user, String password, Date fecCreacion, String activo) {
+        this(null, user, password, fecCreacion, activo);
     }
 
     public Integer getIdUsuario() {
@@ -163,6 +164,15 @@ public class Usuario implements Serializable {
         this.idTipoUsuario = idTipoUsuario;
     }
 
+    @XmlTransient
+    public List<Notificacion> getNotificacionList() {
+        return notificacionList;
+    }
+
+    public void setNotificacionList(List<Notificacion> notificacionList) {
+        this.notificacionList = notificacionList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -188,13 +198,4 @@ public class Usuario implements Serializable {
         return "DTO.Usuario[ idUsuario=" + idUsuario + " ]";
     }
 
-    @XmlTransient
-    public List<Notificacion> getNotificacionList() {
-        return notificacionList;
-    }
-
-    public void setNotificacionList(List<Notificacion> notificacionList) {
-        this.notificacionList = notificacionList;
-    }
-    
 }

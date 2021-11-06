@@ -54,7 +54,7 @@ public class Documento implements Serializable {
     @Column(name = "id_user")
     private int idUser;
     @JoinColumn(name = "id_solicitud", referencedColumnName = "id_solicitud")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Solicitud idSolicitud;
 
     public Documento() {

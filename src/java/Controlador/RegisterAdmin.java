@@ -44,7 +44,7 @@ public class RegisterAdmin extends HttpServlet {
             EntityManagerFactory emf = Conexion.getConexion().getBd();
             TipoUsuarioJpaController usuarioJpa = new TipoUsuarioJpaController(emf);
             TipoUsuario tipousuario = usuarioJpa.findTipoUsuario(1);
-
+            
             String nombre = request.getParameter("Nom");
             String tipodoc = request.getParameter("Tipodoc");
             String documento = request.getParameter("Doc");
@@ -56,21 +56,22 @@ public class RegisterAdmin extends HttpServlet {
             String genero = request.getParameter("Genero");
             String apellido2 = request.getParameter("Ape2");
             String direccion = request.getParameter("Dire");
-
+            
             SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
             Date fecNacimiento = formato.parse(fecha);
             PersonaJpaController personajpa = new PersonaJpaController(emf);
-
-            Persona personaDTO = new Persona(documento, nombre, apellido1, apellido2, fecNacimiento, tipodoc, genero, direccion, telefono1, telefono2, email);
+            
+            Persona personaDTO = new Persona(documento, nombre, apellido1, apellido2, fecNacimiento, tipodoc, direccion, telefono1, telefono2, email);
+            personaDTO.setGenero(genero);
             personajpa.create(personaDTO);
 
             //crear el usuario
             UsuarioJpaController usuariojpa = new UsuarioJpaController(emf);
             Date fecCreacion = new Date();
-            Usuario usuarioDto = new Usuario(email, documento, fecCreacion,"activo");
+            Usuario usuarioDto = new Usuario(email, documento, fecCreacion, "activo");
             usuarioDto.setIdTipoUsuario(tipousuario);
             usuarioDto.setIdPersona(personaDTO);
-            usuarioDto.setIdUsuario(usuariojpa.getUsuarioLast().getIdUsuario()+1);
+            usuarioDto.setIdUsuario(usuariojpa.getUsuarioLast().getIdUsuario() + 1);
             try {
                 
                 usuariojpa.create(usuarioDto);

@@ -10,7 +10,6 @@ import DAO.UsuarioJpaController;
 import DTO.Usuario;
 import Util.Utileria;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Map;
 import javax.persistence.EntityManagerFactory;
 import javax.servlet.ServletException;

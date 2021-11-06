@@ -39,11 +39,11 @@ public class RegisterEmploye extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
         try {
             EntityManagerFactory emf = Conexion.getConexion().getBd();
             TipoUsuarioJpaController usuarioJpa = new TipoUsuarioJpaController(emf);
-
+            
             String nombre = request.getParameter("Nom");
             String tipodoc = request.getParameter("Tipodoc");
             String documento = request.getParameter("Doc");
@@ -57,15 +57,15 @@ public class RegisterEmploye extends HttpServlet {
             String direccion = request.getParameter("Dire");
             String pais = request.getParameter("pais");
             String tipo = request.getParameter("tipo");
-
+            
             SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
             Date fecNacimiento = formato.parse(fecha);
             PersonaJpaController personajpa = new PersonaJpaController(emf);
-
-            Persona personaDTO = new Persona(documento, nombre, apellido1, apellido2, fecNacimiento, tipodoc, genero, direccion, telefono1, telefono2, email);
-
+            
+            Persona personaDTO = new Persona(documento, nombre, apellido1, apellido2, fecNacimiento, tipodoc, direccion, telefono1, telefono2, email);
+            personaDTO.setGenero(genero);
             personaDTO.setPais(pais);
-
+            
             personajpa.create(personaDTO);
 
             //crear el usuario
@@ -75,34 +75,34 @@ public class RegisterEmploye extends HttpServlet {
 
             //crear el tipo usuario
             TipoUsuario tipousuario;
-
+            
             if ("planta".equals(tipo)) {
-
+                
                 tipousuario = usuarioJpa.findTipoUsuario(5);
-
+                
             } else {
-
+                
                 tipousuario = usuarioJpa.findTipoUsuario(6);
-
+                
             }
-
+            
             usuarioDto.setIdTipoUsuario(tipousuario);
             usuarioDto.setIdPersona(personaDTO);
             usuarioDto.setIdUsuario(usuariojpa.getUsuarioLast().getIdUsuario() + 1);
             try {
-
+                
                 usuariojpa.create(usuarioDto);
-
+                
             } catch (Exception e) {
-
+                
                 personajpa.destroy(personaDTO.getNumeroDoc());
-
+                
                 String cause = e.getCause().getCause().getMessage();
-
+                
                 request.getSession().setAttribute("msg", "Error, el dato: " + Utileria.msgExPersistence(cause) + " ya existe!");
-
+                
                 response.sendRedirect("Administrador/empleado_registrar");
-
+                
                 return;
             }
 //Send Mail with credentials

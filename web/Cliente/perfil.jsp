@@ -197,7 +197,7 @@
                                     <input class="form-control-file" type="file" id="file1" name="file1"/>
                                     <br></br>
                                     <label for="camara de comercio">Camara de comercio</label>
-                                    
+
 
                                 </div>
                                 <div class="form-group col-md-6">
@@ -205,13 +205,13 @@
 
                                     <label for="camara de comercio">Camara de comercio</label>
                                     <input class="form-control-file" type="file" id="file1" name="file1"/>
-                                    
-                                   
+
+
                                 </div>
                                 <div class="form-group col-md-3">
-                                  
+
                                     <label for="cedularep">Cedula de reprecentante legal</label>
- <input class="form-control-file" type="file" id="file1" name="file1"/>
+                                    <input class="form-control-file" type="file" id="file1" name="file1"/>
                                 </div>
                                 <label>&nbsp;</label><br>
                                 <button type="submit" name="subir" class="btn btn-primary">Subir</button>

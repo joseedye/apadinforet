@@ -36,10 +36,6 @@ var sidebar =   '<div class="sidebar-header">'+
                             '<li>'+
                                 '<a href="estudiantes_registrar">Registro Cliente</a>'+
                             '</li>'+
-                            '<a href="estudiantes_registrar">Registro Proveedor</a>'+
-                            '</li>'+
-                            '<a href="estudiantes_registrar">Registro Gerente</a>'+
-                            '</li>'+
                             '<a href="../LoadCountries.do?id=2">Registro Empleado</a>'+
                             '</li>'+
                             '<li>'+

@@ -154,14 +154,6 @@ public class UsuarioJpaController implements Serializable {
                     illegalOrphanMessages.add("You must retain Solicitud " + solicitudListOldSolicitud + " since its idCliente field is not nullable.");
                 }
             }
-            for (Solicitud solicitudList1OldSolicitud : solicitudList1Old) {
-                if (!solicitudList1New.contains(solicitudList1OldSolicitud)) {
-                    if (illegalOrphanMessages == null) {
-                        illegalOrphanMessages = new ArrayList<String>();
-                    }
-                    illegalOrphanMessages.add("You must retain Solicitud " + solicitudList1OldSolicitud + " since its idSolucionador field is not nullable.");
-                }
-            }
             for (Notificacion notificacionListOldNotificacion : notificacionListOld) {
                 if (!notificacionListNew.contains(notificacionListOldNotificacion)) {
                     if (illegalOrphanMessages == null) {
@@ -230,6 +222,12 @@ public class UsuarioJpaController implements Serializable {
                     }
                 }
             }
+            for (Solicitud solicitudList1OldSolicitud : solicitudList1Old) {
+                if (!solicitudList1New.contains(solicitudList1OldSolicitud)) {
+                    solicitudList1OldSolicitud.setIdSolucionador(null);
+                    solicitudList1OldSolicitud = em.merge(solicitudList1OldSolicitud);
+                }
+            }
             for (Solicitud solicitudList1NewSolicitud : solicitudList1New) {
                 if (!solicitudList1Old.contains(solicitudList1NewSolicitud)) {
                     Usuario oldIdSolucionadorOfSolicitudList1NewSolicitud = solicitudList1NewSolicitud.getIdSolucionador();
@@ -289,13 +287,6 @@ public class UsuarioJpaController implements Serializable {
                 }
                 illegalOrphanMessages.add("This Usuario (" + usuario + ") cannot be destroyed since the Solicitud " + solicitudListOrphanCheckSolicitud + " in its solicitudList field has a non-nullable idCliente field.");
             }
-            List<Solicitud> solicitudList1OrphanCheck = usuario.getSolicitudList1();
-            for (Solicitud solicitudList1OrphanCheckSolicitud : solicitudList1OrphanCheck) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("This Usuario (" + usuario + ") cannot be destroyed since the Solicitud " + solicitudList1OrphanCheckSolicitud + " in its solicitudList1 field has a non-nullable idSolucionador field.");
-            }
             List<Notificacion> notificacionListOrphanCheck = usuario.getNotificacionList();
             for (Notificacion notificacionListOrphanCheckNotificacion : notificacionListOrphanCheck) {
                 if (illegalOrphanMessages == null) {
@@ -315,6 +306,11 @@ public class UsuarioJpaController implements Serializable {
             if (idTipoUsuario != null) {
                 idTipoUsuario.getUsuarioList().remove(usuario);
                 idTipoUsuario = em.merge(idTipoUsuario);
+            }
+            List<Solicitud> solicitudList1 = usuario.getSolicitudList1();
+            for (Solicitud solicitudList1Solicitud : solicitudList1) {
+                solicitudList1Solicitud.setIdSolucionador(null);
+                solicitudList1Solicitud = em.merge(solicitudList1Solicitud);
             }
             em.remove(usuario);
             em.getTransaction().commit();
@@ -370,9 +366,16 @@ public class UsuarioJpaController implements Serializable {
             em.close();
         }
     }
-    
-    
-    public Usuario findUsuario(String user) {
+          public Usuario getUsuarioLast() {
+        EntityManager em = getEntityManager();
+        try {
+            return (Usuario) em.createNativeQuery("Select * from usuario order by id_usuario desc limit 1", Usuario.class).getResultList().get(0);
+        } finally {
+            em.close();
+        }
+    }
+          
+              public Usuario findUsuario(String user) {
         EntityManager em = getEntityManager();
         try {
             List<Usuario> listUsuarios = em.createNamedQuery("Usuario.findByUser", Usuario.class).setParameter("user", user).getResultList();
@@ -386,16 +389,6 @@ public class UsuarioJpaController implements Serializable {
             em.close();
         }
     }
-    
-        public Usuario getUsuarioLast() {
-        EntityManager em = getEntityManager();
-        try {
-            return (Usuario) em.createNativeQuery("Select * from usuario order by id_usuario desc limit 1", Usuario.class).getResultList().get(0);
-        } finally {
-            em.close();
-        }
-    }
-    
     
     
 }

@@ -5,7 +5,6 @@
  */
 package DAO;
 
-import DAO.exceptions.IllegalOrphanException;
 import DAO.exceptions.NonexistentEntityException;
 import DAO.exceptions.PreexistingEntityException;
 import java.io.Serializable;
@@ -101,7 +100,7 @@ public class SolicitudJpaController implements Serializable {
         }
     }
 
-    public void edit(Solicitud solicitud) throws IllegalOrphanException, NonexistentEntityException, Exception {
+    public void edit(Solicitud solicitud) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -115,18 +114,6 @@ public class SolicitudJpaController implements Serializable {
             Usuario idSolucionadorNew = solicitud.getIdSolucionador();
             List<Documento> documentoListOld = persistentSolicitud.getDocumentoList();
             List<Documento> documentoListNew = solicitud.getDocumentoList();
-            List<String> illegalOrphanMessages = null;
-            for (Documento documentoListOldDocumento : documentoListOld) {
-                if (!documentoListNew.contains(documentoListOldDocumento)) {
-                    if (illegalOrphanMessages == null) {
-                        illegalOrphanMessages = new ArrayList<String>();
-                    }
-                    illegalOrphanMessages.add("You must retain Documento " + documentoListOldDocumento + " since its idSolicitud field is not nullable.");
-                }
-            }
-            if (illegalOrphanMessages != null) {
-                throw new IllegalOrphanException(illegalOrphanMessages);
-            }
             if (estatusNew != null) {
                 estatusNew = em.getReference(estatusNew.getClass(), estatusNew.getIdEstatus());
                 solicitud.setEstatus(estatusNew);
@@ -171,6 +158,12 @@ public class SolicitudJpaController implements Serializable {
                 idSolucionadorNew.getSolicitudList().add(solicitud);
                 idSolucionadorNew = em.merge(idSolucionadorNew);
             }
+            for (Documento documentoListOldDocumento : documentoListOld) {
+                if (!documentoListNew.contains(documentoListOldDocumento)) {
+                    documentoListOldDocumento.setIdSolicitud(null);
+                    documentoListOldDocumento = em.merge(documentoListOldDocumento);
+                }
+            }
             for (Documento documentoListNewDocumento : documentoListNew) {
                 if (!documentoListOld.contains(documentoListNewDocumento)) {
                     Solicitud oldIdSolicitudOfDocumentoListNewDocumento = documentoListNewDocumento.getIdSolicitud();
@@ -199,7 +192,7 @@ public class SolicitudJpaController implements Serializable {
         }
     }
 
-    public void destroy(Integer id) throws IllegalOrphanException, NonexistentEntityException {
+    public void destroy(Integer id) throws NonexistentEntityException {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -210,17 +203,6 @@ public class SolicitudJpaController implements Serializable {
                 solicitud.getIdSolicitud();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The solicitud with id " + id + " no longer exists.", enfe);
-            }
-            List<String> illegalOrphanMessages = null;
-            List<Documento> documentoListOrphanCheck = solicitud.getDocumentoList();
-            for (Documento documentoListOrphanCheckDocumento : documentoListOrphanCheck) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("This Solicitud (" + solicitud + ") cannot be destroyed since the Documento " + documentoListOrphanCheckDocumento + " in its documentoList field has a non-nullable idSolicitud field.");
-            }
-            if (illegalOrphanMessages != null) {
-                throw new IllegalOrphanException(illegalOrphanMessages);
             }
             EstatusSolicitud estatus = solicitud.getEstatus();
             if (estatus != null) {
@@ -236,6 +218,11 @@ public class SolicitudJpaController implements Serializable {
             if (idSolucionador != null) {
                 idSolucionador.getSolicitudList().remove(solicitud);
                 idSolucionador = em.merge(idSolucionador);
+            }
+            List<Documento> documentoList = solicitud.getDocumentoList();
+            for (Documento documentoListDocumento : documentoList) {
+                documentoListDocumento.setIdSolicitud(null);
+                documentoListDocumento = em.merge(documentoListDocumento);
             }
             em.remove(solicitud);
             em.getTransaction().commit();

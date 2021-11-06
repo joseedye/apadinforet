@@ -43,7 +43,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Persona.findByTelefono2", query = "SELECT p FROM Persona p WHERE p.telefono2 = :telefono2"),
     @NamedQuery(name = "Persona.findByEmail", query = "SELECT p FROM Persona p WHERE p.email = :email"),
     @NamedQuery(name = "Persona.findByPais", query = "SELECT p FROM Persona p WHERE p.pais = :pais"),
-    @NamedQuery(name = "Persona.findByComentario", query = "SELECT p FROM Persona p WHERE p.comentario = :comentario")})
+    @NamedQuery(name = "Persona.findByComentario", query = "SELECT p FROM Persona p WHERE p.comentario = :comentario"),
+    @NamedQuery(name = "Persona.findByTipoCliente", query = "SELECT p FROM Persona p WHERE p.tipoCliente = :tipoCliente"),
+    @NamedQuery(name = "Persona.findByRazonSocial", query = "SELECT p FROM Persona p WHERE p.razonSocial = :razonSocial"),
+    @NamedQuery(name = "Persona.findByRepresentanteLegal", query = "SELECT p FROM Persona p WHERE p.representanteLegal = :representanteLegal")})
 public class Persona implements Serializable {
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
@@ -66,7 +69,6 @@ public class Persona implements Serializable {
     @Basic(optional = false)
     @Column(name = "numero_doc")
     private String numeroDoc;
-    @Basic(optional = false)
     @Column(name = "genero")
     private String genero;
     @Basic(optional = false)
@@ -85,6 +87,12 @@ public class Persona implements Serializable {
     private String pais;
     @Column(name = "comentario")
     private String comentario;
+    @Column(name = "tipo_cliente")
+    private String tipoCliente;
+    @Column(name = "razon_social")
+    private String razonSocial;
+    @Column(name = "representante_legal")
+    private String representanteLegal;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPersona")
     private List<Usuario> usuarioList;
 
@@ -95,14 +103,13 @@ public class Persona implements Serializable {
         this.numeroDoc = numeroDoc;
     }
 
-    public Persona(String numeroDoc, String nombres, String apellido1, String apellido2, Date fechaNac, String tipoDoc, String genero, String direccion, String telefono1, String telefono2, String email) {
+    public Persona(String numeroDoc, String nombres, String apellido1, String apellido2, Date fechaNac, String tipoDoc, String direccion, String telefono1, String telefono2, String email) {
         this.numeroDoc = numeroDoc;
         this.nombres = nombres;
         this.apellido1 = apellido1;
         this.apellido2 = apellido2;
         this.fechaNac = fechaNac;
         this.tipoDoc = tipoDoc;
-        this.genero = genero;
         this.direccion = direccion;
         this.telefono1 = telefono1;
         this.telefono2 = telefono2;
@@ -211,6 +218,30 @@ public class Persona implements Serializable {
 
     public void setComentario(String comentario) {
         this.comentario = comentario;
+    }
+
+    public String getTipoCliente() {
+        return tipoCliente;
+    }
+
+    public void setTipoCliente(String tipoCliente) {
+        this.tipoCliente = tipoCliente;
+    }
+
+    public String getRazonSocial() {
+        return razonSocial;
+    }
+
+    public void setRazonSocial(String razonSocial) {
+        this.razonSocial = razonSocial;
+    }
+
+    public String getRepresentanteLegal() {
+        return representanteLegal;
+    }
+
+    public void setRepresentanteLegal(String representanteLegal) {
+        this.representanteLegal = representanteLegal;
     }
 
     @XmlTransient

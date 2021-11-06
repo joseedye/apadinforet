@@ -58,6 +58,11 @@
         <servlet-name>perfile</servlet-name>
         <jsp-file>/Empleado/perfil.jsp</jsp-file>
     </servlet>
+      <!---  VISTAS convertidor de ruta a nombre query  -->
+    <servlet>
+        <servlet-name>consulta</servlet-name>
+        <jsp-file>/Administrador/query.jsp</jsp-file>
+    </servlet>
     <!---  
     
     
@@ -105,6 +110,10 @@
         <servlet-name>Notification</servlet-name>
         <servlet-class>Controlador.Notification</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>QueryUsers</servlet-name>
+        <servlet-class>Controlador.QueryUsers</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>perfila</servlet-name>
         <url-pattern>/Administrador</url-pattern>
@@ -146,6 +155,10 @@
     <servlet-mapping>
         <servlet-name>errorr</servlet-name>
         <url-pattern>/Error/errorRedir</url-pattern>
+    </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>consulta</servlet-name>
+        <url-pattern>/Administrador/query</url-pattern>
     </servlet-mapping>
     <!---  controladores  -->
     <!---  SINGNIN  -->
@@ -202,6 +215,10 @@
     <servlet-mapping>
         <servlet-name>Notification</servlet-name>
         <url-pattern>/Notification.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>QueryUsers</servlet-name>
+        <url-pattern>/QueryUsers.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

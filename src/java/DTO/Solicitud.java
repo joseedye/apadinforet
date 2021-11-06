@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -60,9 +59,9 @@ public class Solicitud implements Serializable {
     @ManyToOne(optional = false)
     private Usuario idCliente;
     @JoinColumn(name = "id_solucionador", referencedColumnName = "id_usuario")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Usuario idSolucionador;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSolicitud")
+    @OneToMany(mappedBy = "idSolicitud")
     private List<Documento> documentoList;
 
     public Solicitud() {
