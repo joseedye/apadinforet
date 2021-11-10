@@ -22,7 +22,7 @@
         <!-- Sidebar style  -->
         <title> Registro de Administrador</title>
     </head>
-    <body onload="loadRegistro()">
+    <body onload="load(1,2)">
         <div class="wrapper">
 
             <!-- Sidebar  -->
@@ -222,7 +222,7 @@
         <script src="../js/side-bar/extra/popper.min.js"></script>
         <script src="../js/side-bar/extra/menu-button.js"></script>
         <script src="../js/side-bar/extra/bootstrap.min.js"></script>   
-        <script src="../js/side-bar/admin/load_admin_creacion1.0.js"></script>   
+        <script src="../js/side-bar/admin/load-admin-1.0.js"></script>   
 
         <!-- jQuery Side-bar -->    
 

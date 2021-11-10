@@ -87,7 +87,7 @@
 
 
                         <div class="img-profile">
-                            <img src="/img/fotoadmin.jpg<%//=userImg%>">                        
+                            <img src="<%=userImg%>">                        
                         </div>
 
                     </div>

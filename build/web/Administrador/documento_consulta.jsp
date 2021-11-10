@@ -19,7 +19,7 @@
         <!-- Sidebar style  -->
         <title>Consulta documentos</title>
     </head>
-    <body onload="loadDocumentos()">
+    <body onload="load(0,1)">
         <div class="wrapper">
 
             <!-- Sidebar  -->
@@ -57,6 +57,67 @@
                     <div class="form-group col-md-10">
                         <h4>Consulta de documentos</h4> <br>                            
                        
+                          <div style="justify-content:center;" class="form-row">
+                    <div class="form-group col-md-12">
+                        <div class="card my-4">
+                            <div class="form-group">
+                                <div class="container">
+                                    <div class="table-responsive">
+
+                                        <table class="table table-responsive-sm">
+
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">
+
+                                            <div class="form-check form-switch">
+                                                <input onclick="loadCheck(1);" class="form-check-input" type="checkbox" value="empleado" id="fempleado" >
+                                                <label  class="form-check-label" for="flexSwitchCheckDefault">Empleados</label>
+
+
+                                            </div>
+                                            </th>
+                                            <th scope="col">
+                                            <div class="form-check form-switch">
+                                                <input onclick="loadCheck(2);" class="form-check-input" type="checkbox" value="cliente" id="fcliente" >
+                                                <label class="form-check-label" for="flexSwitchCheckDefault">Clientes</label>
+                                            </div>
+                                            </th>
+                                            <th scope="col">
+                                            <div class="form-check form-switch">
+                                                <input onclick="loadCheck(3);" class="form-check-input" value="proveedores" type="checkbox" id="fproveedor" >
+                                                <label class="form-check-label" for="flexSwitchCheckDefault">Proveedores</label>
+                                            </div> 
+
+                                            </th>
+                                            <th scope="col">
+                                            <div class="form-check form-switch">
+                                                <input onclick="loadCheck(4);" class="form-check-input" type="checkbox" value="gerente" id="fgerente" >
+                                                <label class="form-check-label" for="flexSwitchCheckDefault">Directivo</label>
+                                            </div>
+                                            </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="4" >
+                                                        <input type="text" id="myInput"  style="width:100%;"  onkeyup="myFunction()" placeholder="Busqueda por nombre" title="Type in a name">
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                                                
+                                                
+                                                
+                                                
+                                                
+                        
 
                         <div class="card my-4">
                             <h5 class="card-header">Documentos en el sistema: </h5>
@@ -64,13 +125,14 @@
                                 <div class="form-group">
                                     <div class="container">
 
-                                        <table class="table table-responsive-sm">
+                                        <table id="myTable" class="table table-responsive-sm">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Descripción</th>
-                                                    <th scope="col">Tipo</th>
-                                                    <th scope="col">Público</th>
-                                                    <th scope="col"></th>
+                                                     <th scope="col">Usuario</th>
+                                                    <th scope="col">Descarga</th>
+                                                    <th scope="col">Eliminar</th>
+                                                   
                                                     <th scope="col"></th>
                                                 </tr>
                                             </thead>
@@ -83,7 +145,7 @@
                                                 <tr>
                                                     <td><%=map.get("nombre")%></td>
                                                     
-                                                   
+                                                    <td><%=map.get("iduser")%></td>
                                                     <td>
                                                         <a download href="/<%=map.get("rutaDoc")%>" title="Descargar"><i class="fas fa-cloud-download-alt"></i></a>
                                                     </td>
@@ -115,7 +177,7 @@
                             </div>
                             <div class="modal-body">
                                 <p>Estas seguro de eliminar el documento del sistema? </p>
-                                <p>Sólo se eliminará si el documento no está referenciado en algun proceso!
+                                <p>Sólo se eliminará si el documento no está referenciado en alguna solicitud!
                                 </p>
                             </div>
                             <div class="modal-footer">            
@@ -191,5 +253,27 @@
                                                                     location.href = "../QueryDocuments.do?tipoDocument=" + tipo;
                                                                 }
         </script> 
+        
+           <script>
+            function myFunction() {
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("myInput");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("myTable");
+                tr = table.getElementsByTagName("tr");
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[0];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+        </script>
+        
     </body>
 </html>

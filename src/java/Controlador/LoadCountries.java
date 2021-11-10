@@ -7,7 +7,6 @@ package Controlador;
 
 import Util.Utileria;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -51,6 +50,10 @@ public class LoadCountries extends HttpServlet {
                 case "2":
                     request.getSession().setAttribute("country", algo);
                     response.sendRedirect("Administrador/empleado_registrar");
+                    break;
+                case "3":
+                    request.getSession().setAttribute("country", algo);
+                    response.sendRedirect("Administrador/directivo_registrar");
                     break;
             }
 

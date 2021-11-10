@@ -18,11 +18,11 @@
         <script defer src="../font/solid.js"></script>
         <script defer src="../font/fontawesome.js"></script>
 
-        <title>Usuarios</title>
+        <title>Consulta de Usuarios</title>
     </head>
 
 
-    <body onload="loadUsuarios()">
+    <body onload="load(1,5)">
         <div class="wrapper">
 
             <!-- Sidebar  -->
@@ -97,7 +97,7 @@
                                             <th scope="col">
                                             <div class="form-check form-switch">
                                                 <input onclick="loadCheck(4);" class="form-check-input" type="checkbox" value="gerente" id="fgerente" <% if("true".equals(gerente)){%>checked<%} %>>
-                                                <label class="form-check-label" for="flexSwitchCheckDefault">Gerentes</label>
+                                                <label class="form-check-label" for="flexSwitchCheckDefault">Directivo</label>
                                             </div>
                                             </th>
                                             </tr>
@@ -165,9 +165,7 @@
                                                             <a href="../UpdateUser.do?idUserQuery=<%=map.get("idUsuario")%>" title="Modificar"><i class="fas fa-pencil-alt"></i></a>
                                                         </td>
 
-                                                        <td>
-                                                            <a href="#ventana" class="modal-btn" data-some-id="<%=map.get("idUsuario")%>" title="Eliminar" data-toggle="modal"><i class="fas fa-trash-alt"></i></a>
-                                                        </td>   
+                                                      
                                                     </tr>
                                                     <% i++;
                                                         }%>
@@ -257,9 +255,9 @@
         <script src="../js/side-bar/extra/jquery-3.3.1.slim.min.js"></script>
         <!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
 
-        <script src="../js/side-bar/popper.min.js"></script>
-        <script src="../js/side-bar/menu-button.js"></script>
-        <script src="../js/side-bar/bootstrap.min.js"></script>   
+        <script src="../js/side-bar/extra/popper.min.js"></script>
+        <script src="../js/side-bar/extra/menu-button.js"></script>
+        <script src="../js/side-bar/extra/bootstrap.min.js"></script>   
         <script src="../js/side-bar/admin/load-admin-1.0.js"></script> 
         <!-- jQuery Side-bar -->    
 

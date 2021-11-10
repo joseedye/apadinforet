@@ -1,6 +1,6 @@
 <%-- 
-    Document   : administrador_registrar
-    Created on : 20/10/2021, 08:22:22 PM
+    Document   : directivo_registrar
+    Created on : 10/11/2021, 11:21:51 AM
     Author     : rozo
 --%>
 
@@ -20,9 +20,9 @@
         <script defer src="../font/solid.js"></script>
         <script defer src="../font/fontawesome.js"></script>
         <!-- Sidebar style  -->
-        <title> Registro de Administrador</title>
+        <title> Registro de Directivo</title>
     </head>
-    <body onload="load(1,2)">
+    <body onload="load(1,3)">
         <div class="wrapper">
 
             <!-- Sidebar  -->
@@ -58,7 +58,7 @@
                 <!-- Content  -->
                 <div style="justify-content:center;" class="form-row">
                     <div class="form-group col-md-10">
-                        <form name="form1" action="../RegisterAdmin.do" method="post">
+                        <form name="form1" action="../RegisterExecutive.do" method="post">
                             <h4>Registro de Usuario</h4>
 
                             <div class="form-row">

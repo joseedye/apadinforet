@@ -15,11 +15,11 @@ var sidebar =   '<div class="sidebar-header">'+
                             '<i class="fas fa-copy"></i>'+
                             '&nbspDocumentos'+
                         '</a>'+
-                        '<ul class="collapse list-unstyled" id="documentsSubmenu">'+
-                            '<li>'+
+                        '<ul class="collapse list-unstyled"  id="documentsSubmenu">'+
+                            '<li id="documentsnew">'+
                                 '<a href="../Administrador/documento_nuevo.jsp">Nuevo</a>'+
                             '</li>'+
-                            '<li>'+
+                            '<li id="documentsquery">'+
                                 '<a href="../QueryDocuments.do">Consultar</a>'+
                             '</li>'+
                         '</ul>'+
@@ -30,14 +30,16 @@ var sidebar =   '<div class="sidebar-header">'+
                             '&nbspUsuarios'+
                         '</a>'+
                         '<ul class="collapse list-unstyled" id="usersSubMenu">'+
-                            '<li>'+
+                            '<li id="registroadmin">'+
                                 '<a href="../LoadCountries.do?id=1">Registro Administrador</a>'+
-                            '</li>'+
-                            '<a href="estudiantes_registrar">Registro Gerente</a>'+
-                            '</li>'+
+                            '</li >'+
+                            '<li id="registrodirectivo">'+
+                            '<a href="../LoadCountries.do?id=3">Registro Directivo</a>'+
+                            '</li >'+
+                            '<li id="registroempleado">'+
                             '<a href="../LoadCountries.do?id=2">Registro Empleado</a>'+
                             '</li>'+
-                            '<li>'+
+                            '<li id="consultar">'+
                                 '<a href="../QueryUsers.do">Consultar</a>'+
                             '</li>'+                            
                         '</ul>'+
@@ -76,45 +78,19 @@ var sidebar =   '<div class="sidebar-header">'+
                     '</li>'+                    
                 '</ul>';
 
+var mostrar = ["documentsSubmenu", "usersSubMenu"];
+var active = ["documentsnew", "documentsquery","registroadmin","registrodirectivo","registroempleado","consultar"];
 
+//carga el sidebar cuando entro a perfil
 function loadPerfil(){    
     document.getElementById('sidebar').innerHTML = sidebar;
     document.getElementById('liperfil').className = "active";
     document.getElementsByTagName('a')[0].href = "#";
 }
-
-function loadDocumentos(){    
+//carga el sidebar 
+function load(a,b){ 
+   
     document.getElementById('sidebar').innerHTML = sidebar;
-    document.getElementById('lidocumentos').className = "active";
-    document.getElementById('documentsSubmenu').className += " show";
+    document.getElementById(mostrar[a]).className += " show";
+    document.getElementById(active[b]).className = "active";
 }
-
-function loadUsuarios(){    
-    document.getElementById('sidebar').innerHTML = sidebar;
-    document.getElementById('liusuarios').className = "active";
-    document.getElementById('usersSubMenu').className += " show";
-}
-
-function loadSolicitudes(i){ 
-    document.getElementById('sidebar').innerHTML = sidebar;
-    document.getElementById('lisolicitudes').className = "active";
-  
-    if(i===1){
-        loadVisitas();
-    }
-}
-
-function loadVisitas(){    
-    document.getElementById('sidebar').innerHTML = sidebar;
-    document.getElementById('livisitas').className = "active";
-}
-
-function loadEmpresas(){    
-    document.getElementById('sidebar').innerHTML = sidebar;
-    document.getElementById('liempresas').className = "active";
-    document.getElementById('CompaniesSubmenu').className += " show";
-}
-
-
-
-

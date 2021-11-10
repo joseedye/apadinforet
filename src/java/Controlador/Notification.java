@@ -94,6 +94,8 @@ public class Notification extends HttpServlet {
                 Usuario next = iterator.next();
                 if (next.getActivo().equals("3")) {
                     //reditigir a perfil de administrador
+                    
+                    request.getSession().setAttribute("userImg", "/img/admin.png");
                     request.getSession().setAttribute("msg3", next.getIdPersona().getNombres());
                     request.getSession().setAttribute("id3", next.getIdUsuario() + "");
                     response.sendRedirect("Administrador/perfil");
@@ -103,6 +105,7 @@ public class Notification extends HttpServlet {
             }
 
             if (flag == 0) {
+                request.getSession().setAttribute("userImg", "/img/admin.png");
                 request.getSession().removeAttribute("msg3");
                 request.getSession().removeAttribute("id3");
                 response.sendRedirect("Administrador/perfil");

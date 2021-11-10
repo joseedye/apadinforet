@@ -23,7 +23,7 @@
         <!-- Sidebar style  -->
         <title>Subida Documento</title>
     </head>
-    <body onload="loadDocumentos()">
+    <body onload="load(0,0)">
         <div class="wrapper">
 
             <!-- Sidebar  -->
@@ -71,7 +71,7 @@
                                                     <tr>
                                                         <th scope="col">Archivo</th>
                                                         <th scope="col">Descripción</th>
-                                                        
+
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -83,7 +83,7 @@
                                                             <input class="form-control" type="text" id="desc1" name="desc"/>
                                                         </td>
 
-                                                       
+
                                                     </tr>
                                                     <tr>
                                                         <td>
@@ -92,13 +92,8 @@
                                                         <td>
                                                             <input class="form-control" type="text" id="desc2" name="desc2"/>
                                                         </td>
-                                                     
-                                                        <td>
-                                                            <div class="custom-control custom-switch">
-                                                                <input type="checkbox" class="custom-control-input" id="public2" name="publico2"  >
-                                                                <label title="El archivo no sera publico " class="custom-control-label" for="public2"></label>
-                                                            </div>
-                                                        </td>
+
+
                                                     </tr>
                                                     <tr>
                                                         <td>
@@ -107,12 +102,7 @@
                                                         <td>
                                                             <input class="form-control" type="text" id="desc3" name="desc3"/>
                                                         </td>
-                                                                                                              <td>
-                                                            <div class="custom-control custom-switch">
-                                                                <input type="checkbox" class="custom-control-input" id="public3" name="publico3"  >
-                                                                <label title="El archivo no sera publico " class="custom-control-label" for="public3"></label>
-                                                            </div>
-                                                        </td>
+
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -158,10 +148,11 @@
 
         <!-- jQuery Side-bar -->
         <script src="../js/side-bar/extra/jquery-3.3.1.slim.min.js"></script>
-        <script src="../js/side-bar/popper.min.js"></script>
-        <script src="../js/side-bar/menu-button.js"></script>
-        <script src="../js/side-bar/bootstrap.min.js"></script>   
-        <script src="../js/side-bar/admin/load-admin-1.0.js"></script> 
+        <script src="../js/side-bar/extra/popper.min.js"></script>
+        <script src="../js/side-bar/extra/menu-button.js"></script>
+        <script src="../js/side-bar/extra/bootstrap.min.js"></script>   
+         <script src="../js/side-bar/admin/load-admin-1.0.js"></script>
+        <!--<script src="../js/side-bar/admin/load-admin-1.0.js"></script>--> 
         <!-- jQuery Side-bar -->        
 
         <script>
