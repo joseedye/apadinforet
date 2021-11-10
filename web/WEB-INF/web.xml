@@ -63,8 +63,15 @@
         <servlet-name>consulta</servlet-name>
         <jsp-file>/Administrador/query.jsp</jsp-file>
     </servlet>
+     
+      <!--- VISTAS convertidor de ruta a nombre consltadocumento  -->
+    <servlet>
+        <servlet-name>consultadoc</servlet-name>
+        <jsp-file>/Administrador/documento_consulta.jsp</jsp-file>
+    </servlet>
+   
+
     <!---  
-    
     
     toma el nombre y lo convierte a ruta de navegador PERFIL ADMINISTRADOR
 
@@ -167,6 +174,10 @@
      <servlet-mapping>
         <servlet-name>consulta</servlet-name>
         <url-pattern>/Administrador/query</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>consultadoc</servlet-name>
+        <url-pattern>/Administrador/consultadoc</url-pattern>
     </servlet-mapping>
     <!---  controladores  -->
     <!---  SINGNIN  -->

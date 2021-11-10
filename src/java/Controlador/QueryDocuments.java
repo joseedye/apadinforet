@@ -77,11 +77,11 @@ public class QueryDocuments extends HttpServlet {
             
 //            req.getSession().setAttribute("tipoDocumentos", mapTipos);
             req.getSession().setAttribute("documentos", mapDocumentos);
-            res.sendRedirect(user.get("TipoUsuario") + "/documento_consulta");
+            res.sendRedirect(user.get("TipoUsuario") + "/consultadoc");
 
         } catch (Exception e) {
             req.getSession().setAttribute("msg", "Error, al consultar Documentos");
-            res.sendRedirect(user.get("TipoUsuario") + "/documento_consulta");
+            res.sendRedirect(user.get("TipoUsuario") + "/consultadoc");
         }
     }
 

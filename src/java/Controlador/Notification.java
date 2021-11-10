@@ -44,7 +44,7 @@ public class Notification extends HttpServlet {
 
         String tipoUser = usersesion.get("TipoUsuario");
 
-        if (tipoUser.equals("administrador")) {
+        if (tipoUser.equals("Administrador")) {
 
             try {
                 String id = request.getParameter("id");
@@ -110,7 +110,7 @@ public class Notification extends HttpServlet {
 
         }
 
-        if (tipoUser.equals("cliente")) {
+        if (tipoUser.equals("Cliente")) {
 
             //valido que este activo
             String activo = usersesion.get("activo");
@@ -139,7 +139,7 @@ public class Notification extends HttpServlet {
 
         }
         
-            if (tipoUser.equals("proveedor")) {
+            if (tipoUser.equals("Proveedor")) {
 
             //valido que este activo
             String activo = usersesion.get("activo");

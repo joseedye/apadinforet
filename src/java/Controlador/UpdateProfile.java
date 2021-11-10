@@ -68,29 +68,9 @@ public class UpdateProfile extends HttpServlet {
              req.getSession().setAttribute("user", user);
             req.getSession().setAttribute("msg", "Perfil actualizado exitosamente!");
             
-                //redirijo segun sea el usuario
-                switch (tipoUsuario.getDesTipoUsuario()) {
-                    case "administrador":
-                        res.sendRedirect("Notification.do");
-                        break;
-                    case "cliente":
-                        res.sendRedirect("Notification.do");
-                        break;
-                    case "proveedor":
-                        res.sendRedirect("Notification.do");
-                        break;
-                    case "gerente":
-                        res.sendRedirect("Notification.do");
-                        break;
-                    case "empleado_planta":
-                        res.sendRedirect("Notification.do");
-                        break;
-
-                    default:
-                        break;
-                }
-            
-        
+                res.sendRedirect("Notification.do");
+                
+              
 
         } catch (Exception e) {
             req.getSession().setAttribute("msg", "Error, al actualizar usuario!");
