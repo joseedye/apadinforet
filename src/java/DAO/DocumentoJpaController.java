@@ -6,7 +6,6 @@
 package DAO;
 
 import DAO.exceptions.NonexistentEntityException;
-import DAO.exceptions.PreexistingEntityException;
 import DTO.Documento;
 import java.io.Serializable;
 import javax.persistence.Query;
@@ -33,7 +32,7 @@ public class DocumentoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Documento documento) throws PreexistingEntityException, Exception {
+    public void create(Documento documento) {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -49,11 +48,6 @@ public class DocumentoJpaController implements Serializable {
                 idSolicitud = em.merge(idSolicitud);
             }
             em.getTransaction().commit();
-        } catch (Exception ex) {
-            if (findDocumento(documento.getIdDocumento()) != null) {
-                throw new PreexistingEntityException("Documento " + documento + " already exists.", ex);
-            }
-            throw ex;
         } finally {
             if (em != null) {
                 em.close();

@@ -3,11 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/rozo/Documents/NetBeansProjects/apadinforet/src/java/Controlador/Notification.java</file>
-            <file>file:/C:/Users/rozo/Documents/NetBeansProjects/apadinforet/web/Cliente/perfil.jsp</file>
-            <file>file:/C:/Users/rozo/Documents/NetBeansProjects/apadinforet/src/java/Controlador/UpdateProfile.java</file>
-            <file>file:/C:/Users/rozo/Documents/NetBeansProjects/apadinforet/src/java/Controlador/RegisterEmploye.java</file>
-            <file>file:/C:/Users/rozo/Documents/NetBeansProjects/apadinforet/web/Proveedor/perfil.jsp</file>
+            <file>file:/C:/Users/rozo/Documents/NetBeansProjects/apadinforet/src/java/Controlador/UploadFile.java</file>
+            <file>file:/C:/Users/rozo/Documents/NetBeansProjects/apadinforet/web/Administrador/documento_nuevo.jsp</file>
         </group>
     </open-files>
 </project-private>

@@ -17,7 +17,7 @@ var sidebar =   '<div class="sidebar-header">'+
                         '</a>'+
                         '<ul class="collapse list-unstyled" id="documentsSubmenu">'+
                             '<li>'+
-                                '<a href="../QueryTypeDocuments.do">Nuevo</a>'+
+                                '<a href="../Administrador/documento_nuevo.jsp">Nuevo</a>'+
                             '</li>'+
                             '<li>'+
                                 '<a href="../QueryDocuments.do">Consultar</a>'+

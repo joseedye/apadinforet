@@ -114,6 +114,14 @@
         <servlet-name>QueryUsers</servlet-name>
         <servlet-class>Controlador.QueryUsers</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UploadFile</servlet-name>
+        <servlet-class>Controlador.UploadFile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>QueryDocuments</servlet-name>
+        <servlet-class>Controlador.QueryDocuments</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>perfila</servlet-name>
         <url-pattern>/Administrador</url-pattern>
@@ -219,6 +227,14 @@
     <servlet-mapping>
         <servlet-name>QueryUsers</servlet-name>
         <url-pattern>/QueryUsers.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadFile</servlet-name>
+        <url-pattern>/UploadFile.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>QueryDocuments</servlet-name>
+        <url-pattern>/QueryDocuments.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
