@@ -56,9 +56,7 @@ public class UploadFile extends HttpServlet {
         int idUser = Integer.valueOf(user.get("idUsuario"));
 
         String ruta = getServletContext().getRealPath("/Files"); //Ruta donde se guardará el archivo.
-        String publico = req.getParameter("publico"); //public file
         String desc = req.getParameter("desc"); //Description file
-        String nomb = req.getParameter("nombre");
         Part arch = req.getPart("archivo");
         String fileName = Paths.get(arch.getSubmittedFileName()).getFileName().toString(); // Nombre Archivo con extension.
        

@@ -71,7 +71,7 @@
                                                     <tr>
                                                         <th scope="col">Archivo</th>
                                                         <th scope="col">Descripción</th>
-                                                        <th scope="col">Público</th>
+                                                        
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -83,12 +83,7 @@
                                                             <input class="form-control" type="text" id="desc1" name="desc"/>
                                                         </td>
 
-                                                        <td>
-                                                            <div class="custom-control custom-switch">
-                                                                <input type="checkbox" class="custom-control-input" id="public1" name="publico"  >
-                                                                <label title="El archivo no sera publico " class="custom-control-label" for="public"></label>
-                                                            </div>
-                                                        </td>
+                                                       
                                                     </tr>
                                                     <tr>
                                                         <td>

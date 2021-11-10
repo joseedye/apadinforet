@@ -5,6 +5,7 @@
  */
 package Util;
 
+import DTO.Documento;
 import DTO.Persona;
 import DTO.Usuario;
 import java.io.BufferedReader;
@@ -46,7 +47,7 @@ public class Utileria {
         //map.put("activo", user.getActivo() + ""); crear en la bd ya
         map.put("contra", user.getPassword());
         map.put("pais", user.getIdPersona().getPais());
-        map.put("comentario",user.getIdPersona().getComentario());
+        map.put("comentario", user.getIdPersona().getComentario());
 
         return map;
     }
@@ -100,5 +101,20 @@ public class Utileria {
 
         return mapI;
     }
+
+   
+    public static Map<String, String> documentoToMap(Documento documento) {
+        Map<String, String> map = new HashMap<>();
+        map.put("idDoc", documento.getIdDocumento()+"");
+        map.put("nombre", documento.getNombre());
+        map.put("rutaDoc", documento.getRuta());
+        map.put("fecha", documento.getFechaDeSubida().toString());
+        map.put("iduser", documento.getIdUser()+"");
+        map.put("idTipoDoc", documento.getIdSolicitud()+ "");
+
+        return map;
+    }
+
+
 
 }
