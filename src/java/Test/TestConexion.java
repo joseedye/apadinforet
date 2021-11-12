@@ -23,7 +23,7 @@ public class TestConexion {
 //        PersonaJpaController p = new PersonaJpaController(emf);
 //        System.out.println(p.findPersona("10910000001").getNombres());
         
-        Utileria.getPaises().toString();
+   //     Utileria.getPaises().toString();
         
         
     }
