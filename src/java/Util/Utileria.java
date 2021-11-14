@@ -5,19 +5,16 @@
  */
 package Util;
 
-import DTO.Documento;
-import DTO.Persona;
+import DTO.DocumentoPropio;
+import DTO.DocumentoSolicitud;
+import DTO.Solicitud;
 import DTO.Usuario;
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -48,6 +45,7 @@ public class Utileria {
         map.put("contra", user.getPassword());
         map.put("pais", user.getIdPersona().getPais());
         map.put("comentario", user.getIdPersona().getComentario());
+//        map.put("cantidadDoc",user.)
 
         return map;
     }
@@ -102,19 +100,43 @@ public class Utileria {
         return mapI;
     }
 
-   
-    public static Map<String, String> documentoToMap(Documento documento) {
+    public static Map<String, String> documentoToMap(DocumentoSolicitud documento) {
         Map<String, String> map = new HashMap<>();
-        map.put("idDoc", documento.getIdDocumento()+"");
+        map.put("idDoc", documento.getIdDocumento() + "");
         map.put("nombre", documento.getNombre());
         map.put("rutaDoc", documento.getRuta());
-        map.put("fecha", documento.getFechaDeSubida().toString());
-        map.put("iduser", documento.getIdUser()+"");
-        map.put("idTipoDoc", documento.getIdSolicitud()+ "");
+        map.put("fecha", dateToString(documento.getFechaDeSubida()));
+        map.put("idTipoDoc", documento.getIdSolicitud() + "");
+        map.put("soy", "solicitud");
 
         return map;
     }
 
+    public static Map<String, String> documentoToMap(DocumentoPropio documento) {
+        Map<String, String> map = new HashMap<>();
+        map.put("idDoc", documento.getIdDocumento() + "");
+        map.put("nombre", documento.getNombre());
+        map.put("rutaDoc", documento.getRuta());
+        map.put("fecha", dateToString(documento.getFechaDeSubida()));
+        map.put("iduser", documento.getIdUsuario() + "");
+        map.put("soy", "propio");
+        return map;
+    }
 
+    public static int cantidadDocumento(Usuario strp) {
+        int documentos = 0;
+        documentos = strp.getDocumentoPropioList().size();
+
+        // obtengo el numero de documentos por solicitud como cliente
+        for (Solicitud str : strp.getSolicitudList()) {
+            documentos += str.getDocumentoSolicitudList().size();
+        }
+
+        for (Solicitud str : strp.getSolicitudList1()) {
+            documentos += str.getDocumentoSolicitudList().size();
+        }
+
+        return documentos;
+    }
 
 }

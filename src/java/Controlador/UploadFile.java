@@ -6,9 +6,9 @@
 package Controlador;
 
 import DAO.Conexion;
-import DAO.DocumentoJpaController;
+import DAO.DocumentoPropioJpaController;
 import DAO.UsuarioJpaController;
-import DTO.Documento;
+import DTO.DocumentoPropio;
 import DTO.Usuario;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -66,15 +66,14 @@ public class UploadFile extends HttpServlet {
 
                 //Guardar en base de datos
                 String rutaDoc = "Files/" + fileName;
-                DocumentoJpaController documentoDao = new DocumentoJpaController(emf);
+                DocumentoPropioJpaController documentoDao = new DocumentoPropioJpaController(emf);
                 UsuarioJpaController usuarioDao = new UsuarioJpaController(emf);
                 Usuario usuario = usuarioDao.findUsuario(idUser);
-
-                Documento d = new Documento();
+                DocumentoPropio d = new DocumentoPropio();
                 d.setNombre(desc);
                 d.setRuta(rutaDoc);
                 d.setFechaDeSubida(new Date());
-                d.setIdUser(usuario.getIdUsuario());
+                d.setIdUsuario(usuario);
                 documentoDao.create(d);
 
         } catch (Exception ex) {
@@ -89,7 +88,7 @@ public class UploadFile extends HttpServlet {
             res.sendRedirect("/Error/errorRedir");
         } else {
             req.getSession().setAttribute("msg", "Archivos Subidos con Exito!");
-            res.sendRedirect("QueryDocuments.do");
+            res.sendRedirect("/"+user.get("TipoUsuario")+"/documento_nuevo.jsp");
         }
        
 

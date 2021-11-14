@@ -6,12 +6,14 @@
 package Controlador;
 
 import DAO.Conexion;
-import DAO.DocumentoJpaController;
-import DTO.Documento;
+import DAO.DocumentoPropioJpaController;
+import DAO.DocumentoSolicitudJpaController;
+import DAO.UsuarioJpaController;
+import DTO.DocumentoPropio;
+import DTO.Solicitud;
+import DTO.Usuario;
 import Util.Utileria;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,46 +41,93 @@ public class QueryDocuments extends HttpServlet {
     protected void processRequest(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
         res.setContentType("text/html;charset=UTF-8");
-     
-          Map<String, String> user = (Map<String, String>) req.getSession().getAttribute("user");
+
+        Map<String, String> user = (Map<String, String>) req.getSession().getAttribute("user");
         try {
+
             EntityManagerFactory emf = Conexion.getConexion().getBd();
-            DocumentoJpaController docDao = new DocumentoJpaController(emf);
+            DocumentoPropioJpaController docDao = new DocumentoPropioJpaController(emf);
+            DocumentoSolicitudJpaController docSol = new DocumentoSolicitudJpaController(emf);
+            UsuarioJpaController usuarioDao = new UsuarioJpaController(emf);
 
-            List<Documento> listDocumentos = docDao.findDocumentoEntities();
+            Map<String, Object> mapUsuarios = new HashMap<>();
+            Map<String, String> mapcantidad = new HashMap<>();
 
-//            if (user.get("TipoUsuario").equals("Docente")) {
-//                List<Documento> listTemp = new ArrayList<>();
-//                for (Documento documento : listDocumentos) {
-//                    if (documento.getIsPublic()) 
-//                        listTemp.add(documento);                                    }
-//                listDocumentos = listTemp;
-//            }
-//
-//            //Consulta por idTipoDocumento
-//            if (idTipoDocumento != null) {                
-//                int idTipoDoc = Integer.valueOf(idTipoDocumento);
-//                TipoDocumento tipoSelected = tipoDao.findTipoDocumento(idTipoDoc);
-//                List<Documento> listTemp = new ArrayList<>();
-//                        
-//                for (Documento documento : listDocumentos) {
-//                    if (documento.getIdTipoDoc().equals(tipoSelected)) 
-//                        listTemp.add(documento);                   
-//                }
-//                listDocumentos = listTemp;
-//                req.getSession().setAttribute("tipoDesc", tipoSelected.getDescripcionTipoDoc());   
-//            } 
+            int i = 0;
+            //por cada usuario
 
-            //Mapa de documentos
-            Map<String, Object> mapDocumentos = new HashMap<>();
-            for (int i = 0; i < listDocumentos.size(); i++) {
-                mapDocumentos.put(i + "", Utileria.documentoToMap(listDocumentos.get(i)));
+            String cliente = req.getParameter("cliente");
+            String proveedor = req.getParameter("proveedor");
+            String gerente = req.getParameter("gerente");
+            String empleado = req.getParameter("empleado");
+            if ((cliente == null || proveedor == null || gerente == null || empleado == null) || ("false".equals(cliente) && "false".equals(proveedor) && "false".equals(gerente) && "false".equals(empleado))) {
+
+                for (Usuario strp : usuarioDao.findUsuarioEntities()) {
+
+                    //agrego el usuario al mapa
+                    mapUsuarios.put(i + "", Utileria.usuarioToMap(strp));
+
+                    //numero de total de documetos 
+                    mapcantidad.put(i++ + "", Utileria.cantidadDocumento(strp) + "");
+
+                }
+                req.getSession().setAttribute("usuarios", mapUsuarios);
+                req.getSession().setAttribute("cantidad", mapcantidad);
+                res.sendRedirect(user.get("TipoUsuario") + "/consultadoc");
+            } else {
+
+                if ("true".equals(cliente)) {
+                    
+                    for (Usuario strp : usuarioDao.findUsuarioEntities()) {
+                         int tipo = strp.getIdTipoUsuario().getIdTipoUsuario();
+                        if (tipo == 3) {
+                             mapUsuarios.put(i + "", Utileria.usuarioToMap(strp));
+                             mapcantidad.put(i++ + "", Utileria.cantidadDocumento(strp) + "");
+                        }
+                    }
+                   
+                }
+                if ("true".equals(proveedor)) {
+
+                     for (Usuario strp : usuarioDao.findUsuarioEntities()) {
+                         int tipo = strp.getIdTipoUsuario().getIdTipoUsuario();
+                        if (tipo == 4) {
+                             mapUsuarios.put(i + "", Utileria.usuarioToMap(strp));
+                             mapcantidad.put(i++ + "", Utileria.cantidadDocumento(strp) + "");
+                        }
+                    }
+
+                }
+                if ("true".equals(gerente)) {
+
+                     for (Usuario strp : usuarioDao.findUsuarioEntities()) {
+                         int tipo = strp.getIdTipoUsuario().getIdTipoUsuario();
+                        if (tipo == 2) {
+                             mapUsuarios.put(i + "", Utileria.usuarioToMap(strp));
+                             mapcantidad.put(i++ + "", Utileria.cantidadDocumento(strp) + "");
+                        }
+                    }
+
+                }
+                if ("true".equals(empleado)) {
+
+                     for (Usuario strp : usuarioDao.findUsuarioEntities()) {
+                         int tipo = strp.getIdTipoUsuario().getIdTipoUsuario();
+                        if (tipo == 5) {
+                             mapUsuarios.put(i + "", Utileria.usuarioToMap(strp));
+                             mapcantidad.put(i++ + "", Utileria.cantidadDocumento(strp) + "");
+                        }
+                    }
+                }
+
+                req.getSession().setAttribute("cliente", cliente);
+                req.getSession().setAttribute("proveedor", proveedor);
+                req.getSession().setAttribute("gerente", gerente);
+                req.getSession().setAttribute("empleado", empleado);
+                req.getSession().setAttribute("usuarios", mapUsuarios);
+                req.getSession().setAttribute("cantidad", mapcantidad);
+                res.sendRedirect(user.get("TipoUsuario") + "/consultadoc");
             }
-            
-//            req.getSession().setAttribute("tipoDocumentos", mapTipos);
-            req.getSession().setAttribute("documentos", mapDocumentos);
-            res.sendRedirect(user.get("TipoUsuario") + "/consultadoc");
-
         } catch (Exception e) {
             req.getSession().setAttribute("msg", "Error, al consultar Documentos");
             res.sendRedirect(user.get("TipoUsuario") + "/consultadoc");

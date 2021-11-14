@@ -6,11 +6,15 @@
 package Controlador;
 
 import DAO.Conexion;
-import DAO.UsuarioJpaController;
-import DTO.Usuario;
-import Util.Utileria;
+import DAO.DocumentoPropioJpaController;
+import DAO.DocumentoSolicitudJpaController;
+import DAO.exceptions.NonexistentEntityException;
+import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,52 +25,56 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author rozo
  */
-public class UpdatePassword extends HttpServlet {
+public class DeleteDoc extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
-     * @param req servlet request
-     * @param resp servlet response
+     * @param request servlet request
+     * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest req, HttpServletResponse res)
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        EntityManagerFactory emf = Conexion.getConexion().getBd();
 
+        int id = Integer.parseInt(request.getParameter("idDoc"));
+        String soy = request.getParameter("soy");
+        String iddueno = request.getParameter("idDue");
+        String ruta = request.getParameter("ruta");
+        File archivo;
+        String rutatot = getServletContext().getRealPath("/");
         try {
-            EntityManagerFactory emf = Conexion.getConexion().getBd();
-            Map<String, String> user = (Map<String, String>) req.getSession().getAttribute("user");
-            
-            String anterior = req.getParameter("ContraAnt");
-            String nueva = req.getParameter("ContraNueva");
-            
-            String contraguardada = user.get("contra");
-            String usuarioo = user.get("user");
-            
-            UsuarioJpaController usuarioDao = new UsuarioJpaController(emf);
+            switch (soy) {
 
-            if (anterior.equals(contraguardada)) {
-                Usuario usuario = usuarioDao.findUsuario(usuarioo); 
-                usuario.setPassword(nueva);
-                usuarioDao.edit(usuario);
-                user = Utileria.usuarioToMap(usuarioDao.findUsuario(usuarioo));
-                req.getSession().setAttribute("user", user);
-                req.getSession().setAttribute("msg", "se ha cambiado exitosamente su contraseña");
-                res.sendRedirect("Administrador/perfil");
-            } else {
-                req.getSession().setAttribute("msg", "Error,no se ha podido cambiar la contraseña");
-                res.sendRedirect("Administrador/perfil");
+                case "propio":
+                    DocumentoPropioJpaController docDao = new DocumentoPropioJpaController(emf);
+                    archivo = new File(rutatot+"/"+ruta);
+                    archivo.delete();
+                    docDao.destroy(id);
+
+                    break;
+
+                case "solicitud":
+                    DocumentoSolicitudJpaController docSol = new DocumentoSolicitudJpaController(emf);
+                    archivo = new File(rutatot+""+ruta);
+                    archivo.delete();
+                    docSol.destroy(id);
+                    break;
             }
-            
-        } catch (Exception e) {
-            req.getSession().setAttribute("msg", "Error,no se ha podido cambiar la contraseña");
-                res.sendRedirect("/Error/errorRedir");
-            
+            request.getSession().setAttribute("msg", "¡¡se ha eliminado el documento!!");
+            response.sendRedirect("/SeeDocuments.do?idUserQuery=" + iddueno);
+
+        } catch (NonexistentEntityException ex) {
+
+            request.getSession().setAttribute("msg", "¡¡error al eliminar el documento intente de nuevo!!");
+            response.sendRedirect("/Error/errorRedir");
         }
+
     }
-        
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -78,7 +86,6 @@ public class UpdatePassword extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);

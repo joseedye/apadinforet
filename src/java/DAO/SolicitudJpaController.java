@@ -14,7 +14,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import DTO.EstatusSolicitud;
 import DTO.Usuario;
-import DTO.Documento;
+import DTO.DocumentoSolicitud;
 import DTO.Solicitud;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,8 +37,8 @@ public class SolicitudJpaController implements Serializable {
     }
 
     public void create(Solicitud solicitud) throws PreexistingEntityException, Exception {
-        if (solicitud.getDocumentoList() == null) {
-            solicitud.setDocumentoList(new ArrayList<Documento>());
+        if (solicitud.getDocumentoSolicitudList() == null) {
+            solicitud.setDocumentoSolicitudList(new ArrayList<DocumentoSolicitud>());
         }
         EntityManager em = null;
         try {
@@ -59,12 +59,12 @@ public class SolicitudJpaController implements Serializable {
                 idSolucionador = em.getReference(idSolucionador.getClass(), idSolucionador.getIdUsuario());
                 solicitud.setIdSolucionador(idSolucionador);
             }
-            List<Documento> attachedDocumentoList = new ArrayList<Documento>();
-            for (Documento documentoListDocumentoToAttach : solicitud.getDocumentoList()) {
-                documentoListDocumentoToAttach = em.getReference(documentoListDocumentoToAttach.getClass(), documentoListDocumentoToAttach.getIdDocumento());
-                attachedDocumentoList.add(documentoListDocumentoToAttach);
+            List<DocumentoSolicitud> attachedDocumentoSolicitudList = new ArrayList<DocumentoSolicitud>();
+            for (DocumentoSolicitud documentoSolicitudListDocumentoSolicitudToAttach : solicitud.getDocumentoSolicitudList()) {
+                documentoSolicitudListDocumentoSolicitudToAttach = em.getReference(documentoSolicitudListDocumentoSolicitudToAttach.getClass(), documentoSolicitudListDocumentoSolicitudToAttach.getIdDocumento());
+                attachedDocumentoSolicitudList.add(documentoSolicitudListDocumentoSolicitudToAttach);
             }
-            solicitud.setDocumentoList(attachedDocumentoList);
+            solicitud.setDocumentoSolicitudList(attachedDocumentoSolicitudList);
             em.persist(solicitud);
             if (estatus != null) {
                 estatus.getSolicitudList().add(solicitud);
@@ -78,13 +78,13 @@ public class SolicitudJpaController implements Serializable {
                 idSolucionador.getSolicitudList().add(solicitud);
                 idSolucionador = em.merge(idSolucionador);
             }
-            for (Documento documentoListDocumento : solicitud.getDocumentoList()) {
-                Solicitud oldIdSolicitudOfDocumentoListDocumento = documentoListDocumento.getIdSolicitud();
-                documentoListDocumento.setIdSolicitud(solicitud);
-                documentoListDocumento = em.merge(documentoListDocumento);
-                if (oldIdSolicitudOfDocumentoListDocumento != null) {
-                    oldIdSolicitudOfDocumentoListDocumento.getDocumentoList().remove(documentoListDocumento);
-                    oldIdSolicitudOfDocumentoListDocumento = em.merge(oldIdSolicitudOfDocumentoListDocumento);
+            for (DocumentoSolicitud documentoSolicitudListDocumentoSolicitud : solicitud.getDocumentoSolicitudList()) {
+                Solicitud oldIdSolicitudOfDocumentoSolicitudListDocumentoSolicitud = documentoSolicitudListDocumentoSolicitud.getIdSolicitud();
+                documentoSolicitudListDocumentoSolicitud.setIdSolicitud(solicitud);
+                documentoSolicitudListDocumentoSolicitud = em.merge(documentoSolicitudListDocumentoSolicitud);
+                if (oldIdSolicitudOfDocumentoSolicitudListDocumentoSolicitud != null) {
+                    oldIdSolicitudOfDocumentoSolicitudListDocumentoSolicitud.getDocumentoSolicitudList().remove(documentoSolicitudListDocumentoSolicitud);
+                    oldIdSolicitudOfDocumentoSolicitudListDocumentoSolicitud = em.merge(oldIdSolicitudOfDocumentoSolicitudListDocumentoSolicitud);
                 }
             }
             em.getTransaction().commit();
@@ -112,8 +112,8 @@ public class SolicitudJpaController implements Serializable {
             Usuario idClienteNew = solicitud.getIdCliente();
             Usuario idSolucionadorOld = persistentSolicitud.getIdSolucionador();
             Usuario idSolucionadorNew = solicitud.getIdSolucionador();
-            List<Documento> documentoListOld = persistentSolicitud.getDocumentoList();
-            List<Documento> documentoListNew = solicitud.getDocumentoList();
+            List<DocumentoSolicitud> documentoSolicitudListOld = persistentSolicitud.getDocumentoSolicitudList();
+            List<DocumentoSolicitud> documentoSolicitudListNew = solicitud.getDocumentoSolicitudList();
             if (estatusNew != null) {
                 estatusNew = em.getReference(estatusNew.getClass(), estatusNew.getIdEstatus());
                 solicitud.setEstatus(estatusNew);
@@ -126,13 +126,13 @@ public class SolicitudJpaController implements Serializable {
                 idSolucionadorNew = em.getReference(idSolucionadorNew.getClass(), idSolucionadorNew.getIdUsuario());
                 solicitud.setIdSolucionador(idSolucionadorNew);
             }
-            List<Documento> attachedDocumentoListNew = new ArrayList<Documento>();
-            for (Documento documentoListNewDocumentoToAttach : documentoListNew) {
-                documentoListNewDocumentoToAttach = em.getReference(documentoListNewDocumentoToAttach.getClass(), documentoListNewDocumentoToAttach.getIdDocumento());
-                attachedDocumentoListNew.add(documentoListNewDocumentoToAttach);
+            List<DocumentoSolicitud> attachedDocumentoSolicitudListNew = new ArrayList<DocumentoSolicitud>();
+            for (DocumentoSolicitud documentoSolicitudListNewDocumentoSolicitudToAttach : documentoSolicitudListNew) {
+                documentoSolicitudListNewDocumentoSolicitudToAttach = em.getReference(documentoSolicitudListNewDocumentoSolicitudToAttach.getClass(), documentoSolicitudListNewDocumentoSolicitudToAttach.getIdDocumento());
+                attachedDocumentoSolicitudListNew.add(documentoSolicitudListNewDocumentoSolicitudToAttach);
             }
-            documentoListNew = attachedDocumentoListNew;
-            solicitud.setDocumentoList(documentoListNew);
+            documentoSolicitudListNew = attachedDocumentoSolicitudListNew;
+            solicitud.setDocumentoSolicitudList(documentoSolicitudListNew);
             solicitud = em.merge(solicitud);
             if (estatusOld != null && !estatusOld.equals(estatusNew)) {
                 estatusOld.getSolicitudList().remove(solicitud);
@@ -158,20 +158,20 @@ public class SolicitudJpaController implements Serializable {
                 idSolucionadorNew.getSolicitudList().add(solicitud);
                 idSolucionadorNew = em.merge(idSolucionadorNew);
             }
-            for (Documento documentoListOldDocumento : documentoListOld) {
-                if (!documentoListNew.contains(documentoListOldDocumento)) {
-                    documentoListOldDocumento.setIdSolicitud(null);
-                    documentoListOldDocumento = em.merge(documentoListOldDocumento);
+            for (DocumentoSolicitud documentoSolicitudListOldDocumentoSolicitud : documentoSolicitudListOld) {
+                if (!documentoSolicitudListNew.contains(documentoSolicitudListOldDocumentoSolicitud)) {
+                    documentoSolicitudListOldDocumentoSolicitud.setIdSolicitud(null);
+                    documentoSolicitudListOldDocumentoSolicitud = em.merge(documentoSolicitudListOldDocumentoSolicitud);
                 }
             }
-            for (Documento documentoListNewDocumento : documentoListNew) {
-                if (!documentoListOld.contains(documentoListNewDocumento)) {
-                    Solicitud oldIdSolicitudOfDocumentoListNewDocumento = documentoListNewDocumento.getIdSolicitud();
-                    documentoListNewDocumento.setIdSolicitud(solicitud);
-                    documentoListNewDocumento = em.merge(documentoListNewDocumento);
-                    if (oldIdSolicitudOfDocumentoListNewDocumento != null && !oldIdSolicitudOfDocumentoListNewDocumento.equals(solicitud)) {
-                        oldIdSolicitudOfDocumentoListNewDocumento.getDocumentoList().remove(documentoListNewDocumento);
-                        oldIdSolicitudOfDocumentoListNewDocumento = em.merge(oldIdSolicitudOfDocumentoListNewDocumento);
+            for (DocumentoSolicitud documentoSolicitudListNewDocumentoSolicitud : documentoSolicitudListNew) {
+                if (!documentoSolicitudListOld.contains(documentoSolicitudListNewDocumentoSolicitud)) {
+                    Solicitud oldIdSolicitudOfDocumentoSolicitudListNewDocumentoSolicitud = documentoSolicitudListNewDocumentoSolicitud.getIdSolicitud();
+                    documentoSolicitudListNewDocumentoSolicitud.setIdSolicitud(solicitud);
+                    documentoSolicitudListNewDocumentoSolicitud = em.merge(documentoSolicitudListNewDocumentoSolicitud);
+                    if (oldIdSolicitudOfDocumentoSolicitudListNewDocumentoSolicitud != null && !oldIdSolicitudOfDocumentoSolicitudListNewDocumentoSolicitud.equals(solicitud)) {
+                        oldIdSolicitudOfDocumentoSolicitudListNewDocumentoSolicitud.getDocumentoSolicitudList().remove(documentoSolicitudListNewDocumentoSolicitud);
+                        oldIdSolicitudOfDocumentoSolicitudListNewDocumentoSolicitud = em.merge(oldIdSolicitudOfDocumentoSolicitudListNewDocumentoSolicitud);
                     }
                 }
             }
@@ -219,10 +219,10 @@ public class SolicitudJpaController implements Serializable {
                 idSolucionador.getSolicitudList().remove(solicitud);
                 idSolucionador = em.merge(idSolucionador);
             }
-            List<Documento> documentoList = solicitud.getDocumentoList();
-            for (Documento documentoListDocumento : documentoList) {
-                documentoListDocumento.setIdSolicitud(null);
-                documentoListDocumento = em.merge(documentoListDocumento);
+            List<DocumentoSolicitud> documentoSolicitudList = solicitud.getDocumentoSolicitudList();
+            for (DocumentoSolicitud documentoSolicitudListDocumentoSolicitud : documentoSolicitudList) {
+                documentoSolicitudListDocumentoSolicitud.setIdSolicitud(null);
+                documentoSolicitudListDocumentoSolicitud = em.merge(documentoSolicitudListDocumentoSolicitud);
             }
             em.remove(solicitud);
             em.getTransaction().commit();

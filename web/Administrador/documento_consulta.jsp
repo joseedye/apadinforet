@@ -19,7 +19,7 @@
         <!-- Sidebar style  -->
         <title>Consulta documentos</title>
     </head>
-    <body onload="load(0,1)">
+    <body onload="load(0, 1)">
         <div class="wrapper">
 
             <!-- Sidebar  -->
@@ -30,8 +30,13 @@
             <%
                 Map<String, String> user = (Map<String, String>) request.getSession().getAttribute("user");
                 String userImg = (String) request.getSession().getAttribute("userImg");
-                Map<String, Object> listDocumentos = (Map<String, Object>) request.getSession().getAttribute("documentos");
-                
+                String empleado = (String) request.getSession().getAttribute("empleado");
+                String gerente = (String) request.getSession().getAttribute("gerente");
+                String proveedor = (String) request.getSession().getAttribute("proveedor");
+                String cliente = (String) request.getSession().getAttribute("cliente");
+                Map<String, Object> listUsuarios = (Map<String, Object>) request.getSession().getAttribute("usuarios");
+                Map<String, String> listCantidades= (Map<String, String>) request.getSession().getAttribute("cantidad");
+
             %>
 
             <!-- Page Content  -->
@@ -47,18 +52,13 @@
                             <h5><%=user.get("nombres") + ""%></h5>
                         </div>
                         <div class="img-profile">
-                            <img src="<%=userImg%>">                        
+                            <img src="<%=userImg%>">                          
                         </div>
                     </div>
                 </nav>
 
-                <!-- Content  -->
                 <div style="justify-content:center;" class="form-row">
                     <div class="form-group col-md-10">
-                        <h4>Consulta de documentos</h4> <br>                            
-                       
-                          <div style="justify-content:center;" class="form-row">
-                    <div class="form-group col-md-12">
                         <div class="card my-4">
                             <div class="form-group">
                                 <div class="container">
@@ -71,7 +71,7 @@
                                                     <th scope="col">
 
                                             <div class="form-check form-switch">
-                                                <input onclick="loadCheck(1);" class="form-check-input" type="checkbox" value="empleado" id="fempleado" >
+                                                <input onclick="loadCheck(1);" class="form-check-input" type="checkbox" value="empleado" id="fempleado" <% if ("true".equals(empleado)) {%>checked<%} %>>
                                                 <label  class="form-check-label" for="flexSwitchCheckDefault">Empleados</label>
 
 
@@ -79,20 +79,20 @@
                                             </th>
                                             <th scope="col">
                                             <div class="form-check form-switch">
-                                                <input onclick="loadCheck(2);" class="form-check-input" type="checkbox" value="cliente" id="fcliente" >
+                                                <input onclick="loadCheck(2);" class="form-check-input" type="checkbox" value="cliente" id="fcliente" <% if ("true".equals(cliente)) {%>checked<%} %>>
                                                 <label class="form-check-label" for="flexSwitchCheckDefault">Clientes</label>
                                             </div>
                                             </th>
                                             <th scope="col">
                                             <div class="form-check form-switch">
-                                                <input onclick="loadCheck(3);" class="form-check-input" value="proveedores" type="checkbox" id="fproveedor" >
+                                                <input onclick="loadCheck(3);" class="form-check-input" value="proveedores" type="checkbox" id="fproveedor" <% if ("true".equals(proveedor)) {%>checked<%} %>>
                                                 <label class="form-check-label" for="flexSwitchCheckDefault">Proveedores</label>
                                             </div> 
 
                                             </th>
                                             <th scope="col">
                                             <div class="form-check form-switch">
-                                                <input onclick="loadCheck(4);" class="form-check-input" type="checkbox" value="gerente" id="fgerente" >
+                                                <input onclick="loadCheck(4);" class="form-check-input" type="checkbox" value="gerente" id="fgerente" <% if ("true".equals(gerente)) {%>checked<%}%>>
                                                 <label class="form-check-label" for="flexSwitchCheckDefault">Directivo</label>
                                             </div>
                                             </th>
@@ -112,113 +112,76 @@
                         </div>
                     </div>
                 </div>
-                                                
-                                                
-                                                
-                                                
-                                                
-                        
 
+
+
+
+                <!-- Content  -->
+                <div style="justify-content:center;" class="form-row">
+                    <div class="form-group col-md-10">
                         <div class="card my-4">
-                            <h5 class="card-header">Documentos en el sistema: </h5>
+                            <h5 class="card-header">Documentos por usuario</h5>
+
                             <div class="card-body">
                                 <div class="form-group">
                                     <div class="container">
+                                        <div class="table-responsive">
 
-                                        <table id="myTable" class="table table-responsive-sm">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">Descripción</th>
-                                                     <th scope="col">Usuario</th>
-                                                    <th scope="col">Descarga</th>
-                                                    <th scope="col">Eliminar</th>
-                                                   
-                                                    <th scope="col"></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <%
-                                                    int i = 1;
-                                                    for (Map.Entry<String, Object> entry : listDocumentos.entrySet()) {
-                                                        Map<String, String> map = (Map<String, String>) entry.getValue();
-                                                %>
-                                                <tr>
-                                                    <td><%=map.get("nombre")%></td>
-                                                    
-                                                    <td><%=map.get("iduser")%></td>
-                                                    <td>
-                                                        <a download href="/<%=map.get("rutaDoc")%>" title="Descargar"><i class="fas fa-cloud-download-alt"></i></a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="#ventana" class="modal-btn" data-some-id="<%=map.get("idDoc")%>" title="Eliminar" data-toggle="modal"><i class="fas fa-trash-alt"></i></a>
-                                                    </td>
-                                                </tr>
-                                                <% i++;
-                                                    }%>
+                                            <table id="myTable" class="table table-responsive-sm">
 
-                                            </tbody>
-                                        </table>
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Nombre</th>
+                                                        <th scope="col">Correo electrónico (Usuario) </th>
+                                                        <th scope="col">cantidad</th>
+                                                        <th scope="col">ver</th>
+                                                        <th scope="col"></th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <%
+                                                        int i = 1;
+                                                        for (Map.Entry<String, Object> entry : listUsuarios.entrySet()) {
+
+                                                            Map<String, String> map = (Map<String, String>) entry.getValue();
+ 
+                                                    %>
+                                                    <tr>
+                                                        <td><%=map.get("nombres")%></td>
+                                                        <td><%=map.get("user")%></td>
+                                                        <td>
+
+                                                            <label class="text-center" ><%=listCantidades.get(entry.getKey())%></label>
+
+                                                        </td>
+                                                        <td>
+                                                            <a href="../SeeDocuments.do?idUserQuery=<%=map.get("idUsuario")%>" title="ver"><i class="fas fa-eye"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                    <% }%>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+
+
+                                        <!-- Modal  -->
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                        <!-- Content  -->
 
-                <!-- Modal  -->                                         
-                <div class="modal fade" id="ventana" tabindex="-1" role="dialog">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Alerta</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p>Estas seguro de eliminar el documento del sistema? </p>
-                                <p>Sólo se eliminará si el documento no está referenciado en alguna solicitud!
-                                </p>
-                            </div>
-                            <div class="modal-footer">            
-                                <a class="btn btn-primary">Si</a>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                            </div>
-                        </div>
+
+
                     </div>
-                </div>
-                <!-- Modal  -->  
-                <!-- Content  -->
+                </div>                                  
+
 
             </div>
         </div>
 
-        <%
-            String msg = (String) request.getSession().getAttribute("msg");
-            if (msg != null) {
-        %>
-        <!-- Modal success -->                        
-        <div class="modal fade" id="ventana2" tabindex="-1" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Mensaje</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p><%=msg%></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal success -->
-
-        <%
-            }
-            request.getSession().removeAttribute("msg");
-        %>                                    
 
         <!-- jQuery Side-bar -->
         <script src="../js/side-bar/extra/jquery-3.3.1.slim.min.js"></script>
@@ -229,32 +192,49 @@
         <!-- jQuery Side-bar -->   
 
         <script>
-                                                                $(document).ready(function () {
-                                                                    $("#ventana2").modal('show');
-                                                                });
+                                                            $(document).ready(function () {
+                                                                $("#ventana2").modal('show');
+                                                            });
 
-                                                                function loadCheck(a, b) {
-                                                                    location.href = '../UpdateActivDoc.do?idDocumento=' + a + '&publico=' + b;
-                                                                }
+                                                           function loadCheck() {
 
-                                                                $(function () {
-                                                                    $(".modal-btn").click(function () {
-                                                                        var id = $(this).data('some-id');
-                                                                        $(".modal-footer a").attr("href", "../DeleteDocument.do?idDoc=" + id);
-                                                                    })
-                                                                });
+                                                                        // Comprobar los checkbox seleccionados
+                                                                        
+                                                                        var empleado=false,cliente=false,proveedor=false,gerente = false;
+                                                                        if ($('#fempleado').is(':checked')) {
+                                                                            empleado=true;
+                                                                        }
+                                                                        if ($('#fcliente').is(':checked')) {
+                                                                            cliente=true;
+                                                                        }
+                                                                        if ($('#fproveedor').is(':checked')) {
+                                                                            proveedor=true;
+                                                                        }
+                                                                        if ($('#fgerente').is(':checked')) {
+                                                                            gerente=true;
+                                                                        }
+                                                                            
+                                                                 location.href = '../QueryDocuments.do?empleado=' + empleado + '&cliente=' + cliente + '&proveedor=' + proveedor + '&gerente=' + gerente;;
+                                                                    }
 
-                                                                if (window.performance.navigation.type === 1) {
-                                                                    location.href = "../QueryDocuments.do";
-                                                                }
+                                                            $(function () {
+                                                                $(".modal-btn").click(function () {
+                                                                    var id = $(this).data('some-id');
+                                                                    $(".modal-footer a").attr("href", "../DeleteDocument.do?idDoc=" + id);
+                                                                })
+                                                            });
 
-                                                                function doSearch() {
-                                                                    var tipo = $("#tipoDocument").val();
-                                                                    location.href = "../QueryDocuments.do?tipoDocument=" + tipo;
-                                                                }
+                                                            if (window.performance.navigation.type === 1) {
+                                                                location.href = "../QueryDocuments.do";
+                                                            }
+
+                                                            function doSearch() {
+                                                                var tipo = $("#tipoDocument").val();
+                                                                location.href = "../QueryDocuments.do?tipoDocument=" + tipo;
+                                                            }
         </script> 
-        
-           <script>
+
+        <script>
             function myFunction() {
                 var input, filter, table, tr, td, i, txtValue;
                 input = document.getElementById("myInput");
@@ -274,6 +254,6 @@
                 }
             }
         </script>
-        
+
     </body>
 </html>

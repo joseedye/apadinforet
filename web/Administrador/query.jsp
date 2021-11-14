@@ -162,7 +162,7 @@
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            <a href="../UpdateUser.do?idUserQuery=<%=map.get("idUsuario")%>" title="Modificar"><i class="fas fa-pencil-alt"></i></a>
+                                                            <a href="../UpdateUser.dtd>o?idUserQuery=<%=map.get("idUsuario")%>" title="Modificar"><i class="fas fa-pencil-alt"></i></a>
                                                         </td>
 
                                                       

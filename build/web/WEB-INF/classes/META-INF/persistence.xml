@@ -11,6 +11,8 @@
     <class>DTO.UserSistem</class>
     <class>DTO.Notificacion</class>
     <class>DTO.EstadoNotificacion</class>
+    <class>DTO.DocumentoPropio</class>
+    <class>DTO.DocumentoSolicitud</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/inforetbd?zeroDateTimeBehavior=convertToNull"/>

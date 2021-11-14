@@ -39,7 +39,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuario.findByFechaCreacion", query = "SELECT u FROM Usuario u WHERE u.fechaCreacion = :fechaCreacion"),
     @NamedQuery(name = "Usuario.findByActivo", query = "SELECT u FROM Usuario u WHERE u.activo = :activo")})
 public class Usuario implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -69,7 +68,7 @@ public class Usuario implements Serializable {
     @ManyToOne(optional = false)
     private TipoUsuario idTipoUsuario;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
-    private List<Notificacion> notificacionList;
+    private List<DocumentoPropio> documentoPropioList;
 
     public Usuario() {
     }
@@ -86,10 +85,11 @@ public class Usuario implements Serializable {
         this.activo = activo;
     }
 
-    public Usuario(String user, String password, Date fecCreacion, String activo) {
+      public Usuario(String user, String password, Date fecCreacion, String activo) {
         this(null, user, password, fecCreacion, activo);
     }
-
+      
+      
     public Integer getIdUsuario() {
         return idUsuario;
     }
@@ -165,12 +165,12 @@ public class Usuario implements Serializable {
     }
 
     @XmlTransient
-    public List<Notificacion> getNotificacionList() {
-        return notificacionList;
+    public List<DocumentoPropio> getDocumentoPropioList() {
+        return documentoPropioList;
     }
 
-    public void setNotificacionList(List<Notificacion> notificacionList) {
-        this.notificacionList = notificacionList;
+    public void setDocumentoPropioList(List<DocumentoPropio> documentoPropioList) {
+        this.documentoPropioList = documentoPropioList;
     }
 
     @Override
@@ -197,5 +197,5 @@ public class Usuario implements Serializable {
     public String toString() {
         return "DTO.Usuario[ idUsuario=" + idUsuario + " ]";
     }
-
+    
 }

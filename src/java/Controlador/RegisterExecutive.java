@@ -14,7 +14,6 @@ import DTO.TipoUsuario;
 import DTO.Usuario;
 import Util.Utileria;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.EntityManagerFactory;

@@ -142,8 +142,7 @@
         <%
             }
 
-            request.getSession()
-                    .removeAttribute("msg");
+            request.getSession().removeAttribute("msg");
         %>
 
         <!-- jQuery Side-bar -->

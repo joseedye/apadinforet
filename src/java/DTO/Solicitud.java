@@ -62,7 +62,7 @@ public class Solicitud implements Serializable {
     @ManyToOne
     private Usuario idSolucionador;
     @OneToMany(mappedBy = "idSolicitud")
-    private List<Documento> documentoList;
+    private List<DocumentoSolicitud> documentoSolicitudList;
 
     public Solicitud() {
     }
@@ -135,12 +135,12 @@ public class Solicitud implements Serializable {
     }
 
     @XmlTransient
-    public List<Documento> getDocumentoList() {
-        return documentoList;
+    public List<DocumentoSolicitud> getDocumentoSolicitudList() {
+        return documentoSolicitudList;
     }
 
-    public void setDocumentoList(List<Documento> documentoList) {
-        this.documentoList = documentoList;
+    public void setDocumentoSolicitudList(List<DocumentoSolicitud> documentoSolicitudList) {
+        this.documentoSolicitudList = documentoSolicitudList;
     }
 
     @Override

@@ -27,16 +27,15 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author rozo
  */
 @Entity
-@Table(name = "documento")
+@Table(name = "documento_propio")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Documento.findAll", query = "SELECT d FROM Documento d"),
-    @NamedQuery(name = "Documento.findByIdDocumento", query = "SELECT d FROM Documento d WHERE d.idDocumento = :idDocumento"),
-    @NamedQuery(name = "Documento.findByFechaDeSubida", query = "SELECT d FROM Documento d WHERE d.fechaDeSubida = :fechaDeSubida"),
-    @NamedQuery(name = "Documento.findByNombre", query = "SELECT d FROM Documento d WHERE d.nombre = :nombre"),
-    @NamedQuery(name = "Documento.findByRuta", query = "SELECT d FROM Documento d WHERE d.ruta = :ruta"),
-    @NamedQuery(name = "Documento.findByIdUser", query = "SELECT d FROM Documento d WHERE d.idUser = :idUser")})
-public class Documento implements Serializable {
+    @NamedQuery(name = "DocumentoPropio.findAll", query = "SELECT d FROM DocumentoPropio d"),
+    @NamedQuery(name = "DocumentoPropio.findByIdDocumento", query = "SELECT d FROM DocumentoPropio d WHERE d.idDocumento = :idDocumento"),
+    @NamedQuery(name = "DocumentoPropio.findByFechaDeSubida", query = "SELECT d FROM DocumentoPropio d WHERE d.fechaDeSubida = :fechaDeSubida"),
+    @NamedQuery(name = "DocumentoPropio.findByNombre", query = "SELECT d FROM DocumentoPropio d WHERE d.nombre = :nombre"),
+    @NamedQuery(name = "DocumentoPropio.findByRuta", query = "SELECT d FROM DocumentoPropio d WHERE d.ruta = :ruta")})
+public class DocumentoPropio implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,26 +52,22 @@ public class Documento implements Serializable {
     @Basic(optional = false)
     @Column(name = "ruta")
     private String ruta;
-    @Basic(optional = false)
-    @Column(name = "id_user")
-    private int idUser;
-    @JoinColumn(name = "id_solicitud", referencedColumnName = "id_solicitud")
-    @ManyToOne
-    private Solicitud idSolicitud;
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
+    @ManyToOne(optional = false)
+    private Usuario idUsuario;
 
-    public Documento() {
+    public DocumentoPropio() {
     }
 
-    public Documento(Integer idDocumento) {
+    public DocumentoPropio(Integer idDocumento) {
         this.idDocumento = idDocumento;
     }
 
-    public Documento(Integer idDocumento, Date fechaDeSubida, String nombre, String ruta, int idUser) {
+    public DocumentoPropio(Integer idDocumento, Date fechaDeSubida, String nombre, String ruta) {
         this.idDocumento = idDocumento;
         this.fechaDeSubida = fechaDeSubida;
         this.nombre = nombre;
         this.ruta = ruta;
-        this.idUser = idUser;
     }
 
     public Integer getIdDocumento() {
@@ -107,20 +102,12 @@ public class Documento implements Serializable {
         this.ruta = ruta;
     }
 
-    public int getIdUser() {
-        return idUser;
+    public Usuario getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
-    }
-
-    public Solicitud getIdSolicitud() {
-        return idSolicitud;
-    }
-
-    public void setIdSolicitud(Solicitud idSolicitud) {
-        this.idSolicitud = idSolicitud;
+    public void setIdUsuario(Usuario idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     @Override
@@ -133,10 +120,10 @@ public class Documento implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Documento)) {
+        if (!(object instanceof DocumentoPropio)) {
             return false;
         }
-        Documento other = (Documento) object;
+        DocumentoPropio other = (DocumentoPropio) object;
         if ((this.idDocumento == null && other.idDocumento != null) || (this.idDocumento != null && !this.idDocumento.equals(other.idDocumento))) {
             return false;
         }
@@ -145,7 +132,7 @@ public class Documento implements Serializable {
 
     @Override
     public String toString() {
-        return "DTO.Documento[ idDocumento=" + idDocumento + " ]";
+        return "DTO.DocumentoPropio[ idDocumento=" + idDocumento + " ]";
     }
     
 }

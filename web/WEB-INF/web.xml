@@ -73,7 +73,10 @@
         <servlet-name>consultadoc</servlet-name>
         <jsp-file>/Administrador/documento_consulta.jsp</jsp-file>
     </servlet>
-   
+   <servlet>
+        <servlet-name>verdocs</servlet-name>
+        <jsp-file>/Administrador/ver_documentos.jsp</jsp-file>
+    </servlet>
 
     <!---  
     
@@ -137,6 +140,14 @@
         <servlet-name>RegisterExecutive</servlet-name>
         <servlet-class>Controlador.RegisterExecutive</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SeeDocuments</servlet-name>
+        <servlet-class>Controlador.SeeDocuments</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteDoc</servlet-name>
+        <servlet-class>Controlador.DeleteDoc</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>perfila</servlet-name>
         <url-pattern>/Administrador</url-pattern>
@@ -191,6 +202,13 @@
         <servlet-name>consultadoc</servlet-name>
         <url-pattern>/Administrador/consultadoc</url-pattern>
     </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>verdocs</servlet-name>
+        <url-pattern>/Administrador/ver_docs</url-pattern>
+    </servlet-mapping>
+    
+    
+    
     <!---  controladores  -->
     <!---  SINGNIN  -->
     <servlet>
@@ -263,6 +281,14 @@
         <servlet-name>RegisterExecutive</servlet-name>
         <url-pattern>/RegisterExecutive.do</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SeeDocuments</servlet-name>
+        <url-pattern>/SeeDocuments.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteDoc</servlet-name>
+        <url-pattern>/DeleteDoc.do</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -275,5 +301,7 @@
         <version>4.12</version>
         <scope>test</scope>
     </dependency>
+}
+    
 }
     </web-app>
