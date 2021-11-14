@@ -190,120 +190,281 @@
                             <br></br>
                             <br></br>
 
-                            <div class="form-row">
-                                <div class="form-group col-md-3">
-
-                                    <label for="rut">Rut</label>
-                                    <input class="form-control-file" type="file" id="file1" name="file1"/>
-                                    <br></br>
-                                    <label for="camara de comercio">Camara de comercio</label>
 
 
+
+                            <div style="justify-content:center;" class="form-row">
+                                <div class="form-group col-md-12">
+                                    <div class="card my-4">
+                                        <div class="form-group">
+                                            <div class="container">
+                                                <div class="table-responsive">
+
+                                                    <table class="table table-responsive-sm">
+
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">
+
+                                                        <div class="form-check form-switch">
+                                                            <label  class="form-check-label" for="flexSwitchCheckDefault">Documento</label>
+
+
+                                                        </div>
+                                                        </th>
+                                                        <th scope="col">
+                                                        <div class="form-check form-switch">
+                                                            <label class="form-check-label" for="flexSwitchCheckDefault">Extencion</label>
+                                                        </div>
+                                                        </th>
+                                                        <th scope="col">
+                                                        <div class="form-check form-switch">
+                                                            <label class="form-check-label" for="flexSwitchCheckDefault">Peso</label>
+                                                        </div> 
+
+                                                        </th>
+                                                        <th scope="col">
+                                                        <div class="form-check form-switch">
+                                                            <label class="form-check-label" for="flexSwitchCheckDefault">Ver archivo</label>
+                                                        </div>
+                                                        </th>
+                                                        <th scope="col">
+                                                        <div class="form-check form-switch">
+                                                            <label class="form-check-label" for="flexSwitchCheckDefault">Cargado</label>
+                                                        </div>
+                                                        </th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td  >
+
+
+                                                                    RUT 
+
+                                                                </td>
+                                                                <td  >
+
+
+                                                                    .pdf 
+
+                                                                </td>
+                                                                <td  >
+
+
+                                                                    2MB
+
+                                                                </td>
+                                                                <td style="text-align:center;" >
+
+
+                                                                    <a onclick ='mostrarpdf("uno")' title="Mostrar" ><i class="fas fa-search" ></i></a>
+                                                                    <div id="uno" style="display:none"></div>
+
+                                                                </td>
+                                                                <td  >
+
+                                                                     <button style="display:block;width:120px; height:30px;" onclick="document.getElementById('getuno').click()">Subir</button>
+                                                                    <input type="file" id="getuno" style="display:none"> 
+
+
+
+                                                                </td>
+                                                            <tr>
+                                                                <td  >
+
+
+                                                                    CAMARA DE COMERCIO 
+
+                                                                </td>
+                                                                <td  >
+
+
+                                                                    .pdf 
+
+                                                                </td>
+                                                                <td  >
+
+
+                                                                    2MB
+
+                                                                </td>
+                                                                <td style="text-align:center;" >
+
+
+                                                                    <a  id="mostrar" onclick ='mostrarpdf("dos")' title="Mostrar" ><i class="fas fa-search" ></i></a>
+                                                                    <div id="dos" style="display:none"></div>
+
+                                                                </td>
+                                                                <td  >
+                                                                    <button style="display:block;width:120px; height:30px;" onclick="document.getElementById('getdos').click()">Subir</button>
+                                                                    <input type="file" id="getdos" style="display:none"> 
+
+
+
+                                                                </td>
+                                                            <tr>
+                                                                <td  >
+
+
+                                                                    CEDULA DEL REPRECENTANTE 
+
+                                                                </td>
+                                                                <td  >
+
+
+                                                                    .pdf 
+
+                                                                </td>
+                                                                <td  >
+
+
+                                                                    2MB
+
+                                                                </td>
+                                                                <td style="text-align:center;" >
+
+
+                                                                    <a  onclick='mostrarpdf("tres")' title="mostrar3" ><i class="fas fa-search" ></i></a>
+
+                                                                    <div id="tres" style="display:none"></div>
+                                                                </td>
+                                                                <td  >
+
+                                                                    <button style="display:block;width:120px; height:30px;" onclick="document.getElementById('gettres').click()">Subir</button>
+                                                                    <input type="file" id="gettres" style="display:none"> 
+
+
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-group col-md-6">
-
-
-                                    <label for="camara de comercio">Camara de comercio</label>
-                                    <input class="form-control-file" type="file" id="file1" name="file1"/>
-
-
-                                </div>
-                                <div class="form-group col-md-3">
-
-                                    <label for="cedularep">Cedula de reprecentante legal</label>
-                                    <input class="form-control-file" type="file" id="file1" name="file1"/>
-                                </div>
-                                <label>&nbsp;</label><br>
-                                <button type="submit" name="subir" class="btn btn-primary">Subir</button>
                             </div>
 
 
+                            <label>&nbsp;</label><br>
+                            <button type="submit" name="subir" class="btn btn-primary">Subir</button>
                         </div>
-
-
-                        <%
-                            String msg = (String) request.getSession().getAttribute("msg");
-                            if (msg != null) {
-                        %>
-
-                        <!-- Modal success -->                        
-                        <div class="modal fade" id="ventana2" tabindex="-1" role="dialog">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Mensaje</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p> <%=msg%> </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Modal success -->
-
-                        <%   }
-                            request.getSession().removeAttribute("msg");
-                        %>
-
-
-
-                        <%
-                            String msg2 = (String) request.getSession().getAttribute("msg2");
-                            if (msg2 != null) {
-                        %>
-
-                        <!-- Modal success -->                        
-                        <div class="modal fade" id="ventana3" tabindex="-1" role="dialog">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Mensaje</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p> <%=msg2%> </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Modal success -->
-
-                        <%   }
-                            request.getSession().removeAttribute("msg2");
-                        %>
 
 
                     </div>
+
+
+                    <%
+                        String msg = (String) request.getSession().getAttribute("msg");
+                        if (msg != null) {
+                    %>
+
+                    <!-- Modal success -->                        
+                    <div class="modal fade" id="ventana2" tabindex="-1" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Mensaje</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p> <%=msg%> </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal success -->
+
+                    <%   }
+                        request.getSession().removeAttribute("msg");
+                    %>
+
+
+
+                    <%
+                        String msg2 = (String) request.getSession().getAttribute("msg2");
+                        if (msg2 != null) {
+                    %>
+
+                    <!-- Modal success -->                        
+                    <div class="modal fade" id="ventana3" tabindex="-1" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Mensaje</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p> <%=msg2%> </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal success -->
+
+                    <%   }
+                        request.getSession().removeAttribute("msg2");
+                    %>
+
+
                 </div>
-                <!-- Content  -->
             </div>
-            <!-- Page Content  -->
+            <!-- Content  -->
         </div>
+        <!-- Page Content  -->
+    </div>
 
-        <!-- jQuery Side-bar -->
-        <script src="../js/side-bar/extra/jquery-3.3.1.slim.min.js"></script>
-        <!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
+    <!-- jQuery Side-bar -->
+    <script src="../js/side-bar/extra/jquery-3.3.1.slim.min.js"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
 
-        <script src="../js/side-bar/extra/popper.min.js"></script>
-        <script src="../js/side-bar/extra/menu-button.js"></script>
-        <script src="../js/side-bar/extra/bootstrap.min.js"></script> 
-        <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>-->
+    <script src="../js/side-bar/extra/popper.min.js"></script>
+    <script src="../js/side-bar/extra/menu-button.js"></script>
+    <script src="../js/side-bar/extra/bootstrap.min.js"></script> 
+    <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>-->
 
-        <script src="../js/side-bar/cliente/load-cliente-perfil.js"></script>
-        <!-- jQuery Side-bar -->    
-        <script>
-                                            $(document).ready(function () {
-                                                $("#ventana2").modal('show');
-                                            });
-                                            $(document).ready(function () {
-                                                $("#ventana3").modal('show');
-                                            });
+    <script src="../js/side-bar/cliente/load-cliente-perfil.js"></script>
+    <!-- jQuery Side-bar -->    
+    <script>
+                                                                        function mostrarpdf(ruta) {
+                                                                            var ruta = document.getElementById(ruta).innerHTML;
+//                                                                            console.log("estoy dentro3"+ruta);
+                                                                            window.open(ruta);
+                                                                        }
 
-        </script> 
-    </body>
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#ventana2").modal('show');
+        });
+        $(document).ready(function () {
+            $("#ventana3").modal('show');
+        });
+
+
+        $('#getuno').change(function (event) {
+            var tmppath = URL.createObjectURL(event.target.files[0]);
+
+            $("#uno").html(tmppath);
+        });
+
+        $('#getdos').change(function (event) {
+            var tmppath = URL.createObjectURL(event.target.files[0]);
+
+            $("#dos").html(tmppath);
+        });
+        $('#gettres').change(function (event) {
+            var tmppath = URL.createObjectURL(event.target.files[0]);
+
+            $("#tres").html(tmppath);
+        });
+
+    </script> 
+</body>
 </html>
