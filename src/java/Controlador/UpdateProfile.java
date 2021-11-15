@@ -46,7 +46,7 @@ public class UpdateProfile extends HttpServlet {
 
             String email = req.getParameter("Email");
             String telefono1 = req.getParameter("Tel1");
-            String telefono2 = req.getParameter("Tel2");        
+            String telefono2 = req.getParameter("Tel2");
             String direccion = req.getParameter("Dire");
 
             int idUsuario = Integer.valueOf(user.get("idUsuario"));
@@ -54,7 +54,7 @@ public class UpdateProfile extends HttpServlet {
             Usuario usuario = usuarioDao.findUsuario(idUsuario);
             Persona persona = personaDao.findPersona(usuario.getIdPersona().getNumeroDoc());
 
-
+            
             persona.setEmail(email);
             persona.setTelefono1(telefono1);
             persona.setTelefono2(telefono2);
@@ -62,15 +62,13 @@ public class UpdateProfile extends HttpServlet {
             personaDao.edit(persona);
 
             user = Utileria.usuarioToMap(usuarioDao.findUsuario(idUsuario));
-            
-             TipoUsuario tipoUsuario = usuario.getIdTipoUsuario();
 
-             req.getSession().setAttribute("user", user);
+            TipoUsuario tipoUsuario = usuario.getIdTipoUsuario();
+  
+            req.getSession().setAttribute("user", user);
             req.getSession().setAttribute("msg", "Perfil actualizado exitosamente!");
-            
-                res.sendRedirect("Notification.do");
-                
-              
+
+            res.sendRedirect("Notification.do");
 
         } catch (Exception e) {
             req.getSession().setAttribute("msg", "Error, al actualizar usuario!");

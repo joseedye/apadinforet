@@ -85,7 +85,7 @@
                                         <label for="">Tipo Documento</label>
                                         <input type="text" name="Tipodoc" class="form-control" readonly=»readonly» id=""  value="<%=user.get("tipoDocumento")%>" maxlength="100" required>
 
-                                        <label for="">Documento</label>
+                                        <label for="">Numero</label>
                                         <input type="number" name="Doc" pattern="[0-9]+" class="form-control"  readonly=»readonly» id="" placeholder="Documento" value="<%=user.get("numDocumento")%>" >
 
                                         <label for="">Fecha de Nacimiento</label>
@@ -96,8 +96,8 @@
                                         <label for="">Primer Apellido</label>
                                         <input type="text" name="Ape1" class="form-control" id="" readonly=»readonly» value="<%=user.get("apellido1") + ""%>" maxlength="15" required>
 
-                                        <label for="">Tipo </label>
-                                        <input type="text" name="Tipop" class="form-control" id="" readonly=»readonly» value="<%=user.get("tipop")%>" maxlength="15" required>
+                                        <label for="">Tipo Persona</label>
+                                        <input type="text" name="Tipop" class="form-control" id="" readonly=»readonly» value="<%=user.get("Tipocliente")%>" maxlength="15" required>
 
 
                                         <label for="">Pais</label>
@@ -126,14 +126,14 @@
                                                 } else if (this.value < 0) {
                                                     this.value = '0';
                                                 }" placeholder="Teléfono">
-                                        <label for="">Razon social</label>
-                                        <input type="text" name="razon" class="form-control" id="" readonly=»readonly» value="<%=user.get("razon")%>" required>
 
                                     </div>
                                 </div>
+                                <label for="">Razon social</label>
+                                <input type="text" name="razon" class="form-control" id="" readonly=»readonly» value="<%=user.get("razon")%>" required>
 
                                 <label for="">Reprecentante legal</label>
-                                <input type="text" name="rep" class="form-control" id="" value="<%=user.get("reprecentante")%>"  maxlength="150">
+                                <input type="text" name="rep" class="form-control" id="" readonly=»readonly» value="<%=user.get("reprecentante")%>"  maxlength="150">
 
 
 
@@ -199,6 +199,8 @@
                                         <div class="form-group">
                                             <div class="container">
                                                 <div class="table-responsive">
+Documentacion necesaria requerida
+
 
                                                     <table class="table table-responsive-sm">
 
@@ -237,108 +239,75 @@
                                                         </thead>
                                                         <tbody>
                                                             <tr>
-                                                                <td  >
-
-
+                                                                <td>
                                                                     RUT 
-
                                                                 </td>
+
                                                                 <td  >
-
-
                                                                     .pdf 
-
                                                                 </td>
-                                                                <td  >
 
-
+                                                                <td >
                                                                     2MB
-
                                                                 </td>
+
                                                                 <td style="text-align:center;" >
-
-
                                                                     <a onclick ='mostrarpdf("uno")' title="Mostrar" ><i class="fas fa-search" ></i></a>
                                                                     <div id="uno" style="display:none"></div>
 
                                                                 </td>
-                                                                <td  >
 
-                                                                     <button style="display:block;width:120px; height:30px;" onclick="document.getElementById('getuno').click()">Subir</button>
-                                                                    <input type="file" id="getuno" style="display:none"> 
+                                                                <td>
+                                                                    <button style="display:block;width:120px; height:30px;" onclick="document.getElementById('getuno').click()">Subir</button>
+                                                                </td> 
+                                                            </tr>
 
-
-
-                                                                </td>
                                                             <tr>
                                                                 <td  >
-
-
                                                                     CAMARA DE COMERCIO 
-
                                                                 </td>
                                                                 <td  >
-
-
                                                                     .pdf 
-
                                                                 </td>
                                                                 <td  >
-
-
                                                                     2MB
-
                                                                 </td>
                                                                 <td style="text-align:center;" >
-
-
                                                                     <a  id="mostrar" onclick ='mostrarpdf("dos")' title="Mostrar" ><i class="fas fa-search" ></i></a>
                                                                     <div id="dos" style="display:none"></div>
-
                                                                 </td>
                                                                 <td  >
                                                                     <button style="display:block;width:120px; height:30px;" onclick="document.getElementById('getdos').click()">Subir</button>
-                                                                    <input type="file" id="getdos" style="display:none"> 
-
-
-
                                                                 </td>
-                                                            <tr>
-                                                                <td  >
+                                                            </tr>
 
-
-                                                                    CEDULA DEL REPRECENTANTE 
-
-                                                                </td>
-                                                                <td  >
-
-
+                                                            <tr>  
+                                                                <td>CEDULA DEL REPRECENTANTE</td>
+                                                                <td>
                                                                     .pdf 
-
                                                                 </td>
-                                                                <td  >
-
-
+                                                                <td>
                                                                     2MB
-
                                                                 </td>
                                                                 <td style="text-align:center;" >
-
-
                                                                     <a  onclick='mostrarpdf("tres")' title="mostrar3" ><i class="fas fa-search" ></i></a>
-
                                                                     <div id="tres" style="display:none"></div>
                                                                 </td>
                                                                 <td  >
-
                                                                     <button style="display:block;width:120px; height:30px;" onclick="document.getElementById('gettres').click()">Subir</button>
-                                                                    <input type="file" id="gettres" style="display:none"> 
-
-
                                                                 </td>
-                                                            </tr>
+
                                                         </tbody>
                                                     </table>
+
+
+                                                    <form  name="form4" action="../UploadFile.do?tipo=1" method="post" enctype="multipart/form-data"> 
+                                                        <input type="file" id="getuno" name="archivo1" style="display:none"> 
+                                                        <input type="file" id="getdos" name="archivo2"style="display:none"> 
+                                                        <input type="file" id="gettres" name="archivo3" style="display:none"> 
+                                                        <button type="submit" name="subir" class="btn btn-primary">Enviar</button>
+                                                    </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -347,8 +316,7 @@
                             </div>
 
 
-                            <label>&nbsp;</label><br>
-                            <button type="submit" name="subir" class="btn btn-primary">Subir</button>
+
                         </div>
 
 
@@ -431,11 +399,35 @@
     <script src="../js/side-bar/cliente/load-cliente-perfil.js"></script>
     <!-- jQuery Side-bar -->    
     <script>
-                                                                        function mostrarpdf(ruta) {
-                                                                            var ruta = document.getElementById(ruta).innerHTML;
+                                                            function mostrarpdf(ruta) {
+                                                                var ruta = document.getElementById(ruta).innerHTML;
 //                                                                            console.log("estoy dentro3"+ruta);
-                                                                            window.open(ruta);
-                                                                        }
+                                                                window.open(ruta);
+                                                            }
+
+//borrar
+                                                            function enviarr() {
+                                                                var elementos = '<form  name="form3" action="../UploadFile?id=1" method="post">' +
+                                                                        '<input type="file"   id="getunoo" > ' +
+                                                                        '<input type="file"   id="getdoss" style="display:none"> ' +
+                                                                        ' <input type="file"   id="gettress" style="display:none"> ' +
+                                                                        ' <button type="submit" name="subirr" style="display:none"></button>' +
+                                                                        ' </form>' +
+                                                                        '<div id="prueba"></div>';
+
+                                                                var inyectar = document.getElementById("archivosenviar");
+                                                                inyectar.innerHTML = elementos;
+
+                                                                document.getElementById("prueba").innerHTML = document.getElementById("getuno").value;
+                                                                var valueuno = document.getElementById("getuno").value;
+                                                                // document.getElementById("getunoo").value = valueuno;
+                                                                // document.getElementById('getunoo').click();
+                                                                console.log("estoy enviando value " + valueuno);
+
+
+                                                            }
+
+
 
     </script>
 
@@ -465,6 +457,11 @@
             $("#tres").html(tmppath);
         });
 
+        $('#getunoo').change(function (event) {
+            var tmppath = URL.createObjectURL(event.target.files[0]);
+
+            $("#tres").html(tmppath);
+        });
     </script> 
 </body>
 </html>

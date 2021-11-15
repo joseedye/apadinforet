@@ -45,8 +45,9 @@ public class Utileria {
         map.put("contra", user.getPassword());
         map.put("pais", user.getIdPersona().getPais());
         map.put("comentario", user.getIdPersona().getComentario());
-//        map.put("cantidadDoc",user.)
-
+        map.put("reprecentante", user.getIdPersona().getRepresentanteLegal() + "");
+        map.put("razon", user.getIdPersona().getRazonSocial());
+        map.put("Tipocliente", user.getIdPersona().getTipoCliente());
         return map;
     }
 
