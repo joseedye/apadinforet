@@ -78,8 +78,8 @@ var sidebar =   '<div class="sidebar-header">'+
                     '</li>'+                    
                 '</ul>';
 
-var mostrar = ["documentsSubmenu", "usersSubMenu"];
-var active = ["documentsnew", "documentsquery","registroadmin","registrodirectivo","registroempleado","consultar"];
+var mostrar = ["documentsSubmenu", "usersSubMenu", "lisolicitudes"];
+var active = ["documentsnew", "documentsquery","registroadmin","registrodirectivo","registroempleado","consultar","lisolicitudes"];
 
 //carga el sidebar cuando entro a perfil
 function loadPerfil(){    

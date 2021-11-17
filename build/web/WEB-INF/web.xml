@@ -42,13 +42,32 @@
         <servlet-name>registrard</servlet-name>
         <jsp-file>/Administrador/directivo_registrar.jsp</jsp-file>
     </servlet>
+       <!---  VISTAS convertidor de ruta a nombre query  -->
+    <servlet>
+        <servlet-name>consulta</servlet-name>
+        <jsp-file>/Administrador/query.jsp</jsp-file>
+    </servlet>
+       <!--- VISTAS convertidor de ruta a nombre consltadocumento  -->
+    <servlet>
+        <servlet-name>consultadoc</servlet-name>
+        <jsp-file>/Administrador/documento_consulta.jsp</jsp-file>
+    </servlet>
+   <servlet>
+        <servlet-name>verdocs</servlet-name>
+        <jsp-file>/Administrador/ver_documentos.jsp</jsp-file>
+    </servlet>
+     <servlet>
+        <servlet-name>adminconsultasol</servlet-name>
+        <jsp-file>/Administrador/consulta_solicitud.jsp</jsp-file>
+    </servlet>
+    
     <!---  VISTAS convertidor de ruta a nombre PERFIL CLIENTE  -->
     <servlet>
         <servlet-name>perfilc</servlet-name>
         <jsp-file>/Cliente/perfil.jsp</jsp-file>
     </servlet>
     <servlet>
-         <servlet-name>cverdocs</servlet-name>
+        <servlet-name>cverdocs</servlet-name>
         <jsp-file>/Cliente/ver_documentos.jsp</jsp-file>
     </servlet>
     <!---  VISTAS convertidor de ruta a nombre PERFIL PROVEEDOR  -->
@@ -66,21 +85,9 @@
         <servlet-name>perfile</servlet-name>
         <jsp-file>/Empleado/perfil.jsp</jsp-file>
     </servlet>
-      <!---  VISTAS convertidor de ruta a nombre query  -->
-    <servlet>
-        <servlet-name>consulta</servlet-name>
-        <jsp-file>/Administrador/query.jsp</jsp-file>
-    </servlet>
+   
      
-      <!--- VISTAS convertidor de ruta a nombre consltadocumento  -->
-    <servlet>
-        <servlet-name>consultadoc</servlet-name>
-        <jsp-file>/Administrador/documento_consulta.jsp</jsp-file>
-    </servlet>
-   <servlet>
-        <servlet-name>verdocs</servlet-name>
-        <jsp-file>/Administrador/ver_documentos.jsp</jsp-file>
-    </servlet>
+   
 
     <!---  
     
@@ -152,7 +159,14 @@
         <servlet-name>DeleteDoc</servlet-name>
         <servlet-class>Controlador.DeleteDoc</servlet-class>
     </servlet>
-    <servlet-mapping>
+    <servlet>
+        <servlet-name>QuerySolicitudes</servlet-name>
+        <servlet-class>Controlador.QuerySolicitudes</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SeeApplication</servlet-name>
+        <servlet-class>Controlador.SeeApplication</servlet-class>
+    </servlet><servlet-mapping>
         <servlet-name>perfila</servlet-name>
         <url-pattern>/Administrador</url-pattern>
         <url-pattern>/Administrador/perfil</url-pattern>
@@ -169,6 +183,9 @@
         <servlet-name>registrard</servlet-name>
         <url-pattern>/Administrador/directivo_registrar</url-pattern>
     </servlet-mapping>
+  
+
+
     <!---  toma el nombre y lo convierte a ruta de navegador PERFIL CLIENTE -->
     <servlet-mapping>
         <servlet-name>perfilc</servlet-name>
@@ -184,11 +201,7 @@
         <url-pattern>/Proveedor</url-pattern>
         <url-pattern>/Proveedor/perfil</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>adminacept</servlet-name>
-        <url-pattern>/Administrador/aceptar</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
+        <servlet-mapping>
         <servlet-name>perfilg</servlet-name>
         <url-pattern>/Gerente</url-pattern>
         <url-pattern>/Gerente/perfil</url-pattern>
@@ -214,7 +227,14 @@
         <servlet-name>verdocs</servlet-name>
         <url-pattern>/Administrador/ver_docs</url-pattern>
     </servlet-mapping>
-    
+    <servlet-mapping>
+        <servlet-name>adminacept</servlet-name>
+        <url-pattern>/Administrador/aceptar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adminconsultasol</servlet-name>
+        <url-pattern>/Administrador/consultasol</url-pattern>
+    </servlet-mapping>
     
     
     <!---  controladores  -->
@@ -297,6 +317,14 @@
         <servlet-name>DeleteDoc</servlet-name>
         <url-pattern>/DeleteDoc.do</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>QuerySolicitudes</servlet-name>
+        <url-pattern>/QuerySolicitudes.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SeeApplication</servlet-name>
+        <url-pattern>/SeeApplication.do</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -309,6 +337,10 @@
         <version>4.12</version>
         <scope>test</scope>
     </dependency>
+}
+    
+}
+    
 }
     
 }

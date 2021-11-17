@@ -140,4 +140,19 @@ public class Utileria {
         return documentos;
     }
 
+    public static String cantidadSolicitudes(Usuario strp) {
+
+        int solicitudes = 0;
+
+        //por cliente o proveedor
+        solicitudes = strp.getSolicitudList().size();
+
+        //por solucionador
+        solicitudes += strp.getSolicitudList1().size();
+        
+      
+        return solicitudes + "";
+
+    }
+
 }

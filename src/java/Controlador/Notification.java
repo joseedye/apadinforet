@@ -94,7 +94,7 @@ public class Notification extends HttpServlet {
                 Usuario next = iterator.next();
                 if (next.getActivo().equals("3")) {
                     //reditigir a perfil de administrador
-                    
+
                     request.getSession().setAttribute("userImg", "/img/admin.png");
                     request.getSession().setAttribute("msg3", next.getIdPersona().getNombres());
                     request.getSession().setAttribute("id3", next.getIdUsuario() + "");
@@ -117,7 +117,7 @@ public class Notification extends HttpServlet {
 
             //valido que este activo
             String activo = usersesion.get("activo");
-            
+
             switch (activo) {
                 //aceptado
                 case "1":
@@ -127,8 +127,8 @@ public class Notification extends HttpServlet {
                     break;
                 //pendiente
                 case "2":
-                    request.getSession().setAttribute("msg2",usersesion.get("comentario"));
-                     request.getSession().setAttribute("i", "2");
+                    request.getSession().setAttribute("msg2", usersesion.get("comentario"));
+                    request.getSession().setAttribute("i", "2");
                     response.sendRedirect("Cliente/perfil");
                     break;
 
@@ -141,12 +141,12 @@ public class Notification extends HttpServlet {
             }
 
         }
-        
-            if (tipoUser.equals("Proveedor")) {
+
+        if (tipoUser.equals("Proveedor")) {
 
             //valido que este activo
             String activo = usersesion.get("activo");
-            
+
             switch (activo) {
                 //aceptado
                 case "1":
@@ -156,8 +156,8 @@ public class Notification extends HttpServlet {
                     break;
                 //pendiente
                 case "2":
-                    request.getSession().setAttribute("msg2",usersesion.get("comentario"));
-                     request.getSession().setAttribute("i", "2");
+                    request.getSession().setAttribute("msg2", usersesion.get("comentario"));
+                    request.getSession().setAttribute("i", "2");
                     response.sendRedirect("Proveedor/perfil");
                     break;
 
@@ -170,8 +170,30 @@ public class Notification extends HttpServlet {
             }
 
         }
-        
-        
+
+        if (tipoUser.equals("Empleado_administrativoyfinao")) {
+
+            //valido que este activo
+            String activo = usersesion.get("activo");
+
+            switch (activo) {
+                //aceptado
+                case "1":
+                    //request.getSession().setAttribute("msg", "");
+                    response.sendRedirect("Empleado/perfil");
+                    request.getSession().setAttribute("i", "1");
+                    break;
+
+                //pendiente
+                case "2":
+                    request.getSession().setAttribute("msg2", usersesion.get("comentario"));
+                    request.getSession().setAttribute("i", "2");
+                    response.sendRedirect("Empleado/perfil");
+                    break;
+
+            }
+
+        }
 
     }
 
