@@ -23,19 +23,19 @@
     <%
 
         String icargar = (String) request.getSession().getAttribute("i");
+        Map<String, String> user = (Map<String, String>) request.getSession().getAttribute("user");
+        String userImg = (String) request.getSession().getAttribute("userImg");
     %>
-    <body onload="loadPerfil(<%=icargar%>)">
+    <body onload="loadPerfil()">
         <div class="wrapper">
 
             <!-- Sidebar  -->
             <nav id="sidebar">  
             </nav>
             <!-- Sidebar  -->
+            <input  name="iduser"  id="iduser"  value="<%=user.get("idUsuario")%>" type="hidden">
 
-            <%
-                Map<String, String> user = (Map<String, String>) request.getSession().getAttribute("user");
-                String userImg = (String) request.getSession().getAttribute("userImg");
-            %>
+           
 
             <!-- Page Content  -->
             <div id="content">
@@ -52,7 +52,7 @@
                         </div>
 
                         <div class="img-profile">
-                            <img src="/img/fotoadmin.jpg<%//=userImg%>">                        
+                            <img src="/img/imagencliente.jpg<%//=userImg%>">                        
                         </div>
 
                     </div>
@@ -398,70 +398,6 @@ Documentacion necesaria requerida
 
     <script src="../js/side-bar/cliente/load-cliente-perfil.js"></script>
     <!-- jQuery Side-bar -->    
-    <script>
-                                                            function mostrarpdf(ruta) {
-                                                                var ruta = document.getElementById(ruta).innerHTML;
-//                                                                            console.log("estoy dentro3"+ruta);
-                                                                window.open(ruta);
-                                                            }
-
-//borrar
-                                                            function enviarr() {
-                                                                var elementos = '<form  name="form3" action="../UploadFile?id=1" method="post">' +
-                                                                        '<input type="file"   id="getunoo" > ' +
-                                                                        '<input type="file"   id="getdoss" style="display:none"> ' +
-                                                                        ' <input type="file"   id="gettress" style="display:none"> ' +
-                                                                        ' <button type="submit" name="subirr" style="display:none"></button>' +
-                                                                        ' </form>' +
-                                                                        '<div id="prueba"></div>';
-
-                                                                var inyectar = document.getElementById("archivosenviar");
-                                                                inyectar.innerHTML = elementos;
-
-                                                                document.getElementById("prueba").innerHTML = document.getElementById("getuno").value;
-                                                                var valueuno = document.getElementById("getuno").value;
-                                                                // document.getElementById("getunoo").value = valueuno;
-                                                                // document.getElementById('getunoo').click();
-                                                                console.log("estoy enviando value " + valueuno);
-
-
-                                                            }
-
-
-
-    </script>
-
-    <script>
-        $(document).ready(function () {
-            $("#ventana2").modal('show');
-        });
-        $(document).ready(function () {
-            $("#ventana3").modal('show');
-        });
-
-
-        $('#getuno').change(function (event) {
-            var tmppath = URL.createObjectURL(event.target.files[0]);
-
-            $("#uno").html(tmppath);
-        });
-
-        $('#getdos').change(function (event) {
-            var tmppath = URL.createObjectURL(event.target.files[0]);
-
-            $("#dos").html(tmppath);
-        });
-        $('#gettres').change(function (event) {
-            var tmppath = URL.createObjectURL(event.target.files[0]);
-
-            $("#tres").html(tmppath);
-        });
-
-        $('#getunoo').change(function (event) {
-            var tmppath = URL.createObjectURL(event.target.files[0]);
-
-            $("#tres").html(tmppath);
-        });
-    </script> 
+   
 </body>
 </html>

@@ -15,11 +15,8 @@ var sidebar = '<div class="sidebar-header">' +
         '&nbspDocumentos' +
         '</a>' +
         '<ul class="collapse list-unstyled" id="documentsSubmenu">' +
-        '<li>' +
-        '<a href="../QueryTypeDocuments.do">Nuevo</a>' +
-        '</li>' +
-        '<li>' +
-        '<a href="../QueryDocuments.do">Consultar</a>' +
+        '<li id="documentsnew">' +
+        '<a id="consdocumentos" href="#" onclick="consultar()">Consultar</a>' +
         '</li>' +
         '</ul>' +
         '</li>' +
@@ -62,50 +59,69 @@ var sidebar1 = '<div class="sidebar-header">' +
         '</li>' +
         '</ul>';
 
-function loadPerfil(i) {
+function loadPerfil() {
 
-    if (i == '1') {
         document.getElementById('sidebar').innerHTML = sidebar;
         document.getElementById('liperfil').className = "active";
         document.getElementsByTagName('a')[0].href = "#";
 
-    } else {
-        document.getElementById('sidebar').innerHTML = sidebar1;
-        document.getElementById('liperfil').className = "active";
-        document.getElementsByTagName('a')[0].href = "#";
-    }
+ }
 
-}
+var mostrar = ["documentsSubmenu", "usersSubMenu"];
+var active = ["documentsnew", "documentsquery","consultar"];
 
 
-
-
-function loadDocumentos() {
+//carga el sidebar 
+function load(a,b){ 
+   
     document.getElementById('sidebar').innerHTML = sidebar;
-    document.getElementById('lidocumentos').className = "active";
-    document.getElementById('documentsSubmenu').className += " show";
+    document.getElementById(mostrar[a]).className += " show";
+    document.getElementById(active[b]).className = "active";
 }
 
-function loadSolicitudes(i) {
-    document.getElementById('sidebar').innerHTML = sidebar;
-    document.getElementById('lisolicitudes').className = "active";
+  function mostrarpdf(ruta) {
+             var ruta = document.getElementById(ruta).innerHTML;
+             window.open(ruta);
+         }
 
-    if (i === 1) {
-        loadVisitas();
-    }
+
+ $(document).ready(function () {
+            $("#ventana2").modal('show');
+        });
+        $(document).ready(function () {
+            $("#ventana3").modal('show');
+        });
+
+
+        $('#getuno').change(function (event) {
+            var tmppath = URL.createObjectURL(event.target.files[0]);
+
+            $("#uno").html(tmppath);
+        });
+
+        $('#getdos').change(function (event) {
+            var tmppath = URL.createObjectURL(event.target.files[0]);
+
+            $("#dos").html(tmppath);
+        });
+        $('#gettres').change(function (event) {
+            var tmppath = URL.createObjectURL(event.target.files[0]);
+
+            $("#tres").html(tmppath);
+        });
+
+        $('#getunoo').change(function (event) {
+            var tmppath = URL.createObjectURL(event.target.files[0]);
+
+            $("#tres").html(tmppath);
+        });
+
+
+
+function consultar (){
+   var id =  document.getElementById("iduser").value;
+   window.location.href = "../SeeDocuments.do?idUserQuery="+id;
+   
+   console.log("id es "+id);
+   
 }
-
-function loadVisitas() {
-    document.getElementById('sidebar').innerHTML = sidebar;
-    document.getElementById('livisitas').className = "active";
-}
-
-function loadEmpresas() {
-    document.getElementById('sidebar').innerHTML = sidebar;
-    document.getElementById('liempresas').className = "active";
-    document.getElementById('CompaniesSubmenu').className += " show";
-}
-
-
-
-

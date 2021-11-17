@@ -62,60 +62,70 @@ public class QueryDocuments extends HttpServlet {
             String empleado = req.getParameter("empleado");
             if ((cliente == null || proveedor == null || gerente == null || empleado == null) || ("false".equals(cliente) && "false".equals(proveedor) && "false".equals(gerente) && "false".equals(empleado))) {
 
-                for (Usuario strp : usuarioDao.findUsuarioEntities()) {
+                if (user.get("TipoUsuario").equals("Administrador")) {
+                    for (Usuario strp : usuarioDao.findUsuarioEntities()) {
 
-                    //agrego el usuario al mapa
-                    mapUsuarios.put(i + "", Utileria.usuarioToMap(strp));
+                        //agrego el usuario al mapa
+                        mapUsuarios.put(i + "", Utileria.usuarioToMap(strp));
 
-                    //numero de total de documetos 
-                    mapcantidad.put(i++ + "", Utileria.cantidadDocumento(strp) + "");
+                        //numero de total de documetos 
+                        mapcantidad.put(i++ + "", Utileria.cantidadDocumento(strp) + "");
 
+                    }
+                    req.getSession().setAttribute("usuarios", mapUsuarios);
+                    req.getSession().setAttribute("cantidad", mapcantidad);
+                    res.sendRedirect(user.get("TipoUsuario") + "/consultadoc");
                 }
-                req.getSession().setAttribute("usuarios", mapUsuarios);
-                req.getSession().setAttribute("cantidad", mapcantidad);
-                res.sendRedirect(user.get("TipoUsuario") + "/consultadoc");
+                
+                 if (user.get("TipoUsuario").equals("3")) {
+                     //see documents
+                     Usuario u= usuarioDao.findUsuario(user.get("idUsuario"));
+                   mapUsuarios.put(i+ "", Utileria.usuarioToMap(u));  
+                   mapcantidad.put(i++ + "", Utileria.cantidadDocumento(u) + "");  
+                 }
+
             } else {
 
                 if ("true".equals(cliente)) {
-                    
+
                     for (Usuario strp : usuarioDao.findUsuarioEntities()) {
-                         int tipo = strp.getIdTipoUsuario().getIdTipoUsuario();
+                        int tipo = strp.getIdTipoUsuario().getIdTipoUsuario();
                         if (tipo == 3) {
-                             mapUsuarios.put(i + "", Utileria.usuarioToMap(strp));
-                             mapcantidad.put(i++ + "", Utileria.cantidadDocumento(strp) + "");
+                            mapUsuarios.put(i + "", Utileria.usuarioToMap(strp));
+                            mapcantidad.put(i++ + "", Utileria.cantidadDocumento(strp) + "");
                         }
                     }
-                   
+
                 }
                 if ("true".equals(proveedor)) {
 
-                     for (Usuario strp : usuarioDao.findUsuarioEntities()) {
-                         int tipo = strp.getIdTipoUsuario().getIdTipoUsuario();
+                    for (Usuario strp : usuarioDao.findUsuarioEntities()) {
+                        int tipo = strp.getIdTipoUsuario().getIdTipoUsuario();
                         if (tipo == 4) {
-                             mapUsuarios.put(i + "", Utileria.usuarioToMap(strp));
-                             mapcantidad.put(i++ + "", Utileria.cantidadDocumento(strp) + "");
+                            mapUsuarios.put(i + "", Utileria.usuarioToMap(strp));
+                            mapcantidad.put(i++ + "", Utileria.cantidadDocumento(strp) + "");
                         }
                     }
 
                 }
                 if ("true".equals(gerente)) {
 
-                     for (Usuario strp : usuarioDao.findUsuarioEntities()) {
-                         int tipo = strp.getIdTipoUsuario().getIdTipoUsuario();
+                    for (Usuario strp : usuarioDao.findUsuarioEntities()) {
+                        int tipo = strp.getIdTipoUsuario().getIdTipoUsuario();
                         if (tipo == 2) {
-                             mapUsuarios.put(i + "", Utileria.usuarioToMap(strp));
-                             mapcantidad.put(i++ + "", Utileria.cantidadDocumento(strp) + "");
+                            mapUsuarios.put(i + "", Utileria.usuarioToMap(strp));
+                            mapcantidad.put(i++ + "", Utileria.cantidadDocumento(strp) + "");
                         }
                     }
 
                 }
                 if ("true".equals(empleado)) {
 
-                     for (Usuario strp : usuarioDao.findUsuarioEntities()) {
-                         int tipo = strp.getIdTipoUsuario().getIdTipoUsuario();
+                    for (Usuario strp : usuarioDao.findUsuarioEntities()) {
+                        int tipo = strp.getIdTipoUsuario().getIdTipoUsuario();
                         if (tipo == 5) {
-                             mapUsuarios.put(i + "", Utileria.usuarioToMap(strp));
-                             mapcantidad.put(i++ + "", Utileria.cantidadDocumento(strp) + "");
+                            mapUsuarios.put(i + "", Utileria.usuarioToMap(strp));
+                            mapcantidad.put(i++ + "", Utileria.cantidadDocumento(strp) + "");
                         }
                     }
                 }

@@ -47,6 +47,10 @@
         <servlet-name>perfilc</servlet-name>
         <jsp-file>/Cliente/perfil.jsp</jsp-file>
     </servlet>
+    <servlet>
+         <servlet-name>cverdocs</servlet-name>
+        <jsp-file>/Cliente/ver_documentos.jsp</jsp-file>
+    </servlet>
     <!---  VISTAS convertidor de ruta a nombre PERFIL PROVEEDOR  -->
     <servlet>
         <servlet-name>perfilp</servlet-name>
@@ -170,6 +174,10 @@
         <servlet-name>perfilc</servlet-name>
         <url-pattern>/Cliente</url-pattern>
         <url-pattern>/Cliente/perfil</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cverdocs</servlet-name>
+        <url-pattern>/Cliente/ver_docs</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>perfilp</servlet-name>
