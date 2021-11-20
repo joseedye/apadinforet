@@ -75,7 +75,7 @@
                                                     <th scope="col">
 
                                             <div class="form-check form-switch">
-                                                <input onclick="loadCheck(1);" class="form-check-input" type="checkbox" value="empleado" id="fempleado" <% if("true".equals(empleado)){%>checked<%} %>>
+                                                <input onclick="loadCheck('');" class="form-check-input" type="checkbox" value="empleado" id="fempleado" <% if("true".equals(empleado)){%>checked<%} %>>
                                                 <label  class="form-check-label" for="flexSwitchCheckDefault">Empleados</label>
 
 
@@ -83,20 +83,20 @@
                                             </th>
                                             <th scope="col">
                                             <div class="form-check form-switch">
-                                                <input onclick="loadCheck(2);" class="form-check-input" type="checkbox" value="cliente" id="fcliente" <% if("true".equals(cliente)){%>checked<%} %>>
+                                                <input onclick="loadCheck('');" class="form-check-input" type="checkbox" value="cliente" id="fcliente" <% if("true".equals(cliente)){%>checked<%} %>>
                                                 <label class="form-check-label" for="flexSwitchCheckDefault">Clientes</label>
                                             </div>
                                             </th>
                                             <th scope="col">
                                             <div class="form-check form-switch">
-                                                <input onclick="loadCheck(3);" class="form-check-input" value="proveedores" type="checkbox" id="fproveedor" <% if("true".equals(proveedor)){%>checked<%} %>>
+                                                <input onclick="loadCheck('');" class="form-check-input" value="proveedores" type="checkbox" id="fproveedor" <% if("true".equals(proveedor)){%>checked<%} %>>
                                                 <label class="form-check-label" for="flexSwitchCheckDefault">Proveedores</label>
                                             </div> 
 
                                             </th>
                                             <th scope="col">
                                             <div class="form-check form-switch">
-                                                <input onclick="loadCheck(4);" class="form-check-input" type="checkbox" value="gerente" id="fgerente" <% if("true".equals(gerente)){%>checked<%} %>>
+                                                <input onclick="loadCheck('');" class="form-check-input" type="checkbox" value="gerente" id="fgerente" <% if("true".equals(gerente)){%>checked<%} %>>
                                                 <label class="form-check-label" for="flexSwitchCheckDefault">Directivo</label>
                                             </div>
                                             </th>
@@ -158,12 +158,10 @@
                                                         <td>
                                                             <div class="custom-control custom-checkbox">
                                                                 <input type="checkbox" name="activo<%=i%>" class="custom-control-input" <%if (map.get("activo").equals("1")) {%> checked <%}%>>
-                                                                <label onclick="loadCheck(<%=map.get("idUsuario")%>,<%=map.get("activo")%>)" class="custom-control-label" name="activo<%=i%>" for="activo<%=i%>"></label>
+                                                                <label onclick="loadCheckActive(<%=map.get("idUsuario")%>,<%=map.get("activo")%>)" class="custom-control-label" name="activo<%=i%>" for="activo<%=i%>"></label>
                                                             </div>
                                                         </td>
-                                                        <td>
-                                                            <a href="../UpdateUser.dtd>o?idUserQuery=<%=map.get("idUsuario")%>" title="Modificar"><i class="fas fa-pencil-alt"></i></a>
-                                                        </td>
+                                                      
 
                                                       
                                                     </tr>
@@ -259,67 +257,8 @@
         <script src="../js/side-bar/extra/menu-button.js"></script>
         <script src="../js/side-bar/extra/bootstrap.min.js"></script>   
         <script src="../js/side-bar/admin/load-admin-1.0.js"></script> 
+        <script src="../js/side-bar/admin/js.js"></script> 
         <!-- jQuery Side-bar -->    
 
-        <script>
-                                                                    $(document).ready(function () {
-                                                                        $("#ventana2").modal('show');
-                                                                    });
-
-                                                                    $(function () {
-                                                                        $(".modal-btn").click(function () {
-                                                                            var id = $(this).data('some-id');
-                                                                            $(".modal-footer a").attr("href", "../DeleteUser.do?idUsuario=" + id);
-                                                                        })
-                                                                    });
-
-                                                                    function loadCheck() {
-
-                                                                        // Comprobar los checkbox seleccionados
-                                                                        
-                                                                        var empleado=false,cliente=false,proveedor=false,gerente = false;
-                                                                        if ($('#fempleado').is(':checked')) {
-                                                                            empleado=true;
-                                                                        }
-                                                                        if ($('#fcliente').is(':checked')) {
-                                                                            cliente=true;
-                                                                        }
-                                                                        if ($('#fproveedor').is(':checked')) {
-                                                                            proveedor=true;
-                                                                        }
-                                                                        if ($('#fgerente').is(':checked')) {
-                                                                            gerente=true;
-                                                                        }
-                                                                            
-                                                                 location.href = '../QueryUsers.do?empleado=' + empleado + '&cliente=' + cliente + '&proveedor=' + proveedor + '&gerente=' + gerente;;
-                                                                    }
-        </script>   
-
-        <script>
-            //Table
-            $(document).ready(function () {
-                $('#table').DataTable();
-            });
-        </script>
-        <script>
-            function myFunction() {
-                var input, filter, table, tr, td, i, txtValue;
-                input = document.getElementById("myInput");
-                filter = input.value.toUpperCase();
-                table = document.getElementById("myTable");
-                tr = table.getElementsByTagName("tr");
-                for (i = 0; i < tr.length; i++) {
-                    td = tr[i].getElementsByTagName("td")[0];
-                    if (td) {
-                        txtValue = td.textContent || td.innerText;
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            tr[i].style.display = "";
-                        } else {
-                            tr[i].style.display = "none";
-                        }
-                    }
-                }
-            }
-        </script>
     </body>
 </html>

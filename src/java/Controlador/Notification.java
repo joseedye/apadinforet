@@ -134,7 +134,7 @@ public class Notification extends HttpServlet {
 
                 //no aprovado
                 case "3":
-                    request.getSession().setAttribute("msg", "usuario aun no ha sido aprobado comuniquese con el administrador");
+                    request.getSession().setAttribute("msg", "usuario desactivado comuniquese con el administrador");
                     response.sendRedirect("Error/errorRedir");
                     break;
 

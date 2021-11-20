@@ -40,7 +40,7 @@ var sidebar =   '<div class="sidebar-header">'+
                             '<a href="../LoadCountries.do?id=2">Registro Empleado</a>'+
                             '</li>'+
                             '<li id="consultar">'+
-                                '<a href="../QueryUsers.do">Consultar</a>'+
+                                '<a href="../QueryUsers.do">Administracion</a>'+
                             '</li>'+                            
                         '</ul>'+
                     '</li>'+
@@ -56,20 +56,7 @@ var sidebar =   '<div class="sidebar-header">'+
                             '&nbspVentas'+
                         '</a>'+
                     '</li>'+
-                    '<li id="liempresas" >'+                        
-                        '<a href="#CompaniesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">'+
-                            '<i class="fas fa-briefcase"></i>'+
-                            '&nbspCliente'+
-                        '</a>'+
-                        '<ul class="collapse list-unstyled" id="CompaniesSubmenu">'+
-                            '<li>'+
-                                '<a href="empresa_registrar">Registrar Cliente</a>'+
-                            '</li>'+
-                            '<li>'+
-                                '<a href="../QueryCompanies.do">Consultar</a>'+
-                            '</li>'+
-                        '</ul>'+
-                    '</li>'+
+                    
                     '<li>'+
                         '<a href="../LogOut.do">'+
                             '<i class="fas fa-lock">'+'</i>'+

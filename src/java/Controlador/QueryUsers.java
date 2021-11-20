@@ -42,7 +42,7 @@ public class QueryUsers extends HttpServlet {
 
             EntityManagerFactory emf = Conexion.getConexion().getBd();
             UsuarioJpaController usuarioDao = new UsuarioJpaController(emf);
-            List<Usuario> usuarios = usuarioDao.findUsuarioEntities();
+
             Map<String, Object> mapUsuarios = new HashMap<>();
 
             String cliente = request.getParameter("cliente");
@@ -50,6 +50,16 @@ public class QueryUsers extends HttpServlet {
             String gerente = request.getParameter("gerente");
             String empleado = request.getParameter("empleado");
 
+            String idUserModificar = request.getParameter("idmodifi");
+            String activo = request.getParameter("activo");
+
+            if (idUserModificar != null) {
+                Usuario u = usuarioDao.findUsuario(Integer.parseInt(idUserModificar));
+                int acti = Integer.parseInt(activo) == 3 ? 1 : 3;
+                u.setActivo(acti + "");
+                usuarioDao.edit(u);
+            }
+            List<Usuario> usuarios = usuarioDao.findUsuarioEntities();
             if ((cliente == null || proveedor == null || gerente == null || empleado == null) || ("false".equals(cliente) && "false".equals(proveedor) && "false".equals(gerente) && "false".equals(empleado))) {
 
                 for (int i = 0; i < usuarios.size(); i++) {
