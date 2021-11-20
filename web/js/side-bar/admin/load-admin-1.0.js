@@ -10,6 +10,7 @@ var sidebar =   '<div class="sidebar-header">'+
                             '&nbspPerfil'+
                         '</a>'+
                     '</li>'+
+                    
                     '<li id="lidocumentos" >'+                        
                         '<a href="#documentsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">'+
                             '<i class="fas fa-copy"></i>'+

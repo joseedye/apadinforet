@@ -35,7 +35,7 @@
             <!-- Sidebar  -->
             <input  name="iduser"  id="iduser"  value="<%=user.get("idUsuario")%>" type="hidden">
 
-           
+
 
             <!-- Page Content  -->
             <div id="content">
@@ -71,33 +71,34 @@
 
 
                                 <div id="gSignIn"></div>
+                                <label for="">Razon social</label>
+                                <input type="text" name="razon" class="form-control" id="" readonly=»readonly» value="<%=user.get("razon")%>" required>
 
 
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
 
+                                        <label for="">Tipo Persona</label>
+                                        <input type="text" name="Tipop" class="form-control" id="" readonly=»readonly» value="<%=user.get("Tipocliente")%>" maxlength="15" required>
+
+
                                         <label for="">Nombre</label>
                                         <input type="text" name="Nom" class="form-control" readonly=»readonly» id="" placeholder="Nombre" value="<%=user.get("nombres").toUpperCase() + ""%>" maxlength="100" required>
 
-
-
-
-                                        <label for="">Tipo Documento</label>
-                                        <input type="text" name="Tipodoc" class="form-control" readonly=»readonly» id=""  value="<%=user.get("tipoDocumento")%>" maxlength="100" required>
-
-                                        <label for="">Numero</label>
-                                        <input type="number" name="Doc" pattern="[0-9]+" class="form-control"  readonly=»readonly» id="" placeholder="Documento" value="<%=user.get("numDocumento")%>" >
 
                                         <label for="">Fecha de Nacimiento</label>
                                         <input class="form-control" type="date" readonly=»readonly» name="Fecha" value="<%=user.get("fecNacimiento") + ""%>" required>
 
                                     </div>
                                     <div class="form-group col-md-4">
+
+                                        <label for="">Tipo Documento</label>
+                                        <input type="text" name="Tipodoc" class="form-control" readonly=»readonly» id=""  value="<%=user.get("tipoDocumento")%>" maxlength="100" required>
+
+
                                         <label for="">Primer Apellido</label>
                                         <input type="text" name="Ape1" class="form-control" id="" readonly=»readonly» value="<%=user.get("apellido1") + ""%>" maxlength="15" required>
 
-                                        <label for="">Tipo Persona</label>
-                                        <input type="text" name="Tipop" class="form-control" id="" readonly=»readonly» value="<%=user.get("Tipocliente")%>" maxlength="15" required>
 
 
                                         <label for="">Pais</label>
@@ -114,6 +115,10 @@
                                     </div>
 
                                     <div class="form-group col-md-4">
+                                        
+                                          <label for="">Numero</label>
+                                        <input type="number" name="Doc" pattern="[0-9]+" class="form-control"  readonly=»readonly» id="" placeholder="Documento" value="<%=user.get("numDocumento")%>" >
+
                                         <label for="">Segundo Apellido</label>
                                         <input type="text" name="Ape2" class="form-control" id="" readonly=»readonly» value="<%=user.get("apellido2")%>" maxlength="15" required>
 
@@ -129,8 +134,6 @@
 
                                     </div>
                                 </div>
-                                <label for="">Razon social</label>
-                                <input type="text" name="razon" class="form-control" id="" readonly=»readonly» value="<%=user.get("razon")%>" required>
 
                                 <label for="">Reprecentante legal</label>
                                 <input type="text" name="rep" class="form-control" id="" readonly=»readonly» value="<%=user.get("reprecentante")%>"  maxlength="150">
@@ -199,7 +202,7 @@
                                         <div class="form-group">
                                             <div class="container">
                                                 <div class="table-responsive">
-Documentacion necesaria requerida
+                                                    Documentacion necesaria requerida
 
 
                                                     <table class="table table-responsive-sm">
@@ -307,97 +310,97 @@ Documentacion necesaria requerida
                                                         <input type="file" id="gettres" name="archivo3" style="display:none"> 
                                                         <button type="submit" name="subir" class="btn btn-primary">Enviar</button>
                                                     </form>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-
-
                         </div>
 
 
+
                     </div>
-
-
-                    <%
-                        String msg = (String) request.getSession().getAttribute("msg");
-                        if (msg != null) {
-                    %>
-
-                    <!-- Modal success -->                        
-                    <div class="modal fade" id="ventana2" tabindex="-1" role="dialog">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Mensaje</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <p> <%=msg%> </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Modal success -->
-
-                    <%   }
-                        request.getSession().removeAttribute("msg");
-                    %>
-
-
-
-                    <%
-                        String msg2 = (String) request.getSession().getAttribute("msg2");
-                        if (msg2 != null) {
-                    %>
-
-                    <!-- Modal success -->                        
-                    <div class="modal fade" id="ventana3" tabindex="-1" role="dialog">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Mensaje</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <p> <%=msg2%> </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Modal success -->
-
-                    <%   }
-                        request.getSession().removeAttribute("msg2");
-                    %>
 
 
                 </div>
+
+
+                <%
+                    String msg = (String) request.getSession().getAttribute("msg");
+                    if (msg != null) {
+                %>
+
+                <!-- Modal success -->                        
+                <div class="modal fade" id="ventana2" tabindex="-1" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Mensaje</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p> <%=msg%> </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal success -->
+
+                <%   }
+                    request.getSession().removeAttribute("msg");
+                %>
+
+
+
+                <%
+                    String msg2 = (String) request.getSession().getAttribute("msg2");
+                    if (msg2 != null) {
+                %>
+
+                <!-- Modal success -->                        
+                <div class="modal fade" id="ventana3" tabindex="-1" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Mensaje</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p> <%=msg2%> </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal success -->
+
+                <%   }
+                    request.getSession().removeAttribute("msg2");
+                %>
+
+
             </div>
-            <!-- Content  -->
         </div>
-        <!-- Page Content  -->
+        <!-- Content  -->
     </div>
+    <!-- Page Content  -->
+</div>
 
-    <!-- jQuery Side-bar -->
-    <script src="../js/side-bar/extra/jquery-3.3.1.slim.min.js"></script>
-    <!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
+<!-- jQuery Side-bar -->
+<script src="../js/side-bar/extra/jquery-3.3.1.slim.min.js"></script>
+<!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
 
-    <script src="../js/side-bar/extra/popper.min.js"></script>
-    <script src="../js/side-bar/extra/menu-button.js"></script>
-    <script src="../js/side-bar/extra/bootstrap.min.js"></script> 
-    <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>-->
+<script src="../js/side-bar/extra/popper.min.js"></script>
+<script src="../js/side-bar/extra/menu-button.js"></script>
+<script src="../js/side-bar/extra/bootstrap.min.js"></script> 
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>-->
 
-    <script src="../js/side-bar/cliente/load-cliente-perfil.js"></script>
-    <!-- jQuery Side-bar -->    
-   
+<script src="../js/side-bar/cliente/load-cliente-perfil.js"></script>
+<!-- jQuery Side-bar -->    
+
 </body>
 </html>

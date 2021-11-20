@@ -9,29 +9,41 @@ var sidebar = '<div class="sidebar-header">' +
         '&nbspPerfil' +
         '</a>' +
         '</li>' +
+        
         '<li id="lidocumentos" >' +
-        '<a href="#documentsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">' +
-        '<i class="fas fa-copy"></i>' +
-        '&nbspDocumentos' +
-        '</a>' +
+          '<a href="#documentsSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">' +
+             '<i class="fas fa-copy"></i>' +
+            '&nbspDocumentos' +
+          '</a>' +
         '<ul class="collapse list-unstyled" id="documentsSubmenu">' +
         '<li id="documentsnew">' +
         '<a id="consdocumentos" href="#" onclick="consultar()">Consultar</a>' +
         '</li>' +
         '</ul>' +
-        '</li>' +
+        '</li>' +     
+        
         '<li id="lisolicitudes" >' +
-        '<a href="../QuerySolicitudes.do">' +
-        '<i class="fas fa-question"></i>' +
-        '&nbspSolicitudes' +
-        '</a>' +
+         '<a href="#solicitudesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">' +
+             '<i class="fas fa-question"></i>' +
+             '&nbspSolicitudes' +
+          '</a>' +
+        '<ul class="collapse list-unstyled " id="solicitudesSubmenu">' +
+              '<li id="solicitudcotizacion">' +
+                  '<a  href="#" >Cotizacion</a>' +
+              '</li>' +
+             '<li id="liconsultar" >' +
+                    '<a href="../QueryCompanies.do">Consultar</a>' +
+             '</li>' +
+        '</ul>' +
         '</li>' +
+        
         '<li id="livisitas" >' +
         '<a href="../QueryVisitas.do">' +
         '<i class="fa fa-building"></i>' +
         '&nbspProductos o servicios' +
         '</a>' +
         '</li>' +
+        
         '<li>' +
         '<a href="../LogOut.do">' +
         '<i class="fas fa-lock">' + '</i>' +
@@ -61,67 +73,67 @@ var sidebar1 = '<div class="sidebar-header">' +
 
 function loadPerfil() {
 
-        document.getElementById('sidebar').innerHTML = sidebar;
-        document.getElementById('liperfil').className = "active";
-        document.getElementsByTagName('a')[0].href = "#";
+    document.getElementById('sidebar').innerHTML = sidebar;
+    document.getElementById('liperfil').className = "active";
+    document.getElementsByTagName('a')[0].href = "#";
 
- }
+}
 
 var mostrar = ["documentsSubmenu", "usersSubMenu"];
-var active = ["documentsnew", "documentsquery","consultar"];
+var active = ["documentsnew", "documentsquery", "consultar"];
 
 
 //carga el sidebar 
-function load(a,b){ 
-   
+function load(a, b) {
+
     document.getElementById('sidebar').innerHTML = sidebar;
     document.getElementById(mostrar[a]).className += " show";
     document.getElementById(active[b]).className = "active";
 }
 
-  function mostrarpdf(ruta) {
-             var ruta = document.getElementById(ruta).innerHTML;
-             window.open(ruta);
-         }
+function mostrarpdf(ruta) {
+    var ruta = document.getElementById(ruta).innerHTML;
+    window.open(ruta);
+}
 
 
- $(document).ready(function () {
-            $("#ventana2").modal('show');
-        });
-        $(document).ready(function () {
-            $("#ventana3").modal('show');
-        });
+$(document).ready(function () {
+    $("#ventana2").modal('show');
+});
+$(document).ready(function () {
+    $("#ventana3").modal('show');
+});
 
 
-        $('#getuno').change(function (event) {
-            var tmppath = URL.createObjectURL(event.target.files[0]);
+$('#getuno').change(function (event) {
+    var tmppath = URL.createObjectURL(event.target.files[0]);
 
-            $("#uno").html(tmppath);
-        });
+    $("#uno").html(tmppath);
+});
 
-        $('#getdos').change(function (event) {
-            var tmppath = URL.createObjectURL(event.target.files[0]);
+$('#getdos').change(function (event) {
+    var tmppath = URL.createObjectURL(event.target.files[0]);
 
-            $("#dos").html(tmppath);
-        });
-        $('#gettres').change(function (event) {
-            var tmppath = URL.createObjectURL(event.target.files[0]);
+    $("#dos").html(tmppath);
+});
+$('#gettres').change(function (event) {
+    var tmppath = URL.createObjectURL(event.target.files[0]);
 
-            $("#tres").html(tmppath);
-        });
+    $("#tres").html(tmppath);
+});
 
-        $('#getunoo').change(function (event) {
-            var tmppath = URL.createObjectURL(event.target.files[0]);
+$('#getunoo').change(function (event) {
+    var tmppath = URL.createObjectURL(event.target.files[0]);
 
-            $("#tres").html(tmppath);
-        });
+    $("#tres").html(tmppath);
+});
 
 
 
-function consultar (){
-   var id =  document.getElementById("iduser").value;
-   window.location.href = "../SeeDocuments.do?idUserQuery="+id;
-   
-   console.log("id es "+id);
-   
+function consultar() {
+    var id = document.getElementById("iduser").value;
+    window.location.href = "../SeeDocuments.do?idUserQuery=" + id;
+
+    console.log("id es " + id);
+
 }
