@@ -66,6 +66,10 @@
         <servlet-name>perfilc</servlet-name>
         <jsp-file>/Cliente/perfil.jsp</jsp-file>
     </servlet>
+     <servlet>
+        <servlet-name>credito</servlet-name>
+        <jsp-file>/Cliente/credito.jsp</jsp-file>
+    </servlet>
     <servlet>
         <servlet-name>cverdocs</servlet-name>
         <jsp-file>/Cliente/ver_documentos.jsp</jsp-file>
@@ -195,6 +199,10 @@
     <servlet-mapping>
         <servlet-name>cverdocs</servlet-name>
         <url-pattern>/Cliente/ver_docs</url-pattern>
+    </servlet-mapping>
+      <servlet-mapping>
+        <servlet-name>credito</servlet-name>
+        <url-pattern>/Cliente/credito</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>perfilp</servlet-name>

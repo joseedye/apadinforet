@@ -16,6 +16,15 @@ p {
     color: #999;
 }
 
+p a {
+     color: #D50000;
+    padding: 10px 10px;
+    text-align: center;
+    font-size: 0.85em;    
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+}
+
 .background-img{
 
     position:absolute;

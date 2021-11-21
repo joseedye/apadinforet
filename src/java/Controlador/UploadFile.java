@@ -63,7 +63,7 @@ public class UploadFile extends HttpServlet {
                     Part arch;
                     String fileName;
                     for (int i = 1; i <= 3; i++) {
-                        String nombre = "archivo" + i +"";
+                        String nombre = "archivo" + i + "";
                         arch = req.getPart(nombre);
                         String desc = nombrearchi[i]; //Description file
                         fileName = Paths.get(arch.getSubmittedFileName()).getFileName().toString(); // Nombre Archivo con extension.
@@ -71,9 +71,55 @@ public class UploadFile extends HttpServlet {
                         try (InputStream is = arch.getInputStream()) {
                             File f = new File(ruta + "/" + fileName);
                             Files.copy(is, f.toPath());
-                            
-                             //Guardar en base de datos
-                        String rutaDoc = "Files/" + fileName;
+
+                            //Guardar en base de datos
+                            String rutaDoc = "Files/" + fileName;
+                            DocumentoPropioJpaController documentoDao = new DocumentoPropioJpaController(emf);
+                            UsuarioJpaController usuarioDao = new UsuarioJpaController(emf);
+                            Usuario usuario = usuarioDao.findUsuario(idUser);
+                            DocumentoPropio d = new DocumentoPropio();
+                            d.setNombre(desc);
+                            d.setRuta(rutaDoc);
+                            d.setFechaDeSubida(new Date());
+                            d.setIdUsuario(usuario);
+                            documentoDao.create(d);
+
+                        } catch (Exception ex) {
+                            msgFail += fileName + " ";
+                            fail = true;
+                        }
+                    }
+
+                    if (fail) {
+                        req.getSession().setAttribute("msg", msgFail + " .Es posible que ya existan.");
+                        res.sendRedirect("/Error/errorRedir");
+                    } else {
+                        req.getSession().setAttribute("msg", "Archivos Subidos con Exito!");
+                        res.sendRedirect("/" + user.get("TipoUsuario") + "/perfil.jsp");
+                    }
+                    break;
+
+                case "2":
+                    //cuando es por cliente solicitud
+                    break;
+
+                case "3":
+                    //cuando es administrador subir archivo
+                    int i = 1;
+                    for (int j = 0; j < 3; j++) {
+                        
+                    
+                    String rutaa = getServletContext().getRealPath("/Files"); //Ruta donde se guardará el archivo.
+                    String desc = req.getParameter("desc"+i); //Description file
+                    Part archi = req.getPart("file"+i);
+                    String fileNamee = Paths.get(archi.getSubmittedFileName()).getFileName().toString(); // Nombre Archivo con extension.
+i++;
+                    try (InputStream is = archi.getInputStream()) {
+                        File f = new File(rutaa + "/" + fileNamee);
+                        Files.copy(is, f.toPath());
+
+                        //Guardar en base de datos
+                        String rutaDoc = "Files/" + fileNamee;
                         DocumentoPropioJpaController documentoDao = new DocumentoPropioJpaController(emf);
                         UsuarioJpaController usuarioDao = new UsuarioJpaController(emf);
                         Usuario usuario = usuarioDao.findUsuario(idUser);
@@ -83,94 +129,48 @@ public class UploadFile extends HttpServlet {
                         d.setFechaDeSubida(new Date());
                         d.setIdUsuario(usuario);
                         documentoDao.create(d);
-                            
-                        } catch (Exception ex) {
-                            msgFail += fileName + " ";
-                            fail = true;
-                        }
+
+                    } catch (Exception ex) {
+                        msgFail += fileNamee + " ";
+                        fail = true;
+                    }
+                    }
+                    if (fail) {
+                        req.getSession().setAttribute("msg", msgFail + " .Es posible que ya existan.");
+                        res.sendRedirect("/Error/errorRedir");
+                    } else {
+                        req.getSession().setAttribute("msg", "Archivos Subidos con Exito!");
+                        res.sendRedirect("/" + user.get("TipoUsuario") + "/documento_nuevo.jsp");
                     }
 
-        
-            if (fail) {
-                req.getSession().setAttribute("msg", msgFail + " .Es posible que ya existan.");
-                res.sendRedirect("/Error/errorRedir");
-            } else {
-                req.getSession().setAttribute("msg", "Archivos Subidos con Exito!");
-                res.sendRedirect("/" + user.get("TipoUsuario") + "/perfil.jsp");
-            }
-            break;
-
-        
-    
-
-    
-        case "2":
-                    //cuando es por cliente solicitud
                     break;
 
                 default:
                     break;
             }
 
-        } else {
-
-            String ruta = getServletContext().getRealPath("/Files"); //Ruta donde se guardará el archivo.
-        String desc = req.getParameter("desc"); //Description file
-        Part arch = req.getPart("archivo");
-        String fileName = Paths.get(arch.getSubmittedFileName()).getFileName().toString(); // Nombre Archivo con extension.
-
-        try (InputStream is = arch.getInputStream()) {
-            File f = new File(ruta + "/" + fileName);
-            Files.copy(is, f.toPath());
-
-            //Guardar en base de datos
-            String rutaDoc = "Files/" + fileName;
-            DocumentoPropioJpaController documentoDao = new DocumentoPropioJpaController(emf);
-            UsuarioJpaController usuarioDao = new UsuarioJpaController(emf);
-            Usuario usuario = usuarioDao.findUsuario(idUser);
-            DocumentoPropio d = new DocumentoPropio();
-            d.setNombre(desc);
-            d.setRuta(rutaDoc);
-            d.setFechaDeSubida(new Date());
-            d.setIdUsuario(usuario);
-            documentoDao.create(d);
-
-        } catch (Exception ex) {
-            msgFail += fileName + " ";
-            fail = true;
-        }
-        if (fail) {
-            req.getSession().setAttribute("msg", msgFail + " .Es posible que ya existan.");
-            res.sendRedirect("/Error/errorRedir");
-        } else {
-            req.getSession().setAttribute("msg", "Archivos Subidos con Exito!");
-            res.sendRedirect("/" + user.get("TipoUsuario") + "/documento_nuevo.jsp");
         }
 
     }
 
-}
-
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-/**
- * Handles the HTTP <code>GET</code> method.
- *
- * @param request servlet request
- * @param response servlet response
- * @throws ServletException if a servlet-specific error occurs
- * @throws IOException if an I/O error occurs
- */
-@Override
-        protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        
 
-} catch (Exception ex) {
-            Logger.getLogger(UploadFile.class  
-
-.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(UploadFile.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -183,16 +183,14 @@ public class UploadFile extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-        protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        
 
-} catch (Exception ex) {
-            Logger.getLogger(UploadFile.class  
-
-.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(UploadFile.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
 
         String a = "";
@@ -205,7 +203,7 @@ public class UploadFile extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-        public String getServletInfo() {
+    public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

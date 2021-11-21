@@ -81,6 +81,15 @@
                                         <label for="">Tipo Persona</label>
                                         <input type="text" name="Tipop" class="form-control" id="" readonly=»readonly» value="<%=user.get("Tipocliente")%>" maxlength="15" required>
 
+                                        <label for="">Pais</label>
+                                        <input type="text" name="pais" class="form-control" id="" readonly=»readonly» value="<%=user.get("pais")%>" maxlength="100" required>
+
+                                        <label for="">Teléfono</label>
+                                        <input type="number" name="Tel1" pattern="[0-9]+" class="form-control" id="" onKeyUp="if (this.value.length > 10) {
+                                                    this.value = this.value.substr(0, 10);
+                                                } else if (this.value < 0) {
+                                                    this.value = '0';
+                                                }" placeholder="Teléfono" value="<%=user.get("telefono1")%>" required >
 
                                         <label for="">Nombre</label>
                                         <input type="text" name="Nom" class="form-control" readonly=»readonly» id="" placeholder="Nombre" value="<%=user.get("nombres").toUpperCase() + ""%>" maxlength="100" required>
@@ -95,35 +104,8 @@
                                         <label for="">Tipo Documento</label>
                                         <input type="text" name="Tipodoc" class="form-control" readonly=»readonly» id=""  value="<%=user.get("tipoDocumento")%>" maxlength="100" required>
 
-
-                                        <label for="">Primer Apellido</label>
-                                        <input type="text" name="Ape1" class="form-control" id="" readonly=»readonly» value="<%=user.get("apellido1") + ""%>" maxlength="15" required>
-
-
-
-                                        <label for="">Pais</label>
-                                        <input type="text" name="pais" class="form-control" id="" readonly=»readonly» value="<%=user.get("pais")%>" maxlength="100" required>
-
-
-
-                                        <label for="">Teléfono</label>
-                                        <input type="number" name="Tel1" pattern="[0-9]+" class="form-control" id="" onKeyUp="if (this.value.length > 10) {
-                                                    this.value = this.value.substr(0, 10);
-                                                } else if (this.value < 0) {
-                                                    this.value = '0';
-                                                }" placeholder="Teléfono" value="<%=user.get("telefono1")%>" required >
-                                    </div>
-
-                                    <div class="form-group col-md-4">
-                                        
-                                          <label for="">Numero</label>
-                                        <input type="number" name="Doc" pattern="[0-9]+" class="form-control"  readonly=»readonly» id="" placeholder="Documento" value="<%=user.get("numDocumento")%>" >
-
-                                        <label for="">Segundo Apellido</label>
-                                        <input type="text" name="Ape2" class="form-control" id="" readonly=»readonly» value="<%=user.get("apellido2")%>" maxlength="15" required>
-
-                                        <label for="">Email</label>
-                                        <input type="email" name="Email"  pattern="+.@ufps.edu.co" class="form-control" id="emaill" placeholder="@ufps.edu.co"value="<%=user.get("email")%>" maxlength="70" required>
+                                        <label for="">Dirección</label>
+                                        <input type="text" name="Dire" class="form-control" id="" value="<%=user.get("direccion")%>" placeholder="Dirrección" maxlength="150">
 
                                         <label for="">Teléfono 2</label>
                                         <input type="number" name="Tel2" pattern="[0-9]+" class="form-control" id="" value="<%=user.get("telefono2")%>" onKeyUp="if (this.value.length > 10) {
@@ -131,6 +113,38 @@
                                                 } else if (this.value < 0) {
                                                     this.value = '0';
                                                 }" placeholder="Teléfono">
+
+                                        <label for="">Primer Apellido</label>
+                                        <input type="text" name="Ape1" class="form-control" id="" readonly=»readonly» value="<%=user.get("apellido1") + ""%>" maxlength="15" required>
+
+                                        <label for="">Teléfono Reprecentante Legal</label>
+                                        <input type="number" name="Tel2" pattern="[0-9]+" class="form-control" readonly=»readonly» id="" value="<%=user.get("telefono2")%>" placeholder="Teléfono">
+
+
+
+
+
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+
+                                        <label for="">Numero</label>
+                                        <input type="number" name="Doc" pattern="[0-9]+" class="form-control"  readonly=»readonly» id="" placeholder="Documento" value="<%=user.get("numDocumento")%>" >
+
+                                        <label for="">Codigo Postal</label>
+                                        <input type="text" name="codp" class="form-control" id="" readonly=»readonly» value="540005" maxlength="15" required>
+
+                                        <label for="">Email</label>
+                                        <input type="email" name="Email"  pattern="+.@ufps.edu.co" class="form-control" id="emaill" placeholder="@ufps.edu.co"value="<%=user.get("email")%>" maxlength="70" required>
+
+
+                                        <label for="">Segundo Apellido</label>
+                                        <input type="text" name="Ape2" class="form-control" id="" readonly=»readonly» value="<%=user.get("apellido2")%>" maxlength="15" required>
+
+                                        <label for="">Email Reprecentante</label>
+                                        <input type="email" name="Email"  pattern="+.@ufps.edu.co" class="form-control" id="emaill" placeholder="@ufps.edu.co" readonly=»readonly» value="reprecentante@gmail.com" maxlength="70" required>
+
+
 
                                     </div>
                                 </div>
@@ -140,8 +154,7 @@
 
 
 
-                                <label for="">Dirección</label>
-                                <input type="text" name="Dire" class="form-control" id="" value="<%=user.get("direccion")%>" placeholder="Dirrección" maxlength="150">
+
                                 <br></br>
                                 <a href="#ventana" class="btn btn-primary" data-toggle="modal">Actualizar</a>
                                 <a href="perfil" class="btn btn-primary">Cancelar</a>
@@ -267,7 +280,7 @@
 
                                                             <tr>
                                                                 <td  >
-                                                                    CAMARA DE COMERCIO 
+                                                                    REGISTRO MERCANTIL
                                                                 </td>
                                                                 <td  >
                                                                     .pdf 

@@ -27,12 +27,12 @@ var sidebar = '<div class="sidebar-header">' +
              '<i class="fas fa-question"></i>' +
              '&nbspSolicitudes' +
           '</a>' +
-        '<ul class="collapse list-unstyled " id="solicitudesSubmenu">' +
+        '<ul class="collapse list-unstyled" id="solicitudesSubmenu">' +
               '<li id="solicitudcotizacion">' +
                   '<a  href="#" >Cotizacion</a>' +
               '</li>' +
-             '<li id="liconsultar" >' +
-                    '<a href="../QueryCompanies.do">Consultar</a>' +
+             '<li id="credito" >' +
+                    '<a href="credito">Credito</a>' +
              '</li>' +
         '</ul>' +
         '</li>' +
@@ -79,8 +79,8 @@ function loadPerfil() {
 
 }
 
-var mostrar = ["documentsSubmenu", "usersSubMenu"];
-var active = ["documentsnew", "documentsquery", "consultar"];
+var mostrar = ["documentsSubmenu", "usersSubMenu","solicitudesSubmenu"];
+var active = ["documentsnew", "documentsquery", "consultar","solicitudcotizacion","credito"];
 
 
 //carga el sidebar 

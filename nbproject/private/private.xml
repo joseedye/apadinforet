@@ -2,15 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/rozo/Documents/NetBeansProjects/apadinforet/src/java/Controlador/QueryDocuments.java</file>
-            <file>file:/C:/Users/rozo/Documents/NetBeansProjects/apadinforet/web/Administrador/documento_consulta.jsp</file>
-            <file>file:/C:/Users/rozo/Documents/NetBeansProjects/apadinforet/src/java/Controlador/SeeApplication.java</file>
-            <file>file:/C:/Users/rozo/Documents/NetBeansProjects/apadinforet/web/Cliente/perfil.jsp</file>
-            <file>file:/C:/Users/rozo/Documents/NetBeansProjects/apadinforet/web/Administrador/consulta_solicitud.jsp</file>
-            <file>file:/C:/Users/rozo/Documents/NetBeansProjects/apadinforet/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/rozo/Documents/NetBeansProjects/apadinforet/web/Administrador/query.jsp</file>
-            <file>file:/C:/Users/rozo/Documents/NetBeansProjects/apadinforet/src/java/Controlador/QuerySolicitudes.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

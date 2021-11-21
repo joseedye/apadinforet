@@ -80,26 +80,56 @@ function loadDocumentos() {
     document.getElementById('documentsSubmenu').className += " show";
 }
 
-function loadSolicitudes(i) {
-    document.getElementById('sidebar').innerHTML = sidebar;
-    document.getElementById('lisolicitudes').className = "active";
-
-    if (i === 1) {
-        loadVisitas();
-    }
+function autoretenedor(a){
+    
+    var soloboton = '<div class="form-group col-md-4" >'+
+                              '<label>&nbsp;</label><br>'+
+                              '<button  onclick="autoretenedor(2)" name="Cambiar" class="btn btn-primary">Auto retenedor</button>'+
+                         '</div>';
+    
+    var autoretenedor = '<div class="form-group col-md-4" >'+
+                              '<label>&nbsp;</label><br>'+
+                              '<button  onclick="autoretenedor(1)" name="Cambiar" class="btn btn-primary">Auto retenedor</button>'+
+                         '</div>'+
+                         
+                       '<div class="form-group col-md-4" >'+
+                           '<label for="">Fecha</label>'+
+                           '<input class="form-control" type="date"  name="Fecha">'+
+                       '</div>'+
+                      '<div class="form-group col-md-4" >'+
+                          '<label for="">Resolución</label>'+
+                           '<input type="text" name="Nom" class="form-control" id="" placeholder="123456" maxlength="100" >'+
+                       '</div>'; 
+  
+     document.getElementById('botonesauto').innerHTML = a===1 ? soloboton : autoretenedor;
+    
 }
 
-function loadVisitas() {
-    document.getElementById('sidebar').innerHTML = sidebar;
-    document.getElementById('livisitas').className = "active";
+function grancontribuyente(a){
+    
+    var soloboton = '<div class="form-group col-md-4" >'+
+                              '<label>&nbsp;</label><br>'+
+                              '<button  onclick="grancontribuyente(2)" name="Cambiar" class="btn btn-primary">Auto retenedor</button>'+
+                         '</div>';
+    
+    var grancontribuyente = '<div class="form-group col-md-3" >'+
+                              '<label>&nbsp;</label><br>'+
+                              '<button  onclick="grancontribuyente(1)" name="Cambiar" class="btn btn-primary">Auto retenedor</button>'+
+                         '</div>'+
+                         
+                       '<div class="form-group col-md-3" >'+
+                           '<label for="">Fecha</label>'+
+                           '<input class="form-control" type="date"  name="Fecha">'+
+                       '</div>'+
+                      '<div class="form-group col-md-3" >'+
+                          '<label for="">Resolución</label>'+
+                           '<input type="text" name="Nom" class="form-control" id="" placeholder="123456" maxlength="100" >'+
+                       '</div>'+
+                       '<div class="form-group col-md-3" >'+
+                          '<label for="">Código actividad (ICA)</label>'+
+                           '<input type="text" name="Nom" class="form-control" id="" placeholder="123456" maxlength="100" >'+
+                       '</div>'; 
+  
+     document.getElementById('grancontribuyente').innerHTML = a===1 ? soloboton : grancontribuyente;
+    
 }
-
-function loadEmpresas() {
-    document.getElementById('sidebar').innerHTML = sidebar;
-    document.getElementById('liempresas').className = "active";
-    document.getElementById('CompaniesSubmenu').className += " show";
-}
-
-
-
-

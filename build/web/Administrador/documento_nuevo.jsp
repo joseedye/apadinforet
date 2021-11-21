@@ -23,7 +23,7 @@
         <!-- Sidebar style  -->
         <title>Subida Documento</title>
     </head>
-    <body onload="load(0,0)">
+    <body onload="load(0, 0)">
         <div class="wrapper">
 
             <!-- Sidebar  -->
@@ -62,52 +62,77 @@
                             <h5 class="card-header">Subida de Archivos</h5>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <div class="container">
+                                    <div class="container">                                       
+                                        <table class="table table-responsive-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Descripción</th>
 
-                                        <form id="form1" action="../UploadFile.do" method="POST" enctype="multipart/form-data">
+                                                    <th scope="col">Ver</th>
 
-                                            <table class="table table-responsive-sm">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">Archivo</th>
-                                                        <th scope="col">Descripción</th>
-
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <input class="form-control-file" type="file" id="file1" name="archivo"/>
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" id="desc1" name="desc"/>
-                                                        </td>
+                                                    <th scope="col">Archivo</th>
 
 
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <input class="form-control-file" type="file" id="file2" name="file2"/>
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" id="desc2" name="desc2"/>
-                                                        </td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <input class="form-control" type="text" id="desc1" name="desc"/>
+                                                    </td>
+
+                                                    <td style="text-align:center;" >
+                                                        <a onclick ='mostrarpdf("uno")' title="Mostrar" ><i class="fas fa-search" ></i></a>
+                                                        <div id="uno" style="display:none"></div>
+
+                                                    </td>
+
+                                                    <td>
+                                                        <button style="display:block;width:120px; height:30px;" onclick="document.getElementById('getuno').click()">Subir</button>
+                                                    </td> 
+
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input class="form-control" type="text" id="desc2" name="desc2"/>
+                                                    </td>
+                                                    <td style="text-align:center;" >
+                                                        <a onclick ='mostrarpdf("uno")' title="Mostrar" ><i class="fas fa-search" ></i></a>
+                                                        <div id="uno" style="display:none"></div>
+
+                                                    </td>
+                                                    <td>
+                                                        <button style="display:block;width:120px; height:30px;" onclick="document.getElementById('getdos').click()">Subir</button>
+                                                    </td>
 
 
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <input class="form-control-file" type="file" id="file3" name="file3"/>
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control" type="text" id="desc3" name="desc3"/>
-                                                        </td>
 
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <a onclick="validar()"><input type="button" class="btn btn-group btn-primary" value="Subir Archivo(s)"/> </a>
-                                        </form>   
+                                                </tr>
+                                                <tr>
+
+                                                    <td>
+                                                        <input class="form-control" type="text" id="desc3" name="desc3"/>
+                                                    </td>
+                                                    <td style="text-align:center;" >
+                                                        <a onclick ='mostrarpdf("uno")' title="Mostrar" ><i class="fas fa-search" ></i></a>
+                                                        <div id="uno" style="display:none"></div>
+
+                                                    </td>
+                                                    <td>                                                        
+                                                        <button style="display:block;width:120px; height:30px;" onclick="document.getElementById('gettres').click()">Subir</button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <form  name="form4" action="../UploadFile.do?tipo=3" method="post" enctype="multipart/form-data"> 
+                                            <div id="insertdescripcion"></div>
+                                            <input type="file" id="getuno" name="file1" style="display:none"> 
+                                            <input type="file" id="getdos" name="file2"style="display:none"> 
+                                            <input type="file" id="gettres" name="file3" style="display:none"> 
+                                        </form>
+                                        <button href="#" onclick="validar()" name="subir" class="btn btn-primary">Subir Archivo(s)</button>
+
                                     </div>
                                 </div>
                             </div>
@@ -150,33 +175,10 @@
         <script src="../js/side-bar/extra/popper.min.js"></script>
         <script src="../js/side-bar/extra/menu-button.js"></script>
         <script src="../js/side-bar/extra/bootstrap.min.js"></script>   
-         <script src="../js/side-bar/admin/load-admin-1.0.js"></script>
+        <script src="../js/side-bar/admin/load-admin-1.0.js"></script>
         <!--<script src="../js/side-bar/admin/load-admin-1.0.js"></script>--> 
         <!-- jQuery Side-bar -->        
 
-        <script>
-                                                function validar() {
 
-                                                    if ($("#file1").val() === "" && $("#file2").val() === "" && $("#file3").val() === "") {
-                                                        alert("Seleccione almenos un archivo");
-                                                        return;
-                                                    }
-
-                                                    for (var i = 1; i < 4; i++) {
-                                                        var file = $("#file" + i).val();
-                                                        var tipo = $("#tipo" + i).val();
-
-                                                        if (file !== "" && tipo === null) {
-                                                            alert("Seleccione tipo de archivo");
-                                                            return;
-                                                        }
-                                                    }
-                                                    $("#form1").submit();
-                                                }
-
-                                                $(document).ready(function () {
-                                                    $("#ventana2").modal('show');
-                                                });
-        </script>
     </body>
 </html>
