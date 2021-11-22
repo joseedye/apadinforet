@@ -31,10 +31,10 @@ public class LogOut extends HttpServlet {
             throws ServletException, IOException {
      try {
         req.getSession().invalidate();
-          res.sendRedirect("/index.jsp");
+          res.sendRedirect("/Login");
        } catch (Exception e) {
             req.getSession().setAttribute("msg", "Error, intentar de nuevo!");
-            res.sendRedirect("/index.jsp");
+            res.sendRedirect("/");
         } 
     }
 

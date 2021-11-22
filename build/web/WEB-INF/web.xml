@@ -1,26 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    <!---filtro para cuando no esta activa la sesion 
-    <filter>
+    <!--filtro para cuando no esta activa la sesion--> 
+<!--    <filter>
         <filter-name>Login</filter-name>
         <filter-class>Filter.Login</filter-class>
-    </filter>
-    <filter-mapping>
+    </filter>-->
+    
+<!--    <filter-mapping>
         <filter-name>Login</filter-name>     
         <url-pattern>/index</url-pattern>
         <url-pattern>/index.jsp</url-pattern>
-    </filter-mapping>
-    <filter>
+    </filter-mapping>-->
+<!--    <filter>
         <filter-name>TimeOut</filter-name>
         <filter-class>Filter.TimeOut</filter-class>
-    </filter>
-
+    </filter>-->
+<!--
 <filter-mapping>
         <filter-name>TimeOut</filter-name> 
- </filter-mapping>
+ </filter-mapping>-->
  
- 
-    -->
+ <servlet>
+        <servlet-name>Login</servlet-name>
+        <jsp-file>/login.jsp</jsp-file>
+    </servlet>
+ <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
     <!---  VISTAS convertidor de ruta a nombre PERFIL ADMINISTRADOR  -->
     <servlet>
         <servlet-name>perfila</servlet-name>
@@ -170,7 +177,8 @@
     <servlet>
         <servlet-name>SeeApplication</servlet-name>
         <servlet-class>Controlador.SeeApplication</servlet-class>
-    </servlet><servlet-mapping>
+    </servlet>
+    <servlet-mapping>
         <servlet-name>perfila</servlet-name>
         <url-pattern>/Administrador</url-pattern>
         <url-pattern>/Administrador/perfil</url-pattern>
@@ -200,7 +208,7 @@
         <servlet-name>cverdocs</servlet-name>
         <url-pattern>/Cliente/ver_docs</url-pattern>
     </servlet-mapping>
-      <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>credito</servlet-name>
         <url-pattern>/Cliente/credito</url-pattern>
     </servlet-mapping>
@@ -209,7 +217,7 @@
         <url-pattern>/Proveedor</url-pattern>
         <url-pattern>/Proveedor/perfil</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>perfilg</servlet-name>
         <url-pattern>/Gerente</url-pattern>
         <url-pattern>/Gerente/perfil</url-pattern>
@@ -223,7 +231,7 @@
         <servlet-name>errorr</servlet-name>
         <url-pattern>/Error/errorRedir</url-pattern>
     </servlet-mapping>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>consulta</servlet-name>
         <url-pattern>/Administrador/query</url-pattern>
     </servlet-mapping>
@@ -231,7 +239,7 @@
         <servlet-name>consultadoc</servlet-name>
         <url-pattern>/Administrador/consultadoc</url-pattern>
     </servlet-mapping>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>verdocs</servlet-name>
         <url-pattern>/Administrador/ver_docs</url-pattern>
     </servlet-mapping>
@@ -345,11 +353,11 @@
         <version>4.12</version>
         <scope>test</scope>
     </dependency>
-}
+    }
     
-}
+    }
     
-}
+    }
     
-}
-    </web-app>
+    }
+</web-app>
