@@ -32,7 +32,7 @@
   --bs-gray-600: #6c757d;
   --bs-gray-700: #495057;
   --bs-gray-800: #343a40;
-  --bs-gray-900: #212529;
+  --bs-gray-900: #212529;  
   --bs-primary: #f4623a;
   --bs-secondary: #6c757d;
   --bs-success: #198754;
@@ -41,7 +41,8 @@
   --bs-danger: #dc3545;
   --bs-light: #f8f9fa;
   --bs-dark: #212529;
-  --bs-primary-rgb: 244, 98, 58;
+ // --bs-primary-rgb: 244, 98, 58;
+   --bs-primary-rgb: 10, 97, 126;
   --bs-secondary-rgb: 108, 117, 125;
   --bs-success-rgb: 25, 135, 84;
   --bs-info-rgb: 13, 202, 240;
@@ -3031,9 +3032,9 @@ textarea.form-control-lg {
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #f4623a;
-  border-color: #f4623a;
+  color: #000;
+  background-color: #f8f9fa;
+  border-color: #f8f9fa;
 }
 .btn-primary:hover {
   color: #fff;
@@ -11319,7 +11320,7 @@ hr.divider {
   height: 0.2rem;
   max-width: 3.25rem;
   margin: 1.5rem auto;
-  background-color: #f4623a;
+  background-color: #0a617e;
   opacity: 1;
 }
 
@@ -11392,12 +11393,12 @@ hr.divider-light {
 header.masthead {
   padding-top: 10rem;
   padding-bottom: calc(10rem - 4.5rem);
-  background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../assets/img/bg-masthead.jpg");
+  background: linear-gradient(to bottom, rgba(70, 111,163, 0.42) 0%, rgba(33, 66, 88, 0.63) 100%), url("../assets/img/businessman.jpg");//img/bg-masthead.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-size: cover;
-}
+} 
 header.masthead h1, header.masthead .h1 {
   font-size: 2.25rem;
 }

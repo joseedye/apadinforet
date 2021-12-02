@@ -11,14 +11,19 @@ window.addEventListener('DOMContentLoaded', event => {
 
     // Navbar shrink function
     var navbarShrink = function () {
-        const navbarCollapsible = document.body.querySelector('#mainNav');
+        var navbarCollapsible = document.body.querySelector('#mainNav');
+        var logo = document.body.querySelector('#imglogo');
         if (!navbarCollapsible) {
             return;
         }
         if (window.scrollY === 0) {
-            navbarCollapsible.classList.remove('navbar-shrink')
+            navbarCollapsible.classList.remove('navbar-shrink');
+            logo.style.display = 'none';
+            
+           
         } else {
             navbarCollapsible.classList.add('navbar-shrink')
+           logo.removeAttribute('style');
         }
 
     };
