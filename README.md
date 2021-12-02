@@ -21,6 +21,9 @@ datos mysql en [google SQL](https://cloud.google.com/sql) puede probar inicio de
 puede crear, editar, consultar y eliminar usuarios admiistradores , y actualizar sus datos personales
 
 ### Capturas
+![vista](https://user-images.githubusercontent.com/34385915/144354172-dece5af4-66be-4301-99f0-ce841bf60ad4.jpg)
+Vista principal de la pagina web
+
 
 ![image](https://user-images.githubusercontent.com/34385915/140248261-c630f78e-6617-47d2-98dd-4dfc387faeae.png)
 
