@@ -58,29 +58,11 @@
                     </div>
                 </nav>
 
+                               <!-- Content  -->
                 <div style="justify-content:center;" class="form-row">
                     <div class="form-group col-md-10">
                         <div class="card my-4">
-                            <div class="form-group">
-                                <div class="container">
-                                    <div class="table-responsive">
-
-                                 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-                <!-- Content  -->
-                <div style="justify-content:center;" class="form-row">
-                    <div class="form-group col-md-10">
-                        <div class="card my-4">
-                            <h5 class="card-header">Solicitudes por usuario</h5>
+                            <h5 class="card-header">Solicitudes por Cliente</h5>
 
                             <div class="card-body">
                                 <div class="form-group">

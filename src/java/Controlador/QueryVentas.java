@@ -5,21 +5,8 @@
  */
 package Controlador;
 
-import DAO.Conexion;
-import DAO.SolicitudJpaController;
-import DAO.TipoUsuarioJpaController;
-import DAO.UsuarioJpaController;
-import DTO.Solicitud;
-import DTO.TipoUsuario;
-import DTO.Usuario;
-import Util.Utileria;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import javax.persistence.EntityManagerFactory;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author rozo
  */
-public class SeeApplication extends HttpServlet {
+public class QueryVentas extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,29 +30,19 @@ public class SeeApplication extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        Map<String, String> user = (Map<String, String>) request.getSession().getAttribute("user");
-        EntityManagerFactory emf = Conexion.getConexion().getBd();
-        UsuarioJpaController usuarioJpa = new UsuarioJpaController(emf);
-       // TipoUsuario tipousuario = usuarioJpa.findTipoUsuario(1);        
-        SolicitudJpaController solicitudJpa = new SolicitudJpaController(emf);
-        
-        int id = Integer.parseInt(request.getParameter("idUserQuery"));
-        Usuario users = usuarioJpa.findUsuario(id);
-                       
-        Map<String, Object> mapSolicitudes = new HashMap<>();
-        int i =0;
-        List <Solicitud> solicitudes  = users.getSolicitudList();
-        for (Iterator<Solicitud> iterator = solicitudes.iterator(); iterator.hasNext();) {
-            Solicitud next = iterator.next();
-            
-            mapSolicitudes.put(""+ i++ ,Utileria.solicitudToMap(next));
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet QueryVentas</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1> Ventas </h1>");
+            out.println("<a href=\"https://www.gifsanimados.org/cat-en-construccion-695.htm\"><img src=\"https://www.gifsanimados.org/data/media/695/en-construccion-imagen-animada-0035.gif\" border=\"0\" alt=\"en-construccion-imagen-animada-0035\" /></a>");
+            out.println("</body>");
+            out.println("</html>");
         }
-        
-        Map <String , String> userbuscado = Utileria.usuarioToMap(users);
-        request.getSession().setAttribute("usuariobuscado", userbuscado);
-        request.getSession().setAttribute("solicitudes", mapSolicitudes);
-        response.sendRedirect(user.get("TipoUsuario") + "/solicituddetall");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -41,11 +41,11 @@ public class SignIn extends HttpServlet {
 
             }else{
             req.getSession().setAttribute("msg", "Error, Usuario o contraseña incorrectos!");
-            res.sendRedirect("/index.jsp");
+            res.sendRedirect("/login.jsp");
             }
         } catch (Exception e) {
             req.getSession().setAttribute("msg", "Error, intentar de nuevo!");
-            res.sendRedirect("/index.jsp");
+            res.sendRedirect("/login.jsp");
         }
     }
 

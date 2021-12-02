@@ -53,11 +53,13 @@ public class QuerySolicitudes extends HttpServlet {
 
         for (Usuario strp : usuarioDao.findUsuarioEntities()) {
 
+            if(strp.getIdTipoUsuario().getIdTipoUsuario()==3){
             //agrego el usuario al mapa
             mapUsuarios.put(i + "", Utileria.usuarioToMap(strp));
 
             //numero de total de documetos 
             mapcantidad.put(i++ + "", Utileria.cantidadSolicitudes(strp) + "");
+            }
         }
         request.getSession().setAttribute("usuarios", mapUsuarios);
         request.getSession().setAttribute("cantidad", mapcantidad);

@@ -32,6 +32,7 @@
             <%
                 Map<String, String> user = (Map<String, String>) request.getSession().getAttribute("user");
                 String userImg = (String) request.getSession().getAttribute("userImg");
+                String tipo = (String) request.getSession().getAttribute("tipo");
             %>
 
             <!-- Page Content  -->
@@ -61,8 +62,8 @@
                         <div class="contenedor">
                             <form name="form1" action="../UpdateProfile.do" method="post">
                                 <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <h4>Perfil Empleado</h4>
+                                    <div class="form-group col-md-8">
+                                        <h4>Perfil Empleado <%= tipo %></h4>
                                     </div>
                                 </div>
 

@@ -24,7 +24,11 @@
         <servlet-name>Login</servlet-name>
         <jsp-file>/login.jsp</jsp-file>
     </servlet>
- <servlet-mapping>
+    <servlet>
+        <servlet-name>QueryVentas</servlet-name>
+        <servlet-class>Controlador.QueryVentas</servlet-class>
+    </servlet>
+    <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
     </servlet-mapping>
@@ -59,6 +63,14 @@
         <servlet-name>consultadoc</servlet-name>
         <jsp-file>/Administrador/documento_consulta.jsp</jsp-file>
     </servlet>
+    
+    
+       <servlet>
+        <servlet-name>solicituddetall</servlet-name>
+        <jsp-file>/Administrador/solicitud_vista.jsp</jsp-file>
+    </servlet>
+    
+    
    <servlet>
         <servlet-name>verdocs</servlet-name>
         <jsp-file>/Administrador/ver_documentos.jsp</jsp-file>
@@ -204,6 +216,13 @@
         <url-pattern>/Cliente</url-pattern>
         <url-pattern>/Cliente/perfil</url-pattern>
     </servlet-mapping>
+    
+    
+     <servlet-mapping>
+        <servlet-name>solicituddetall</servlet-name>
+        <url-pattern>/Administrador/solicituddetall</url-pattern>
+    </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>cverdocs</servlet-name>
         <url-pattern>/Cliente/ver_docs</url-pattern>
@@ -340,6 +359,10 @@
     <servlet-mapping>
         <servlet-name>SeeApplication</servlet-name>
         <url-pattern>/SeeApplication.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>QueryVentas</servlet-name>
+        <url-pattern>/QueryVentas.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

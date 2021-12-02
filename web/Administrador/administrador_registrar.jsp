@@ -59,7 +59,7 @@
                 <div style="justify-content:center;" class="form-row">
                     <div class="form-group col-md-10">
                         <form name="form1" action="../RegisterAdmin.do" method="post">
-                            <h4>Registro de Usuario</h4>
+                            <h4>Registro de Administrador</h4>
 
                             <div class="form-row">
                                 <div class="form-group col-md-4">

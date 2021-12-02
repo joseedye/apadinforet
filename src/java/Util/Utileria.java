@@ -60,6 +60,16 @@ public class Utileria {
         return formato.format(date);
     }
 
+      public static Map<String, String> solicitudToMap(Solicitud sol) {
+        Map<String, String> map = new HashMap<>();
+        map.put("descripcion", sol.getDescripcion());
+        map.put("tematica", sol.getTematica());
+        map.put("decripciondetallada", sol.getEstatus().getDescripcionDetallada());
+        map.put("fecha", dateToString(sol.getFecha()));      
+        return map;
+    }
+      
+      
     public static String msgExPersistence(String cause) {
         int inicio = cause.indexOf("entry") + 5;
         int fin = cause.indexOf("for");

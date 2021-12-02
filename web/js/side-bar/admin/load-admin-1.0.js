@@ -52,7 +52,7 @@ var sidebar =   '<div class="sidebar-header">'+
                         '</a>'+
                     '</li>'+
                      '<li id="livisitas" >'+
-                        '<a href="../QueryVisitas.do">'+
+                        '<a href="../QueryVentas.do">'+
                             '<i class="fa fa-building"></i>'+
                             '&nbspVentas'+
                         '</a>'+

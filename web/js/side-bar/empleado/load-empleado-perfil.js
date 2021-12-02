@@ -36,18 +36,7 @@ var sidebar =   '<div class="sidebar-header">'+
                             '<i class="fa fa-building"></i>'+
                             '&nbspVentas'+
                         '</a>'+
-                    '</li>'+
-                    '<li id="liempresas" >'+                        
-                        '<a href="#CompaniesSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">'+
-                            '<i class="fas fa-briefcase"></i>'+
-                            '&nbspCliente'+
-                        '</a>'+
-                        '<ul class="collapse list-unstyled" id="CompaniesSubmenu">'+
-                           '<li>'+
-                                '<a href="../QueryCompanies.do">Consultar</a>'+
-                            '</li>'+
-                        '</ul>'+
-                    '</li>'+
+                    '</li>'+                    
                     '<li>'+
                         '<a href="../LogOut.do">'+
                             '<i class="fas fa-lock">'+'</i>'+
