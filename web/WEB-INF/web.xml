@@ -28,6 +28,10 @@
         <servlet-name>QueryVentas</servlet-name>
         <servlet-class>Controlador.QueryVentas</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegisterClientProveedor</servlet-name>
+        <servlet-class>Controlador.RegisterClientProveedor</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -363,6 +367,10 @@
     <servlet-mapping>
         <servlet-name>QueryVentas</servlet-name>
         <url-pattern>/QueryVentas.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterClientProveedor</servlet-name>
+        <url-pattern>/RegisterClientProveedor.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

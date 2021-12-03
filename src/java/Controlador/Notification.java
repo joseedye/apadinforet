@@ -142,8 +142,7 @@ public class Notification extends HttpServlet {
 
         }
 
-        
-         if (tipoUser.equals("Gerente")) {
+        if (tipoUser.equals("Gerente")) {
 
             //valido que este activo
             String activo = usersesion.get("activo");
@@ -171,7 +170,7 @@ public class Notification extends HttpServlet {
             }
 
         }
-        
+
         if (tipoUser.equals("Proveedor")) {
 
             //valido que este activo
@@ -197,6 +196,11 @@ public class Notification extends HttpServlet {
                     response.sendRedirect("Error/errorRedir");
                     break;
 
+                case "4":
+                    request.getSession().setAttribute("msg", "activar usuario. Link enviado al correo");
+                    response.sendRedirect("Error/errorRedir");
+                    break;
+
             }
 
         }
@@ -209,7 +213,7 @@ public class Notification extends HttpServlet {
             switch (activo) {
                 //aceptado
                 case "1":
-                    request.getSession().setAttribute("tipo", "Administrativo y financiero");                    
+                    request.getSession().setAttribute("tipo", "Administrativo y financiero");
                     response.sendRedirect("Empleado/perfil");
                     request.getSession().setAttribute("i", "1");
                     break;

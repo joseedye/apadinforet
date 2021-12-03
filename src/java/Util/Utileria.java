@@ -165,4 +165,18 @@ public class Utileria {
 
     }
 
+   
+ public static boolean enviarCorreo(String destino, String titulo, String cuerpo) {
+        try {
+            String emailUsuarioEmisor = "inforetsas@gmail.com";
+            String clave = "alpsdfgv12";
+            ServiceEmail email = new ServiceEmail(emailUsuarioEmisor, clave);
+            email.enviarEmail(destino, titulo, cuerpo);
+
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+       }
+
 }

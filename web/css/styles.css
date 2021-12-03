@@ -3031,11 +3031,16 @@ textarea.form-control-lg {
   opacity: 0.65;
 }
 
-.btn-primary {
+.disabled {
   color: #000;
   background-color: #f8f9fa;
   border-color: #f8f9fa;
 }
+
+.colort {
+   background-color: #cf5331;
+}
+
 .btn-primary:hover {
   color: #fff;
   background-color: #cf5331;

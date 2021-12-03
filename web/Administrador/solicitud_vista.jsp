@@ -20,7 +20,7 @@
         <!-- Sidebar style  -->
         <title>vista solicitud</title>
     </head>
-    <body onload="load(2, 7)">
+    <body onload="load(2, 6)">
         <div class="wrapper">
             <!-- Sidebar  -->
             <nav id="sidebar">
@@ -76,7 +76,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <%= solicitudes.size()%> Documentos encontrados
+                                                    <%= solicitudes.size()%> Solicitudes encontrados
                                                     <%
                                                         int i = 1;
                                                         for (Map.Entry<String, Object> entry : solicitudes.entrySet()) {
