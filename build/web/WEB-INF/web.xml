@@ -1,24 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    <!--filtro para cuando no esta activa la sesion--> 
-<!--    <filter>
-        <filter-name>Login</filter-name>
-        <filter-class>Filter.Login</filter-class>
-    </filter>-->
-    
-<!--    <filter-mapping>
-        <filter-name>Login</filter-name>     
-        <url-pattern>/index</url-pattern>
-        <url-pattern>/index.jsp</url-pattern>
-    </filter-mapping>-->
-<!--    <filter>
-        <filter-name>TimeOut</filter-name>
-        <filter-class>Filter.TimeOut</filter-class>
-    </filter>-->
-<!--
-<filter-mapping>
-        <filter-name>TimeOut</filter-name> 
- </filter-mapping>-->
  
  <servlet>
         <servlet-name>Login</servlet-name>
@@ -31,6 +12,10 @@
     <servlet>
         <servlet-name>RegisterClientProveedor</servlet-name>
         <servlet-class>Controlador.RegisterClientProveedor</servlet-class>
+    </servlet>
+     <servlet>
+        <servlet-name>QueryProducts</servlet-name>
+        <servlet-class>Controlador.QueryProducts</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
@@ -113,14 +98,21 @@
         <jsp-file>/Empleado/perfil.jsp</jsp-file>
     </servlet>
    
-     
+   
+   
+   
+   
+     <servlet>
+        <servlet-name>clientcotizacion</servlet-name>
+        <jsp-file>/Cliente/cotizacion.jsp</jsp-file>
+    </servlet>
    
 
     <!---  
     
+   
+    
     toma el nombre y lo convierte a ruta de navegador PERFIL ADMINISTRADOR
-
-
     -->
     <servlet>
         <servlet-name>RegisterAdmin</servlet-name>
@@ -139,9 +131,6 @@
         <servlet-class>Controlador.UpdatePassword</servlet-class>
     </servlet>
     <!--- 
-
-
-
     toma el nombre y lo convierte a ruta de navegador PERFIL CLIENTE 
     
     
@@ -194,6 +183,10 @@
         <servlet-name>SeeApplication</servlet-name>
         <servlet-class>Controlador.SeeApplication</servlet-class>
     </servlet>
+    
+    
+    
+    
     <servlet-mapping>
         <servlet-name>perfila</servlet-name>
         <url-pattern>/Administrador</url-pattern>
@@ -212,7 +205,10 @@
         <url-pattern>/Administrador/directivo_registrar</url-pattern>
     </servlet-mapping>
   
-
+<servlet-mapping>
+        <servlet-name>clientcotizacion</servlet-name>
+        <url-pattern>/Cliente/cotizacion</url-pattern>
+    </servlet-mapping>
 
     <!---  toma el nombre y lo convierte a ruta de navegador PERFIL CLIENTE -->
     <servlet-mapping>
@@ -369,6 +365,10 @@
         <url-pattern>/QueryVentas.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>QueryProducts</servlet-name>
+        <url-pattern>/QueryProducts.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>RegisterClientProveedor</servlet-name>
         <url-pattern>/RegisterClientProveedor.do</url-pattern>
     </servlet-mapping>
@@ -384,11 +384,5 @@
         <version>4.12</version>
         <scope>test</scope>
     </dependency>
-    }
-    
-    }
-    
-    }
-    
-    }
+   
 </web-app>

@@ -54,10 +54,10 @@ public class UpdatePassword extends HttpServlet {
                 user = Utileria.usuarioToMap(usuarioDao.findUsuario(usuarioo));
                 req.getSession().setAttribute("user", user);
                 req.getSession().setAttribute("msg", "se ha cambiado exitosamente su contraseña");
-                res.sendRedirect("Administrador/perfil");
+                res.sendRedirect(user.get("TipoUsuario")+"/perfil");
             } else {
                 req.getSession().setAttribute("msg", "Error,no se ha podido cambiar la contraseña");
-                res.sendRedirect("Administrador/perfil");
+                res.sendRedirect(user.get("TipoUsuario")+"/perfil");
             }
             
         } catch (Exception e) {

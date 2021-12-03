@@ -17,7 +17,7 @@
         <script defer src="../font/solid.js"></script>
         <script defer src="../font/fontawesome.js"></script>
         <!-- Sidebar style  -->
-        <title>Perfil</title>
+        <title>Credito</title>
     </head>
 
     <%
@@ -62,103 +62,130 @@
                 <div style="justify-content:center;" class="form-row">
                     <div class="form-group col-md-10">
                         <div class="contenedor">
-                            <form name="form1" action="../UpdateProfile.do" method="post">
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <h4>Solicitud de Credito</h4>
-                                    </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <h4>Solicitud de Credito</h4>
                                 </div>
+                            </div>
 
-                                <div>
-                                    <label for="">Formato de Solicitud</label>
+                            <div>
+                                <label for="">Formato de Solicitud</label>
 
-                                    <p>
-                                        <a href="https://example.com">Pincha aqui</a>
-                                    </p>
-                                </div>
-                                <div style="justify-content:center;" class="form-row">
-                                    <div class="form-group col-md-12">
-                                        <div class="card my-4">
-                                            <div class="form-group">
-                                                <div class="container">
-                                                    <div class="table-responsive">
-                                                        Documentacion necesaria requerida
-
-
-                                                        <table class="table table-responsive-sm">
-
-                                                            <thead>
-                                                                <tr>
-                                                                    <th scope="col">
-
-                                                            <div class="form-check form-switch">
-                                                                <label  class="form-check-label" for="flexSwitchCheckDefault">Documento</label>
+                                <p>
+                                    <a href="/Files/formato credito.docx">Pincha aqui</a>
+                                </p>
+                            </div>
+                            <div style="justify-content:center;" class="form-row">
+                                <div class="form-group col-md-12">
+                                    <div class="card my-4">
+                                        <div class="form-group">
+                                            <div class="container">
+                                                <div class="table-responsive">
+                                                    Documentacion necesaria requerida
 
 
-                                                            </div>
-                                                            </th>
-                                                            <th scope="col">
-                                                            <div class="form-check form-switch">
-                                                                <label class="form-check-label" for="flexSwitchCheckDefault">Extencion</label>
-                                                            </div>
-                                                            </th>
-                                                            <th scope="col">
-                                                            <div class="form-check form-switch">
-                                                                <label class="form-check-label" for="flexSwitchCheckDefault">Peso</label>
-                                                            </div> 
+                                                    <table class="table table-responsive-sm">
 
-                                                            </th>
-                                                            <th scope="col">
-                                                            <div class="form-check form-switch">
-                                                                <label class="form-check-label" for="flexSwitchCheckDefault">Ver archivo</label>
-                                                            </div>
-                                                            </th>
-                                                            <th scope="col">
-                                                            <div class="form-check form-switch">
-                                                                <label class="form-check-label" for="flexSwitchCheckDefault">Cargado</label>
-                                                            </div>
-                                                            </th>
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">
+
+                                                        <div class="form-check form-switch">
+                                                            <label  class="form-check-label" for="flexSwitchCheckDefault">Documento</label>
+
+
+                                                        </div>
+                                                        </th>
+                                                        <th scope="col">
+                                                        <div class="form-check form-switch">
+                                                            <label class="form-check-label" for="flexSwitchCheckDefault">Extencion</label>
+                                                        </div>
+                                                        </th>
+                                                        <th scope="col">
+                                                        <div class="form-check form-switch">
+                                                            <label class="form-check-label" for="flexSwitchCheckDefault">Peso</label>
+                                                        </div> 
+
+                                                        </th>
+                                                        <th scope="col">
+                                                        <div class="form-check form-switch">
+                                                            <label class="form-check-label" for="flexSwitchCheckDefault">Ver archivo</label>
+                                                        </div>
+                                                        </th>
+                                                        <th scope="col">
+                                                        <div class="form-check form-switch">
+                                                            <label class="form-check-label" for="flexSwitchCheckDefault">Cargado</label>
+                                                        </div>
+                                                        </th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    Formato Credito
+                                                                </td>
+
+                                                                <td  >
+                                                                    .pdf 
+                                                                </td>
+
+                                                                <td >
+                                                                    2MB
+                                                                </td>
+
+                                                                <td style="text-align:center;" >
+                                                                    <a onclick ='mostrarpdf("uno")' title="Mostrar" ><i class="fas fa-search" ></i></a>
+                                                                    <div id="uno" style="display:none"></div>
+
+                                                                </td>
+
+                                                                <td>
+                                                                    <button style="display:block;width:120px; height:30px;" onclick="document.getElementById('getuno').click()">Subir</button>
+                                                                </td> 
                                                             </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>
-                                                                        Formato Credito
-                                                                    </td>
+                                                        </tbody>
+                                                    </table>
+                                                    <form  name="form4" action=" ../UploadFile.do?tipo=4" method="post" enctype="multipart/form-data"> 
+                                                        <input type="file" id="getuno" name="archivo" style="display:none">                                                                                                            
+                                                        <button type="submit" name="subir" class="btn btn-primary">Enviar</button>
+                                                    </form>
 
-                                                                    <td  >
-                                                                        .pdf 
-                                                                    </td>
-
-                                                                    <td >
-                                                                        2MB
-                                                                    </td>
-
-                                                                    <td style="text-align:center;" >
-                                                                        <a onclick ='mostrarpdf("uno")' title="Mostrar" ><i class="fas fa-search" ></i></a>
-                                                                        <div id="uno" style="display:none"></div>
-
-                                                                    </td>
-
-                                                                    <td>
-                                                                        <button style="display:block;width:120px; height:30px;" onclick="document.getElementById('getuno').click()">Subir</button>
-                                                                    </td> 
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                        <button style="display:block;width:120px; height:30px;" onclick="document.getElementById('getuno').click()">Enviar</button>
-
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+
+     <%
+                    String msg = (String) request.getSession().getAttribute("msg");
+                    if (msg != null) {
+                %>
+                <!-- Modal success -->                        
+                <div class="modal fade" id="ventana2" tabindex="-1" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Mensaje</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p><%=msg%></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal success -->   
+                <%
+                    }
+
+                    request.getSession().removeAttribute("msg");
+                %>
 
 
-
-
-                            </form>
                         </div>
                     </div>
                 </div>

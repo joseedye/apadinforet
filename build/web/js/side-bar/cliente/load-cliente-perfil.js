@@ -29,7 +29,7 @@ var sidebar = '<div class="sidebar-header">' +
           '</a>' +
         '<ul class="collapse list-unstyled" id="solicitudesSubmenu">' +
               '<li id="solicitudcotizacion">' +
-                  '<a  href="#" >Cotizacion</a>' +
+                  '<a  href="./cotizacion" >Cotizacion</a>' +
               '</li>' +
              '<li id="credito" >' +
                     '<a href="credito">Credito</a>' +
@@ -38,7 +38,7 @@ var sidebar = '<div class="sidebar-header">' +
         '</li>' +
         
         '<li id="livisitas" >' +
-        '<a href="../QueryVisitas.do">' +
+        '<a href="../QueryProducts.do">' +
         '<i class="fa fa-building"></i>' +
         '&nbspProductos o servicios' +
         '</a>' +

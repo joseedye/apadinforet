@@ -77,6 +77,21 @@ public class QueryDocuments extends HttpServlet {
                     res.sendRedirect(user.get("TipoUsuario") + "/consultadoc");
                 }
                 
+                 if (user.get("TipoUsuario").equals("Gerente")) {
+                    for (Usuario strp : usuarioDao.findUsuarioEntities()) {
+
+                        //agrego el usuario al mapa
+                        mapUsuarios.put(i + "", Utileria.usuarioToMap(strp));
+
+                        //numero de total de documetos 
+                        mapcantidad.put(i++ + "", Utileria.cantidadDocumento(strp) + "");
+
+                    }
+                    req.getSession().setAttribute("usuarios", mapUsuarios);
+                    req.getSession().setAttribute("cantidad", mapcantidad);
+                    res.sendRedirect(user.get("TipoUsuario") + "/consultadoc");
+                }
+                
                  if (user.get("TipoUsuario").equals("3")) {
                      //see documents
                      Usuario u= usuarioDao.findUsuario(user.get("idUsuario"));

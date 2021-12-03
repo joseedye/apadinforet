@@ -65,7 +65,7 @@
                             <form name="form1" action="../UpdateProfile.do" method="post">
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <h4>Perfil Cliente</h4>
+                                        <h4>Perfil Proveedor</h4>
                                     </div>
                                 </div>
 

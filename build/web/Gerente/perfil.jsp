@@ -186,11 +186,11 @@
         </div>
 
         <!-- jQuery Side-bar -->
-        <script src="../js/side-bar/jquery-3.3.1.slim.min.js"></script>
-        <script src="../js/side-bar/popper.min.js"></script>
-        <script src="../js/side-bar/menu-button.js"></script>
-        <script src="../js/side-bar/bootstrap.min.js"></script> 
-        <script src="../js/side-bar/load-admin-1.0.js"></script>
+        <script src="../js/side-bar/extra/jquery-3.3.1.slim.min.js"></script>
+        <script src="../js/side-bar/extra/popper.min.js"></script>
+        <script src="../js/side-bar/extra/menu-button.js"></script>
+        <script src="../js/side-bar/extra/bootstrap.min.js"></script> 
+        <script src="../js/side-bar/gerente/load-gerente-1.0.js"></script>
         <!-- jQuery Side-bar -->    
         <script>
             $(document).ready(function () {

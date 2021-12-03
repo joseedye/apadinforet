@@ -60,15 +60,22 @@ public class RegisterClientProveedor extends HttpServlet {
             String apellido2 = request.getParameter("apellido2");
             String nacimiento = request.getParameter("nacimiento");
             String tipous = request.getParameter("tipous");
-            //falta traer de la vista
-            String pais = "COLOMBIA";//request.getParameter("pais");
-
+            String message = request.getParameter("message");
+            
+            
+       
             SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
             Date fecNacimiento = formato.parse(nacimiento);
             PersonaJpaController personajpa = new PersonaJpaController(emf);
 
             Persona personaDTO = new Persona(Nit, nombre, apellido1, apellido2, fecNacimiento, "NIT", address, number, "", email);
-            personaDTO.setPais(pais);
+            personaDTO.setPais(Country);
+            personaDTO.setRazonSocial(Business);
+            personaDTO.setTipoCliente(type);
+            personaDTO.setComentario(message);
+            //falta crearla en la bd
+           //personaDTO.setCodigopostal(Code);
+            
             personajpa.create(personaDTO);
 
             //crear el usuario

@@ -241,15 +241,18 @@
                         <form id="contactForm" data-sb-form-api-token="API_TOKEN" action="RegisterClientProveedor.do">
                             <!-- Business input-->
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="Business" type="text" placeholder="Enter your name..." data-sb-validations="required" />
+                                <input class="form-control" id="Business" name="Business" type="text" placeholder="Enter your name..." data-sb-validations="required" />
                                 <label for="name">Business name</label>
                                 <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
                             </div>
-                            <!-- Type-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" name="type" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                                <label for="name">Person type</label>
-                                <div class="invalid-feedback" data-sb-feedback="name:required">A type is required.</div>
+                            <!-- Type-->   
+                            
+                             <div class="form-floating mb-3">                              
+                                <select class="form-control" name="type" id="type" required>
+                                    <option disabled selected >Person type</option>
+                                    <option value="NATURAL" name="natural">natural</option>
+                                    <option value="JURIDICA" name="juridica">juridica</option>
+                                </select>
                             </div>
                             <!-- Numero Nit-->
                             <div class="form-floating mb-3">
@@ -317,8 +320,8 @@
                             <div class="form-floating mb-3">                              
                                 <select class="form-control" name="tipous" id="genero" required>
                                     <option disabled selected >Seleccione</option>
-                                    <option value="Masculino" name="customer">customer</option>
-                                    <option value="Femenino" name="supplier">supplier</option>
+                                    <option value="customer" name="customer">customer</option>
+                                    <option value="supplier" name="supplier">supplier</option>
                                 </select>
                             </div>
 
