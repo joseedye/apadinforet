@@ -1,6 +1,6 @@
 <%-- 
-    Document   : ver_documentos
-    Created on : 3/12/2021, 11:05:07 AM
+    Document   : solicitud_vista
+    Created on : 3/12/2021, 07:32:13 PM
     Author     : rozo
 --%>
 
@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
+   <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,9 +18,9 @@
         <script defer src="../font/solid.js"></script>
         <script defer src="../font/fontawesome.js"></script>
         <!-- Sidebar style  -->
-        <title>Documentos ver</title>
+        <title>vista solicitud</title>
     </head>
-    <body onload="load(0, 1)">
+    <body onload="load(2, 6)">
         <div class="wrapper">
             <!-- Sidebar  -->
             <nav id="sidebar">
@@ -31,7 +31,7 @@
                 Map<String, String> user = (Map<String, String>) request.getSession().getAttribute("user");
                 Map<String, String> userbuscado = (Map<String, String>) request.getSession().getAttribute("usuariobuscado");
                 String userImg = (String) request.getSession().getAttribute("userImg");
-                Map<String, Object> Lidocumentos = (Map<String, Object>) request.getSession().getAttribute("documentos");
+                Map<String, Object> solicitudes = (Map<String, Object>) request.getSession().getAttribute("solicitudes");
 
             %>
 
@@ -58,7 +58,7 @@
                 <div style="justify-content:center;" class="form-row">
                     <div class="form-group col-md-10">
                         <div class="card my-4">
-                            <h5 class="card-header">Documentos del usuario <%=userbuscado.get("nombres")%></h5>
+                            <h5 class="card-header">Solicitudes del usuario <%=userbuscado.get("nombres")%></h5>
                             <div class="card-body">
                                 <div class="form-group">
                                     <div class="container">
@@ -68,40 +68,36 @@
                                             <table class="table table-responsive-sm">
                                                 <thead>
                                                     <tr>
-                                                        <th scope="col">Descripción</th>
+                                                        
                                                         <th scope="col">fecha</th>
-                                                        <th scope="col">Descargar</th>
-                                                        <th scope="col">ver</th>
-                                                        <th scope="col">Eliminar</th>
+                                                        <th scope="col">Tematica</th>
+                                                        <th scope="col">estatus</th>
+                                                        <th scope="col">Descripción</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <%= Lidocumentos.size()%> Documentos encontrados
+                                                    <%= solicitudes.size()%> Solicitudes encontrados
                                                     <%
                                                         int i = 1;
-                                                        for (Map.Entry<String, Object> entry : Lidocumentos.entrySet()) {
+                                                        for (Map.Entry<String, Object> entry : solicitudes.entrySet()) {
 
                                                             Map<String, String> map = (Map<String, String>) entry.getValue();
 
                                                     %>
 
                                                     <tr>
-                                                        <td>
-                                                            <label for=""><%=map.get("nombre")%></label>
-                                                        </td>
+                                                        
                                                         <td>
                                                             <label for="" type="date" ><%=map.get("fecha")%></label>
-
-
                                                         </td>
                                                         <td>
-                                                            <a download href="/<%=map.get("rutaDoc")%>" title="Descargar"><i class="fas fa-cloud-download-alt"></i></a>
+                                                             <label for="" type="text" ><%=map.get("tematica")%></label>
                                                         </td>
                                                         <td>
-                                                            <a onclick ='mostrarpdf("/<%=map.get("rutaDoc")%>")' title="Mostrar"><i class="fas fa-search"></i></a>
+                                                             <label for="" type="text" ><%=map.get("decripciondetallada")%></label>
                                                         </td>
-                                                        <td>
-                                                            <a href="../DeleteDoc.do?idDoc=<%=map.get("idDoc")%>&&soy=<%=map.get("soy")%>&&idDue=<%=userbuscado.get("idUsuario")%>&&ruta=<%=map.get("rutaDoc")%>" title="Eliminar"><i class="fas fa-trash"></i></a>
+                                                       <td>
+                                                            <label for=""><%=map.get("descripcion")%></label>
                                                         </td>
                                                         <% }%>
 

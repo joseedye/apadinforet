@@ -1,6 +1,6 @@
 <%-- 
-    Document   : documento_consulta
-    Created on : 3/12/2021, 11:08:01 AM
+    Document   : consulta_solicitud
+    Created on : 3/12/2021, 07:22:27 PM
     Author     : rozo
 --%>
 
@@ -18,9 +18,9 @@
         <script defer src="../font/solid.js"></script>
         <script defer src="../font/fontawesome.js"></script>
         <!-- Sidebar style  -->
-        <title>Consulta documentos</title>
+        <title>Consulta solicitud</title>
     </head>
-    <body onload="load(0, 1)">
+    <body onload="load(2, 6)">
         <div class="wrapper">
 
             <!-- Sidebar  -->
@@ -58,70 +58,11 @@
                     </div>
                 </nav>
 
+                               <!-- Content  -->
                 <div style="justify-content:center;" class="form-row">
                     <div class="form-group col-md-10">
                         <div class="card my-4">
-                            <div class="form-group">
-                                <div class="container">
-                                    <div class="table-responsive">
-
-                                        <table class="table table-responsive-sm">
-
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">
-
-                                            <div class="form-check form-switch">
-                                                <input onclick="loadCheck(1);" class="form-check-input" type="checkbox" value="empleado" id="fempleado" <% if ("true".equals(empleado)) {%>checked<%} %>>
-                                                <label  class="form-check-label" for="flexSwitchCheckDefault">Empleados</label>
-
-
-                                            </div>
-                                            </th>
-                                            <th scope="col">
-                                            <div class="form-check form-switch">
-                                                <input onclick="loadCheck(2);" class="form-check-input" type="checkbox" value="cliente" id="fcliente" <% if ("true".equals(cliente)) {%>checked<%} %>>
-                                                <label class="form-check-label" for="flexSwitchCheckDefault">Clientes</label>
-                                            </div>
-                                            </th>
-                                            <th scope="col">
-                                            <div class="form-check form-switch">
-                                                <input onclick="loadCheck(3);" class="form-check-input" value="proveedores" type="checkbox" id="fproveedor" <% if ("true".equals(proveedor)) {%>checked<%} %>>
-                                                <label class="form-check-label" for="flexSwitchCheckDefault">Proveedores</label>
-                                            </div> 
-
-                                            </th>
-                                            <th scope="col">
-                                            <div class="form-check form-switch">
-                                                <input onclick="loadCheck(4);" class="form-check-input" type="checkbox" value="gerente" id="fgerente" <% if ("true".equals(gerente)) {%>checked<%}%>>
-                                                <label class="form-check-label" for="flexSwitchCheckDefault">Directivo</label>
-                                            </div>
-                                            </th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td colspan="4" >
-                                                        <input type="text" id="myInput"  style="width:100%;"  onkeyup="myFunction()" placeholder="Busqueda por nombre" title="Type in a name">
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-                <!-- Content  -->
-                <div style="justify-content:center;" class="form-row">
-                    <div class="form-group col-md-10">
-                        <div class="card my-4">
-                            <h5 class="card-header">Documentos por usuario</h5>
+                            <h5 class="card-header">Solicitudes por Cliente</h5>
 
                             <div class="card-body">
                                 <div class="form-group">
@@ -157,7 +98,7 @@
 
                                                         </td>
                                                         <td>
-                                                            <a href="../SeeDocuments.do?idUserQuery=<%=map.get("idUsuario")%>" title="ver"><i class="fas fa-eye"></i></a>
+                                                            <a href="../SeeApplication.do?idUserQuery=<%=map.get("idUsuario")%>" title="ver"><i class="fas fa-eye"></i></a>
                                                         </td>
                                                     </tr>
                                                     <% }%>
@@ -258,3 +199,4 @@
 
     </body>
 </html>
+

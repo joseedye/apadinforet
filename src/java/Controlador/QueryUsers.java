@@ -67,7 +67,7 @@ public class QueryUsers extends HttpServlet {
                 }
 
                 request.getSession().setAttribute("usuarios", mapUsuarios);
-                response.sendRedirect("Administrador/query");
+                response.sendRedirect(user.get("TipoUsuario") +"/query");
 
             } else {
 
@@ -122,13 +122,13 @@ public class QueryUsers extends HttpServlet {
                 request.getSession().setAttribute("empleado", empleado);
 
                 request.getSession().setAttribute("usuarios", mapUsuarios);
-                response.sendRedirect("Administrador/query");
+                response.sendRedirect(user.get("TipoUsuario") +"/query");
 
             }
 
         } catch (Exception e) {
             request.getSession().setAttribute("msg", "Error,al consultar usuarios!");
-            response.sendRedirect("Administrador/perfil.jsp");
+            response.sendRedirect(user.get("TipoUsuario") +"/perfil.jsp");
         }
     }
 

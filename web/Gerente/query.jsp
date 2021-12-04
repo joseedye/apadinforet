@@ -1,6 +1,6 @@
 <%-- 
-    Document   : documento_consulta
-    Created on : 3/12/2021, 11:08:01 AM
+    Document   : query
+    Created on : 3/12/2021, 02:49:56 PM
     Author     : rozo
 --%>
 
@@ -17,17 +17,18 @@
         <link rel="stylesheet" href="../css/side-bar/style-side-bar.css">
         <script defer src="../font/solid.js"></script>
         <script defer src="../font/fontawesome.js"></script>
-        <!-- Sidebar style  -->
-        <title>Consulta documentos</title>
+
+        <title>Consulta de Usuarios</title>
     </head>
-    <body onload="load(0, 1)">
+
+
+    <body onload="load(1,5)">
         <div class="wrapper">
 
             <!-- Sidebar  -->
             <nav id="sidebar">
             </nav>
             <!-- Sidebar  -->
-
             <%
                 Map<String, String> user = (Map<String, String>) request.getSession().getAttribute("user");
                 String userImg = (String) request.getSession().getAttribute("userImg");
@@ -35,13 +36,14 @@
                 String gerente = (String) request.getSession().getAttribute("gerente");
                 String proveedor = (String) request.getSession().getAttribute("proveedor");
                 String cliente = (String) request.getSession().getAttribute("cliente");
+                
+                
                 Map<String, Object> listUsuarios = (Map<String, Object>) request.getSession().getAttribute("usuarios");
-                Map<String, String> listCantidades= (Map<String, String>) request.getSession().getAttribute("cantidad");
-
             %>
 
             <!-- Page Content  -->
             <div id="content">
+
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <div class="container-fluid">
 
@@ -53,10 +55,11 @@
                             <h5><%=user.get("nombres") + ""%></h5>
                         </div>
                         <div class="img-profile">
-                            <img src="<%=userImg%>">                          
+                            <img src="<%=userImg%>">                        
                         </div>
                     </div>
                 </nav>
+
 
                 <div style="justify-content:center;" class="form-row">
                     <div class="form-group col-md-10">
@@ -72,7 +75,7 @@
                                                     <th scope="col">
 
                                             <div class="form-check form-switch">
-                                                <input onclick="loadCheck(1);" class="form-check-input" type="checkbox" value="empleado" id="fempleado" <% if ("true".equals(empleado)) {%>checked<%} %>>
+                                                <input onclick="loadCheck('');" class="form-check-input" type="checkbox" value="empleado" id="fempleado" <% if("true".equals(empleado)){%>checked<%} %>>
                                                 <label  class="form-check-label" for="flexSwitchCheckDefault">Empleados</label>
 
 
@@ -80,20 +83,20 @@
                                             </th>
                                             <th scope="col">
                                             <div class="form-check form-switch">
-                                                <input onclick="loadCheck(2);" class="form-check-input" type="checkbox" value="cliente" id="fcliente" <% if ("true".equals(cliente)) {%>checked<%} %>>
+                                                <input onclick="loadCheck('');" class="form-check-input" type="checkbox" value="cliente" id="fcliente" <% if("true".equals(cliente)){%>checked<%} %>>
                                                 <label class="form-check-label" for="flexSwitchCheckDefault">Clientes</label>
                                             </div>
                                             </th>
                                             <th scope="col">
                                             <div class="form-check form-switch">
-                                                <input onclick="loadCheck(3);" class="form-check-input" value="proveedores" type="checkbox" id="fproveedor" <% if ("true".equals(proveedor)) {%>checked<%} %>>
+                                                <input onclick="loadCheck('');" class="form-check-input" value="proveedores" type="checkbox" id="fproveedor" <% if("true".equals(proveedor)){%>checked<%} %>>
                                                 <label class="form-check-label" for="flexSwitchCheckDefault">Proveedores</label>
                                             </div> 
 
                                             </th>
                                             <th scope="col">
                                             <div class="form-check form-switch">
-                                                <input onclick="loadCheck(4);" class="form-check-input" type="checkbox" value="gerente" id="fgerente" <% if ("true".equals(gerente)) {%>checked<%}%>>
+                                                <input onclick="loadCheck('');" class="form-check-input" type="checkbox" value="gerente" id="fgerente" <% if("true".equals(gerente)){%>checked<%} %>>
                                                 <label class="form-check-label" for="flexSwitchCheckDefault">Directivo</label>
                                             </div>
                                             </th>
@@ -121,7 +124,7 @@
                 <div style="justify-content:center;" class="form-row">
                     <div class="form-group col-md-10">
                         <div class="card my-4">
-                            <h5 class="card-header">Documentos por usuario</h5>
+                            <h5 class="card-header">Administración de usuarios</h5>
 
                             <div class="card-body">
                                 <div class="form-group">
@@ -134,33 +137,36 @@
                                                     <tr>
                                                         <th scope="col">Nombre</th>
                                                         <th scope="col">Correo electrónico (Usuario) </th>
-                                                        <th scope="col">cantidad</th>
-                                                        <th scope="col">ver</th>
+                                                        <th scope="col">Activo</th>
+                                                        <th scope="col"></th>
                                                         <th scope="col"></th>
                                                     </tr>
                                                 </thead>
 
+
                                                 <tbody>
+
                                                     <%
                                                         int i = 1;
                                                         for (Map.Entry<String, Object> entry : listUsuarios.entrySet()) {
-
                                                             Map<String, String> map = (Map<String, String>) entry.getValue();
- 
                                                     %>
                                                     <tr>
                                                         <td><%=map.get("nombres")%></td>
                                                         <td><%=map.get("user")%></td>
-                                                        <td>
 
-                                                            <label class="text-center" ><%=listCantidades.get(entry.getKey())%></label>
-
-                                                        </td>
                                                         <td>
-                                                            <a href="../SeeDocuments.do?idUserQuery=<%=map.get("idUsuario")%>" title="ver"><i class="fas fa-eye"></i></a>
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" name="activo<%=i%>" class="custom-control-input" <%if (map.get("activo").equals("1")) {%> checked <%}%>>
+                                                                <label onclick="loadCheckActive(<%=map.get("idUsuario")%>,<%=map.get("activo")%>)" class="custom-control-label" name="activo<%=i%>" for="activo<%=i%>"></label>
+                                                            </div>
                                                         </td>
+                                                      
+
+                                                      
                                                     </tr>
-                                                    <% }%>
+                                                    <% i++;
+                                                        }%>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -175,86 +181,84 @@
                         <!-- Content  -->
 
 
+                        <%
+                            String msg = (String) request.getSession().getAttribute("msg");
+                            if (msg != null) {
+                        %>
+                        <!-- Modal success -->                        
+                        <div class="modal fade" id="ventana2" tabindex="-1" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Mensaje</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p><%=msg%></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- fin Modal success -->                    
+
 
                     </div>
-                </div>                                  
+                </div>
+
+                <!-- Modal  -->
+                <div class="modal fade" id="ventana" tabindex="-1" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Alerta</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Estas seguro de eliminar el usuario del sistema?</p>
+                            </div>
+                            <div class="modal-footer">            
+                                <a  class="btn btn-primary">Si</a>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
 
             </div>
-        </div>
 
+
+
+
+
+
+        </div>
+        <!-- Modal success -->
+
+        <%
+            }
+            request.getSession().removeAttribute("msg");
+            request.getSession().removeAttribute("empleado");
+            request.getSession().removeAttribute("gerente");
+            request.getSession().removeAttribute("proveedor");
+           request.getSession().removeAttribute("cliente");
+        %>
 
         <!-- jQuery Side-bar -->
         <script src="../js/side-bar/extra/jquery-3.3.1.slim.min.js"></script>
+        <!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
+
         <script src="../js/side-bar/extra/popper.min.js"></script>
         <script src="../js/side-bar/extra/menu-button.js"></script>
         <script src="../js/side-bar/extra/bootstrap.min.js"></script>   
         <script src="../js/side-bar/gerente/load-gerente-1.0.js"></script> 
-        <!-- jQuery Side-bar -->   
-
-        <script>
-                                                            $(document).ready(function () {
-                                                                $("#ventana2").modal('show');
-                                                            });
-
-                                                           function loadCheck() {
-
-                                                                        // Comprobar los checkbox seleccionados
-                                                                        
-                                                                        var empleado=false,cliente=false,proveedor=false,gerente = false;
-                                                                        if ($('#fempleado').is(':checked')) {
-                                                                            empleado=true;
-                                                                        }
-                                                                        if ($('#fcliente').is(':checked')) {
-                                                                            cliente=true;
-                                                                        }
-                                                                        if ($('#fproveedor').is(':checked')) {
-                                                                            proveedor=true;
-                                                                        }
-                                                                        if ($('#fgerente').is(':checked')) {
-                                                                            gerente=true;
-                                                                        }
-                                                                            
-                                                                 location.href = '../QueryDocuments.do?empleado=' + empleado + '&cliente=' + cliente + '&proveedor=' + proveedor + '&gerente=' + gerente;;
-                                                                    }
-
-                                                            $(function () {
-                                                                $(".modal-btn").click(function () {
-                                                                    var id = $(this).data('some-id');
-                                                                    $(".modal-footer a").attr("href", "../DeleteDocument.do?idDoc=" + id);
-                                                                })
-                                                            });
-
-                                                            if (window.performance.navigation.type === 1) {
-                                                                location.href = "../QueryDocuments.do";
-                                                            }
-
-                                                            function doSearch() {
-                                                                var tipo = $("#tipoDocument").val();
-                                                                location.href = "../QueryDocuments.do?tipoDocument=" + tipo;
-                                                            }
-        </script> 
-
-        <script>
-            function myFunction() {
-                var input, filter, table, tr, td, i, txtValue;
-                input = document.getElementById("myInput");
-                filter = input.value.toUpperCase();
-                table = document.getElementById("myTable");
-                tr = table.getElementsByTagName("tr");
-                for (i = 0; i < tr.length; i++) {
-                    td = tr[i].getElementsByTagName("td")[0];
-                    if (td) {
-                        txtValue = td.textContent || td.innerText;
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            tr[i].style.display = "";
-                        } else {
-                            tr[i].style.display = "none";
-                        }
-                    }
-                }
-            }
-        </script>
+        <!-- jQuery Side-bar -->    
 
     </body>
 </html>
+

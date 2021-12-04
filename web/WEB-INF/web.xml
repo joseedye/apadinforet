@@ -58,7 +58,10 @@
         <servlet-name>solicituddetall</servlet-name>
         <jsp-file>/Administrador/solicitud_vista.jsp</jsp-file>
     </servlet>
-    
+    <servlet>
+        <servlet-name>gsolicituddetall</servlet-name>
+        <jsp-file>/Gerente/solicitud_vista.jsp</jsp-file>
+    </servlet>
     
    <servlet>
         <servlet-name>verdocs</servlet-name>
@@ -68,6 +71,12 @@
         <servlet-name>adminconsultasol</servlet-name>
         <jsp-file>/Administrador/consulta_solicitud.jsp</jsp-file>
     </servlet>
+    
+    <servlet>
+        <servlet-name>gconsultasol</servlet-name>
+        <jsp-file>/Gerente/consulta_solicitud.jsp</jsp-file>
+    </servlet>
+    
     
     <!---  VISTAS convertidor de ruta a nombre PERFIL CLIENTE  -->
     <servlet>
@@ -81,6 +90,10 @@
     <servlet>
         <servlet-name>cverdocs</servlet-name>
         <jsp-file>/Cliente/ver_documentos.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>gverdocs</servlet-name>
+        <jsp-file>/Gerente/ver_documentos.jsp</jsp-file>
     </servlet>
     <!---  VISTAS convertidor de ruta a nombre PERFIL PROVEEDOR  -->
     <servlet>
@@ -106,8 +119,16 @@
         <servlet-name>clientcotizacion</servlet-name>
         <jsp-file>/Cliente/cotizacion.jsp</jsp-file>
     </servlet>
-   
+    <servlet>
+        <servlet-name>gerentequery</servlet-name>
+        <jsp-file>/Gerente/query.jsp</jsp-file>
+    </servlet>
 
+
+<servlet>
+        <servlet-name>gerenteconsulta</servlet-name>
+        <jsp-file>/Gerente/documento_consulta.jsp</jsp-file>
+    </servlet>
     <!---  
     
    
@@ -211,6 +232,18 @@
     </servlet-mapping>
 
     <!---  toma el nombre y lo convierte a ruta de navegador PERFIL CLIENTE -->
+    
+    <servlet-mapping>
+        <servlet-name>gerentequery</servlet-name>
+        <url-pattern>/Gerente/query</url-pattern>
+    </servlet-mapping>
+    
+     <servlet-mapping>
+        <servlet-name>gerenteconsulta</servlet-name>
+        <url-pattern>/Gerente/consultadoc</url-pattern>
+    </servlet-mapping>
+    
+    
     <servlet-mapping>
         <servlet-name>perfilc</servlet-name>
         <url-pattern>/Cliente</url-pattern>
@@ -222,11 +255,21 @@
         <servlet-name>solicituddetall</servlet-name>
         <url-pattern>/Administrador/solicituddetall</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>gsolicituddetall</servlet-name>
+        <url-pattern>/Gerente/solicituddetall</url-pattern>
+    </servlet-mapping>
     
     <servlet-mapping>
         <servlet-name>cverdocs</servlet-name>
         <url-pattern>/Cliente/ver_docs</url-pattern>
     </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>gverdocs</servlet-name>
+        <url-pattern>/Gerente/ver_docs</url-pattern>
+    </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>credito</servlet-name>
         <url-pattern>/Cliente/credito</url-pattern>
@@ -270,7 +313,10 @@
         <servlet-name>adminconsultasol</servlet-name>
         <url-pattern>/Administrador/consultasol</url-pattern>
     </servlet-mapping>
-    
+    <servlet-mapping>
+        <servlet-name>gconsultasol</servlet-name>
+        <url-pattern>/Gerente/consultasol</url-pattern>
+    </servlet-mapping>
     
     <!---  controladores  -->
     <!---  SINGNIN  -->
