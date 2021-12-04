@@ -64,7 +64,7 @@
                                 <div class="form-group">
                                     <div class="container">
 
-                                        <form id="form1" action="../UploadFile.do" method="POST" enctype="multipart/form-data">
+                                  
 
                                             <table class="table table-responsive-sm">
                                                 <thead>
@@ -103,8 +103,8 @@
                                                         </td>
                                                         <td>
 
-                                                            <select class="form-control" name="empleados">
-                                                                <option disabled >Seleccionar</option>         
+                                                            <select class="form-control"   onchange="asignar(<%=i%>)" id="empleados<%=i++%>">
+                                                                <option  >Seleccionar</option>         
                                                                 <%
                                                                     int j = 1;
                                                                     for (Map.Entry<String, Object> entrys : empleados.entrySet()) {
@@ -112,7 +112,7 @@
                                                                         Map<String, String> mapp = (Map<String, String>) entrys.getValue();
 
                                                                 %>
-                                                                <option value='<%= mapp.get("idUsuario")%>' name="empleado"> <%= mapp.get("nombres")%></option>
+                                                                <option value='<%= mapp.get("idUsuario")%>&&ids=<%= map.get("ids")%>&&idus=<%=map.get("idc") + ""%>' > <%= mapp.get("nombres")%></option>
                                                                 <% }%>
                                                             </select>
                                                         </td>
@@ -122,7 +122,7 @@
                                                 </tbody>
                                                 <% }%>
                                             </table>
-                                        </form>   
+                                          
                                     </div>
                                 </div>
                             </div>

@@ -17,6 +17,10 @@
         <servlet-name>QueryProducts</servlet-name>
         <servlet-class>Controlador.QueryProducts</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>assign</servlet-name>
+        <servlet-class>Controlador.assign</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -418,6 +422,10 @@
         <servlet-name>RegisterClientProveedor</servlet-name>
         <url-pattern>/RegisterClientProveedor.do</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>assign</servlet-name>
+        <url-pattern>/assign.do</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -431,4 +439,9 @@
         <scope>test</scope>
     </dependency>
    
-</web-app>
+
+    
+    
+    gconsultasol
+    
+    </web-app>

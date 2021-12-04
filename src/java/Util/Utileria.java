@@ -62,6 +62,8 @@ public class Utileria {
 
       public static Map<String, String> solicitudToMap(Solicitud sol) {
         Map<String, String> map = new HashMap<>();
+        map.put("ids",sol.getIdSolicitud()+"");
+        map.put("idc",sol.getIdCliente().getIdUsuario()+"");
         map.put("descripcion", sol.getDescripcion());
         map.put("tematica", sol.getTematica());
         map.put("decripciondetallada", sol.getEstatus().getDescripcionDetallada());

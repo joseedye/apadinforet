@@ -235,8 +235,8 @@ public class UploadFile extends HttpServlet {
                     }
                    
                     if (fail) {
-                        req.getSession().setAttribute("msg", msgFail + " .Es posible que ya existan.");
-                        res.sendRedirect("/Error/errorRedir");
+                        req.getSession().setAttribute("msg", "Cotizacion enviada!");
+                        res.sendRedirect("/Cliente/cotizacion");
                     } else {
                         req.getSession().setAttribute("msg", "Archivos Subidos con Exito!");
                         res.sendRedirect("/Cliente/cotizacion");
