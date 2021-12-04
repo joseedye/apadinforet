@@ -9,6 +9,7 @@ import DAO.Conexion;
 import DAO.SolicitudJpaController;
 import DAO.TipoUsuarioJpaController;
 import DAO.UsuarioJpaController;
+import DTO.Persona;
 import DTO.Solicitud;
 import DTO.TipoUsuario;
 import DTO.Usuario;
@@ -62,7 +63,18 @@ public class SeeApplication extends HttpServlet {
             mapSolicitudes.put(""+ i++ ,Utileria.solicitudToMap(next));
         }
         
+        int j =0;
+         Map<String, Object> mapEmpleados = new HashMap<>();
+        List<Usuario> empleados = usuarioJpa.findUsuarioEntities();
+        for (Iterator<Usuario> iterator = empleados.iterator(); iterator.hasNext();) {
+            Usuario next = iterator.next();
+            if(next.getIdTipoUsuario().getIdTipoUsuario()>=5){
+               mapEmpleados.put(""+ j++, Utileria.usuarioToMap(next));
+            }
+        }
+        
         Map <String , String> userbuscado = Utileria.usuarioToMap(users);
+        request.getSession().setAttribute("empleados", mapEmpleados);
         request.getSession().setAttribute("usuariobuscado", userbuscado);
         request.getSession().setAttribute("solicitudes", mapSolicitudes);
         response.sendRedirect(user.get("TipoUsuario") + "/solicituddetall");

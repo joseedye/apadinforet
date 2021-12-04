@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-   <head>
+    <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,6 +32,7 @@
                 Map<String, String> userbuscado = (Map<String, String>) request.getSession().getAttribute("usuariobuscado");
                 String userImg = (String) request.getSession().getAttribute("userImg");
                 Map<String, Object> solicitudes = (Map<String, Object>) request.getSession().getAttribute("solicitudes");
+                Map<String, Object> empleados = (Map<String, Object>) request.getSession().getAttribute("empleados");
 
             %>
 
@@ -68,11 +69,12 @@
                                             <table class="table table-responsive-sm">
                                                 <thead>
                                                     <tr>
-                                                        
+
                                                         <th scope="col">fecha</th>
                                                         <th scope="col">Tematica</th>
                                                         <th scope="col">estatus</th>
                                                         <th scope="col">Descripción</th>
+                                                        <th scope="col">Asignar</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -86,24 +88,39 @@
                                                     %>
 
                                                     <tr>
-                                                        
+
                                                         <td>
                                                             <label for="" type="date" ><%=map.get("fecha")%></label>
                                                         </td>
                                                         <td>
-                                                             <label for="" type="text" ><%=map.get("tematica")%></label>
+                                                            <label for="" type="text" ><%=map.get("tematica")%></label>
                                                         </td>
                                                         <td>
-                                                             <label for="" type="text" ><%=map.get("decripciondetallada")%></label>
+                                                            <label for="" type="text" ><%=map.get("decripciondetallada")%></label>
                                                         </td>
-                                                       <td>
+                                                        <td>
                                                             <label for=""><%=map.get("descripcion")%></label>
                                                         </td>
-                                                        <% }%>
+                                                        <td>
+
+                                                            <select class="form-control" name="empleados">
+                                                                <option disabled >Seleccionar</option>         
+                                                                <%
+                                                                    int j = 1;
+                                                                    for (Map.Entry<String, Object> entrys : empleados.entrySet()) {
+
+                                                                        Map<String, String> mapp = (Map<String, String>) entrys.getValue();
+
+                                                                %>
+                                                                <option value='<%= mapp.get("idUsuario")%>' name="empleado"> <%= mapp.get("nombres")%></option>
+                                                                <% }%>
+                                                            </select>
+                                                        </td>
 
                                                     </tr>
 
                                                 </tbody>
+                                                <% }%>
                                             </table>
                                         </form>   
                                     </div>
@@ -153,14 +170,14 @@
 
                 <script>
 
-                                                                function mostrarpdf(ruta) {
+        function mostrarpdf(ruta) {
 
-                                                                    window.open(ruta);
-                                                                }
+            window.open(ruta);
+        }
 
-                                                                $(document).ready(function () {
-                                                                    $("#ventana2").modal('show');
-                                                                });
+        $(document).ready(function () {
+            $("#ventana2").modal('show');
+        });
 
                 </script>
 
