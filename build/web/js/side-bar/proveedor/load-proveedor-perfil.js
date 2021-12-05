@@ -15,11 +15,8 @@ var sidebar = '<div class="sidebar-header">' +
         '&nbspDocumentos' +
         '</a>' +
         '<ul class="collapse list-unstyled" id="documentsSubmenu">' +
-        '<li>' +
-        '<a href="../QueryTypeDocuments.do">Nuevo</a>' +
-        '</li>' +
-        '<li>' +
-        '<a href="../QueryDocuments.do">Consultar</a>' +
+                '<li>' +
+        '<a href="#" onclick="consultar()">Consultar</a>' +
         '</li>' +
         '</ul>' +
         '</li>' +
@@ -126,4 +123,9 @@ function grancontribuyente(a){
   
      document.getElementById('grancontribuyente').innerHTML = a===1 ? soloboton : grancontribuyente;
     
+}
+
+function consultar() {
+    var id = document.getElementById("iduser").value;
+    window.location.href = "../SeeDocuments.do?idUserQuery=" + id; 
 }

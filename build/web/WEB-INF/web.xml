@@ -99,6 +99,10 @@
         <servlet-name>gverdocs</servlet-name>
         <jsp-file>/Gerente/ver_documentos.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>pverdocs</servlet-name>
+        <jsp-file>/Proveedor/ver_documentos.jsp</jsp-file>
+    </servlet>
     <!---  VISTAS convertidor de ruta a nombre PERFIL PROVEEDOR  -->
     <servlet>
         <servlet-name>perfilp</servlet-name>
@@ -230,7 +234,7 @@
         <url-pattern>/Administrador/directivo_registrar</url-pattern>
     </servlet-mapping>
   
-<servlet-mapping>
+    <servlet-mapping>
         <servlet-name>clientcotizacion</servlet-name>
         <url-pattern>/Cliente/cotizacion</url-pattern>
     </servlet-mapping>
@@ -242,7 +246,7 @@
         <url-pattern>/Gerente/query</url-pattern>
     </servlet-mapping>
     
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>gerenteconsulta</servlet-name>
         <url-pattern>/Gerente/consultadoc</url-pattern>
     </servlet-mapping>
@@ -255,7 +259,7 @@
     </servlet-mapping>
     
     
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>solicituddetall</servlet-name>
         <url-pattern>/Administrador/solicituddetall</url-pattern>
     </servlet-mapping>
@@ -274,6 +278,11 @@
         <url-pattern>/Gerente/ver_docs</url-pattern>
     </servlet-mapping>
 
+    <servlet-mapping>
+        <servlet-name>pverdocs</servlet-name>
+        <url-pattern>/Proveedor/ver_docs</url-pattern>
+    </servlet-mapping>
+    
     <servlet-mapping>
         <servlet-name>credito</servlet-name>
         <url-pattern>/Cliente/credito</url-pattern>
@@ -444,4 +453,4 @@
     
     gconsultasol
     
-    </web-app>
+</web-app>
