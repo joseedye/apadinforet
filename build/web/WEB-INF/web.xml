@@ -21,6 +21,14 @@
         <servlet-name>assign</servlet-name>
         <servlet-class>Controlador.assign</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Extra_provider</servlet-name>
+        <servlet-class>Controlador.Extra_provider</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BankInfo</servlet-name>
+        <servlet-class>Controlador.BankInfo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -434,6 +442,14 @@
     <servlet-mapping>
         <servlet-name>assign</servlet-name>
         <url-pattern>/assign.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Extra_provider</servlet-name>
+        <url-pattern>/Extra_provider.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BankInfo</servlet-name>
+        <url-pattern>/BankInfo.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -85,44 +85,48 @@ function autoretenedor(a){
                          
                        '<div class="form-group col-md-4" >'+
                            '<label for="">Fecha</label>'+
-                           '<input class="form-control" type="date"  name="Fecha">'+
+                           '<input class="form-control" type="date"  name="fechaa">'+
                        '</div>'+
                       '<div class="form-group col-md-4" >'+
                           '<label for="">Resolución</label>'+
-                           '<input type="text" name="Nom" class="form-control" id="" placeholder="123456" maxlength="100" >'+
+                           '<input type="text" name="resola" class="form-control" id="" placeholder="123456" maxlength="100" >'+
                        '</div>'; 
+               
+    var botonEmviar = '<button type="submit" name="guardarformapago" class="btn btn-primary">Guardar</button>';
   
      document.getElementById('botonesauto').innerHTML = a===1 ? soloboton : autoretenedor;
-    
+     document.getElementById('gurdargran').innerHTML = a===1 ? "" : botonEmviar;
 }
 
 function grancontribuyente(a){
     
     var soloboton = '<div class="form-group col-md-4" >'+
                               '<label>&nbsp;</label><br>'+
-                              '<button  onclick="grancontribuyente(2)" name="Cambiar" class="btn btn-primary">Auto retenedor</button>'+
+                              '<button  onclick="grancontribuyente(2)" name="Cambiar" class="btn btn-primary">Gran Contribuyente</button>'+
                          '</div>';
     
     var grancontribuyente = '<div class="form-group col-md-3" >'+
                               '<label>&nbsp;</label><br>'+
-                              '<button  onclick="grancontribuyente(1)" name="Cambiar" class="btn btn-primary">Auto retenedor</button>'+
+                              '<button  onclick="grancontribuyente(1)" name="Cambiar" class="btn btn-primary">Gran Contribuyente</button>'+
                          '</div>'+
                          
                        '<div class="form-group col-md-3" >'+
                            '<label for="">Fecha</label>'+
-                           '<input class="form-control" type="date"  name="Fecha">'+
+                           '<input class="form-control" type="date"  name="fechag">'+
                        '</div>'+
                       '<div class="form-group col-md-3" >'+
                           '<label for="">Resolución</label>'+
-                           '<input type="text" name="Nom" class="form-control" id="" placeholder="123456" maxlength="100" >'+
+                           '<input type="text" name="resolg" class="form-control" id="" placeholder="123456" maxlength="100" >'+
                        '</div>'+
                        '<div class="form-group col-md-3" >'+
                           '<label for="">Código actividad (ICA)</label>'+
-                           '<input type="text" name="Nom" class="form-control" id="" placeholder="123456" maxlength="100" >'+
+                           '<input type="text" name="ica" class="form-control" id="" placeholder="123456" maxlength="100" >'+
                        '</div>'; 
+               
+    var botonEmviar = '<button type="submit" name="guardarformapago" class="btn btn-primary">Guardar</button>';
   
      document.getElementById('grancontribuyente').innerHTML = a===1 ? soloboton : grancontribuyente;
-    
+     document.getElementById('gurdargran').innerHTML = a===1 ? "" : botonEmviar;
 }
 
 function consultar() {

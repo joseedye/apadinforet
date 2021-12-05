@@ -147,28 +147,13 @@
 
 
                                     </div>
+                                    <label for="">Reprecentante legal</label>
+                                    <input type="text" name="rep" class="form-control" id="" readonly=»readonly» value="<%=user.get("reprecentante")%>"  maxlength="150">
+
                                 </div>
 
-                                <label for="">Reprecentante legal</label>
-                                <input type="text" name="rep" class="form-control" id="" readonly=»readonly» value="<%=user.get("reprecentante")%>"  maxlength="150">
-
-                                <div class="form-row" id="botonesauto">
-                                    <div class="form-group col-md-4" >
-
-                                        <label>&nbsp;</label><br>
-                                        <button  onclick="autoretenedor(2)" name="Cambiar" class="btn btn-primary">Auto retenedor</button>
-                                    </div>
-                                </div>
-
-                                <div class="form-row" id="grancontribuyente">
-                                    <div class="form-group col-md-4" >
-                                        <button type="submit"  onclick="grancontribuyente(2)" name="Cambiar" class="btn btn-primary">Gran contribuyente</button>
-                                    </div>
-                                </div>
-
-                                <br></br>
+                                <br>
                                 <a href="#ventana" class="btn btn-primary" data-toggle="modal">Actualizar</a>
-                                <a href="perfil" class="btn btn-primary">Cancelar</a>
 
                                 <br></br>
                                 <!-- Modal --> 
@@ -192,10 +177,11 @@
                                     </div>
                                 </div>
 
-
-
-                                <!-- Modal  confirmacion contraseña--> 
                             </form>
+
+                            <!-- Modal  confirmacion contraseña-->   
+
+
                             <form  name="form2" action="../UpdatePassword.do" method="post">
                                 <div class="form-row changPassword">
                                     <div class="form-group col-md-4">
@@ -213,12 +199,10 @@
                                 </div>
                             </form>
 
-                            <br></br>
-                            <br></br>
-                            <br></br>
 
 
 
+                            <br></br>
 
                             <div style="justify-content:center;" class="form-row">
                                 <div class="form-group col-md-12">
@@ -362,6 +346,47 @@
                             <!-- Content  -->
                             <div style="justify-content:center;" class="form-row">
                                 <div class="form-group col-md-12">
+                                    <div class="card my-12">
+                                        <h5 class="card-header">Auto retenedor / Gran contribuyente</h5>
+
+                                        <div class="form-group">
+                                            <div class="container">
+                                                <form  name="form6" action="../Extra_provider.do">
+                                                    <div>
+
+                                                        <div class="form-row" id="botonesauto">
+                                                            <div class="form-group col-md-4" >
+
+                                                                <label>&nbsp;</label><br>
+                                                                <button  onclick="autoretenedor(2)" name="Cambiar" class="btn btn-primary">Auto retenedor</button>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-row" id="grancontribuyente">
+                                                            <div class="form-group col-md-4" >
+                                                                <button type="submit"  onclick="grancontribuyente(2)" name="Cambiar" class="btn btn-primary">Gran contribuyente</button>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-row" id="gurdargran">
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>      
+
+
+
+
+
+
+                            <!-- Content  -->
+                            <div style="justify-content:center;" class="form-row">
+                                <div class="form-group col-md-12">
                                     <div class="card my-4">
                                         <h5 class="card-header">Informacion Bancaria</h5>
 
@@ -369,68 +394,68 @@
                                             <div class="form-group">
                                                 <div class="container">
                                                     <div class="table-responsive">
+                                                        <form  name="form7" action="../BankInfo.do?">
+                                                            <div class="form-row" id="fomadepago">
+                                                                <div class="form-group col-md-4" >
 
-                                                        <div class="form-row" id="fomadepago">
-                                                            <div class="form-group col-md-4" >
+                                                                    <label for="">Forma de pago</label>
+                                                                    <select class="form-control" name="forma" id="forma" required>
+                                                                        <option disabled selected norequired>Seleccione</option>
+                                                                        <option value="Contado" name="Contado">Contado</option>
+                                                                        <option value="Credito" name="Credito">Credito</option>
+                                                                    </select>                               
+                                                                </div>
+                                                                <div class="form-group col-md-4" >
 
-                                                                <label for="">Forma de pago</label>
-                                                                <select class="form-control" name="Genero" id="genero" required>
-                                                                    <option disabled selected norequired>Seleccione</option>
-                                                                    <option value="Contado" name="Contado">Contado</option>
-                                                                    <option value="Credito" name="Credito">Credito</option>
-                                                                </select>                               
+                                                                    <label for="">Numero de cuenta</label>
+                                                                    <input type="text" name="numerocuenta" class="form-control" id="" placeholder="123456789" required>
+
+                                                                </div>
+                                                                <div class="form-group col-md-4" >
+
+                                                                    <label for="">Tipo</label>
+                                                                    <select class="form-control" name="tipocuenta" id="tipocuenta" required>
+                                                                        <option disabled selected norequired>Seleccione</option>
+                                                                        <option value="Corriente" name="Corriente">Corriente</option>
+                                                                        <option value="Ahorro" name="Ahorro">Ahorro</option>
+                                                                    </select>
+                                                                </div>
                                                             </div>
-                                                            <div class="form-group col-md-4" >
 
-                                                                <label for="">Numero de cuenta</label>
-                                                                <input type="text" name="numerocuenta" class="form-control" id="" placeholder="123456789" required>
+                                                            <div class="form-row" id="fomadepago">
+                                                                <div class="form-group col-md-3" >
 
+                                                                    <label for="">Banco</label>
+                                                                    <input type="text" name="banco" class="form-control" id="banco" placeholder="Banco" >
+
+                                                                </div>
+                                                                <div class="form-group col-md-2" >
+
+                                                                    <label for="">Cod Banco</label>
+                                                                    <input type="text" name="codigobaco" class="form-control" id="" placeholder="123456789" >
+
+                                                                </div>
+                                                                <div class="form-group col-md-2" >
+
+                                                                    <label for="">Sucursal</label>
+                                                                    <input type="text" name="sucursal" class="form-control" id="sucursal" placeholder="Sucursal" >
+
+                                                                </div>
+                                                                <div class="form-group col-md-2" >
+
+                                                                    <label for="">Ciudad</label>
+                                                                    <input type="text" name="ciudad" class="form-control" id="ciudad" placeholder="Bogota" >
+
+                                                                </div>
+                                                                <div class="form-group col-md-3" >
+
+                                                                    <label for="">Pais</label>
+                                                                    <input type="text" name="pais" class="form-control" id="pais" placeholder="Colombia" >
+
+                                                                </div>
                                                             </div>
-                                                            <div class="form-group col-md-4" >
-
-                                                                <label for="">Tipo</label>
-                                                                <select class="form-control" name="tipocuenta" id="tipocuenta" required>
-                                                                    <option disabled selected norequired>Seleccione</option>
-                                                                    <option value="Corriente" name="Corriente">Corriente</option>
-                                                                    <option value="Ahorro" name="Ahorro">Ahorro</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-row" id="fomadepago">
-                                                            <div class="form-group col-md-3" >
-
-                                                                <label for="">Banco</label>
-                                                                <input type="text" name="banco" class="form-control" id="banco" placeholder="Banco" >
-
-                                                            </div>
-                                                            <div class="form-group col-md-2" >
-
-                                                                <label for="">Cod Banco</label>
-                                                                <input type="text" name="codigobaco" class="form-control" id="" placeholder="123456789" >
-
-                                                            </div>
-                                                             <div class="form-group col-md-2" >
-
-                                                                <label for="">Sucursal</label>
-                                                                <input type="text" name="sucursal" class="form-control" id="sucursal" placeholder="Sucursal" >
-
-                                                            </div>
-                                                             <div class="form-group col-md-2" >
-
-                                                                <label for="">Ciudad</label>
-                                                                <input type="text" name="ciudad" class="form-control" id="ciudad" placeholder="Bogota" >
-
-                                                            </div>
-                                                             <div class="form-group col-md-3" >
-
-                                                                <label for="">Pais</label>
-                                                                <input type="text" name="pais" class="form-control" id="pais" placeholder="Colombia" >
-
-                                                            </div>
-                                                        </div>
-                                                         <button type="submit" name="guardarformapago" class="btn btn-primary">Guardar</button>
-
+                                                            <button type="submit" name="guardarformapago" class="btn btn-primary">Guardar</button>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
