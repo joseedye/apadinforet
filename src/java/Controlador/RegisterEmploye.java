@@ -16,6 +16,7 @@ import Util.Utileria;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 import javax.persistence.EntityManagerFactory;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -41,6 +42,7 @@ public class RegisterEmploye extends HttpServlet {
             throws ServletException, IOException {
         
         try {
+             Map<String, String> usersesion = (Map<String, String>) request.getSession().getAttribute("user");
             EntityManagerFactory emf = Conexion.getConexion().getBd();
             TipoUsuarioJpaController usuarioJpa = new TipoUsuarioJpaController(emf);
             
@@ -101,7 +103,7 @@ public class RegisterEmploye extends HttpServlet {
                 
                 request.getSession().setAttribute("msg", "Error, el dato: " + Utileria.msgExPersistence(cause) + " ya existe!");
                 
-                response.sendRedirect("Administrador/empleado_registrar");
+                response.sendRedirect(usersesion.get("TipoUsuario") + "/empleado_registrar");
                 
                 return;
             }
@@ -114,7 +116,7 @@ public class RegisterEmploye extends HttpServlet {
 //            Utileria.enviarCorreo(email, titulo, cuerpo);
 //
             request.getSession().setAttribute("msg", "Usuario registrado exitosamente!");
-            response.sendRedirect("Administrador/empleado_registrar");
+            response.sendRedirect(usersesion.get("TipoUsuario") +"/empleado_registrar");
         } catch (Exception e) {
             String cause = e.getCause().getCause().getMessage();
             request.getSession().setAttribute("msg", "Error, el dato: " + Utileria.msgExPersistence(cause) + " ya existe!");
