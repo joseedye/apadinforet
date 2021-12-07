@@ -7,6 +7,7 @@ package Util;
 
 import DTO.DocumentoPropio;
 import DTO.DocumentoSolicitud;
+import DTO.InfoBancaria;
 import DTO.Solicitud;
 import DTO.Usuario;
 import java.io.BufferedReader;
@@ -60,6 +61,22 @@ public class Utileria {
         return formato.format(date);
     }
 
+      public static Map<String, String> bancaToMap(InfoBancaria banca) {
+       Map<String, String> map = new HashMap<>();
+        map.put("idb",banca.getIdUsuario()+"");
+        map.put("banco",banca.getBanco());
+        map.put("ciudad", banca.getCiudad());
+        map.put("codbanco", banca.getCodBanco());
+        map.put("formap", banca.getFormaPago());
+        map.put("ncuenta", banca.getNumeroCuenta()); 
+        map.put("pais", banca.getPais());
+        map.put("sucursal", banca.getSucursal()); 
+         map.put("tipoc", banca.getTipoCuenta());
+        return map;
+      }
+      
+    
+    
       public static Map<String, String> solicitudToMap(Solicitud sol) {
         Map<String, String> map = new HashMap<>();
         map.put("ids",sol.getIdSolicitud()+"");

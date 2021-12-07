@@ -133,3 +133,7 @@ function consultar() {
     var id = document.getElementById("iduser").value;
     window.location.href = "../SeeDocuments.do?idUserQuery=" + id; 
 }
+
+ $(document).ready(function () {
+                                                $("#ventana2").modal('show');
+                                            });

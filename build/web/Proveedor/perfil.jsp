@@ -24,6 +24,8 @@
 
         String icargar = (String) request.getSession().getAttribute("i");
         Map<String, String> user = (Map<String, String>) request.getSession().getAttribute("user");
+        Map<String, String> banca = (Map<String, String>) request.getSession().getAttribute("banca");
+        
         String userImg = (String) request.getSession().getAttribute("userImg");
     %>
     <body onload="loadPerfil(1)">
@@ -400,24 +402,37 @@
 
                                                                     <label for="">Forma de pago</label>
                                                                     <select class="form-control" name="forma" id="forma" required>
-                                                                        <option disabled selected norequired>Seleccione</option>
-                                                                        <option value="Contado" name="Contado">Contado</option>
+                                                                        <% if(banca.get("formap").equals("Contado")){%>
+                                                                        <option disabled  norequired>Seleccione</option>
+                                                                        <option value="Contado" name="Contado" selected>Contado</option>
                                                                         <option value="Credito" name="Credito">Credito</option>
+                                                                        <% }else { %>
+                                                                        
+                                                                        <option disabled  norequired>Seleccione</option>
+                                                                        <option value="Contado" name="Contado" >Contado</option>
+                                                                        <option value="Credito" name="Credito" selected>Credito</option>
+                                                                        
+                                                                        <% } %>
                                                                     </select>                               
                                                                 </div>
                                                                 <div class="form-group col-md-4" >
 
                                                                     <label for="">Numero de cuenta</label>
-                                                                    <input type="text" name="numerocuenta" class="form-control" id="" placeholder="123456789" required>
+                                                                    <input type="text" name="numerocuenta" class="form-control" id="" value="<%=banca.get("ncuenta")%>" placeholder="123456789" required>
 
                                                                 </div>
                                                                 <div class="form-group col-md-4" >
 
                                                                     <label for="">Tipo</label>
                                                                     <select class="form-control" name="tipocuenta" id="tipocuenta" required>
-                                                                        <option disabled selected norequired>Seleccione</option>
-                                                                        <option value="Corriente" name="Corriente">Corriente</option>
+                                                                        <option disabled  norequired>Seleccione</option>
+                                                                         <% if(banca.get("tipoc").equals("Corriente")){%>
+                                                                        <option value="Corriente" name="Corriente" selected>Corriente</option>
                                                                         <option value="Ahorro" name="Ahorro">Ahorro</option>
+                                                                        <% }else { %>
+                                                                        <option value="Corriente" name="Corriente">Corriente</option>
+                                                                        <option value="Ahorro" name="Ahorro" selected>Ahorro</option>
+                                                                         <% } %>
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -426,31 +441,31 @@
                                                                 <div class="form-group col-md-3" >
 
                                                                     <label for="">Banco</label>
-                                                                    <input type="text" name="banco" class="form-control" id="banco" placeholder="Banco" >
+                                                                    <input type="text" name="banco" class="form-control" id="banco" value="<%=banca.get("banco")%>" placeholder="Banco" >
 
                                                                 </div>
                                                                 <div class="form-group col-md-2" >
 
                                                                     <label for="">Cod Banco</label>
-                                                                    <input type="text" name="codigobaco" class="form-control" id="" placeholder="123456789" >
+                                                                    <input type="text" name="codigobaco" class="form-control" id="" value="<%=banca.get("codbanco")%>" placeholder="123456789" >
 
                                                                 </div>
                                                                 <div class="form-group col-md-2" >
 
                                                                     <label for="">Sucursal</label>
-                                                                    <input type="text" name="sucursal" class="form-control" id="sucursal" placeholder="Sucursal" >
+                                                                    <input type="text" name="sucursal" class="form-control" id="sucursal" value="<%=banca.get("sucursal")%>" placeholder="Sucursal" >
 
                                                                 </div>
                                                                 <div class="form-group col-md-2" >
 
                                                                     <label for="">Ciudad</label>
-                                                                    <input type="text" name="ciudad" class="form-control" id="ciudad" placeholder="Bogota" >
+                                                                    <input type="text" name="ciudad" class="form-control" id="ciudad" value="<%=banca.get("ciudad")%>" placeholder="Bogota" >
 
                                                                 </div>
                                                                 <div class="form-group col-md-3" >
 
                                                                     <label for="">Pais</label>
-                                                                    <input type="text" name="pais" class="form-control" id="pais" placeholder="Colombia" >
+                                                                    <input type="text" name="pais" class="form-control" id="pais" value="<%=banca.get("pais")%>" placeholder="Colombia" >
 
                                                                 </div>
                                                             </div>
@@ -536,7 +551,7 @@
     </div>
     <!-- Page Content  -->
 </div>
-
+ 
 <!-- jQuery Side-bar -->
 <script src="../js/side-bar/extra/jquery-3.3.1.slim.min.js"></script>
 <!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->

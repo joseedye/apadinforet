@@ -8,6 +8,7 @@ package Controlador;
 import DAO.Conexion;
 import DAO.InfoBancariaJpaController;
 import DTO.InfoBancaria;
+import Util.Utileria;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
@@ -71,6 +72,12 @@ public class BankInfo extends HttpServlet {
         
         if(infoJpa.findInfoBancaria(Integer.parseInt(user.get("idUsuario")))!=null){
            infoJpa.edit(info);
+           
+          
+                    InfoBancaria banca = new InfoBancaria();
+                    banca=infoJpa.findInfoBancaria(Integer.parseInt(user.get("idUsuario")));
+                     Map<String, String> BancaMap = Utileria.bancaToMap(banca);
+                     request.getSession().setAttribute("banca", BancaMap);
         }else{
             infoJpa.create(info);
         }

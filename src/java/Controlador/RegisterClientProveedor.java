@@ -73,6 +73,7 @@ public class RegisterClientProveedor extends HttpServlet {
             personaDTO.setRazonSocial(Business);
             personaDTO.setTipoCliente(type);
             personaDTO.setComentario(message);
+            personaDTO.setRepresentanteLegal(nombre+" "+ apellido1 +" "+ apellido2);
             //falta crearla en la bd
            //personaDTO.setCodigopostal(Code);
             
@@ -91,6 +92,7 @@ public class RegisterClientProveedor extends HttpServlet {
             usuarioDto.setIdTipoUsuario(tipousuario);
             usuarioDto.setIdPersona(personaDTO);
             usuarioDto.setIdUsuario(usuariojpa.getUsuarioLast().getIdUsuario() + 1);
+            
             try {
 
                 usuariojpa.create(usuarioDto);
@@ -105,12 +107,12 @@ public class RegisterClientProveedor extends HttpServlet {
             }
 
 //Send Mail with credentials
-            String dominio = "https://inforet.com/";
-            String titulo = "Nuevo Usuario - inforet";
-            String cuerpo = "Bienvenido a inforet, sus datos para "
-                    + "iniciar sesión son:\n *Usuario: " + email + "\n *Contraseña: " + Nit
-                    + "\n \n Visita " + dominio;
-            Utileria.enviarCorreo(email, titulo, cuerpo);
+//            String dominio = "https://inforet.com/";
+//            String titulo = "Nuevo Usuario - inforet";
+//            String cuerpo = "Bienvenido a inforet, sus datos para "
+//                    + "iniciar sesión son:\n *Usuario: " + email + "\n *Contraseña: " + Nit
+//                    + "\n \n Visita " + dominio;
+//            Utileria.enviarCorreo(email, titulo, cuerpo);
 
             request.getSession().setAttribute("msg", "Usuario registrado exitosamente!");
             response.sendRedirect("/login.jsp");

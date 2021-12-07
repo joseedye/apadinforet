@@ -6,8 +6,11 @@
 package Controlador;
 
 import DAO.Conexion;
+import DAO.InfoBancariaJpaController;
 import DAO.UsuarioJpaController;
+import DTO.InfoBancaria;
 import DTO.Usuario;
+import Util.Utileria;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
@@ -179,7 +182,14 @@ public class Notification extends HttpServlet {
             switch (activo) {
                 //aceptado
                 case "1":
-                    //request.getSession().setAttribute("msg", "");
+                    //GARGAR FRMAD DE PAPG
+                    
+                    InfoBancariaJpaController bancaJpa = new InfoBancariaJpaController(emf);
+                    InfoBancaria banca = new InfoBancaria();
+                    banca=bancaJpa.findInfoBancaria(Integer.parseInt(usersesion.get("idUsuario")));
+                     Map<String, String> BancaMap = Utileria.bancaToMap(banca);
+                    
+                    request.getSession().setAttribute("banca", BancaMap);
                     response.sendRedirect("Proveedor/perfil");
                     request.getSession().setAttribute("i", "1");
                     break;
