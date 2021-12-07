@@ -52,7 +52,7 @@ public class UploadFile extends HttpServlet {
     protected void processRequest(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException, Exception {
         
-        String msgFail = "No se subieron estos archivos: ";
+        String msgFail = "No se lograron subir todos los archivos: ";
         boolean fail = false;
         
         EntityManagerFactory emf = Conexion.getConexion().getBd();
@@ -244,6 +244,54 @@ public class UploadFile extends HttpServlet {
                     
                     break;
                 
+                    
+                    case "6":
+                    //si es de perfl proveedor perfil
+                    String rutap = getServletContext().getRealPath("/Files"); //Ruta donde se guardará el archivo.
+                    String nombrearchip[] = new String[]{"", "NIT", "CAMARA DE COMERCIO", "CEDULA DEL REPRECENTAMTE","CERTIFICADO BANCARIO"};
+                    Part archp;
+                    String fileNamep;
+                    for (int p = 1; p <= 4; p++) {
+                        String nombre = "archivo" + p + "";
+                        archp = req.getPart(nombre);
+                        if(archp!=null){
+                        String descp = nombrearchip[p]; //Description file
+                        fileNamep = Paths.get(archp.getSubmittedFileName()).getFileName().toString(); // Nombre Archivo con extension.
+
+                        try (InputStream is = archp.getInputStream()) {
+                            File f = new File(rutap + "/" + fileNamep);
+                            Files.copy(is, f.toPath());
+
+                            //Guardar en base de datos
+                            String rutaDoc = "Files/" + fileNamep;
+                            DocumentoPropioJpaController documentoDao = new DocumentoPropioJpaController(emf);
+                            UsuarioJpaController usuarioDaop = new UsuarioJpaController(emf);
+                            Usuario usuariop = usuarioDaop.findUsuario(idUser);
+                            DocumentoPropio d = new DocumentoPropio();
+                            d.setNombre(descp);
+                            d.setRuta(rutaDoc);
+                            d.setFechaDeSubida(new Date());
+                            d.setIdUsuario(usuariop);
+                            documentoDao.create(d);
+                            
+                        } catch (Exception ex) {
+                            msgFail += fileNamep + " ";
+                            fail = true;
+                        }
+                        }
+                    }
+                    
+                    if (fail) {
+                        req.getSession().setAttribute("msg", msgFail + " .Es posible que ya existan.");
+                        res.sendRedirect("/Error/errorRedir");
+                    } else {
+                        req.getSession().setAttribute("msg", "Archivos Subidos con Exito!");
+                        res.sendRedirect("/" + user.get("TipoUsuario") + "/perfil.jsp");
+                    }
+                    break;
+                
+                    
+                    
                 default:
                     break;
             }

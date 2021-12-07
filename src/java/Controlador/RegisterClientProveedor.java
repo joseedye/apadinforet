@@ -77,7 +77,19 @@ public class RegisterClientProveedor extends HttpServlet {
             //falta crearla en la bd
            //personaDTO.setCodigopostal(Code);
             
-            personajpa.create(personaDTO);
+           
+            try {
+
+                personajpa.create(personaDTO);
+
+            } catch (Exception e) {
+
+                personajpa.destroy(personaDTO.getNumeroDoc());
+                String cause = e.getCause().getCause().getMessage();
+                request.getSession().setAttribute("msg", "Error, el dato: " + Utileria.msgExPersistence(cause) + " ya existe!");
+                response.sendRedirect("./login.jsp");
+                return;
+            }
 
             //crear el usuario
             UsuarioJpaController usuariojpa = new UsuarioJpaController(emf);

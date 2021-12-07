@@ -92,7 +92,7 @@ function autoretenedor(a){
                            '<input type="text" name="resola" class="form-control" id="" placeholder="123456" maxlength="100" >'+
                        '</div>'; 
                
-    var botonEmviar = '<button type="submit" name="guardarformapago" class="btn btn-primary">Guardar</button>';
+    var botonEmviar = '<button type="submit"  class="btn btn-primary">Guardar</button>';
   
      document.getElementById('botonesauto').innerHTML = a===1 ? soloboton : autoretenedor;
      document.getElementById('gurdargran').innerHTML = a===1 ? "" : botonEmviar;
@@ -103,7 +103,7 @@ function grancontribuyente(a){
     var soloboton = '<div class="form-group col-md-4" >'+
                               '<label>&nbsp;</label><br>'+
                               '<button  onclick="grancontribuyente(2)" name="Cambiar" class="btn btn-primary">Gran Contribuyente</button>'+
-                         '</div>';
+                    '</div>';
     
     var grancontribuyente = '<div class="form-group col-md-3" >'+
                               '<label>&nbsp;</label><br>'+

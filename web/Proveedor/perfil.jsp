@@ -25,7 +25,8 @@
         String icargar = (String) request.getSession().getAttribute("i");
         Map<String, String> user = (Map<String, String>) request.getSession().getAttribute("user");
         Map<String, String> banca = (Map<String, String>) request.getSession().getAttribute("banca");
-        
+        Map<String, String> extra = (Map<String, String>) request.getSession().getAttribute("extra");
+
         String userImg = (String) request.getSession().getAttribute("userImg");
     %>
     <body onload="loadPerfil(1)">
@@ -330,10 +331,11 @@
                                                     </table>
 
 
-                                                    <form  name="form4" action="../UploadFile.do?tipo=1" method="post" enctype="multipart/form-data"> 
+                                                    <form  name="form4" action="../UploadFile.do?tipo=6" method="post" enctype="multipart/form-data"> 
                                                         <input type="file" id="getuno" name="archivo1" style="display:none"> 
                                                         <input type="file" id="getdos" name="archivo2"style="display:none"> 
                                                         <input type="file" id="gettres" name="archivo3" style="display:none"> 
+                                                        <input type="file" id="getcuatro" name="archivo4" style="display:none"> 
                                                         <button type="submit" name="subir" class="btn btn-primary">Enviar</button>
                                                     </form>
                                                 </div>
@@ -343,6 +345,75 @@
                                 </div>
                             </div>
 
+
+
+                            <% if (extra != null) {%> 
+
+
+                            <!-- Content  -->
+                            <div style="justify-content:center;" class="form-row">
+                                <div class="form-group col-md-12">
+                                    <div class="card my-12">
+                                        <h5 class="card-header">Auto retenedor / Gran contribuyente</h5>
+
+                                        <div class="form-group">
+                                            <div class="container">
+                                                <form  name="form6" action="../Extra_provider.do">
+                                                    <div>
+
+                                                        <div class="form-row" id="botonesauto">
+
+                                                            <div class="form-group col-md-4" >
+                                                                <label>&nbsp;</label><br>
+                                                                <label class="btn btn-primary">Auto retenedor</label><br>
+                                                               
+                                                            </div>
+
+                                                            <div class="form-group col-md-4" >
+                                                                <label for="">Fecha</label>
+                                                                <input class="form-control" type="date"  value="<%= extra.get("fechar")%>" name="fechaa">
+                                                            </div>
+                                                            <div class="form-group col-md-4" >
+                                                                <label for="">Resolución</label>
+                                                                <input type="text" name="resola" class="form-control" id="" placeholder="123456" value="<%= extra.get("rer")%>" maxlength="100" >
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-row" id="grancontribuyente">
+
+
+                                                            <div class="form-group col-md-3" >
+                                                                <label>&nbsp;</label><br>
+                                                                <label class="btn btn-primary">Gran Contribuyente</label><br>
+                                                            </div>
+
+                                                            <div class="form-group col-md-3" >
+                                                                <label for="">Fecha</label>
+                                                                <input class="form-control" type="date"  value="<%= extra.get("fechag")%>" name="fechag">
+                                                            </div>
+                                                            <div class="form-group col-md-3" >
+                                                                <label for="">Resolución</label>
+                                                                <input type="text" name="resolg" class="form-control" id="" placeholder="123456" value="<%= extra.get("reg") %>" maxlength="100" >
+                                                            </div>
+                                                            <div class="form-group col-md-3" >
+                                                                <label for="">Código actividad (ICA)</label>
+                                                                <input type="text" name="ica" class="form-control" id="" placeholder="123456" value="<%= extra.get("ica")%>" maxlength="100" >
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="form-row" id="gurdargran">
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>   
+
+                            <% } else { %>
 
 
                             <!-- Content  -->
@@ -384,7 +455,8 @@
 
 
 
-
+                            <% }
+                                if (banca != null) { %>
 
                             <!-- Content  -->
                             <div style="justify-content:center;" class="form-row">
@@ -402,17 +474,17 @@
 
                                                                     <label for="">Forma de pago</label>
                                                                     <select class="form-control" name="forma" id="forma" required>
-                                                                        <% if(banca.get("formap").equals("Contado")){%>
+                                                                        <% if (banca.get("formap").equals("Contado")) {%>
                                                                         <option disabled  norequired>Seleccione</option>
                                                                         <option value="Contado" name="Contado" selected>Contado</option>
                                                                         <option value="Credito" name="Credito">Credito</option>
-                                                                        <% }else { %>
-                                                                        
+                                                                        <% } else { %>
+
                                                                         <option disabled  norequired>Seleccione</option>
                                                                         <option value="Contado" name="Contado" >Contado</option>
                                                                         <option value="Credito" name="Credito" selected>Credito</option>
-                                                                        
-                                                                        <% } %>
+
+                                                                        <% }%>
                                                                     </select>                               
                                                                 </div>
                                                                 <div class="form-group col-md-4" >
@@ -426,13 +498,13 @@
                                                                     <label for="">Tipo</label>
                                                                     <select class="form-control" name="tipocuenta" id="tipocuenta" required>
                                                                         <option disabled  norequired>Seleccione</option>
-                                                                         <% if(banca.get("tipoc").equals("Corriente")){%>
+                                                                        <% if (banca.get("tipoc").equals("Corriente")) {%>
                                                                         <option value="Corriente" name="Corriente" selected>Corriente</option>
                                                                         <option value="Ahorro" name="Ahorro">Ahorro</option>
-                                                                        <% }else { %>
+                                                                        <% } else { %>
                                                                         <option value="Corriente" name="Corriente">Corriente</option>
                                                                         <option value="Ahorro" name="Ahorro" selected>Ahorro</option>
-                                                                         <% } %>
+                                                                        <% }%>
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -469,7 +541,7 @@
 
                                                                 </div>
                                                             </div>
-                                                            <button type="submit" name="guardarformapago" class="btn btn-primary">Guardar</button>
+                                                            <button type="submit" name="guardarformapago" class="btn btn-primary">Actualizar</button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -482,8 +554,97 @@
                     </div>
                 </div>
 
+                <% } else { %>
 
+
+                <!--si esta vacia-->
+
+                <div style="justify-content:center;" class="form-row">
+                    <div class="form-group col-md-12">
+                        <div class="card my-4">
+                            <h5 class="card-header">Informacion Bancaria</h5>
+
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <div class="container">
+                                        <div class="table-responsive">
+                                            <form  name="form7" action="../BankInfo.do?">
+                                                <div class="form-row" id="fomadepago">
+                                                    <div class="form-group col-md-4" >
+
+                                                        <label for="">Forma de pago</label>
+                                                        <select class="form-control" name="forma"  id="forma" required>                                                                        
+                                                            <option disabled  selected norequired>Seleccione</option>
+                                                            <option value="Contado" name="Contado" >Contado</option>
+                                                            <option value="Credito" name="Credito">Credito</option>
+
+                                                        </select>                               
+                                                    </div>
+                                                    <div class="form-group col-md-4" >
+
+                                                        <label for="">Numero de cuenta</label>
+                                                        <input type="text" name="numerocuenta" class="form-control" id="" placeholder="123456789" required>
+
+                                                    </div>
+                                                    <div class="form-group col-md-4" >
+
+                                                        <label for="">Tipo</label>
+                                                        <select class="form-control" name="tipocuenta" id="tipocuenta" required>
+                                                            <option disabled  selected norequired>Seleccione</option>                                                                       
+                                                            <option value="Corriente" name="Corriente" >Corriente</option>
+                                                            <option value="Ahorro" name="Ahorro">Ahorro</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-row" id="fomadepago">
+                                                    <div class="form-group col-md-3" >
+
+                                                        <label for="">Banco</label>
+                                                        <input type="text" name="banco" class="form-control" id="banco"  placeholder="Banco" >
+
+                                                    </div>
+                                                    <div class="form-group col-md-2" >
+
+                                                        <label for="">Cod Banco</label>
+                                                        <input type="text" name="codigobaco" class="form-control" id=""  placeholder="123456789" >
+
+                                                    </div>
+                                                    <div class="form-group col-md-2" >
+
+                                                        <label for="">Sucursal</label>
+                                                        <input type="text" name="sucursal" class="form-control" id="sucursal" placeholder="Sucursal" >
+
+                                                    </div>
+                                                    <div class="form-group col-md-2" >
+
+                                                        <label for="">Ciudad</label>
+                                                        <input type="text" name="ciudad" class="form-control" id="ciudad"  placeholder="Bogota" >
+
+                                                    </div>
+                                                    <div class="form-group col-md-3" >
+
+                                                        <label for="">Pais</label>
+                                                        <input type="text" name="pais" class="form-control" id="pais"  placeholder="Colombia" >
+
+                                                    </div>
+                                                </div>
+                                                <button type="submit" name="guardarformapago" class="btn btn-primary">Guardar</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+
+
+
+                <!--mensaje-->
                 <%
+                    }
                     String msg = (String) request.getSession().getAttribute("msg");
                     if (msg != null) {
                 %>
@@ -551,7 +712,7 @@
     </div>
     <!-- Page Content  -->
 </div>
- 
+
 <!-- jQuery Side-bar -->
 <script src="../js/side-bar/extra/jquery-3.3.1.slim.min.js"></script>
 <!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->

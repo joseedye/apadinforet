@@ -39,54 +39,49 @@ public class BankInfo extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        
         Map<String, String> user = (Map<String, String>) request.getSession().getAttribute("user");
         EntityManagerFactory emf = Conexion.getConexion().getBd();
         InfoBancariaJpaController infoJpa = new InfoBancariaJpaController(emf);
-        
+
         try {
-            
-        
-        
-        String numerocuenta = request.getParameter("numerocuenta");
-        String tipocuenta = request.getParameter("tipocuenta");
-        String codigobaco = request.getParameter("codigobaco");
-        String sucursal = request.getParameter("sucursal");
-        String ciudad = request.getParameter("ciudad");
-        String banco = request.getParameter("banco");
-        String forma = request.getParameter("forma");
-        String pais = request.getParameter("pais");
-        
-        
-        InfoBancaria info = new InfoBancaria();
-        
-        info.setIdUsuario(Integer.parseInt(user.get("idUsuario")));
-        info.setNumeroCuenta(numerocuenta);
-        info.setTipoCuenta(tipocuenta);
-        info.setCodBanco(codigobaco);
-        info.setSucursal(sucursal);
-        info.setFormaPago(forma); 
-        info.setCiudad(ciudad);
-        info.setBanco(banco); 
-        info.setPais(pais);
-        
-        if(infoJpa.findInfoBancaria(Integer.parseInt(user.get("idUsuario")))!=null){
-           infoJpa.edit(info);
-           
-          
-                    InfoBancaria banca = new InfoBancaria();
-                    banca=infoJpa.findInfoBancaria(Integer.parseInt(user.get("idUsuario")));
-                     Map<String, String> BancaMap = Utileria.bancaToMap(banca);
-                     request.getSession().setAttribute("banca", BancaMap);
-        }else{
-            infoJpa.create(info);
-        }
-        
-        request.getSession().setAttribute("msg", "informacion guardada correctamente!");
-        response.sendRedirect("Proveedor/perfil");
-      
+
+            String numerocuenta = request.getParameter("numerocuenta");
+            String tipocuenta = request.getParameter("tipocuenta");
+            String codigobaco = request.getParameter("codigobaco");
+            String sucursal = request.getParameter("sucursal");
+            String ciudad = request.getParameter("ciudad");
+            String banco = request.getParameter("banco");
+            String forma = request.getParameter("forma");
+            String pais = request.getParameter("pais");
+
+            InfoBancaria info = new InfoBancaria();
+
+            info.setIdUsuario(Integer.parseInt(user.get("idUsuario")));
+            info.setNumeroCuenta(numerocuenta);
+            info.setTipoCuenta(tipocuenta);
+            info.setCodBanco(codigobaco);
+            info.setSucursal(sucursal);
+            info.setFormaPago(forma);
+            info.setCiudad(ciudad);
+            info.setBanco(banco);
+            info.setPais(pais);
+
+            if (infoJpa.findInfoBancaria(Integer.parseInt(user.get("idUsuario"))) != null) {
+                infoJpa.edit(info);
+            } else {
+                infoJpa.create(info);
+            }
+
+            InfoBancaria banca = new InfoBancaria();
+            banca = infoJpa.findInfoBancaria(Integer.parseInt(user.get("idUsuario")));
+            Map<String, String> BancaMap = Utileria.bancaToMap(banca);
+            request.getSession().setAttribute("banca", BancaMap);
+
+            request.getSession().setAttribute("msg", "informacion guardada correctamente!");
+            response.sendRedirect("Proveedor/perfil");
+
         } catch (Exception e) {
-            
+
             request.getSession().setAttribute("msg", "Error,  intente nuevamente!");
             response.sendRedirect("/Error/errorRedir");
         }

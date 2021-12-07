@@ -7,6 +7,7 @@ package Util;
 
 import DTO.DocumentoPropio;
 import DTO.DocumentoSolicitud;
+import DTO.ExtraProveedor;
 import DTO.InfoBancaria;
 import DTO.Solicitud;
 import DTO.Usuario;
@@ -61,34 +62,31 @@ public class Utileria {
         return formato.format(date);
     }
 
-      public static Map<String, String> bancaToMap(InfoBancaria banca) {
-       Map<String, String> map = new HashMap<>();
-        map.put("idb",banca.getIdUsuario()+"");
-        map.put("banco",banca.getBanco());
+    public static Map<String, String> bancaToMap(InfoBancaria banca) {
+        Map<String, String> map = new HashMap<>();
+        map.put("idb", banca.getIdUsuario() + "");
+        map.put("banco", banca.getBanco());
         map.put("ciudad", banca.getCiudad());
         map.put("codbanco", banca.getCodBanco());
         map.put("formap", banca.getFormaPago());
-        map.put("ncuenta", banca.getNumeroCuenta()); 
+        map.put("ncuenta", banca.getNumeroCuenta());
         map.put("pais", banca.getPais());
-        map.put("sucursal", banca.getSucursal()); 
-         map.put("tipoc", banca.getTipoCuenta());
+        map.put("sucursal", banca.getSucursal());
+        map.put("tipoc", banca.getTipoCuenta());
         return map;
-      }
-      
-    
-    
-      public static Map<String, String> solicitudToMap(Solicitud sol) {
+    }
+
+    public static Map<String, String> solicitudToMap(Solicitud sol) {
         Map<String, String> map = new HashMap<>();
-        map.put("ids",sol.getIdSolicitud()+"");
-        map.put("idc",sol.getIdCliente().getIdUsuario()+"");
+        map.put("ids", sol.getIdSolicitud() + "");
+        map.put("idc", sol.getIdCliente().getIdUsuario() + "");
         map.put("descripcion", sol.getDescripcion());
         map.put("tematica", sol.getTematica());
         map.put("decripciondetallada", sol.getEstatus().getDescripcionDetallada());
-        map.put("fecha", dateToString(sol.getFecha()));      
+        map.put("fecha", dateToString(sol.getFecha()));
         return map;
     }
-      
-      
+
     public static String msgExPersistence(String cause) {
         int inicio = cause.indexOf("entry") + 5;
         int fin = cause.indexOf("for");
@@ -178,14 +176,12 @@ public class Utileria {
 
         //por solucionador
         solicitudes += strp.getSolicitudList1().size();
-        
-      
+
         return solicitudes + "";
 
     }
 
-   
- public static boolean enviarCorreo(String destino, String titulo, String cuerpo) {
+    public static boolean enviarCorreo(String destino, String titulo, String cuerpo) {
         try {
             String emailUsuarioEmisor = "inforetsas@gmail.com";
             String clave = "alpsdfgv12";
@@ -196,6 +192,20 @@ public class Utileria {
             return false;
         }
         return true;
-       }
+    }
+
+    public static Map<String, String> extraToMap(ExtraProveedor extraDTO) {
+        Map<String, String> map = new HashMap<>();
+        map.put("iduserextra", extraDTO.getIdProveedor()+"");
+        
+        map.put("ica", extraDTO.getIca()==null?"":extraDTO.getIca());
+        
+        map.put("reg", extraDTO.getResolucionGranContri()==null?"":extraDTO.getResolucionGranContri());
+        map.put("rer", extraDTO.getResolucionRetenedor()==null?"":extraDTO.getResolucionRetenedor());
+        map.put("fechag", dateToString(extraDTO.getFechaGranContr()));
+        map.put("fechar",dateToString(extraDTO.getFechaRetenedor()));
+        return map;
+
+    }
 
 }

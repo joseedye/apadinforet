@@ -6,8 +6,10 @@
 package Controlador;
 
 import DAO.Conexion;
+import DAO.ExtraProveedorJpaController;
 import DAO.InfoBancariaJpaController;
 import DAO.UsuarioJpaController;
+import DTO.ExtraProveedor;
 import DTO.InfoBancaria;
 import DTO.Usuario;
 import Util.Utileria;
@@ -182,14 +184,27 @@ public class Notification extends HttpServlet {
             switch (activo) {
                 //aceptado
                 case "1":
-                    //GARGAR FRMAD DE PAPG
+                    //GARGAR FORMA DE PAGO
                     
                     InfoBancariaJpaController bancaJpa = new InfoBancariaJpaController(emf);
                     InfoBancaria banca = new InfoBancaria();
                     banca=bancaJpa.findInfoBancaria(Integer.parseInt(usersesion.get("idUsuario")));
+                    if(banca!=null){
                      Map<String, String> BancaMap = Utileria.bancaToMap(banca);
                     
-                    request.getSession().setAttribute("banca", BancaMap);
+                    request.getSession().setAttribute("banca", BancaMap);}
+                    
+                    //CARGAR AUTO RETENEDOR
+                    
+                    ExtraProveedorJpaController extra = new ExtraProveedorJpaController(emf);
+                     ExtraProveedor extraDTO = new  ExtraProveedor();
+                     
+                    extraDTO = extra.findExtraProveedor(Integer.parseInt(usersesion.get("idUsuario")));
+                    if(extraDTO!=null){
+                         Map<String, String> ExtraMap = Utileria.extraToMap(extraDTO);
+                        request.getSession().setAttribute("extra", ExtraMap); 
+                    }
+                    
                     response.sendRedirect("Proveedor/perfil");
                     request.getSession().setAttribute("i", "1");
                     break;

@@ -43,41 +43,47 @@ public class Extra_provider extends HttpServlet {
         Map<String, String> user = (Map<String, String>) request.getSession().getAttribute("user");
         EntityManagerFactory emf = Conexion.getConexion().getBd();
         ExtraProveedorJpaController extraJpa = new ExtraProveedorJpaController(emf);
-
-        
+        String mensaje="informacion guardada correctamente!";
         try {
-        String fechag = request.getParameter("fechag");
-        String resolg = request.getParameter("resolg");
-        String ica = request.getParameter("ica");
-        String resola = request.getParameter("resola");
-        String fechaa = request.getParameter("fechaa");
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-        Date fecg = fechag!=null ? formato.parse(fechag):new Date();        
-        Date feca = fechaa!=null ? formato.parse(fechaa): new Date();
-        
-     
-        ExtraProveedor extra = new ExtraProveedor();
-        extra.setIdProveedor(Integer.parseInt(user.get("idUsuario")));
-        extra.setFechaGranContr(fecg);
-        extra.setResolucionGranContri(resolg);
-        extra.setIca(ica);
-        
-        extra.setFechaRetenedor(feca);
-        extra.setResolucionRetenedor(resola);
-        
-        if (extraJpa.findExtraProveedor(Integer.parseInt(user.get("idUsuario")))!=null){
-            extraJpa.edit(extra);
-        }else{
-        extraJpa.create(extra);
+            String fechag = request.getParameter("fechag");
+            String resolg = request.getParameter("resolg");
+            String ica = request.getParameter("ica");
+            String resola = request.getParameter("resola");
+            String fechaa = request.getParameter("fechaa");
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+            Date fecg = (fechag == "")||(fechag == null) ? null : formato.parse(fechag);
+            Date feca = (fechaa == "")||(fechaa == null) ? null : formato.parse(fechaa);
+
+            ExtraProveedor extra = new ExtraProveedor();
+            extra.setIdProveedor(Integer.parseInt(user.get("idUsuario")));
+            extra.setFechaGranContr(fecg);
+            extra.setResolucionGranContri(resolg);
+            extra.setIca(ica);
+
+            extra.setFechaRetenedor(feca);
+            extra.setResolucionRetenedor(resola);
+
+//            if (extraJpa.findExtraProveedor(Integer.parseInt(user.get("idUsuario"))) != null) {
+//                extraJpa.edit(extra);
+//            } else {
+                extraJpa.create(extra);
+//            }
+
+            ExtraProveedor extraDTO = extraJpa.findExtraProveedor(Integer.parseInt(user.get("idUsuario")));
+            if (extraDTO != null) {
+                Map<String, String> ExtraMap = Utileria.extraToMap(extraDTO);
+                request.getSession().setAttribute("extra", ExtraMap);
+                
+            }
+
+        } catch (Exception e) {
+           
+           mensaje = "Error, intente nuevamente!";
+            
         }
-        
-         } catch (Exception e) {             
-                String cause = e.getCause().getCause().getMessage();                
-                request.getSession().setAttribute("msg", "Error, intente nuevamente!");    
-         }
-        request.getSession().setAttribute("msg", "informacion guardada correctamente!");
+        request.getSession().setAttribute("msg", mensaje);
         response.sendRedirect("Proveedor/perfil");
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
