@@ -48,7 +48,8 @@ Pasos para descargar e iniciar la app
 *abralo desde netbeans
 *ejecutar
 
-
+## Ver en funcionamiento
+* [INFORET](http://inforet.tk/)
 
 ## Colaboración
 ***
