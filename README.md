@@ -15,14 +15,17 @@
 para la empresa nortesantandereana inforet sas
 
 ### Demo
-* Revise el demo en https://35.224.71.157:8080/
-El demo es una app web sencilla alojada en una instancia vm de [Google](https://cloud.google.com/compute) las vistas generadas por jsp con conexión a una base de
-datos mysql en [google SQL](https://cloud.google.com/sql) puede probar inicio de sesión, el usuario de login es usuario: a@ufps.edu.co - contraseña: 1, a su vez 
-puede crear, editar, consultar y eliminar usuarios admiistradores , y actualizar sus datos personales
+* Revise el demo en http://inforet.tk/
+El demo es una app web alojada en una instancia ec2 de [AWS](https://aws.amazon.com/es/ec2/?did=ft_card&trk=ft_card) las vistas generadas por jsp con conexión a una base de
+datos mariadb en RDS de amazon  [RDS](https://aws.amazon.com/es/rds/?did=ft_card&trk=ft_card) puede probar inicio de sesión, el usuario de login administrador es usuario: a@ufps.edu.co - contraseña: 1, El usuario Gerente es : g@ufps.edu.co - contraseña: 1 , El usuario cliente : c@ufps.edu.co - contraseña 1 , a su vez 
+puede crear, editar, consultar y eliminar usuarios admistradores , y actualizar sus datos personales, consultar solicitudes y documentos de todos los usuarios.
+El usuario administrador puede asignar las solicitudes a un empleado encargado del area para que este genere una solucion.
 
 ### Capturas
 ![vista](https://user-images.githubusercontent.com/34385915/144354172-dece5af4-66be-4301-99f0-ce841bf60ad4.jpg)
 Vista principal de la pagina web
+
+![image](https://user-images.githubusercontent.com/34385915/145727658-09401032-4021-4d19-a085-65a8f201702f.png)
 
 
 ![image](https://user-images.githubusercontent.com/34385915/140248261-c630f78e-6617-47d2-98dd-4dfc387faeae.png)
