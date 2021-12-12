@@ -47,6 +47,7 @@ public class QuerySolicitudes extends HttpServlet {
 
         Map<String, Object> mapUsuarios = new HashMap<>();
         Map<String, String> mapcantidad = new HashMap<>();
+        Map<String, Object> mapsolicitud = new HashMap<>();
 
         int i = 0;
         //para empleados solo los que se le asignen
@@ -64,13 +65,13 @@ public class QuerySolicitudes extends HttpServlet {
                         mapUsuarios.put(i + "", Utileria.usuarioToMap(strp.getIdCliente()));
 
                         //numero de total de solicitudes 
-                        mapcantidad.put(i++ + "", strp.getTematica());
+                        mapsolicitud.put(i++ +"",  Utileria.solicitudToMap(strp));
                     }
                 
             }
 
             request.getSession().setAttribute("usuarios", mapUsuarios);
-            request.getSession().setAttribute("cantidad", mapcantidad);
+            request.getSession().setAttribute("solicitud", mapsolicitud);
 
             response.sendRedirect(user.get("TipoUsuario").substring(0, 8) + "/consultasol");
 

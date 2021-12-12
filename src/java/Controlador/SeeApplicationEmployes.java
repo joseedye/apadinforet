@@ -44,36 +44,15 @@ public class SeeApplicationEmployes extends HttpServlet {
        
         Map<String, String> user = (Map<String, String>) request.getSession().getAttribute("user");
         EntityManagerFactory emf = Conexion.getConexion().getBd();
-        UsuarioJpaController usuarioJpa = new UsuarioJpaController(emf);            
         SolicitudJpaController solicitudJpa = new SolicitudJpaController(emf);
         
         int id = Integer.parseInt(request.getParameter("idSolQuery"));
-        Usuario users = usuarioJpa.findUsuario(id);
+        Solicitud sol = solicitudJpa.findSolicitud(id);
                        
-        Map<String, Object> mapSolicitudes = new HashMap<>();
-        int i =0;
-        List <Solicitud> solicitudes  = users.getSolicitudList();
-        
-        for (Iterator<Solicitud> iterator = solicitudes.iterator(); iterator.hasNext();) {
-            Solicitud next = iterator.next();            
-            mapSolicitudes.put(""+ i++ ,Utileria.solicitudToMap(next));
-        }
-        
-        int j =0;
-         Map<String, Object> mapEmpleados = new HashMap<>();
-        List<Usuario> empleados = usuarioJpa.findUsuarioEntities();
-        for (Iterator<Usuario> iterator = empleados.iterator(); iterator.hasNext();) {
-            Usuario next = iterator.next();
-            if(next.getIdTipoUsuario().getIdTipoUsuario()>=5){
-               mapEmpleados.put(""+ j++, Utileria.usuarioToMap(next));
-            }
-        }
-        
-        Map <String , String> userbuscado = Utileria.usuarioToMap(users);
-        request.getSession().setAttribute("empleados", mapEmpleados);
-        request.getSession().setAttribute("usuariobuscado", userbuscado);
-        request.getSession().setAttribute("solicitudes", mapSolicitudes);
-        response.sendRedirect(user.get("TipoUsuario") + "/solicituddetall");
+        Map<String, String> mapSolicitud = Utileria.solicitudToMap(sol);        
+     
+        request.getSession().setAttribute("solicitud", mapSolicitud);
+        response.sendRedirect("Empleado/solicituddetall");
         
     }
 

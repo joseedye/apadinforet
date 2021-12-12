@@ -32,7 +32,7 @@
                 Map<String, String> user = (Map<String, String>) request.getSession().getAttribute("user");
                 String userImg = (String) request.getSession().getAttribute("userImg");
                 Map<String, Object> listUsuarios = (Map<String, Object>) request.getSession().getAttribute("usuarios");
-                Map<String, String> listCantidades = (Map<String, String>) request.getSession().getAttribute("cantidad");
+                Map<String, Object> listSolicitudes = (Map<String, Object>) request.getSession().getAttribute("solicitud");
 
             %>
 
@@ -85,18 +85,18 @@
                                                         for (Map.Entry<String, Object> entry : listUsuarios.entrySet()) {
 
                                                             Map<String, String> map = (Map<String, String>) entry.getValue();
-
+                                                            Map<String, String> mapp =  (Map<String, String>) listSolicitudes.get(entry.getKey());
                                                     %>
                                                     <tr>
                                                         <td><%=map.get("nombres")%></td>
                                                         <td><%=map.get("user")%></td>
                                                         <td>
 
-                                                            <label class="text-center" ><%=listCantidades.get(entry.getKey())%></label>
+                                                            <label class="text-center" ><%=mapp.get("tematica")%></label>
 
                                                         </td>
                                                         <td>
-                                                            <a href="../SeeApplicationEmployes.do?idSolQuery=<%=map.get("idUsuario")%>" title="ver"><i class="fas fa-eye"></i></a>
+                                                            <a href="../SeeApplicationEmployes.do?idSolQuery=<%=mapp.get("ids")%>" title="ver"><i class="fas fa-eye"></i></a>
                                                         </td>
                                                     </tr>
                                                     <% }%>

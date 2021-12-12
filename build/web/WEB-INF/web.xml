@@ -78,6 +78,10 @@
         <servlet-name>gsolicituddetall</servlet-name>
         <jsp-file>/Gerente/solicitud_vista.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>esolicituddetall</servlet-name>
+        <jsp-file>/Empleado/solicitud_vista.jsp</jsp-file>
+    </servlet>
     
    <servlet>
         <servlet-name>verdocs</servlet-name>
@@ -287,6 +291,11 @@
         <servlet-name>gsolicituddetall</servlet-name>
         <url-pattern>/Gerente/solicituddetall</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>esolicituddetall</servlet-name>
+        <url-pattern>/Empleado/solicituddetall</url-pattern>
+    </servlet-mapping>
+    
     
     <servlet-mapping>
         <servlet-name>cverdocs</servlet-name>

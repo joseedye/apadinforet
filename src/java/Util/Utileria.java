@@ -209,15 +209,6 @@ public class Utileria {
 
     }
 
-    public static String cantidadSolicitudesC(Usuario cliente, Usuario empleado) {
-        int solicitudes = 0;
-
-         for (Solicitud strp : empleado.getSolicitudList1()) {      
-             if(strp.getIdCliente().getIdUsuario()==cliente.getIdUsuario()){
-             solicitudes++;}
-         }
-       
-        return solicitudes + "";
-    }
+ 
 
 }
