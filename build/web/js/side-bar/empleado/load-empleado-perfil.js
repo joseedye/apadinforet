@@ -87,3 +87,10 @@ function consultar() {
 
 }
 
+function enviarsol(){
+    
+     var mensaje = document.getElementById("mensaje").value;
+    
+     window.location.href = "../RegisterSolution.do?mensaje="+mensaje;
+}
+

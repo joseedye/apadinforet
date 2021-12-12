@@ -99,7 +99,7 @@
                                                 <tr>
                                                     <td colspan="3">
 
-                                                        <textarea class="form-control" id="message" name="message" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required"></textarea>
+                                                        <textarea class="form-control" id="mensaje" name="message" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required"></textarea>
                                                     </td>
 
                                                 </tr>
@@ -114,7 +114,7 @@
                                                     </td>
                                                     <td>
 
-                                                        <button type="submit" name="subir" class="btn btn-primary">Enviar</button>
+                                                        <button type="submit" onclick="enviarsol()" name="subir" class="btn btn-primary">Enviar</button>
                                                     </td>
                                                 </tr>
                                             </tbody>

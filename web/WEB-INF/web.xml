@@ -33,6 +33,10 @@
         <servlet-name>SeeApplicationEmployes</servlet-name>
         <servlet-class>Controlador.SeeApplicationEmployes</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegisterSolution</servlet-name>
+        <servlet-class>Controlador.RegisterSolution</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -483,6 +487,10 @@
     <servlet-mapping>
         <servlet-name>SeeApplicationEmployes</servlet-name>
         <url-pattern>/SeeApplicationEmployes.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterSolution</servlet-name>
+        <url-pattern>/RegisterSolution.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
