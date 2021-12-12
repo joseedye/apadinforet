@@ -45,8 +45,11 @@ public class assign extends HttpServlet {
         UsuarioJpaController usuarioJpa = new UsuarioJpaController(emf);
         EstatusSolicitudJpaController estsolicitudJpa = new EstatusSolicitudJpaController(emf);
 
+        //id empleado
         int id = Integer.parseInt(request.getParameter("cod"));
+        //id solicitud
         int ids = Integer.parseInt(request.getParameter("ids"));
+        //id cliente
         int idus = Integer.parseInt(request.getParameter("idus"));
 
         Solicitud s = solicitudJpa.findSolicitud(ids);

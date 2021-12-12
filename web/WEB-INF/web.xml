@@ -29,6 +29,10 @@
         <servlet-name>BankInfo</servlet-name>
         <servlet-class>Controlador.BankInfo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SeeApplicationEmployes</servlet-name>
+        <servlet-class>Controlador.SeeApplicationEmployes</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -88,6 +92,10 @@
         <servlet-name>gconsultasol</servlet-name>
         <jsp-file>/Gerente/consulta_solicitud.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>econsultasol</servlet-name>
+        <jsp-file>/Empleado/consulta_solicitud.jsp</jsp-file>
+    </servlet>
     
     
     <!---  VISTAS convertidor de ruta a nombre PERFIL CLIENTE  -->
@@ -110,6 +118,10 @@
     <servlet>
         <servlet-name>pverdocs</servlet-name>
         <jsp-file>/Proveedor/ver_documentos.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>everdocs</servlet-name>
+        <jsp-file>/Empleado/ver_documentos.jsp</jsp-file>
     </servlet>
     <!---  VISTAS convertidor de ruta a nombre PERFIL PROVEEDOR  -->
     <servlet>
@@ -290,6 +302,10 @@
         <servlet-name>pverdocs</servlet-name>
         <url-pattern>/Proveedor/ver_docs</url-pattern>
     </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>everdocs</servlet-name>
+        <url-pattern>/Empleado/ver_docs</url-pattern>
+    </servlet-mapping>
     
     <servlet-mapping>
         <servlet-name>credito</servlet-name>
@@ -337,6 +353,10 @@
     <servlet-mapping>
         <servlet-name>gconsultasol</servlet-name>
         <url-pattern>/Gerente/consultasol</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>econsultasol</servlet-name>
+        <url-pattern>/Empleado/consultasol</url-pattern>
     </servlet-mapping>
     
     <!---  controladores  -->
@@ -450,6 +470,10 @@
     <servlet-mapping>
         <servlet-name>BankInfo</servlet-name>
         <url-pattern>/BankInfo.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SeeApplicationEmployes</servlet-name>
+        <url-pattern>/SeeApplicationEmployes.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

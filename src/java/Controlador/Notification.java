@@ -43,10 +43,8 @@ public class Notification extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         Map<String, String> usersesion = (Map<String, String>) request.getSession().getAttribute("user");
-
         EntityManagerFactory emf = Conexion.getConexion().getBd();
         UsuarioJpaController usuarioDao = new UsuarioJpaController(emf);
-
         String tipoUser = usersesion.get("TipoUsuario");
 
         if (tipoUser.equals("Administrador")) {
@@ -185,26 +183,26 @@ public class Notification extends HttpServlet {
                 //aceptado
                 case "1":
                     //GARGAR FORMA DE PAGO
-                    
+
                     InfoBancariaJpaController bancaJpa = new InfoBancariaJpaController(emf);
                     InfoBancaria banca = new InfoBancaria();
-                    banca=bancaJpa.findInfoBancaria(Integer.parseInt(usersesion.get("idUsuario")));
-                    if(banca!=null){
-                     Map<String, String> BancaMap = Utileria.bancaToMap(banca);
-                    
-                    request.getSession().setAttribute("banca", BancaMap);}
-                    
-                    //CARGAR AUTO RETENEDOR
-                    
-                    ExtraProveedorJpaController extra = new ExtraProveedorJpaController(emf);
-                     ExtraProveedor extraDTO = new  ExtraProveedor();
-                     
-                    extraDTO = extra.findExtraProveedor(Integer.parseInt(usersesion.get("idUsuario")));
-                    if(extraDTO!=null){
-                         Map<String, String> ExtraMap = Utileria.extraToMap(extraDTO);
-                        request.getSession().setAttribute("extra", ExtraMap); 
+                    banca = bancaJpa.findInfoBancaria(Integer.parseInt(usersesion.get("idUsuario")));
+                    if (banca != null) {
+                        Map<String, String> BancaMap = Utileria.bancaToMap(banca);
+
+                        request.getSession().setAttribute("banca", BancaMap);
                     }
-                    
+
+                    //CARGAR AUTO RETENEDOR
+                    ExtraProveedorJpaController extra = new ExtraProveedorJpaController(emf);
+                    ExtraProveedor extraDTO = new ExtraProveedor();
+
+                    extraDTO = extra.findExtraProveedor(Integer.parseInt(usersesion.get("idUsuario")));
+                    if (extraDTO != null) {
+                        Map<String, String> ExtraMap = Utileria.extraToMap(extraDTO);
+                        request.getSession().setAttribute("extra", ExtraMap);
+                    }
+
                     response.sendRedirect("Proveedor/perfil");
                     request.getSession().setAttribute("i", "1");
                     break;
@@ -230,7 +228,8 @@ public class Notification extends HttpServlet {
 
         }
 
-        if (tipoUser.equals("Empleado_administrativoyfinao")) {
+        //si es un empleado
+        if (Integer.parseInt(usersesion.get("idtipou")) >= 5) {
 
             //valido que este activo
             String activo = usersesion.get("activo");
@@ -249,7 +248,10 @@ public class Notification extends HttpServlet {
                     request.getSession().setAttribute("i", "2");
                     response.sendRedirect("Empleado/perfil");
                     break;
-
+                case "3":
+                    request.getSession().setAttribute("msg", "usuario inactivo comuniquese con el administrador");
+                    response.sendRedirect("Error/errorRedir");
+                    break;
             }
 
         }

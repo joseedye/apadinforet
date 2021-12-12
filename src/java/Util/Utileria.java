@@ -30,6 +30,7 @@ public class Utileria {
         map.put("idUsuario", user.getIdUsuario().toString());
         map.put("user", user.getUser());
         map.put("fecCreacion", dateToString(user.getFechaCreacion()));
+        map.put("idtipou", user.getIdTipoUsuario().getIdTipoUsuario() + "");
         map.put("TipoUsuario", user.getIdTipoUsuario().getDesTipoUsuario());
         map.put("nombres", user.getIdPersona().getNombres());
         map.put("apellido1", user.getIdPersona().getApellido1());
@@ -196,16 +197,27 @@ public class Utileria {
 
     public static Map<String, String> extraToMap(ExtraProveedor extraDTO) {
         Map<String, String> map = new HashMap<>();
-        map.put("iduserextra", extraDTO.getIdProveedor()+"");
-        
-        map.put("ica", extraDTO.getIca()==null?"":extraDTO.getIca());
-        
-        map.put("reg", extraDTO.getResolucionGranContri()==null?"":extraDTO.getResolucionGranContri());
-        map.put("rer", extraDTO.getResolucionRetenedor()==null?"":extraDTO.getResolucionRetenedor());
+        map.put("iduserextra", extraDTO.getIdProveedor() + "");
+
+        map.put("ica", extraDTO.getIca() == null ? "" : extraDTO.getIca());
+
+        map.put("reg", extraDTO.getResolucionGranContri() == null ? "" : extraDTO.getResolucionGranContri());
+        map.put("rer", extraDTO.getResolucionRetenedor() == null ? "" : extraDTO.getResolucionRetenedor());
         map.put("fechag", dateToString(extraDTO.getFechaGranContr()));
-        map.put("fechar",dateToString(extraDTO.getFechaRetenedor()));
+        map.put("fechar", dateToString(extraDTO.getFechaRetenedor()));
         return map;
 
+    }
+
+    public static String cantidadSolicitudesC(Usuario cliente, Usuario empleado) {
+        int solicitudes = 0;
+
+         for (Solicitud strp : empleado.getSolicitudList1()) {      
+             if(strp.getIdCliente().getIdUsuario()==cliente.getIdUsuario()){
+             solicitudes++;}
+         }
+       
+        return solicitudes + "";
     }
 
 }

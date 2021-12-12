@@ -52,7 +52,7 @@
                         <div class="img-profile">
                             <img src="/img/fotoadmin.jpg<%//=userImg%>">                        
                         </div>
-
+                        <input  name="iduser"  id="iduser"  value="<%=user.get("idUsuario")%>" type="hidden">
                     </div>
                 </nav>
 
@@ -63,7 +63,7 @@
                             <form name="form1" action="../UpdateProfile.do" method="post">
                                 <div class="form-row">
                                     <div class="form-group col-md-8">
-                                        <h4>Perfil Empleado <%= tipo %></h4>
+                                        <h4>Perfil Empleado <%= tipo%></h4>
                                     </div>
                                 </div>
 
@@ -81,7 +81,7 @@
 
 
                                         <label for="">Tipo Documento</label>
-                                        <input type="text" name="Tipodoc" class="form-control" readonly=»readonly» id=""  value="<%=user.get("tipoDocumento")%>" maxlength="100" required>
+                                        <input type="text" name="Tipodoc" class="form-control" readonly=»readonly» id=""  value="<%=user.get("tipoDocumento").toUpperCase()%>" maxlength="100" required>
 
                                         <label for="">Documento</label>
                                         <input type="number" name="Doc" pattern="[0-9]+" class="form-control"  readonly=»readonly» id="" placeholder="Documento" value="<%=user.get("numDocumento")%>" >
@@ -92,7 +92,7 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="">Primer Apellido</label>
-                                        <input type="text" name="Ape1" class="form-control" id="" readonly=»readonly» value="<%=user.get("apellido1") + ""%>" maxlength="15" required>
+                                        <input type="text" name="Ape1" class="form-control" id="" readonly=»readonly» value="<%=user.get("apellido1").toUpperCase() + ""%>" maxlength="15" required>
 
                                         <label for="">Género</label>
                                         <input type="text" name="Genero" class="form-control" id="" readonly=»readonly» value="<%=user.get("genero")%>" maxlength="15" required>
@@ -113,7 +113,7 @@
 
                                     <div class="form-group col-md-4">
                                         <label for="">Segundo Apellido</label>
-                                        <input type="text" name="Ape2" class="form-control" id="" readonly=»readonly» value="<%=user.get("apellido2")%>" maxlength="15" required>
+                                        <input type="text" name="Ape2" class="form-control" id="" readonly=»readonly» value="<%=user.get("apellido2").toUpperCase()%>" maxlength="15" required>
 
                                         <label for="">Email</label>
                                         <input type="email" name="Email"  pattern="+.@ufps.edu.co" class="form-control" id="emaill" placeholder="@ufps.edu.co"value="<%=user.get("email")%>" maxlength="70" required>

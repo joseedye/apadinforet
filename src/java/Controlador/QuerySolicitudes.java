@@ -6,13 +6,12 @@
 package Controlador;
 
 import DAO.Conexion;
-import DAO.DocumentoPropioJpaController;
 import DAO.SolicitudJpaController;
 import DAO.UsuarioJpaController;
+import DTO.Solicitud;
 import DTO.Usuario;
 import Util.Utileria;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 import javax.persistence.EntityManagerFactory;
@@ -50,20 +49,47 @@ public class QuerySolicitudes extends HttpServlet {
         Map<String, String> mapcantidad = new HashMap<>();
 
         int i = 0;
+        //para empleados solo los que se le asignen
+        if (Integer.parseInt(user.get("idtipou")) >= 5) {
 
-        for (Usuario strp : usuarioDao.findUsuarioEntities()) {
+            Usuario empl = usuarioDao.findUsuario(Integer.parseInt(user.get("idUsuario")));
+            //traer todas las solicitudes            
+            for (Solicitud strp : solicitudDao.findSolicitudEntities()) {
 
-            if(strp.getIdTipoUsuario().getIdTipoUsuario()==3){
-            //agrego el usuario al mapa
-            mapUsuarios.put(i + "", Utileria.usuarioToMap(strp));
+                //donde sea el solucionador 
+               
+                    
+                    if (strp.getIdSolucionador() != null&&strp.getIdSolucionador().getIdUsuario() == empl.getIdUsuario()) {
+                        //agrego el usuario al mapa
+                        mapUsuarios.put(i + "", Utileria.usuarioToMap(strp.getIdCliente()));
 
-            //numero de total de documetos 
-            mapcantidad.put(i++ + "", Utileria.cantidadSolicitudes(strp) + "");
+                        //numero de total de solicitudes 
+                        mapcantidad.put(i++ + "", strp.getTematica());
+                    }
+                
             }
+
+            request.getSession().setAttribute("usuarios", mapUsuarios);
+            request.getSession().setAttribute("cantidad", mapcantidad);
+
+            response.sendRedirect(user.get("TipoUsuario").substring(0, 8) + "/consultasol");
+
+        } else {
+
+            for (Usuario strp : usuarioDao.findUsuarioEntities()) {
+
+                if (strp.getIdTipoUsuario().getIdTipoUsuario() == 3) {
+                    //agrego el usuario al mapa
+                    mapUsuarios.put(i + "", Utileria.usuarioToMap(strp));
+
+                    //numero de total de documetos 
+                    mapcantidad.put(i++ + "", Utileria.cantidadSolicitudes(strp) + "");
+                }
+            }
+            request.getSession().setAttribute("usuarios", mapUsuarios);
+            request.getSession().setAttribute("cantidad", mapcantidad);
+            response.sendRedirect(user.get("TipoUsuario") + "/consultasol");
         }
-        request.getSession().setAttribute("usuarios", mapUsuarios);
-        request.getSession().setAttribute("cantidad", mapcantidad);
-        response.sendRedirect(user.get("TipoUsuario") + "/consultasol");
 
     }
 

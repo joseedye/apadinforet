@@ -12,6 +12,7 @@ import DTO.Solicitud;
 import DTO.Usuario;
 import Util.Utileria;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -26,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author rozo
  */
-public class SeeApplication extends HttpServlet {
+public class SeeApplicationEmployes extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,14 +41,13 @@ public class SeeApplication extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+       
         Map<String, String> user = (Map<String, String>) request.getSession().getAttribute("user");
         EntityManagerFactory emf = Conexion.getConexion().getBd();
-        UsuarioJpaController usuarioJpa = new UsuarioJpaController(emf);
-       // TipoUsuario tipousuario = usuarioJpa.findTipoUsuario(1);        
+        UsuarioJpaController usuarioJpa = new UsuarioJpaController(emf);            
         SolicitudJpaController solicitudJpa = new SolicitudJpaController(emf);
         
-        int id = Integer.parseInt(request.getParameter("idUserQuery"));
+        int id = Integer.parseInt(request.getParameter("idSolQuery"));
         Usuario users = usuarioJpa.findUsuario(id);
                        
         Map<String, Object> mapSolicitudes = new HashMap<>();
@@ -74,6 +74,7 @@ public class SeeApplication extends HttpServlet {
         request.getSession().setAttribute("usuariobuscado", userbuscado);
         request.getSession().setAttribute("solicitudes", mapSolicitudes);
         response.sendRedirect(user.get("TipoUsuario") + "/solicituddetall");
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

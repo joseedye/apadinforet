@@ -38,35 +38,47 @@ public class UpdatePassword extends HttpServlet {
         try {
             EntityManagerFactory emf = Conexion.getConexion().getBd();
             Map<String, String> user = (Map<String, String>) req.getSession().getAttribute("user");
-            
+
             String anterior = req.getParameter("ContraAnt");
             String nueva = req.getParameter("ContraNueva");
-            
+
             String contraguardada = user.get("contra");
             String usuarioo = user.get("user");
-            
+
             UsuarioJpaController usuarioDao = new UsuarioJpaController(emf);
 
             if (anterior.equals(contraguardada)) {
-                Usuario usuario = usuarioDao.findUsuario(usuarioo); 
+                Usuario usuario = usuarioDao.findUsuario(usuarioo);
                 usuario.setPassword(nueva);
                 usuarioDao.edit(usuario);
                 user = Utileria.usuarioToMap(usuarioDao.findUsuario(usuarioo));
                 req.getSession().setAttribute("user", user);
                 req.getSession().setAttribute("msg", "se ha cambiado exitosamente su contraseña");
-                res.sendRedirect(user.get("TipoUsuario")+"/perfil");
+                if (Integer.parseInt(user.get("idtipou")) >= 5) {
+
+                    res.sendRedirect(user.get("TipoUsuario").substring(0, 8) + "/perfil");
+                } else {
+
+                    res.sendRedirect(user.get("TipoUsuario") + "/perfil");
+                }
             } else {
                 req.getSession().setAttribute("msg", "Error,no se ha podido cambiar la contraseña");
-                res.sendRedirect(user.get("TipoUsuario")+"/perfil");
+                if (Integer.parseInt(user.get("idtipou")) >= 5) {
+
+                    res.sendRedirect(user.get("TipoUsuario").substring(0, 8) + "/perfil");
+                } else {
+
+                    res.sendRedirect(user.get("TipoUsuario") + "/perfil");
+                }
+
             }
-            
+
         } catch (Exception e) {
             req.getSession().setAttribute("msg", "Error,no se ha podido cambiar la contraseña");
-                res.sendRedirect("/Error/errorRedir");
-            
+            res.sendRedirect("/Error/errorRedir");
+
         }
     }
-        
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

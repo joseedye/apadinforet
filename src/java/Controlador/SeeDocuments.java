@@ -83,7 +83,12 @@ public class SeeDocuments extends HttpServlet {
         }
         req.getSession().setAttribute("usuariobuscado", mapUsuario);        
         req.getSession().setAttribute("documentos", mapDocumento);
+        if (Integer.parseInt(usersesion.get("idtipou")) >= 5){
+           res.sendRedirect(usersesion.get("TipoUsuario").substring(0, 8) + "/ver_docs"); 
+        }else{
+        
         res.sendRedirect(usersesion.get("TipoUsuario") + "/ver_docs");
+        }
         
     }
 

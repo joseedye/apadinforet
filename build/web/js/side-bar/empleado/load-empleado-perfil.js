@@ -17,10 +17,10 @@ var sidebar =   '<div class="sidebar-header">'+
                         '</a>'+
                         '<ul class="collapse list-unstyled" id="documentsSubmenu">'+
                             '<li>'+
-                                '<a href="../QueryTypeDocuments.do">Nuevo</a>'+
+                                '<a href="./documento_nuevo.jsp">Nuevo</a>'+
                             '</li>'+
                             '<li>'+
-                                '<a href="../QueryDocuments.do">Consultar</a>'+
+                                '<a href="#" onclick="consultar()">Consultar</a>'+
                             '</li>'+
                         '</ul>'+
                     '</li>'+
@@ -32,7 +32,7 @@ var sidebar =   '<div class="sidebar-header">'+
                         '</a>'+
                     '</li>'+
                      '<li id="livisitas" >'+
-                        '<a href="../QueryVisitas.do">'+
+                        '<a href="../QueryVentas.do">'+
                             '<i class="fa fa-building"></i>'+
                             '&nbspVentas'+
                         '</a>'+
@@ -79,5 +79,11 @@ function loadEmpresas(){
 }
 
 
+function consultar() {
+    var id = document.getElementById("iduser").value;
+    window.location.href = "../SeeDocuments.do?idUserQuery=" + id;
 
+    console.log("id es " + id);
+
+}
 
