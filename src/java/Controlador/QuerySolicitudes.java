@@ -60,7 +60,7 @@ public class QuerySolicitudes extends HttpServlet {
                 //donde sea el solucionador 
                
                     
-                    if (strp.getIdSolucionador() != null&&strp.getIdSolucionador().getIdUsuario() == empl.getIdUsuario()) {
+                    if (strp.getIdSolucionador() != null&&strp.getIdSolucionador().getIdUsuario() == empl.getIdUsuario()&&strp.getEstatus().getIdEstatus()==2) {
                         //agrego el usuario al mapa
                         mapUsuarios.put(i + "", Utileria.usuarioToMap(strp.getIdCliente()));
 

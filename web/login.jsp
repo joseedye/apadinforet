@@ -37,7 +37,8 @@
 
                             <input id="idbtn" type="submit" value="Iniciar sesión" class="button">
                             <div  class="text-center"> 
-                                <a href="Sesion/recuperacion_clave">¿Olvidaste tu clave?</a>
+                                <!--<a href="Sesion/recuperacion_clave">¿Olvidaste tu clave?</a>-->
+                                  <a href="/">Atras</a>
                             </div>
                             <hr/>
                             <div id="gSignIn"></div>  

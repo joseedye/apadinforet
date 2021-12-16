@@ -30,13 +30,7 @@ var sidebar =   '<div class="sidebar-header">'+
                             '<i class="fas fa-question"></i>'+
                             '&nbspSolicitudes'+
                         '</a>'+
-                    '</li>'+
-                     '<li id="livisitas" >'+
-                        '<a href="../QueryVentas.do">'+
-                            '<i class="fa fa-building"></i>'+
-                            '&nbspVentas'+
-                        '</a>'+
-                    '</li>'+                    
+                    '</li>'+                                     
                     '<li>'+
                         '<a href="../LogOut.do">'+
                             '<i class="fas fa-lock">'+'</i>'+
@@ -94,3 +88,28 @@ function enviarsol(){
      window.location.href = "../RegisterSolution.do?mensaje="+mensaje;
 }
 
+
+function validar() {
+
+
+    if ($("#file1").val() === "" && $("#file2").val() === "" && $("#file3").val() === "") {
+        alert("Seleccione almenos un archivo");
+        return;
+    }
+
+    var descripcion1 = document.getElementById('desc1').value;
+    var descripcion2 = document.getElementById('desc2').value;
+    var descripcion3 = document.getElementById('desc3').value;
+
+
+
+    var des = '<input class="form-control" type="text" id="descr1" value="' + descripcion1 + '" name="desc1" style="display:none"/>' +
+            '<input class="form-control" type="text" id="descr2" value="' + descripcion2 + '" name="desc2" style="display:none"/>' +
+            '<input class="form-control" type="text" id="descr3" value="' + descripcion3 + '" name="desc3" style="display:none" />';
+
+
+
+    document.getElementById('insertdescripcion').innerHTML = des;
+
+    document.form4.submit();
+}

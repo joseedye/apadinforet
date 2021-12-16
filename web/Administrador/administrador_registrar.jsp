@@ -116,7 +116,7 @@
 
 
                                     </select>
-
+                                    <input type=hidden name="Paiss"   id="Paiss" >
                                     <label for="">Teléfono</label>
                                     <input type="number" name="Tel1" min="0" class="form-control" id="Tel1" >
                                 </div>
@@ -257,14 +257,11 @@
             var select = document.getElementById('pais');
             select.addEventListener('change',
                     function () {
-
-
-                        console.log("entre a pais")
                         var selectedOption = this.options[select.selectedIndex];
                         var opcion = selectedOption.value;
                         document.getElementById('Tel1').value = opcion;
-
-
+                        document.getElementById('Paiss').value = $('select[name="Pais"] option:selected').text();
+                               
                     });
 
 

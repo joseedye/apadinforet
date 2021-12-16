@@ -178,8 +178,13 @@
         <script src="../js/side-bar/extra/menu-button.js"></script>
         <script src="../js/side-bar/extra/bootstrap.min.js"></script>   
         <script src="../js/side-bar/empleado/load-empleado-perfil.js"></script>
-        <!-- jQuery Side-bar -->        
+        <!-- jQuery Side-bar yeny esta programando  -->        
 
+        <script>
+                                            $(document).ready(function () {
+                                                $("#ventana2").modal('show');
+                                            });
 
+        </script> 
     </body>
 </html>

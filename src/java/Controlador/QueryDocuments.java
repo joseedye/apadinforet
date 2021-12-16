@@ -153,7 +153,7 @@ public class QueryDocuments extends HttpServlet {
 
                     for (Usuario strp : usuarioDao.findUsuarioEntities()) {
                         int tipo = strp.getIdTipoUsuario().getIdTipoUsuario();
-                        if (tipo == 5) {
+                        if (tipo >= 5) {
                             mapUsuarios.put(i + "", Utileria.usuarioToMap(strp));
                             mapcantidad.put(i++ + "", Utileria.cantidadDocumento(strp) + "");
                         }

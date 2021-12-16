@@ -85,7 +85,7 @@
                                                         for (Map.Entry<String, Object> entry : listUsuarios.entrySet()) {
 
                                                             Map<String, String> map = (Map<String, String>) entry.getValue();
-                                                            Map<String, String> mapp =  (Map<String, String>) listSolicitudes.get(entry.getKey());
+                                                            Map<String, String> mapp = (Map<String, String>) listSolicitudes.get(entry.getKey());
                                                     %>
                                                     <tr>
                                                         <td><%=map.get("nombres")%></td>
@@ -118,7 +118,32 @@
                     </div>
                 </div>                                  
 
+                <%
+                    String msg = (String) request.getSession().getAttribute("msg");
+                    if (msg != null) {
+                %>
 
+                <!-- Modal success -->                        
+                <div class="modal fade" id="ventana2" tabindex="-1" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Mensaje</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p> <%=msg%> </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal success -->
+
+                <%   }
+                    request.getSession().removeAttribute("msg");
+                %>
             </div>
         </div>
 

@@ -37,6 +37,10 @@
         <servlet-name>RegisterSolution</servlet-name>
         <servlet-class>Controlador.RegisterSolution</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Settings</servlet-name>
+        <servlet-class>Controlador.Settings</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -46,6 +50,12 @@
         <servlet-name>perfila</servlet-name>
         <jsp-file>/Administrador/perfil.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>config</servlet-name>
+        <jsp-file>/Administrador/configuraciones.jsp</jsp-file>
+    </servlet>
+    
+    
     <servlet>
         <servlet-name>registrara</servlet-name>
         <jsp-file>/Administrador/administrador_registrar.jsp</jsp-file>
@@ -249,6 +259,12 @@
         <url-pattern>/Administrador</url-pattern>
         <url-pattern>/Administrador/perfil</url-pattern>
     </servlet-mapping>
+     <servlet-mapping>
+        <servlet-name>config</servlet-name>
+        <url-pattern>/Administrador/config</url-pattern>       
+    </servlet-mapping>
+    
+    
     <servlet-mapping>
         <servlet-name>registrara</servlet-name>
         <url-pattern>/Administrador/administrador_registrar</url-pattern>
@@ -491,6 +507,10 @@
     <servlet-mapping>
         <servlet-name>RegisterSolution</servlet-name>
         <url-pattern>/RegisterSolution.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Settings</servlet-name>
+        <url-pattern>/Settings.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

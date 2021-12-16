@@ -40,12 +40,12 @@ public class RegisterEmploye extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         try {
-             Map<String, String> usersesion = (Map<String, String>) request.getSession().getAttribute("user");
+            Map<String, String> usersesion = (Map<String, String>) request.getSession().getAttribute("user");
             EntityManagerFactory emf = Conexion.getConexion().getBd();
             TipoUsuarioJpaController usuarioJpa = new TipoUsuarioJpaController(emf);
-            
+
             String nombre = request.getParameter("Nom");
             String tipodoc = request.getParameter("Tipodoc");
             String documento = request.getParameter("Doc");
@@ -59,52 +59,47 @@ public class RegisterEmploye extends HttpServlet {
             String direccion = request.getParameter("Dire");
             String pais = request.getParameter("pais");
             String tipo = request.getParameter("tipo");
-            
+
             SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
             Date fecNacimiento = formato.parse(fecha);
             PersonaJpaController personajpa = new PersonaJpaController(emf);
-            
-            Persona personaDTO = new Persona(documento, nombre, apellido1, apellido2, fecNacimiento, tipodoc, direccion, telefono1, telefono2, email);
+
+            Persona personaDTO = new Persona(documento, nombre, apellido1, apellido2, fecNacimiento, tipodoc, direccion, telefono1,telefono2, email);
             personaDTO.setGenero(genero);
             personaDTO.setPais(pais);
-            
+
+            //crear el tipo usuario
+            TipoUsuario tipousuario;
+            if ("planta".equals(tipo)) {
+               personaDTO.setTipoContrato("Planta");
+            } else {
+              personaDTO.setTipoContrato("Independiente");
+            }
+
             personajpa.create(personaDTO);
 
             //crear el usuario
             UsuarioJpaController usuariojpa = new UsuarioJpaController(emf);
             Date fecCreacion = new Date();
-            Usuario usuarioDto = new Usuario(email, documento, fecCreacion, "2");
+            Usuario usuarioDto = new Usuario(email, documento, fecCreacion, "3");
 
-            //crear el tipo usuario
-            TipoUsuario tipousuario;
-            
-            if ("planta".equals(tipo)) {
-                
-                tipousuario = usuarioJpa.findTipoUsuario(5);
-                
-            } else {
-                
-                tipousuario = usuarioJpa.findTipoUsuario(6);
-                
-            }
-            
-            usuarioDto.setIdTipoUsuario(tipousuario);
+            usuarioDto.setIdTipoUsuario(usuarioJpa.findTipoUsuario(10));
             usuarioDto.setIdPersona(personaDTO);
             usuarioDto.setIdUsuario(usuariojpa.getUsuarioLast().getIdUsuario() + 1);
             try {
-                
+
                 usuariojpa.create(usuarioDto);
-                
+
             } catch (Exception e) {
-                
+
                 personajpa.destroy(personaDTO.getNumeroDoc());
-                
+
                 String cause = e.getCause().getCause().getMessage();
-                
+
                 request.getSession().setAttribute("msg", "Error, el dato: " + Utileria.msgExPersistence(cause) + " ya existe!");
-                
+
                 response.sendRedirect(usersesion.get("TipoUsuario") + "/empleado_registrar");
-                
+
                 return;
             }
 //Send Mail with credentials
@@ -116,7 +111,7 @@ public class RegisterEmploye extends HttpServlet {
 //            Utileria.enviarCorreo(email, titulo, cuerpo);
 //
             request.getSession().setAttribute("msg", "Usuario registrado exitosamente!");
-            response.sendRedirect(usersesion.get("TipoUsuario") +"/empleado_registrar");
+            response.sendRedirect(usersesion.get("TipoUsuario") + "/empleado_registrar");
         } catch (Exception e) {
             String cause = e.getCause().getCause().getMessage();
             request.getSession().setAttribute("msg", "Error, el dato: " + Utileria.msgExPersistence(cause) + " ya existe!");

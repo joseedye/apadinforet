@@ -40,12 +40,6 @@ var sidebar = '<div class="sidebar-header">' +
         '&nbspSolicitudes' +
         '</a>' +
         '</li>' +
-        '<li id="livisitas" >' +
-        '<a href="../QueryVentas.do">' +
-        '<i class="fa fa-building"></i>' +
-        '&nbspVentas' +
-        '</a>' +
-        '</li>' +
         '<li>' +
         '<a href="../LogOut.do">' +
         '<i class="fas fa-lock">' + '</i>' +

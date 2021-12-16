@@ -161,7 +161,7 @@
      <%
                     String msg = (String) request.getSession().getAttribute("msg");
                     if (msg != null) {
-                %>
+                %>  
                 <!-- Modal success -->                        
                 <div class="modal fade" id="ventana2" tabindex="-1" role="dialog">
                     <div class="modal-dialog">

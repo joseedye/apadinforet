@@ -109,7 +109,7 @@
 
                                                     </td>
                                                     <td>
-                                                        <input type="file" id="getuno" name="archivo" >                                                                                                            
+                                                        <!--<input type="file" id="getuno" name="archivo" >-->                                                                                                            
 
                                                     </td>
                                                     <td>

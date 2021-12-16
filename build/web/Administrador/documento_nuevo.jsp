@@ -47,7 +47,7 @@
                             <span>Menú</span>
                         </button>
                         <div>
-                            <h5><%=user.get("nombres") + ""%></h5>
+                            <h5><%=user.get("nombres").toUpperCase() + ""%></h5>
                         </div>
                         <div class="img-profile">
                             <img src="<%=userImg%>">                        

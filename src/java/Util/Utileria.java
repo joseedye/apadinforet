@@ -10,6 +10,7 @@ import DTO.DocumentoSolicitud;
 import DTO.ExtraProveedor;
 import DTO.InfoBancaria;
 import DTO.Solicitud;
+import DTO.TipoSolicitud;
 import DTO.Usuario;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -44,7 +45,6 @@ public class Utileria {
         map.put("telefono1", user.getIdPersona().getTelefono1() + "");
         map.put("telefono2", user.getIdPersona().getTelefono2() + "");
         map.put("activo", user.getActivo() + "");
-        //map.put("activo", user.getActivo() + ""); crear en la bd ya
         map.put("contra", user.getPassword());
         map.put("pais", user.getIdPersona().getPais());
         map.put("comentario", user.getIdPersona().getComentario());
@@ -209,6 +209,7 @@ public class Utileria {
 
     }
 
+  
  
 
 }

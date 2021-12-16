@@ -71,7 +71,7 @@
                                                     <th scope="col">
 
                                             <div class="form-check form-switch">
-                                                <input onclick="loadCheck(1);" class="form-check-input" type="checkbox" value="empleado" id="fempleado" <% if ("true".equals(empleado)) {%>checked<%} %>>
+                                                <input onclick="loadCheck('');" class="form-check-input" type="checkbox" value="empleado" id="fempleado" <% if ("true".equals(empleado)) {%>checked<%} %>>
                                                 <label  class="form-check-label" for="flexSwitchCheckDefault">Empleados</label>
 
 
@@ -79,20 +79,20 @@
                                             </th>
                                             <th scope="col">
                                             <div class="form-check form-switch">
-                                                <input onclick="loadCheck(2);" class="form-check-input" type="checkbox" value="cliente" id="fcliente" <% if ("true".equals(cliente)) {%>checked<%} %>>
+                                                <input onclick="loadCheck();" class="form-check-input" type="checkbox" value="cliente" id="fcliente" <% if ("true".equals(cliente)) {%>checked<%} %>>
                                                 <label class="form-check-label" for="flexSwitchCheckDefault">Clientes</label>
                                             </div>
                                             </th>
                                             <th scope="col">
                                             <div class="form-check form-switch">
-                                                <input onclick="loadCheck(3);" class="form-check-input" value="proveedores" type="checkbox" id="fproveedor" <% if ("true".equals(proveedor)) {%>checked<%} %>>
+                                                <input onclick="loadCheck();" class="form-check-input" value="proveedores" type="checkbox" id="fproveedor" <% if ("true".equals(proveedor)) {%>checked<%} %>>
                                                 <label class="form-check-label" for="flexSwitchCheckDefault">Proveedores</label>
                                             </div> 
 
                                             </th>
                                             <th scope="col">
                                             <div class="form-check form-switch">
-                                                <input onclick="loadCheck(4);" class="form-check-input" type="checkbox" value="gerente" id="fgerente" <% if ("true".equals(gerente)) {%>checked<%}%>>
+                                                <input onclick="loadCheck();" class="form-check-input" type="checkbox" value="gerente" id="fgerente" <% if ("true".equals(gerente)) {%>checked<%}%>>
                                                 <label class="form-check-label" for="flexSwitchCheckDefault">Directivo</label>
                                             </div>
                                             </th>
@@ -165,23 +165,23 @@
                                         </div>
 
 
-
                                         <!-- Modal  -->
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!-- Content  -->
-
-
-
                     </div>
-                </div>                                  
-
-
+                </div>                              
             </div>
         </div>
 
+        <%            
+            request.getSession().removeAttribute("empleado");
+            request.getSession().removeAttribute("gerente");
+            request.getSession().removeAttribute("proveedor");
+           request.getSession().removeAttribute("cliente");
+        %>
 
         <!-- jQuery Side-bar -->
         <script src="../js/side-bar/extra/jquery-3.3.1.slim.min.js"></script>

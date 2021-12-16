@@ -46,7 +46,7 @@ public class RegisterSolution extends HttpServlet {
         String mensaje = request.getParameter("mensaje");
         Map<String, String> solicitud = (Map<String, String>) request.getSession().getAttribute("solicitud");
         Solicitud sol = solicitudJpa.findSolicitud(Integer.parseInt(solicitud.get("ids")));
-        //sol.setSolucion(mensaje);
+        sol.setSolucion(mensaje);
         sol.setEstatus(estatusJpa.findEstatusSolicitud(3));
         
         try {
@@ -55,7 +55,7 @@ public class RegisterSolution extends HttpServlet {
             rta="Hubo un error Intente nuevamente.";
         }
         
-      // request.getSession().setAttribute("solicitud", mapSolicitud);
+        request.getSession().setAttribute("msg", rta);
         response.sendRedirect("QuerySolicitudes.do");
         
     }

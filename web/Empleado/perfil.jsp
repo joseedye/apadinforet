@@ -46,7 +46,7 @@
                             <span>Menú</span>
                         </button>
                         <div>
-                            <h5><%=user.get("nombres").toUpperCase() + ""%></h5>
+                            <h5><%=user.get("nombres").toUpperCase() + " "+user.get("apellido1").toUpperCase()+ " "+user.get("apellido2").toUpperCase()%></h5>
                         </div>
 
                         <div class="img-profile">
@@ -204,34 +204,6 @@
                         <%   }
                             request.getSession().removeAttribute("msg");
                         %>
-
-
-
-
-
-
-                        <!-- Modal notificacion -->                        
-                        <div class="modal fade" id="ventana3" tabindex="-1" role="dialog">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Alerta</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Nuevo usuario creado</p>
-                                    </div>
-                                    <div class="modal-footer">            
-                                        <button type="submit"  class="btn btn-primary">ver</button>
-                                        <button type="button" class="btn btn-primary">Mas tarde</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Modal notificacion -->
-
 
                     </div>
                 </div>

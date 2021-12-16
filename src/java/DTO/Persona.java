@@ -46,7 +46,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Persona.findByComentario", query = "SELECT p FROM Persona p WHERE p.comentario = :comentario"),
     @NamedQuery(name = "Persona.findByTipoCliente", query = "SELECT p FROM Persona p WHERE p.tipoCliente = :tipoCliente"),
     @NamedQuery(name = "Persona.findByRazonSocial", query = "SELECT p FROM Persona p WHERE p.razonSocial = :razonSocial"),
-    @NamedQuery(name = "Persona.findByRepresentanteLegal", query = "SELECT p FROM Persona p WHERE p.representanteLegal = :representanteLegal")})
+    @NamedQuery(name = "Persona.findByRepresentanteLegal", query = "SELECT p FROM Persona p WHERE p.representanteLegal = :representanteLegal"),
+    @NamedQuery(name = "Persona.findByTipoContrato", query = "SELECT p FROM Persona p WHERE p.tipoContrato = :tipoContrato")})
 public class Persona implements Serializable {
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
@@ -77,7 +78,6 @@ public class Persona implements Serializable {
     @Basic(optional = false)
     @Column(name = "telefono1")
     private String telefono1;
-    @Basic(optional = false)
     @Column(name = "telefono2")
     private String telefono2;
     @Basic(optional = false)
@@ -93,6 +93,8 @@ public class Persona implements Serializable {
     private String razonSocial;
     @Column(name = "representante_legal")
     private String representanteLegal;
+    @Column(name = "tipo_contrato")
+    private String tipoContrato;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPersona")
     private List<Usuario> usuarioList;
 
@@ -103,7 +105,7 @@ public class Persona implements Serializable {
         this.numeroDoc = numeroDoc;
     }
 
-    public Persona(String numeroDoc, String nombres, String apellido1, String apellido2, Date fechaNac, String tipoDoc, String direccion, String telefono1, String telefono2, String email) {
+    public Persona(String numeroDoc, String nombres, String apellido1, String apellido2, Date fechaNac, String tipoDoc, String direccion, String telefono1, String telefono2,String email) {
         this.numeroDoc = numeroDoc;
         this.nombres = nombres;
         this.apellido1 = apellido1;
@@ -244,6 +246,14 @@ public class Persona implements Serializable {
         this.representanteLegal = representanteLegal;
     }
 
+    public String getTipoContrato() {
+        return tipoContrato;
+    }
+
+    public void setTipoContrato(String tipoContrato) {
+        this.tipoContrato = tipoContrato;
+    }
+    
     @XmlTransient
     public List<Usuario> getUsuarioList() {
         return usuarioList;
@@ -252,7 +262,7 @@ public class Persona implements Serializable {
     public void setUsuarioList(List<Usuario> usuarioList) {
         this.usuarioList = usuarioList;
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 0;

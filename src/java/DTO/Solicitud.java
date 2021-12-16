@@ -13,6 +13,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -63,7 +64,11 @@ public class Solicitud implements Serializable {
     private Usuario idSolucionador;
     @OneToMany(mappedBy = "idSolicitud")
     private List<DocumentoSolicitud> documentoSolicitudList;
-
+    @Lob
+    @Column(name = "solucion")
+    private String solucion;
+    
+    
     public Solicitud() {
     }
 
@@ -134,6 +139,15 @@ public class Solicitud implements Serializable {
         this.idSolucionador = idSolucionador;
     }
 
+    
+ public String getSolucion() {
+        return solucion;
+    }
+
+    public void setSolucion(String solucion) {
+        this.solucion = solucion;
+    }
+    
     @XmlTransient
     public List<DocumentoSolicitud> getDocumentoSolicitudList() {
         return documentoSolicitudList;

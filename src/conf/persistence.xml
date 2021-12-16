@@ -15,13 +15,14 @@
     <class>DTO.DocumentoSolicitud</class>
     <class>DTO.ExtraProveedor</class>
     <class>DTO.InfoBancaria</class>
+    <class>DTO.TipoSolicitud</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/inforetbd?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value="admin1234"/>
-<!--        <property name="javax.persistence.jdbc.url" value="jdbc:mysql://inforetbd.c9hle1z4avp6.us-east-1.rds.amazonaws.com/inforetbd?zeroDateTimeBehavior=convertToNull"/>
+      <!--        <property name="javax.persistence.jdbc.url" value="jdbc:mysql://inforetbd.c9hle1z4avp6.us-east-1.rds.amazonaws.com/inforetbd?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="admin"/>
       <property name="javax.persistence.jdbc.password" value="admin12345"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>-->

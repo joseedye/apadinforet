@@ -145,7 +145,14 @@ public class UploadFile extends HttpServlet {
                         res.sendRedirect("/Error/errorRedir");
                     } else {
                         req.getSession().setAttribute("msg", "Archivos Subidos con Exito!");
-                        res.sendRedirect("/" + user.get("TipoUsuario") + "/documento_nuevo.jsp");
+                        
+                        if (Integer.parseInt(user.get("idtipou")) >= 5){
+                      res.sendRedirect("/Empleado/documento_nuevo.jsp");
+                        }else{
+                         res.sendRedirect("/" + user.get("TipoUsuario") + "/documento_nuevo.jsp");
+                        }
+                        
+                       
                     }
                     
                     break;
@@ -207,7 +214,12 @@ public class UploadFile extends HttpServlet {
                     solicitud.setEstatus(estatusDTO);
                     solicitud.setFecha(new Date());
                     solicitud.setIdCliente(usuario);
-                    solicitud. setIdSolicitud(sol.getSolicitudLast().getIdSolicitud()+1);                           
+                    try{
+                    solicitud. setIdSolicitud(sol.getSolicitudLast().getIdSolicitud()+1);  
+                    } catch (Exception e){
+                        solicitud. setIdSolicitud(1);
+                    }
+                                        
                     sol.create(solicitud);
                      
                     String rutaaa = getServletContext().getRealPath("/Files"); //Ruta donde se guardará el archivo.
@@ -290,8 +302,9 @@ public class UploadFile extends HttpServlet {
                     }
                     break;
                 
-                    
-                    
+                 
+                
+                         
                 default:
                     break;
             }
@@ -299,6 +312,13 @@ public class UploadFile extends HttpServlet {
         }
         
     }
+    
+    
+    
+    private boolean guardar(){
+        return true;
+    }
+    
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
