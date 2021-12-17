@@ -63,7 +63,7 @@
                             <form name="form1" action="../UpdateProfile.do" method="post">
                                 <div class="form-row">
                                     <div class="form-group col-md-8">
-                                        <h4>Perfil Empleado <%= tipo%></h4>
+                                        <h4>Perfil <%= tipo%></h4>
                                     </div>
                                 </div>
 

@@ -237,7 +237,7 @@ public class Notification extends HttpServlet {
             switch (activo) {
                 //aceptado
                 case "1":
-                    request.getSession().setAttribute("tipo", "Administrativo y financiero");
+                    request.getSession().setAttribute("tipo", usersesion.get("TipoUsuario"));
                     response.sendRedirect("Empleado/perfil");
                     request.getSession().setAttribute("i", "1");
                     break;

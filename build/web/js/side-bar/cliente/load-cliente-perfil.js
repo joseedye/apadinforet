@@ -29,7 +29,7 @@ var sidebar = '<div class="sidebar-header">' +
           '</a>' +
         '<ul class="collapse list-unstyled" id="solicitudesSubmenu">' +
               '<li id="solicitudcotizacion">' +
-                  '<a  href="./cotizacion" >Cotizacion</a>' +
+                  '<a  href="../LoadClientTipoSol.do" >Cotizacion</a>' +
               '</li>' +
              '<li id="credito" >' +
                     '<a href="credito">Credito</a>' +

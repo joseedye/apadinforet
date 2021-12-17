@@ -41,6 +41,14 @@
         <servlet-name>Settings</servlet-name>
         <servlet-class>Controlador.Settings</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoadClientTipoSol</servlet-name>
+        <servlet-class>Controlador.LoadClientTipoSol</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AssignEmployes</servlet-name>
+        <servlet-class>Controlador.AssignEmployes</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -261,7 +269,7 @@
     </servlet-mapping>
      <servlet-mapping>
         <servlet-name>config</servlet-name>
-        <url-pattern>/Administrador/config</url-pattern>       
+        <url-pattern>/Administrador/config</url-pattern>
     </servlet-mapping>
     
     
@@ -511,6 +519,14 @@
     <servlet-mapping>
         <servlet-name>Settings</servlet-name>
         <url-pattern>/Settings.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadClientTipoSol</servlet-name>
+        <url-pattern>/LoadClientTipoSol.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AssignEmployes</servlet-name>
+        <url-pattern>/AssignEmployes.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

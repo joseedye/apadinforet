@@ -23,6 +23,8 @@
     <%
         Map<String, String> user = (Map<String, String>) request.getSession().getAttribute("user");
         String userImg = (String) request.getSession().getAttribute("userImg");
+        Map<String, String> tipos = (Map<String, String>) request.getSession().getAttribute("tipoSolicitud");
+
     %>
     <body onload="load(2, 4)">
         <div class="wrapper">
@@ -74,17 +76,16 @@
                                     <div class="form-group col-md-4"> 
                                         <select class="form-control" name="tematica" id="tematica" required>
                                             <option disabled selected >Seleccione</option>
-                                            <option value="productos" name="productos">productos</option>
-                                            <option value="instalacion" name="instalacion">servicio de instalacion</option>
-                                            <option value="soporte" name="soporte">servicios de soporte</option>
-                                            <option value="desarrollo" name="desarrollo">desarrollo de aplicaciones</option>
-                                            <option value="preventivo" name="preventivo">mantenimiento preventivo</option>
-                                            <option value="soporte" name="soporte">mantenimiento corectivo</option>
-                                            <option value="servidores" name="servidores">Servidores</option>
-                                            <option value="asesoria" name="asesoria">Asesoria de redes</option>
-                                            <option value="montaje" name="montaje">Montaje de redes</option>                                   
+                                            
+                                               <%
+                                                if (!tipos.isEmpty()) {
+                                                    for (int i = 0; i < tipos.size()/2; i++) {
+                                                        
+                                            %>    
 
-
+                                            <option  value = "<%=tipos.get("" + i)%>" name = "opcion<%=i%>" > <%=tipos.get("" + i)%> </option> 
+                                            <%  }
+                                            }%>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-4">
@@ -92,11 +93,11 @@
                                 </div>
 
                                 <div class="form-row">
-                                    
+
                                     <div class="form-group col-md-4">
                                         <h4>Descripcion:</h4>
                                     </div>
-                                    
+
                                     <div class="form-group col-md-4">
                                         <textarea class="form-control" id="message" name="message" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required"></textarea>
                                         <label for="message">Message</label>

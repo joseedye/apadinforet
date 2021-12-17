@@ -42,7 +42,10 @@ var sidebar =   '<div class="sidebar-header">'+
                             '</li>'+
                             '<li id="consultar">'+
                                 '<a href="../QueryUsers.do">Administracion</a>'+
-                            '</li>'+                            
+                            '</li>'+    
+                            '<li id="asignar">'+
+                                '<a href="../AssignEmployes.do?cod=0">Asignar empleados</a>'+
+                            '</li>'+  
                         '</ul>'+
                     '</li>'+
                     '<li id="lisolicitudes" >'+
@@ -67,7 +70,7 @@ var sidebar =   '<div class="sidebar-header">'+
                 '</ul>';
 
 var mostrar = ["documentsSubmenu", "usersSubMenu", "lisolicitudes","liconfig"];
-var active = ["documentsnew", "documentsquery", "registroadmin", "registrodirectivo", "registroempleado", "consultar", "lisolicitudes","liconfig"];
+var active = ["documentsnew", "documentsquery", "registroadmin", "registrodirectivo", "registroempleado", "consultar", "lisolicitudes","liconfig","asignar"];
 
 //carga el sidebar cuando entro a perfil
 function loadPerfil() {
