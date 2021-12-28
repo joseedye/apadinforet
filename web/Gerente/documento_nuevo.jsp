@@ -175,7 +175,7 @@
         <script src="../js/side-bar/extra/popper.min.js"></script>
         <script src="../js/side-bar/extra/menu-button.js"></script>
         <script src="../js/side-bar/extra/bootstrap.min.js"></script>   
-        <script src="../js/side-bar/admin/load-admin-1.0.js"></script>
+        <script src="../js/side-bar/gerente/load-gerente-1.0.js"></script> 
         <!--<script src="../js/side-bar/admin/load-admin-1.0.js"></script>--> 
         <!-- jQuery Side-bar -->        
 
