@@ -7,9 +7,11 @@ package Controlador;
 
 import DAO.Conexion;
 import DAO.DocumentoPropioJpaController;
+import DAO.TextosJpaController;
 import DAO.TipoSolicitudJpaController;
 import DAO.UsuarioJpaController;
 import DTO.DocumentoPropio;
+import DTO.Textos;
 import DTO.TipoSolicitud;
 import DTO.Usuario;
 import Util.Utileria;
@@ -66,11 +68,22 @@ public class Settings extends HttpServlet {
                 Map<String, String> mapSolicitudes = new HashMap<>();
 
                 List<TipoSolicitud> tipossol = tipos.findTipoSolicitudEntities();
-                int i =0;
+                int i = 0;
                 for (TipoSolicitud tipossol1 : tipossol) {
                     mapSolicitudes.put(i + "", tipossol1.getDescripcion());
-                    mapSolicitudes.put(i++ + "n", tipossol1.getIdSolicitud()+"");
+                    mapSolicitudes.put(i++ + "n", tipossol1.getIdSolicitud() + "");
                 }
+
+                TextosJpaController textos = new TextosJpaController(emf);
+                Map<String, String> maptextos = new HashMap<>();
+                List<Textos> lista = textos.findTextosEntities();
+                int flag = 0;
+                for (Textos lista1 : lista) {
+                    maptextos.put(flag + "", lista1.getDescripcion());
+                    maptextos.put(flag++ + "n", lista1.getIdTexto()+"");                   
+                    
+                }
+                request.getSession().setAttribute("textos", maptextos);
                 request.getSession().setAttribute("tipoSolicitud", mapSolicitudes);
                 response.sendRedirect("Administrador/config");
                 break;
@@ -123,6 +136,23 @@ public class Settings extends HttpServlet {
                 tipos.create(nu);
                 request.getSession().setAttribute("msg", "Tipo de solicitud guardada con Exito!");
                 response.sendRedirect("Settings.do?id=0");
+                break;
+
+            case 4:
+                //modifica los campos de texto
+                TextosJpaController textobd = new TextosJpaController(emf);
+                String idt = request.getParameter("idtexto");
+                String texto = request.getParameter("texto");
+                TextosJpaController textoss = new TextosJpaController(emf);
+                Textos t = textoss.findTextos(Integer.parseInt(idt));
+                t.setDescripcion(texto);
+                try{
+                textoss.edit(t);
+                request.getSession().setAttribute("msg", "Texto guardado con Exito!");
+                response.sendRedirect("Settings.do?id=0");
+                }catch(Exception e){
+                    
+                }
                 break;
 
             default:

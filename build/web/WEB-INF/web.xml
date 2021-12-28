@@ -49,6 +49,10 @@
         <servlet-name>AssignEmployes</servlet-name>
         <servlet-class>Controlador.AssignEmployes</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>inicial</servlet-name>
+        <servlet-class>Controlador.inicial</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -527,6 +531,10 @@
     <servlet-mapping>
         <servlet-name>AssignEmployes</servlet-name>
         <url-pattern>/AssignEmployes.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>inicial</servlet-name>
+        <url-pattern>/inicial.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

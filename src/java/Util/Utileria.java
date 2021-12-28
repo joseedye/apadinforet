@@ -10,6 +10,7 @@ import DTO.DocumentoSolicitud;
 import DTO.ExtraProveedor;
 import DTO.InfoBancaria;
 import DTO.Solicitud;
+import DTO.Textos;
 import DTO.TipoSolicitud;
 import DTO.Usuario;
 import java.io.BufferedReader;
@@ -209,7 +210,7 @@ public class Utileria {
 
     }
 
-  
+   
  
 
 }

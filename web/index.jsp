@@ -1,3 +1,11 @@
+<%-- 
+    Document   : index
+    Created on : 27/12/2021, 09:03:58 PM
+    Author     : rozo
+--%>
+
+<%@page import="java.util.Map"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -18,7 +26,7 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
     </head>
-    <body id="page-top" onload="redirigir();"> 
+    <body id="page-top"> 
 
 
         <div class="cuadroredes">
@@ -33,6 +41,12 @@
              </ul>
         </div>
 
+          <%
+                Map<String, String> textos = (Map<String, String>) request.getSession().getAttribute("textos");
+               
+            %>
+
+        
 
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
@@ -56,11 +70,11 @@
             <div class="container px-4 px-lg-5 h-100">
                 <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                     <div class="col-lg-8 align-self-end">
-                        <h1 class="text-white font-weight-bold">Nuestra amplia experiencia nos permite ofrecer la mejor calidad</h1>
+                        <h1 class="text-white font-weight-bold"><%=textos.get("0")%></h1>
                         <hr class="divider" />
                     </div>
                     <div class="col-lg-8 align-self-baseline">
-                        <p class="text-white-75 mb-5">Informática, Redes y Telecomunicaciones S.A.S.-INFORET S.A.S. - Nacio como resultado de la experiencia de un grupo de ingenieros en el campo de la consultoría y diseño de sistemas de telecomunicaciones. ¡Ofreciendo servicios a nivel profesional en el diseño y montaje de la infraestructura de telecomunicaciones que su empresa necesita!</p>
+                        <p class="text-white-75 mb-5"><%=textos.get("1")%></p>
                         <a class="btn btn-primary btn-xl" href="#about">Saber mas</a>
                     </div>
                 </div>
@@ -71,9 +85,9 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8 text-center">
-                        <h2 class="text-white mt-0">Tenemos lo que necesitas!</h2>
+                        <h2 class="text-white mt-0"><%=textos.get("2")%></h2>
                         <hr class="divider divider-light" />
-                        <p class="text-white-75 mb-4">Nuestro compromiso es satisfacer las necesidades de los clientes con calidad, mediante la implementación de soluciones integrales con tecnología de punta y con un equipo humano competente e innovador.</p>
+                        <p class="text-white-75 mb-4"><%=textos.get("3")%></p>
                         <a class="btn btn-light btn-xl" href="#services">Empezar!</a>
                     </div>
                 </div>
@@ -82,63 +96,63 @@
         <!-- Services-->
         <section class="page-section" id="services">
             <div class="container px-4 px-lg-5">
-                <h2 class="text-center mt-0">A Su Servicio</h2>
+                <h2 class="text-center mt-0"><%=textos.get("5")%></h2>
                 <hr class="divider" />
                 <div class="row gx-4 gx-lg-5">
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
                             <div class="mb-2"><i class="bi-server fs-1 text-primary"></i></div>
                             <h3 class="h4 mb-2">Servidores</h3>
-                            <p class="text-muted mb-0">Instalación y configuración de servidores de comunicaciones en entorno Windows y / o LINUX</p>
+                            <p class="text-muted mb-0"><%=textos.get("4")%></p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
                             <div class="mb-2"><i class="bi-laptop fs-1 text-primary"></i></div>
                             <h3 class="h4 mb-2">Aplicación web</h3>
-                            <p class="text-muted mb-0">Elaborado en diferentes lenguajes de desarrollo, patrones de arquitectura de software y aplicando metodologías de desarrollo seguras</p>
+                            <p class="text-muted mb-0"><%=textos.get("6")%></p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
                             <div class="mb-2"><i class="bi-bag fs-1 text-primary"></i></div>
                             <h3 class="h4 mb-2">E-Commerce</h3>
-                            <p class="text-muted mb-0">Comercio a través de Internet.</p>
+                            <p class="text-muted mb-0"><%=textos.get("7")%></p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
                             <div class="mb-2"><i class="bi-wifi fs-1 text-primary"></i></div>
                             <h3 class="h4 mb-2">Redes</h3>
-                            <p class="text-muted mb-0">Asesoramiento en el diseño de redes LAN, MAN y WAN.</p>
+                            <p class="text-muted mb-0"><%=textos.get("8")%></p>
                         </div>
                     </div>
                     <div class="col-lg-3 col- md-6 text-center">
                         <div class="mt-5">
                             <div class="mb-2"><i class="bi bi-people fs-1 text-primary"></i></div>
                             <h3 class="h4 mb-2">Capacitación</h3>
-                            <p class="text-muted mb-0">Seguridad informática, gestión de redes, funcionamiento y administración de Linux.</p>
+                            <p class="text-muted mb-0"><%=textos.get("9")%></p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
                             <div class="mb-2"><i class="bi-camera-video fs-1 text-primary"></i></div>
                             <h3 class="h4 mb-2">Seguridad</h3>
-                            <p class="text-muted mb-0">Sistemas de seguridad internos y perimetrales, físicos y lógicos.</p>
+                            <p class="text-muted mb-0"><%=textos.get("10")%></p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
                             <div class="mb-2"><i class="bi bi-globe fs-1 text-primary"></i></div>
                             <h3 class="h4 mb-2">VPN</h3>
-                            <p class="text-muted mb-0">Redes privadas virtuales.</p>
+                            <p class="text-muted mb-0"><%=textos.get("11")%></p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
                             <div class="mb-2"><i class="bi-telephone fs-1 text-primary"></i></div>
                             <h3 class="h4 mb-2">Telefonía IP</h3>
-                            <p class="text-muted mb-0">ASTERISK, Elastix, entre otros ..</p>
+                            <p class="text-muted mb-0"><%=textos.get("12")%></p>
                         </div>
                     </div>
                 </div>
@@ -209,7 +223,7 @@
         <!-- Call to action-->
         <section class="page-section bg-dark text-white">
             <div class="container px-4 px-lg-5 text-center">
-                <h2 class="mb-4">Partners!</h2>
+                <h2 class="mb-4"><%=textos.get("15")%></h2>
                 <div class ="row" >
                     <div class ="col-lg-4">
                         <p class="text-white-75 mb-4" style = "font-family: Merriweather Sans;">AMP</p>
@@ -239,9 +253,9 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8 col-xl-6 text-center">
-                        <h2 class="mt-0">Mantengámonos en contacto!</h2>
+                        <h2 class="mt-0"><%=textos.get("13")%></h2>
                         <hr class="divider" />
-                        <p class="text-muted mb-5">¿Listo para comenzar tu próximo proyecto con nosotros? Regístrese en nuestra plataforma para brindarle un servicio personalizado!</p>
+                        <p class="text-muted mb-5"><%=textos.get("14")%></p>
                     </div>
                 </div>
                 <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
@@ -370,15 +384,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
-        <script>
-            function redirigir(){
-                  
-                window.location.href = "../inicial.do";
-                
-                 
-            }
-            
-        </script>
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <!-- * *                               SB Forms JS                               * *-->
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
@@ -386,3 +391,4 @@
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
 </html>
+

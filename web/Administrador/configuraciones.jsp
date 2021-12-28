@@ -32,6 +32,7 @@
                 Map<String, String> user = (Map<String, String>) request.getSession().getAttribute("user");
                 String userImg = (String) request.getSession().getAttribute("userImg");
                 Map<String, String> tipos = (Map<String, String>) request.getSession().getAttribute("tipoSolicitud");
+                Map<String, String> textos = (Map<String, String>) request.getSession().getAttribute("textos");
 
 
             %>
@@ -146,7 +147,7 @@
                             <div id="gSignIn"></div>
                             <form  name="form5" action="../Settings.do?id=2" method="post" enctype="multipart/form-data"> 
                                 <!--<button type="submit" name="subir" class="btn btn-primary">Actualizar</button>-->
-                               
+
 
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
@@ -156,13 +157,13 @@
 
                                             <%
                                                 if (!tipos.isEmpty()) {
-                                                    for (int i = 0; i < tipos.size()/2; i++) {
-                                                        
+                                                    for (int i = 0; i < tipos.size() / 2; i++) {
+
                                             %>    
 
-                                            <option  value = "<%=tipos.get(i+"n")%>" name = "opcion<%=i%>" > <%=tipos.get("" + i)%> </option> 
+                                            <option  value = "<%=tipos.get(i + "n")%>" name = "opcion<%=i%>" > <%=tipos.get("" + i)%> </option> 
                                             <%  }
-                                            }%>
+                                                }%>
                                         </select>
                                     </div>
 
@@ -179,7 +180,7 @@
 
                                     </div>
                                 </div>
-                                         <button type="submit" name="subir" class="btn btn-primary">Eliminar</button>
+                                <button type="submit" name="subir" class="btn btn-primary">Eliminar</button>
                             </form>  
                             <form  name="form8" action="../Settings.do?id=3" method="post" enctype="multipart/form-data"> 
                                 <div class="form-row">
@@ -198,6 +199,83 @@
 
                     </div>
                 </div>
+                <hr>
+
+                <!-- tipo solicitudes  -->
+                <div style="justify-content:center;" class="form-row">
+                    <div class="form-group col-md-10">
+                        <div class="contenedor">
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <h4>Configuracion Textos de la pagina web</h4>
+                                </div>
+                            </div>
+                            <div id="gSignIn"></div>
+
+                            <!--<button type="submit" name="subir" class="btn btn-primary">Actualizar</button>-->
+
+
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="">Seleccione el texto que va a modificar </label>
+                                    <select class="form-control" id="idtexto" name="idtexto">
+                                        <option  selected>Seleccionar</option>
+
+                                        <%
+                                            if (!textos.isEmpty()) {
+                                                for (int i = 0; i < textos.size() / 2; i++) {
+
+                                        %>    
+
+
+                                        <option  value = "<%=textos.get(i + "n")%>" name = "opcion<%=i%>" > 
+                                            <% if (textos.get("" + i).length() < 30) {%>
+                                            <%=textos.get("" + i).substring(0, textos.get("" + i).length())%>
+                                            <% } else {%>
+                                            <%= textos.get("" + i).substring(0, 30) + "..."%> </option> 
+                                            <%  }
+                                                    }
+                                                }%>
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-md-3">
+
+                                </div>
+                                <div class="form-group col-md-5">  
+
+
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="">Texto que reemplaza: </label>
+                                </div>
+                            </div>
+                            <form  name="form6" action="../Settings.do?id=4" method="post" enctype="multipart/form-data"> 
+                                <div class="form-group col-md-6">
+                                    <input type="text" id="textos" name="texto" placeholder="Nuevo" > 
+
+                                </div>                                 
+
+                                <button type="button" class="btn btn-primary" onclick="enviardatospagina()">Modificar</button>
+                            </form>  
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+
             </div>
         </div>
         <!-- Page Content  -->
@@ -215,9 +293,9 @@
     <script src="../js/side-bar/admin/load-admin-1.0.js"></script>
     <!-- jQuery Side-bar -->    
     <script>
-                                        $(document).ready(function () {
-                                            $("#ventana2").modal('show');
-                                        });
+                                    $(document).ready(function () {
+                                        $("#ventana2").modal('show');
+                                    });
 
     </script> 
 
@@ -233,6 +311,13 @@
             alert($('#insertimg').val());
 //        alert($(this).val());
         });
+
+
+        function enviardatospagina() {
+            var cod = document.getElementById("idtexto").value;
+            var contenido = document.getElementById("textos").value;           
+            window.location.href = "../Settings.do?id=4&&idtexto="+cod+"&&texto="+ contenido;         
+        }
 
     </script> 
 
