@@ -4,7 +4,6 @@
     Author     : rozo
 --%>
 
-
 <%@page import="java.util.Map"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -31,72 +30,21 @@
 
             <%
                 Map<String, String> user = (Map<String, String>) request.getSession().getAttribute("user");
-                String userImg = (String) request.getSession().getAttribute("userImg");
             %>
 
             <!-- Page Content  -->
             <div id="content">
-                <nav  class="navbar navbar-expand-lg navbar-light bg-light">
-
-                    <div class="container-fluid">
-
-                        <button type="button" id="sidebarCollapse" class="btn btn-info">
-                            <i class="fas fa-align-left"></i>
-                            <span>Menú</span>
-                        </button>
-                        <div>
-                            <h5><%=user.get("nombres").toUpperCase() + ""%></h5>
-                        </div>
-
-                        <div  >
-
-                            <%
-                                String msg3 = (String) request.getSession().getAttribute("msg3");
-                                String id3 = (String) request.getSession().getAttribute("id3");
-                                if (msg3!=null) {
-                            %>
-
-                            <button type="button"  data-toggle="popover" title="Nueva notificacion"
-                                    
-                                    data-trigger="focus" data-html="true"
-                                    
-                                    data-content="
-                                    <div class=form-row >
-                                     <div class=form col-md-8 >
-                                    <label><%=msg3%></label> 
-                                     </div>
-                                      <div class=form col-md-4>
-                                      <form action='../AceptUser.do?id=<%=id3 %>' method='post' >
-                                    <input type='submit' name='Nom' class=form-control placeholder=Nombre value=VER class=`btn btn-danger btn-circle btn-xl`>
-                                  </form>
-                                    </div>
-                                    </div>"
-                                    >
-                           
-                                <i  class="icon fa fa-bell fa-fw ">  
-                                </i>
-                            </button>
-                            <%  } else { %>
-                            <button type="button"  data-toggle="popover" title="No tienes notificaciones" data-trigger="focus"
-                                    data-content="vacio! " class="btn btn-danger btn-circle btn-xl">
-                                <i  class="icon fa fa-bell fa-fw ">  
-                                </i>
-                            </button>
-                            <%  } %>
-                        </div>
-
-
-                        <div class="img-profile">
-                            <img src="<%=userImg%>">                        
-                        </div>
-
-                    </div>
-                </nav>
+                <!-- NavBar  -->
+                <%@include file="../modules/navbar_admin.jsp" %>
+                <!-- NavBar  -->
 
                 <!-- Content  -->
                 <div style="justify-content:center;" class="form-row">
                     <div class="form-group col-md-10">
+                        <!--div contenedor-->
                         <div class="contenedor">
+
+                            <!--formulario datos personales-->
                             <form name="form1" action="../UpdateProfile.do" method="post">
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
@@ -107,15 +55,11 @@
 
                                 <div id="gSignIn"></div>
 
-
+                                <!--datos personales-->
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
-
                                         <label for="">Nombre</label>
                                         <input type="text" name="Nom" class="form-control" readonly=»readonly» id="" placeholder="Nombre" value="<%=user.get("nombres").toUpperCase() + ""%>" maxlength="100" required>
-
-
-
 
                                         <label for="">Tipo Documento</label>
                                         <input type="text" name="Tipodoc" class="form-control" readonly=»readonly» id=""  value="<%=user.get("tipoDocumento")%>" maxlength="100" required>
@@ -125,7 +69,6 @@
 
                                         <label for="">Fecha de Nacimiento</label>
                                         <input class="form-control" type="date" readonly=»readonly» name="Fecha" value="<%=user.get("fecNacimiento") + ""%>" required>
-
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="">Primer Apellido</label>
@@ -164,38 +107,43 @@
                                     </div>
                                 </div>
 
+
                                 <label for="">Dirección</label>
                                 <input type="text" name="Dire" class="form-control" id="" value="<%=user.get("direccion")%>" placeholder="Dirrección" maxlength="150">
-                                <br></br>
+                                <!--datos personales-->
+                                <br>
                                 <a href="#ventana" class="btn btn-primary" data-toggle="modal">Actualizar</a>
                                 <a href="perfil" class="btn btn-primary">Cancelar</a>
+                            </form>
+                            <!--formulario datos personales-->
 
-
-                                <!-- Modal --> 
-                                <div class="modal fade" id="ventana" tabindex="-1" role="dialog">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Alerta</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>Esta seguro de modificar sus datos personales?</p>
-                                            </div>
-                                            <div class="modal-footer">            
-                                                <button type="submit"  class="btn btn-primary">Si</button>
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                            </div>
+                            <!-- Modal set datos personales--> 
+                            <div class="modal fade" id="ventana" tabindex="-1" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Alerta</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Esta seguro de modificar sus datos personales?</p>
+                                        </div>
+                                        <div class="modal-footer">            
+                                            <button type="submit"  class="btn btn-primary">Si</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                                         </div>
                                     </div>
                                 </div>
-
-
-
-                                <!-- Modal  confirmacion contraseña--> 
-                            </form>
+                            </div>
+                            <!-- Modal set datos personales--> 
+                            
+                            <!--cambio foto perfil-->
+                            <%@include file="../modules/actualizacion_foto.jsp" %>
+                            <!--cambio foto perfil-->
+                            
+                            <!-- Formulario cambio contraseña-->                    
                             <form  name="form2" action="../UpdatePassword.do" method="post">
                                 <div class="form-row changPassword">
                                     <div class="form-group col-md-4">
@@ -212,8 +160,9 @@
                                     </div>
                                 </div>
                             </form>
+                            <!-- Formulario cambio contraseña-->                            
                         </div>
-
+                        <!--div contenedor-->
 
                         <%
                             String msg = (String) request.getSession().getAttribute("msg");
@@ -241,35 +190,6 @@
                         <%   }
                             request.getSession().removeAttribute("msg");
                         %>
-
-
-
-
-
-
-                        <!-- Modal notificacion -->                        
-                        <div class="modal fade" id="ventana3" tabindex="-1" role="dialog">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Alerta</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Nuevo usuario creado</p>
-                                    </div>
-                                    <div class="modal-footer">            
-                                        <button type="submit"  class="btn btn-primary">ver</button>
-                                        <button type="button" class="btn btn-primary">Mas tarde</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Modal notificacion -->
-
-
                     </div>
                 </div>
                 <!-- Content  -->
@@ -279,13 +199,9 @@
 
         <!-- jQuery Side-bar -->
         <script src="../js/side-bar/extra/jquery-3.3.1.slim.min.js"></script>
-        <!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
-
         <script src="../js/side-bar/extra/popper.min.js"></script>
         <script src="../js/side-bar/extra/menu-button.js"></script>
         <script src="../js/side-bar/extra/bootstrap.min.js"></script> 
-        <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>-->
-
         <script src="../js/side-bar/admin/load-admin-1.0.js"></script>
         <!-- jQuery Side-bar -->    
         <script>
@@ -294,20 +210,5 @@
                                             });
 
         </script> 
-
-        <script>
-            $(document).ready(function () {
-                $('[data-toggle="popover"]').popover();
-            });
-        </script>
-
-
-        <script>
-
-            function mostrarnoti() {
-                $("#ventana3").modal('show');
-            }
-        </script> 
-
     </body>
 </html>

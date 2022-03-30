@@ -42,24 +42,9 @@
 
             <!-- Page Content  -->
             <div id="content">
-                <nav  class="navbar navbar-expand-lg navbar-light bg-light">
-
-                    <div class="container-fluid">
-
-                        <button type="button" id="sidebarCollapse" class="btn btn-info">
-                            <i class="fas fa-align-left"></i>
-                            <span>Menú</span>
-                        </button>
-                        <div>
-                            <h5><%=user.get("nombres").toUpperCase() + ""%></h5>
-                        </div>
-
-                        <div class="img-profile">
-                            <img src="/img/imagencliente.jpg<%//=userImg%>">                        
-                        </div>
-
-                    </div>
-                </nav>
+                <!-- NavBar  -->
+                <%@include file="../modules/navbar_default.jsp" %>
+                <!-- NavBar  -->
 
                 <!-- Content  -->
                 <div style="justify-content:center;" class="form-row">
@@ -182,9 +167,11 @@
 
                             </form>
 
-                            <!-- Modal  confirmacion contraseña-->   
+                            <!--cambio foto perfil-->
+                            <%@include file="../modules/actualizacion_foto.jsp" %>
+                            <!--cambio foto perfil-->       
 
-
+                            <!-- Formulario cambio contraseña-->   
                             <form  name="form2" action="../UpdatePassword.do" method="post">
                                 <div class="form-row changPassword">
                                     <div class="form-group col-md-4">
@@ -201,6 +188,7 @@
                                     </div>
                                 </div>
                             </form>
+                            <!-- Formulario cambio contraseña-->    
 
 
 
@@ -222,34 +210,34 @@
                                                             <tr>
                                                                 <th scope="col">
 
-                                                        <div class="form-check form-switch">
-                                                            <label  class="form-check-label" for="flexSwitchCheckDefault">Documento</label>
+                                                                    <div class="form-check form-switch">
+                                                                        <label  class="form-check-label" for="flexSwitchCheckDefault">Documento</label>
 
 
-                                                        </div>
-                                                        </th>
-                                                        <th scope="col">
-                                                        <div class="form-check form-switch">
-                                                            <label class="form-check-label" for="flexSwitchCheckDefault">Extencion</label>
-                                                        </div>
-                                                        </th>
-                                                        <th scope="col">
-                                                        <div class="form-check form-switch">
-                                                            <label class="form-check-label" for="flexSwitchCheckDefault">Peso</label>
-                                                        </div> 
+                                                                    </div>
+                                                                </th>
+                                                                <th scope="col">
+                                                                    <div class="form-check form-switch">
+                                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Extencion</label>
+                                                                    </div>
+                                                                </th>
+                                                                <th scope="col">
+                                                                    <div class="form-check form-switch">
+                                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Peso</label>
+                                                                    </div> 
 
-                                                        </th>
-                                                        <th scope="col">
-                                                        <div class="form-check form-switch">
-                                                            <label class="form-check-label" for="flexSwitchCheckDefault">Ver archivo</label>
-                                                        </div>
-                                                        </th>
-                                                        <th scope="col">
-                                                        <div class="form-check form-switch">
-                                                            <label class="form-check-label" for="flexSwitchCheckDefault">Cargado</label>
-                                                        </div>
-                                                        </th>
-                                                        </tr>
+                                                                </th>
+                                                                <th scope="col">
+                                                                    <div class="form-check form-switch">
+                                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Ver archivo</label>
+                                                                    </div>
+                                                                </th>
+                                                                <th scope="col">
+                                                                    <div class="form-check form-switch">
+                                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Cargado</label>
+                                                                    </div>
+                                                                </th>
+                                                            </tr>
                                                         </thead>
                                                         <tbody>
                                                             <tr>
@@ -366,7 +354,7 @@
                                                             <div class="form-group col-md-4" >
                                                                 <label>&nbsp;</label><br>
                                                                 <label class="btn btn-primary">Auto retenedor</label><br>
-                                                               
+
                                                             </div>
 
                                                             <div class="form-group col-md-4" >
@@ -393,7 +381,7 @@
                                                             </div>
                                                             <div class="form-group col-md-3" >
                                                                 <label for="">Resolución</label>
-                                                                <input type="text" name="resolg" class="form-control" id="" placeholder="123456" value="<%= extra.get("reg") %>" maxlength="100" >
+                                                                <input type="text" name="resolg" class="form-control" id="" placeholder="123456" value="<%= extra.get("reg")%>" maxlength="100" >
                                                             </div>
                                                             <div class="form-group col-md-3" >
                                                                 <label for="">Código actividad (ICA)</label>

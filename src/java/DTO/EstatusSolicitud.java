@@ -21,17 +21,18 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author rozo
+ * @author Leonardo
  */
 @Entity
 @Table(name = "estatus_solicitud")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "EstatusSolicitud.findAll", query = "SELECT e FROM EstatusSolicitud e"),
-    @NamedQuery(name = "EstatusSolicitud.findByIdEstatus", query = "SELECT e FROM EstatusSolicitud e WHERE e.idEstatus = :idEstatus"),
-    @NamedQuery(name = "EstatusSolicitud.findByDesripcion", query = "SELECT e FROM EstatusSolicitud e WHERE e.desripcion = :desripcion"),
-    @NamedQuery(name = "EstatusSolicitud.findByDescripcionDetallada", query = "SELECT e FROM EstatusSolicitud e WHERE e.descripcionDetallada = :descripcionDetallada")})
+    @NamedQuery(name = "EstatusSolicitud.findAll", query = "SELECT e FROM EstatusSolicitud e")
+    , @NamedQuery(name = "EstatusSolicitud.findByIdEstatus", query = "SELECT e FROM EstatusSolicitud e WHERE e.idEstatus = :idEstatus")
+    , @NamedQuery(name = "EstatusSolicitud.findByDesripcion", query = "SELECT e FROM EstatusSolicitud e WHERE e.desripcion = :desripcion")
+    , @NamedQuery(name = "EstatusSolicitud.findByDescripcionDetallada", query = "SELECT e FROM EstatusSolicitud e WHERE e.descripcionDetallada = :descripcionDetallada")})
 public class EstatusSolicitud implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)

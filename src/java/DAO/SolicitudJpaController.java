@@ -23,7 +23,7 @@ import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author rozo
+ * @author Leonardo
  */
 public class SolicitudJpaController implements Serializable {
 
@@ -274,15 +274,6 @@ public class SolicitudJpaController implements Serializable {
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
-        } finally {
-            em.close();
-        }
-    }
-    
-    public Solicitud getSolicitudLast() {
-        EntityManager em = getEntityManager();
-        try {
-            return (Solicitud) em.createNativeQuery("Select * from solicitud order by id_solicitud desc limit 1", Solicitud.class).getResultList().get(0);
         } finally {
             em.close();
         }

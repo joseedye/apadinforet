@@ -6,11 +6,11 @@
 package Controlador;
 
 import DAO.Conexion;
+import DAO.ImagenJpaController;
 import DAO.TextosJpaController;
+import DTO.Imagen;
 import DTO.Textos;
-import Util.Utileria;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,19 +38,25 @@ public class inicial extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-      
-          EntityManagerFactory emf = Conexion.getConexion().getBd();
-          TextosJpaController textos = new TextosJpaController(emf);
-          Map<String, String> maptextos = new HashMap<>();
-          List<Textos> lista= textos.findTextosEntities();
-          int i = 0;
-          for (Textos lista1 : lista) {
-             maptextos.put(i++ + "", lista1.getDescripcion()); 
-          }         
-           request.getSession().setAttribute("textos", maptextos);
-           response.sendRedirect("/index.jsp");
-        
-        
+        EntityManagerFactory emf = Conexion.getConexion().getBd();
+        TextosJpaController textos = new TextosJpaController(emf);
+        Map<String, String> maptextos = new HashMap<>();
+        List<Textos> lista = textos.findTextosEntities();
+        int i = 0;
+        for (Textos lista1 : lista) {
+            maptextos.put(i++ + "", lista1.getDescripcion());
+        }
+        ImagenJpaController urlimagenes = new ImagenJpaController(emf);
+        List<Imagen> imagenes = urlimagenes.findImagenEntities();
+        i = 0;
+        Map<String, String> mapimagenes = new HashMap<>();
+        for (Imagen img1 : imagenes) {
+            mapimagenes.put(img1.getIdImagen() + "", img1.getUrl());
+        }
+        request.getSession().setAttribute("textos", maptextos);
+        request.getSession().setAttribute("imagenes", mapimagenes);
+        response.sendRedirect("/index.jsp");
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

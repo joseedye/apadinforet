@@ -19,7 +19,7 @@ import javax.persistence.criteria.Root;
 
 /**
  *
- * @author rozo
+ * @author Leonardo
  */
 public class InfoBancariaJpaController implements Serializable {
 

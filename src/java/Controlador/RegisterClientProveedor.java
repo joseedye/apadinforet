@@ -7,6 +7,7 @@ package Controlador;
 
 import DAO.Conexion;
 import DAO.PersonaJpaController;
+import DAO.Plus.UsuarioJpaControllerPlus;
 import DAO.TipoUsuarioJpaController;
 import DAO.UsuarioJpaController;
 import DTO.Persona;
@@ -45,7 +46,9 @@ public class RegisterClientProveedor extends HttpServlet {
         try {
             EntityManagerFactory emf = Conexion.getConexion().getBd();
             TipoUsuarioJpaController tipousuarioJpa = new TipoUsuarioJpaController(emf);
-            PersonaJpaController persona = new PersonaJpaController(emf);
+            PersonaJpaController personaJpa = new PersonaJpaController(emf);
+            UsuarioJpaController usuarioJpa = new UsuarioJpaController(emf);
+            UsuarioJpaControllerPlus usuarioJpaPlus = new UsuarioJpaControllerPlus(emf);
 
             String Business = request.getParameter("Business");
             String type = request.getParameter("type");
@@ -60,15 +63,11 @@ public class RegisterClientProveedor extends HttpServlet {
             String apellido2 = request.getParameter("apellido2");
             String nacimiento = request.getParameter("nacimiento");
             String tipous = request.getParameter("tipous");
-            String message = request.getParameter("message");
-            
-            
-       
+            String message = request.getParameter("message");       
             SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
             Date fecNacimiento = formato.parse(nacimiento);
-            PersonaJpaController personajpa = new PersonaJpaController(emf);
 
-            Persona personaDTO = new Persona(Nit, nombre, apellido1, apellido2, fecNacimiento, "NIT", address, number, "", email);
+            Persona personaDTO = new Persona(Nit, nombre, apellido1, apellido2, fecNacimiento, "NIT", address, number, email);
             personaDTO.setPais(Country);
             personaDTO.setRazonSocial(Business);
             personaDTO.setTipoCliente(type);
@@ -80,21 +79,21 @@ public class RegisterClientProveedor extends HttpServlet {
            
             try {
 
-                personajpa.create(personaDTO);
+                personaJpa.create(personaDTO);
 
             } catch (Exception e) {
 
-                personajpa.destroy(personaDTO.getNumeroDoc());
+                personaJpa.destroy(personaDTO.getNumeroDoc());
                 String cause = e.getCause().getCause().getMessage();
                 request.getSession().setAttribute("msg", "Error, el dato: " + Utileria.msgExPersistence(cause) + " ya existe!");
                 response.sendRedirect("./login.jsp");
                 return;
             }
 
-            //crear el usuario
-            UsuarioJpaController usuariojpa = new UsuarioJpaController(emf);
+            //crear el usuario            
             Date fecCreacion = new Date();
-            Usuario usuarioDto = new Usuario(email, Nit, fecCreacion, "1");
+            String urlFoto = ("customer".equals(tipous)) ? "/img/perfil-cliente.jpg" : "/img/perfil-proveedor.png";
+            Usuario usuarioDto = new Usuario(null, email, Nit, fecCreacion, "1", urlFoto);
             usuarioDto.setPassword(Nit);
             //crear el tipo usuario
             TipoUsuario tipousuario;
@@ -103,15 +102,15 @@ public class RegisterClientProveedor extends HttpServlet {
 
             usuarioDto.setIdTipoUsuario(tipousuario);
             usuarioDto.setIdPersona(personaDTO);
-            usuarioDto.setIdUsuario(usuariojpa.getUsuarioLast().getIdUsuario() + 1);
+            usuarioDto.setIdUsuario(usuarioJpaPlus.getUsuarioLast().getIdUsuario() + 1);
             
             try {
 
-                usuariojpa.create(usuarioDto);
+                usuarioJpa.create(usuarioDto);
 
             } catch (Exception e) {
 
-                personajpa.destroy(personaDTO.getNumeroDoc());
+                personaJpa.destroy(personaDTO.getNumeroDoc());
                 String cause = e.getCause().getCause().getMessage();
                 request.getSession().setAttribute("msg", "Error, el dato: " + Utileria.msgExPersistence(cause) + " ya existe!");
                 response.sendRedirect("./login.jsp");

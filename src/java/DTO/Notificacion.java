@@ -20,17 +20,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author rozo
+ * @author Leonardo
  */
 @Entity
 @Table(name = "notificacion")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Notificacion.findAll", query = "SELECT n FROM Notificacion n"),
-    @NamedQuery(name = "Notificacion.findByIdNotificacion", query = "SELECT n FROM Notificacion n WHERE n.idNotificacion = :idNotificacion"),
-    @NamedQuery(name = "Notificacion.findByDescripcion", query = "SELECT n FROM Notificacion n WHERE n.descripcion = :descripcion"),
-    @NamedQuery(name = "Notificacion.findByEstado", query = "SELECT n FROM Notificacion n WHERE n.estado = :estado")})
+    @NamedQuery(name = "Notificacion.findAll", query = "SELECT n FROM Notificacion n")
+    , @NamedQuery(name = "Notificacion.findByIdNotificacion", query = "SELECT n FROM Notificacion n WHERE n.idNotificacion = :idNotificacion")
+    , @NamedQuery(name = "Notificacion.findByDescripcion", query = "SELECT n FROM Notificacion n WHERE n.descripcion = :descripcion")
+    , @NamedQuery(name = "Notificacion.findByEstado", query = "SELECT n FROM Notificacion n WHERE n.estado = :estado")})
 public class Notificacion implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)

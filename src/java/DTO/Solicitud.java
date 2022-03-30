@@ -26,18 +26,19 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author rozo
+ * @author Leonardo
  */
 @Entity
 @Table(name = "solicitud")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Solicitud.findAll", query = "SELECT s FROM Solicitud s"),
-    @NamedQuery(name = "Solicitud.findByIdSolicitud", query = "SELECT s FROM Solicitud s WHERE s.idSolicitud = :idSolicitud"),
-    @NamedQuery(name = "Solicitud.findByTematica", query = "SELECT s FROM Solicitud s WHERE s.tematica = :tematica"),
-    @NamedQuery(name = "Solicitud.findByDescripcion", query = "SELECT s FROM Solicitud s WHERE s.descripcion = :descripcion"),
-    @NamedQuery(name = "Solicitud.findByFecha", query = "SELECT s FROM Solicitud s WHERE s.fecha = :fecha")})
+    @NamedQuery(name = "Solicitud.findAll", query = "SELECT s FROM Solicitud s")
+    , @NamedQuery(name = "Solicitud.findByIdSolicitud", query = "SELECT s FROM Solicitud s WHERE s.idSolicitud = :idSolicitud")
+    , @NamedQuery(name = "Solicitud.findByTematica", query = "SELECT s FROM Solicitud s WHERE s.tematica = :tematica")
+    , @NamedQuery(name = "Solicitud.findByDescripcion", query = "SELECT s FROM Solicitud s WHERE s.descripcion = :descripcion")
+    , @NamedQuery(name = "Solicitud.findByFecha", query = "SELECT s FROM Solicitud s WHERE s.fecha = :fecha")})
 public class Solicitud implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -53,6 +54,9 @@ public class Solicitud implements Serializable {
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
     private Date fecha;
+    @Lob
+    @Column(name = "solucion")
+    private String solucion;
     @JoinColumn(name = "estatus", referencedColumnName = "id_estatus")
     @ManyToOne(optional = false)
     private EstatusSolicitud estatus;
@@ -64,11 +68,7 @@ public class Solicitud implements Serializable {
     private Usuario idSolucionador;
     @OneToMany(mappedBy = "idSolicitud")
     private List<DocumentoSolicitud> documentoSolicitudList;
-    @Lob
-    @Column(name = "solucion")
-    private String solucion;
-    
-    
+
     public Solicitud() {
     }
 
@@ -115,6 +115,14 @@ public class Solicitud implements Serializable {
         this.fecha = fecha;
     }
 
+    public String getSolucion() {
+        return solucion;
+    }
+
+    public void setSolucion(String solucion) {
+        this.solucion = solucion;
+    }
+
     public EstatusSolicitud getEstatus() {
         return estatus;
     }
@@ -139,15 +147,6 @@ public class Solicitud implements Serializable {
         this.idSolucionador = idSolucionador;
     }
 
-    
- public String getSolucion() {
-        return solucion;
-    }
-
-    public void setSolucion(String solucion) {
-        this.solucion = solucion;
-    }
-    
     @XmlTransient
     public List<DocumentoSolicitud> getDocumentoSolicitudList() {
         return documentoSolicitudList;

@@ -19,16 +19,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author rozo
+ * @author Leonardo
  */
 @Entity
 @Table(name = "tipo_solicitud")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "TipoSolicitud.findAll", query = "SELECT t FROM TipoSolicitud t"),
-    @NamedQuery(name = "TipoSolicitud.findByIdSolicitud", query = "SELECT t FROM TipoSolicitud t WHERE t.idSolicitud = :idSolicitud"),
-    @NamedQuery(name = "TipoSolicitud.findByDescripcion", query = "SELECT t FROM TipoSolicitud t WHERE t.descripcion = :descripcion")})
+    @NamedQuery(name = "TipoSolicitud.findAll", query = "SELECT t FROM TipoSolicitud t")
+    , @NamedQuery(name = "TipoSolicitud.findByIdSolicitud", query = "SELECT t FROM TipoSolicitud t WHERE t.idSolicitud = :idSolicitud")
+    , @NamedQuery(name = "TipoSolicitud.findByDescripcion", query = "SELECT t FROM TipoSolicitud t WHERE t.descripcion = :descripcion")})
 public class TipoSolicitud implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

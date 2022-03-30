@@ -7,6 +7,7 @@ package Controlador;
 
 import DAO.Conexion;
 import DAO.PersonaJpaController;
+import DAO.Plus.UsuarioJpaControllerPlus;
 import DAO.TipoUsuarioJpaController;
 import DAO.UsuarioJpaController;
 import DTO.Persona;
@@ -44,7 +45,9 @@ public class RegisterEmploye extends HttpServlet {
         try {
             Map<String, String> usersesion = (Map<String, String>) request.getSession().getAttribute("user");
             EntityManagerFactory emf = Conexion.getConexion().getBd();
-            TipoUsuarioJpaController usuarioJpa = new TipoUsuarioJpaController(emf);
+            TipoUsuarioJpaController tipoUsuarioJpa = new TipoUsuarioJpaController(emf);
+            UsuarioJpaControllerPlus usuarioJpaPlus = new UsuarioJpaControllerPlus(emf);
+            UsuarioJpaController usuarioJpa = new UsuarioJpaController(emf);
 
             String nombre = request.getParameter("Nom");
             String tipodoc = request.getParameter("Tipodoc");
@@ -64,7 +67,8 @@ public class RegisterEmploye extends HttpServlet {
             Date fecNacimiento = formato.parse(fecha);
             PersonaJpaController personajpa = new PersonaJpaController(emf);
 
-            Persona personaDTO = new Persona(documento, nombre, apellido1, apellido2, fecNacimiento, tipodoc, direccion, telefono1,telefono2, email);
+            Persona personaDTO = new Persona(documento, nombre, apellido1, apellido2, fecNacimiento, tipodoc, direccion, telefono1, email);
+            personaDTO.setTelefono2(telefono2);
             personaDTO.setGenero(genero);
             personaDTO.setPais(pais);
 
@@ -79,16 +83,17 @@ public class RegisterEmploye extends HttpServlet {
             personajpa.create(personaDTO);
 
             //crear el usuario
-            UsuarioJpaController usuariojpa = new UsuarioJpaController(emf);
+            
             Date fecCreacion = new Date();
-            Usuario usuarioDto = new Usuario(email, documento, fecCreacion, "3");
+            String urlFoto = (genero.equals("Femenino")) ? "/img/perfil-empleado-mujer.png" : "/img/perfil-empleado-hombre.png";
+            Usuario usuarioDto = new Usuario(null, email, documento, fecCreacion, "3", urlFoto);
 
-            usuarioDto.setIdTipoUsuario(usuarioJpa.findTipoUsuario(10));
+            usuarioDto.setIdTipoUsuario(tipoUsuarioJpa.findTipoUsuario(10));
             usuarioDto.setIdPersona(personaDTO);
-            usuarioDto.setIdUsuario(usuariojpa.getUsuarioLast().getIdUsuario() + 1);
+            usuarioDto.setIdUsuario(usuarioJpaPlus.getUsuarioLast().getIdUsuario() + 1);
             try {
 
-                usuariojpa.create(usuarioDto);
+                usuarioJpa.create(usuarioDto);
 
             } catch (Exception e) {
 

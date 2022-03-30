@@ -10,6 +10,7 @@ import DAO.DocumentoPropioJpaController;
 import DAO.DocumentoSolicitudJpaController;
 import DAO.EstatusSolicitudJpaController;
 import DAO.SolicitudJpaController;
+import DAO.Plus.SolicitudJpaControllerPlus;
 import DAO.UsuarioJpaController;
 import DTO.DocumentoPropio;
 import DTO.DocumentoSolicitud;
@@ -208,6 +209,7 @@ public class UploadFile extends HttpServlet {
                     EstatusSolicitud estatusDTO = estatus.findEstatusSolicitud(1);
                     
                     SolicitudJpaController sol = new SolicitudJpaController(emf);
+                    SolicitudJpaControllerPlus solicitudJpaPlus = new SolicitudJpaControllerPlus(emf);
                     Solicitud solicitud = new Solicitud();
                     solicitud.setDescripcion(descrpcion);
                     solicitud.setTematica(tematica);                  
@@ -215,7 +217,7 @@ public class UploadFile extends HttpServlet {
                     solicitud.setFecha(new Date());
                     solicitud.setIdCliente(usuario);
                     try{
-                    solicitud. setIdSolicitud(sol.getSolicitudLast().getIdSolicitud()+1);  
+                    solicitud.setIdSolicitud(solicitudJpaPlus.getSolicitudLast().getIdSolicitud()+1);  
                     } catch (Exception e){
                         solicitud. setIdSolicitud(1);
                     }

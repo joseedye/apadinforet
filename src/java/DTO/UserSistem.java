@@ -17,16 +17,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author rozo
+ * @author Leonardo
  */
 @Entity
 @Table(name = "user_sistem")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "UserSistem.findAll", query = "SELECT u FROM UserSistem u"),
-    @NamedQuery(name = "UserSistem.findByIdUsis", query = "SELECT u FROM UserSistem u WHERE u.idUsis = :idUsis"),
-    @NamedQuery(name = "UserSistem.findByIdPersona", query = "SELECT u FROM UserSistem u WHERE u.idPersona = :idPersona")})
+    @NamedQuery(name = "UserSistem.findAll", query = "SELECT u FROM UserSistem u")
+    , @NamedQuery(name = "UserSistem.findByIdUsis", query = "SELECT u FROM UserSistem u WHERE u.idUsis = :idUsis")
+    , @NamedQuery(name = "UserSistem.findByIdPersona", query = "SELECT u FROM UserSistem u WHERE u.idPersona = :idPersona")})
 public class UserSistem implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)

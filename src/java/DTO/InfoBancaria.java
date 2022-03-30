@@ -17,23 +17,24 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author rozo
+ * @author Leonardo
  */
 @Entity
 @Table(name = "info_bancaria")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "InfoBancaria.findAll", query = "SELECT i FROM InfoBancaria i"),
-    @NamedQuery(name = "InfoBancaria.findByIdUsuario", query = "SELECT i FROM InfoBancaria i WHERE i.idUsuario = :idUsuario"),
-    @NamedQuery(name = "InfoBancaria.findByFormaPago", query = "SELECT i FROM InfoBancaria i WHERE i.formaPago = :formaPago"),
-    @NamedQuery(name = "InfoBancaria.findByNumeroCuenta", query = "SELECT i FROM InfoBancaria i WHERE i.numeroCuenta = :numeroCuenta"),
-    @NamedQuery(name = "InfoBancaria.findByTipoCuenta", query = "SELECT i FROM InfoBancaria i WHERE i.tipoCuenta = :tipoCuenta"),
-    @NamedQuery(name = "InfoBancaria.findByBanco", query = "SELECT i FROM InfoBancaria i WHERE i.banco = :banco"),
-    @NamedQuery(name = "InfoBancaria.findByCodBanco", query = "SELECT i FROM InfoBancaria i WHERE i.codBanco = :codBanco"),
-    @NamedQuery(name = "InfoBancaria.findBySucursal", query = "SELECT i FROM InfoBancaria i WHERE i.sucursal = :sucursal"),
-    @NamedQuery(name = "InfoBancaria.findByCiudad", query = "SELECT i FROM InfoBancaria i WHERE i.ciudad = :ciudad"),
-    @NamedQuery(name = "InfoBancaria.findByPais", query = "SELECT i FROM InfoBancaria i WHERE i.pais = :pais")})
+    @NamedQuery(name = "InfoBancaria.findAll", query = "SELECT i FROM InfoBancaria i")
+    , @NamedQuery(name = "InfoBancaria.findByIdUsuario", query = "SELECT i FROM InfoBancaria i WHERE i.idUsuario = :idUsuario")
+    , @NamedQuery(name = "InfoBancaria.findByFormaPago", query = "SELECT i FROM InfoBancaria i WHERE i.formaPago = :formaPago")
+    , @NamedQuery(name = "InfoBancaria.findByNumeroCuenta", query = "SELECT i FROM InfoBancaria i WHERE i.numeroCuenta = :numeroCuenta")
+    , @NamedQuery(name = "InfoBancaria.findByTipoCuenta", query = "SELECT i FROM InfoBancaria i WHERE i.tipoCuenta = :tipoCuenta")
+    , @NamedQuery(name = "InfoBancaria.findByBanco", query = "SELECT i FROM InfoBancaria i WHERE i.banco = :banco")
+    , @NamedQuery(name = "InfoBancaria.findByCodBanco", query = "SELECT i FROM InfoBancaria i WHERE i.codBanco = :codBanco")
+    , @NamedQuery(name = "InfoBancaria.findBySucursal", query = "SELECT i FROM InfoBancaria i WHERE i.sucursal = :sucursal")
+    , @NamedQuery(name = "InfoBancaria.findByCiudad", query = "SELECT i FROM InfoBancaria i WHERE i.ciudad = :ciudad")
+    , @NamedQuery(name = "InfoBancaria.findByPais", query = "SELECT i FROM InfoBancaria i WHERE i.pais = :pais")})
 public class InfoBancaria implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)

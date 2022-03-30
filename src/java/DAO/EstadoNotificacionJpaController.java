@@ -22,7 +22,7 @@ import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author rozo
+ * @author Leonardo
  */
 public class EstadoNotificacionJpaController implements Serializable {
 

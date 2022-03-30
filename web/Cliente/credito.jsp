@@ -39,24 +39,9 @@
 
             <!-- Page Content  -->
             <div id="content">
-                <nav  class="navbar navbar-expand-lg navbar-light bg-light">
-
-                    <div class="container-fluid">
-
-                        <button type="button" id="sidebarCollapse" class="btn btn-info">
-                            <i class="fas fa-align-left"></i>
-                            <span>Menú</span>
-                        </button>
-                        <div>
-                            <h5><%=user.get("nombres").toUpperCase() + ""%></h5>
-                        </div>
-
-                        <div class="img-profile">
-                            <img src="/img/imagencliente.jpg<%//=userImg%>">                        
-                        </div>
-
-                    </div>
-                </nav>
+                <!-- NavBar  -->
+                <%@include file="../modules/navbar_default.jsp" %>
+                <!-- NavBar  -->
 
                 <!-- Content  -->
                 <div style="justify-content:center;" class="form-row">

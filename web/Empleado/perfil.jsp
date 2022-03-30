@@ -37,24 +37,9 @@
 
             <!-- Page Content  -->
             <div id="content">
-                <nav  class="navbar navbar-expand-lg navbar-light bg-light">
-
-                    <div class="container-fluid">
-
-                        <button type="button" id="sidebarCollapse" class="btn btn-info">
-                            <i class="fas fa-align-left"></i>
-                            <span>Menú</span>
-                        </button>
-                        <div>
-                            <h5><%=user.get("nombres").toUpperCase() + " "+user.get("apellido1").toUpperCase()+ " "+user.get("apellido2").toUpperCase()%></h5>
-                        </div>
-
-                        <div class="img-profile">
-                            <img src="/img/fotoadmin.jpg<%//=userImg%>">                        
-                        </div>
-                        <input  name="iduser"  id="iduser"  value="<%=user.get("idUsuario")%>" type="hidden">
-                    </div>
-                </nav>
+                <!-- NavBar  -->
+                <%@include file="../modules/navbar_default.jsp" %>
+                <!-- NavBar  -->
 
                 <!-- Content  -->
                 <div style="justify-content:center;" class="form-row">
@@ -133,6 +118,9 @@
                                 <a href="#ventana" class="btn btn-primary" data-toggle="modal">Actualizar</a>
                                 <a href="perfil" class="btn btn-primary">Cancelar</a>
 
+                                <!--cambio foto perfil-->
+                                <%@include file="../modules/actualizacion_foto.jsp" %>
+                                <!--cambio foto perfil-->
 
                                 <!-- Modal --> 
                                 <div class="modal fade" id="ventana" tabindex="-1" role="dialog">

@@ -43,7 +43,9 @@
 
           <%
                 Map<String, String> textos = (Map<String, String>) request.getSession().getAttribute("textos");
-               
+               Map<String, String> imagenes = (Map<String, String>) request.getSession().getAttribute("imagenes");
+
+                
             %>
 
         
@@ -51,7 +53,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <img id="imglogo" src="./img/logo inforet.png" height="50px" style="display:none" alt="logo">
+                <img id="imglogo" src="<%=imagenes.get("1")%>" height="50px" style="display:none" alt="logo">
                 <a class="navbar-brand" href="#page-top">INFORET SAS</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -165,7 +167,7 @@
                 <div class="row g-0">
                     <div class="col-lg-4 col-sm-6">
                         <a class="portfolio-box" href="assets/img/portfolio/fullsize/1.jpg" title="Project Name">
-                            <img class="img-fluid" src="assets/img/portfolio/thumbnails/1.jpg" alt="..." />
+                            <img class="img-fluid" src="<%=imagenes.get("2")%>" alt="..." />
                             <div class="portfolio-box-caption">
                                 <div class="project-category text-white-50">Categorias</div>
                                 <div class="project-name">Redes</div>
@@ -174,7 +176,7 @@
                     </div>
                     <div class="col-lg-4 col-sm-6">
                         <a class="portfolio-box" href="assets/img/portfolio/fullsize/2.jpg" title="Project Name">
-                            <img class="img-fluid" src="assets/img/portfolio/thumbnails/2.jpg" alt="..." />
+                            <img class="img-fluid" src="<%=imagenes.get("3")%>" alt="..." />
                             <div class="portfolio-box-caption">
                                 <div class="project-category text-white-50">Categorias</div>
                                 <div class="project-name">Aplicaciones web</div>
@@ -183,7 +185,7 @@
                     </div>
                     <div class="col-lg-4 col-sm-6">
                         <a class="portfolio-box" href="assets/img/portfolio/fullsize/3.jpg" title="Project Name">
-                            <img class="img-fluid" src="assets/img/portfolio/thumbnails/3.jpg" alt="..." />
+                            <img class="img-fluid" src="<%=imagenes.get("4")%>" alt="..." />
                             <div class="portfolio-box-caption">
                                 <div class="project-category text-white-50">Categorias</div>
                                 <div class="project-name">E commerce</div>
@@ -192,7 +194,7 @@
                     </div>
                     <div class="col-lg-4 col-sm-6">
                         <a class="portfolio-box" href="assets/img/portfolio/fullsize/4.jpg" title="Project Name">
-                            <img class="img-fluid" src="assets/img/portfolio/thumbnails/4.jpg" alt="..." />
+                            <img class="img-fluid" src="<%=imagenes.get("5")%>" alt="..." />
                             <div class="portfolio-box-caption">
                                 <div class="project-category text-white-50">Categorias</div>
                                 <div class="project-name">Servidores</div>
@@ -201,7 +203,7 @@
                     </div>
                     <div class="col-lg-4 col-sm-6">
                         <a class="portfolio-box" href="assets/img/portfolio/fullsize/5.jpg" title="Project Name">
-                            <img class="img-fluid" src="assets/img/portfolio/thumbnails/5.jpg" alt="..." />
+                            <img class="img-fluid" src="<%=imagenes.get("6")%>" alt="..." />
                             <div class="portfolio-box-caption">
                                 <div class="project-category text-white-50">Categorias</div>
                                 <div class="project-name">Consultoria</div>
@@ -210,7 +212,7 @@
                     </div>
                     <div class="col-lg-4 col-sm-6">
                         <a class="portfolio-box" href="assets/img/portfolio/fullsize/6.jpg" title="Project Name">
-                            <img class="img-fluid" src="assets/img/portfolio/thumbnails/6.jpg" alt="..." />
+                            <img class="img-fluid" src="<%=imagenes.get("7")%>" alt="..." />
                             <div class="portfolio-box-caption p-3">
                                 <div class="project-category text-white-50">Categorias</div>
                                 <div class="project-name">Capacitación</div>

@@ -20,15 +20,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author rozo
+ * @author Leonardo
  */
 @Entity
 @Table(name = "textos")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Textos.findAll", query = "SELECT t FROM Textos t"),
-    @NamedQuery(name = "Textos.findByIdTexto", query = "SELECT t FROM Textos t WHERE t.idTexto = :idTexto")})
+    @NamedQuery(name = "Textos.findAll", query = "SELECT t FROM Textos t")
+    , @NamedQuery(name = "Textos.findByIdTexto", query = "SELECT t FROM Textos t WHERE t.idTexto = :idTexto")})
 public class Textos implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

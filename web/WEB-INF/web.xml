@@ -53,6 +53,10 @@
         <servlet-name>inicial</servlet-name>
         <servlet-class>Controlador.inicial</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdatePhoto</servlet-name>
+        <servlet-class>Controlador.UpdatePhoto</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -237,7 +241,7 @@
     <servlet>
         <servlet-name>UploadFile</servlet-name>
         <servlet-class>Controlador.UploadFile</servlet-class>
-    </servlet>
+    </servlet>    
     <servlet>
         <servlet-name>QueryDocuments</servlet-name>
         <servlet-class>Controlador.QueryDocuments</servlet-class>
@@ -271,7 +275,7 @@
         <url-pattern>/Administrador</url-pattern>
         <url-pattern>/Administrador/perfil</url-pattern>
     </servlet-mapping>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>config</servlet-name>
         <url-pattern>/Administrador/config</url-pattern>
     </servlet-mapping>
@@ -343,7 +347,7 @@
         <servlet-name>pverdocs</servlet-name>
         <url-pattern>/Proveedor/ver_docs</url-pattern>
     </servlet-mapping>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>everdocs</servlet-name>
         <url-pattern>/Empleado/ver_docs</url-pattern>
     </servlet-mapping>
@@ -536,6 +540,10 @@
         <servlet-name>inicial</servlet-name>
         <url-pattern>/inicial.do</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdatePhoto</servlet-name>
+        <url-pattern>/UpdatePhoto.do</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -548,10 +556,5 @@
         <version>4.12</version>
         <scope>test</scope>
     </dependency>
-   
-
-    
-    
-    gconsultasol
-    
+     
 </web-app>

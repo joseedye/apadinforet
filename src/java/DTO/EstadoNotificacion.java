@@ -19,16 +19,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author rozo
+ * @author Leonardo
  */
 @Entity
 @Table(name = "estado_notificacion")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "EstadoNotificacion.findAll", query = "SELECT e FROM EstadoNotificacion e"),
-    @NamedQuery(name = "EstadoNotificacion.findByIdNotificacion", query = "SELECT e FROM EstadoNotificacion e WHERE e.idNotificacion = :idNotificacion"),
-    @NamedQuery(name = "EstadoNotificacion.findByDescripcion", query = "SELECT e FROM EstadoNotificacion e WHERE e.descripcion = :descripcion")})
+    @NamedQuery(name = "EstadoNotificacion.findAll", query = "SELECT e FROM EstadoNotificacion e")
+    , @NamedQuery(name = "EstadoNotificacion.findByIdNotificacion", query = "SELECT e FROM EstadoNotificacion e WHERE e.idNotificacion = :idNotificacion")
+    , @NamedQuery(name = "EstadoNotificacion.findByDescripcion", query = "SELECT e FROM EstadoNotificacion e WHERE e.descripcion = :descripcion")})
 public class EstadoNotificacion implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)

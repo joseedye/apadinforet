@@ -7,6 +7,7 @@ package Controlador;
 
 import DAO.Conexion;
 import DAO.PersonaJpaController;
+import DAO.Plus.UsuarioJpaControllerPlus;
 import DAO.TipoUsuarioJpaController;
 import DAO.UsuarioJpaController;
 import DTO.Persona;
@@ -42,8 +43,11 @@ public class RegisterAdmin extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             EntityManagerFactory emf = Conexion.getConexion().getBd();
-            TipoUsuarioJpaController usuarioJpa = new TipoUsuarioJpaController(emf);
-            TipoUsuario tipousuario = usuarioJpa.findTipoUsuario(1);
+            TipoUsuarioJpaController tipoUsuarioJpa = new TipoUsuarioJpaController(emf);
+            UsuarioJpaController usuarioJpa = new UsuarioJpaController(emf);
+            UsuarioJpaControllerPlus usuarioJpaPlus = new UsuarioJpaControllerPlus(emf);
+            
+            TipoUsuario tipousuario = tipoUsuarioJpa.findTipoUsuario(1);
             
             String nombre = request.getParameter("Nom");
             String tipodoc = request.getParameter("Tipodoc");
@@ -62,32 +66,29 @@ public class RegisterAdmin extends HttpServlet {
             Date fecNacimiento = formato.parse(fecha);
             PersonaJpaController personajpa = new PersonaJpaController(emf);
             
-            Persona personaDTO = new Persona(documento, nombre, apellido1, apellido2, fecNacimiento, tipodoc, direccion, telefono1, telefono2, email);
+            Persona personaDTO = new Persona(documento, nombre, apellido1, apellido2, fecNacimiento, tipodoc, direccion, telefono1, email);
+            personaDTO.setTelefono2(telefono2);
             personaDTO.setGenero(genero);
             personaDTO.setPais(pais);
             personajpa.create(personaDTO);
 
-            //crear el usuario
-            UsuarioJpaController usuariojpa = new UsuarioJpaController(emf);
+            //crear el usuario            
             Date fecCreacion = new Date();
-            Usuario usuarioDto = new Usuario(email, documento, fecCreacion, "1");
+            String urlFoto = "/img/perfil-admin.png";
+            Usuario usuarioDto = new Usuario(null, email, documento, fecCreacion, "1",urlFoto);
             usuarioDto.setIdTipoUsuario(tipousuario);
             usuarioDto.setIdPersona(personaDTO);
-            usuarioDto.setIdUsuario(usuariojpa.getUsuarioLast().getIdUsuario() + 1);
+            usuarioDto.setIdUsuario(usuarioJpaPlus.getUsuarioLast().getIdUsuario() + 1);
             try {
                 
-                usuariojpa.create(usuarioDto);
+                usuarioJpa.create(usuarioDto);
                 
             } catch (Exception e) {
                 
-                personajpa.destroy(personaDTO.getNumeroDoc());
-                
-                String cause = e.getCause().getCause().getMessage();
-                
-                request.getSession().setAttribute("msg", "Error, el dato: " + Utileria.msgExPersistence(cause) + " ya existe!");
-                
+                personajpa.destroy(personaDTO.getNumeroDoc());                
+                String cause = e.getCause().getCause().getMessage();                
+                request.getSession().setAttribute("msg", "Error, el dato: " + Utileria.msgExPersistence(cause) + " ya existe!");                
                 response.sendRedirect("Administrador/administrador_registrar");
-                
                 return;
             }
 //Send Mail with credentials

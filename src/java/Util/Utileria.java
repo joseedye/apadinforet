@@ -17,6 +17,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -52,6 +53,7 @@ public class Utileria {
         map.put("reprecentante", user.getIdPersona().getRepresentanteLegal() + "");
         map.put("razon", user.getIdPersona().getRazonSocial());
         map.put("Tipocliente", user.getIdPersona().getTipoCliente());
+        map.put("urlFoto", user.getUrlFoto());
         return map;
     }
 
@@ -210,7 +212,17 @@ public class Utileria {
 
     }
 
-   
- 
+    public static String getExtensionPath(String fileName) {
+        String extension = "";
+        for (int i = fileName.length() - 1; i > 1; i--) {
+            extension += fileName.charAt(i);
+            if ('.' == fileName.charAt(i)) 
+                break;
+            
+        }
+        StringBuilder strb = new StringBuilder(extension);
+        extension = strb.reverse().toString();
+        return extension;
+    }
 
 }

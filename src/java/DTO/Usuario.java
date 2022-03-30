@@ -26,19 +26,21 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author rozo
+ * @author Leonardo
  */
 @Entity
 @Table(name = "usuario")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
-    @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario"),
-    @NamedQuery(name = "Usuario.findByUser", query = "SELECT u FROM Usuario u WHERE u.user = :user"),
-    @NamedQuery(name = "Usuario.findByPassword", query = "SELECT u FROM Usuario u WHERE u.password = :password"),
-    @NamedQuery(name = "Usuario.findByFechaCreacion", query = "SELECT u FROM Usuario u WHERE u.fechaCreacion = :fechaCreacion"),
-    @NamedQuery(name = "Usuario.findByActivo", query = "SELECT u FROM Usuario u WHERE u.activo = :activo")})
+    @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
+    , @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario")
+    , @NamedQuery(name = "Usuario.findByUser", query = "SELECT u FROM Usuario u WHERE u.user = :user")
+    , @NamedQuery(name = "Usuario.findByPassword", query = "SELECT u FROM Usuario u WHERE u.password = :password")
+    , @NamedQuery(name = "Usuario.findByFechaCreacion", query = "SELECT u FROM Usuario u WHERE u.fechaCreacion = :fechaCreacion")
+    , @NamedQuery(name = "Usuario.findByActivo", query = "SELECT u FROM Usuario u WHERE u.activo = :activo")
+    , @NamedQuery(name = "Usuario.findByUrlFoto", query = "SELECT u FROM Usuario u WHERE u.urlFoto = :urlFoto")})
 public class Usuario implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -57,6 +59,13 @@ public class Usuario implements Serializable {
     @Basic(optional = false)
     @Column(name = "activo")
     private String activo;
+    @Basic(optional = false)
+    @Column(name = "url_foto")
+    private String urlFoto;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
+    private List<DocumentoPropio> documentoPropioList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
+    private List<Notificacion> notificacionList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCliente")
     private List<Solicitud> solicitudList;
     @OneToMany(mappedBy = "idSolucionador")
@@ -67,8 +76,6 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "id_tipo_usuario", referencedColumnName = "id_tipo_usuario")
     @ManyToOne(optional = false)
     private TipoUsuario idTipoUsuario;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
-    private List<DocumentoPropio> documentoPropioList;
 
     public Usuario() {
     }
@@ -77,19 +84,15 @@ public class Usuario implements Serializable {
         this.idUsuario = idUsuario;
     }
 
-    public Usuario(Integer idUsuario, String user, String password, Date fechaCreacion, String activo) {
+    public Usuario(Integer idUsuario, String user, String password, Date fechaCreacion, String activo, String urlFoto) {
         this.idUsuario = idUsuario;
         this.user = user;
         this.password = password;
         this.fechaCreacion = fechaCreacion;
         this.activo = activo;
+        this.urlFoto = urlFoto;
     }
 
-      public Usuario(String user, String password, Date fecCreacion, String activo) {
-        this(null, user, password, fecCreacion, activo);
-    }
-      
-      
     public Integer getIdUsuario() {
         return idUsuario;
     }
@@ -130,6 +133,32 @@ public class Usuario implements Serializable {
         this.activo = activo;
     }
 
+    public String getUrlFoto() {
+        return urlFoto;
+    }
+
+    public void setUrlFoto(String urlFoto) {
+        this.urlFoto = urlFoto;
+    }
+
+    @XmlTransient
+    public List<DocumentoPropio> getDocumentoPropioList() {
+        return documentoPropioList;
+    }
+
+    public void setDocumentoPropioList(List<DocumentoPropio> documentoPropioList) {
+        this.documentoPropioList = documentoPropioList;
+    }
+
+    @XmlTransient
+    public List<Notificacion> getNotificacionList() {
+        return notificacionList;
+    }
+
+    public void setNotificacionList(List<Notificacion> notificacionList) {
+        this.notificacionList = notificacionList;
+    }
+
     @XmlTransient
     public List<Solicitud> getSolicitudList() {
         return solicitudList;
@@ -162,15 +191,6 @@ public class Usuario implements Serializable {
 
     public void setIdTipoUsuario(TipoUsuario idTipoUsuario) {
         this.idTipoUsuario = idTipoUsuario;
-    }
-
-    @XmlTransient
-    public List<DocumentoPropio> getDocumentoPropioList() {
-        return documentoPropioList;
-    }
-
-    public void setDocumentoPropioList(List<DocumentoPropio> documentoPropioList) {
-        this.documentoPropioList = documentoPropioList;
     }
 
     @Override

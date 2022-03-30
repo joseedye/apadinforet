@@ -24,31 +24,32 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author rozo
+ * @author Leonardo
  */
 @Entity
 @Table(name = "persona")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Persona.findAll", query = "SELECT p FROM Persona p"),
-    @NamedQuery(name = "Persona.findByNombres", query = "SELECT p FROM Persona p WHERE p.nombres = :nombres"),
-    @NamedQuery(name = "Persona.findByApellido1", query = "SELECT p FROM Persona p WHERE p.apellido1 = :apellido1"),
-    @NamedQuery(name = "Persona.findByApellido2", query = "SELECT p FROM Persona p WHERE p.apellido2 = :apellido2"),
-    @NamedQuery(name = "Persona.findByFechaNac", query = "SELECT p FROM Persona p WHERE p.fechaNac = :fechaNac"),
-    @NamedQuery(name = "Persona.findByTipoDoc", query = "SELECT p FROM Persona p WHERE p.tipoDoc = :tipoDoc"),
-    @NamedQuery(name = "Persona.findByNumeroDoc", query = "SELECT p FROM Persona p WHERE p.numeroDoc = :numeroDoc"),
-    @NamedQuery(name = "Persona.findByGenero", query = "SELECT p FROM Persona p WHERE p.genero = :genero"),
-    @NamedQuery(name = "Persona.findByDireccion", query = "SELECT p FROM Persona p WHERE p.direccion = :direccion"),
-    @NamedQuery(name = "Persona.findByTelefono1", query = "SELECT p FROM Persona p WHERE p.telefono1 = :telefono1"),
-    @NamedQuery(name = "Persona.findByTelefono2", query = "SELECT p FROM Persona p WHERE p.telefono2 = :telefono2"),
-    @NamedQuery(name = "Persona.findByEmail", query = "SELECT p FROM Persona p WHERE p.email = :email"),
-    @NamedQuery(name = "Persona.findByPais", query = "SELECT p FROM Persona p WHERE p.pais = :pais"),
-    @NamedQuery(name = "Persona.findByComentario", query = "SELECT p FROM Persona p WHERE p.comentario = :comentario"),
-    @NamedQuery(name = "Persona.findByTipoCliente", query = "SELECT p FROM Persona p WHERE p.tipoCliente = :tipoCliente"),
-    @NamedQuery(name = "Persona.findByRazonSocial", query = "SELECT p FROM Persona p WHERE p.razonSocial = :razonSocial"),
-    @NamedQuery(name = "Persona.findByRepresentanteLegal", query = "SELECT p FROM Persona p WHERE p.representanteLegal = :representanteLegal"),
-    @NamedQuery(name = "Persona.findByTipoContrato", query = "SELECT p FROM Persona p WHERE p.tipoContrato = :tipoContrato")})
+    @NamedQuery(name = "Persona.findAll", query = "SELECT p FROM Persona p")
+    , @NamedQuery(name = "Persona.findByNombres", query = "SELECT p FROM Persona p WHERE p.nombres = :nombres")
+    , @NamedQuery(name = "Persona.findByApellido1", query = "SELECT p FROM Persona p WHERE p.apellido1 = :apellido1")
+    , @NamedQuery(name = "Persona.findByApellido2", query = "SELECT p FROM Persona p WHERE p.apellido2 = :apellido2")
+    , @NamedQuery(name = "Persona.findByFechaNac", query = "SELECT p FROM Persona p WHERE p.fechaNac = :fechaNac")
+    , @NamedQuery(name = "Persona.findByTipoDoc", query = "SELECT p FROM Persona p WHERE p.tipoDoc = :tipoDoc")
+    , @NamedQuery(name = "Persona.findByNumeroDoc", query = "SELECT p FROM Persona p WHERE p.numeroDoc = :numeroDoc")
+    , @NamedQuery(name = "Persona.findByGenero", query = "SELECT p FROM Persona p WHERE p.genero = :genero")
+    , @NamedQuery(name = "Persona.findByDireccion", query = "SELECT p FROM Persona p WHERE p.direccion = :direccion")
+    , @NamedQuery(name = "Persona.findByTelefono1", query = "SELECT p FROM Persona p WHERE p.telefono1 = :telefono1")
+    , @NamedQuery(name = "Persona.findByTelefono2", query = "SELECT p FROM Persona p WHERE p.telefono2 = :telefono2")
+    , @NamedQuery(name = "Persona.findByEmail", query = "SELECT p FROM Persona p WHERE p.email = :email")
+    , @NamedQuery(name = "Persona.findByPais", query = "SELECT p FROM Persona p WHERE p.pais = :pais")
+    , @NamedQuery(name = "Persona.findByComentario", query = "SELECT p FROM Persona p WHERE p.comentario = :comentario")
+    , @NamedQuery(name = "Persona.findByTipoCliente", query = "SELECT p FROM Persona p WHERE p.tipoCliente = :tipoCliente")
+    , @NamedQuery(name = "Persona.findByRazonSocial", query = "SELECT p FROM Persona p WHERE p.razonSocial = :razonSocial")
+    , @NamedQuery(name = "Persona.findByRepresentanteLegal", query = "SELECT p FROM Persona p WHERE p.representanteLegal = :representanteLegal")
+    , @NamedQuery(name = "Persona.findByTipoContrato", query = "SELECT p FROM Persona p WHERE p.tipoContrato = :tipoContrato")})
 public class Persona implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
     @Column(name = "nombres")
@@ -105,7 +106,7 @@ public class Persona implements Serializable {
         this.numeroDoc = numeroDoc;
     }
 
-    public Persona(String numeroDoc, String nombres, String apellido1, String apellido2, Date fechaNac, String tipoDoc, String direccion, String telefono1, String telefono2,String email) {
+    public Persona(String numeroDoc, String nombres, String apellido1, String apellido2, Date fechaNac, String tipoDoc, String direccion, String telefono1, String email) {
         this.numeroDoc = numeroDoc;
         this.nombres = nombres;
         this.apellido1 = apellido1;
@@ -114,7 +115,6 @@ public class Persona implements Serializable {
         this.tipoDoc = tipoDoc;
         this.direccion = direccion;
         this.telefono1 = telefono1;
-        this.telefono2 = telefono2;
         this.email = email;
     }
 
@@ -253,7 +253,7 @@ public class Persona implements Serializable {
     public void setTipoContrato(String tipoContrato) {
         this.tipoContrato = tipoContrato;
     }
-    
+
     @XmlTransient
     public List<Usuario> getUsuarioList() {
         return usuarioList;
@@ -262,7 +262,7 @@ public class Persona implements Serializable {
     public void setUsuarioList(List<Usuario> usuarioList) {
         this.usuarioList = usuarioList;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 0;

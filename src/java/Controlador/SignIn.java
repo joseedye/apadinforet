@@ -2,6 +2,7 @@ package Controlador;
 
 import DAO.Conexion;
 import DAO.UsuarioJpaController;
+import DAO.Plus.UsuarioJpaControllerPlus;
 import DTO.TipoUsuario;
 import DTO.Usuario;
 import Util.Utileria;
@@ -19,7 +20,7 @@ public class SignIn extends HttpServlet {
 
         try {
             EntityManagerFactory emf = Conexion.getConexion().getBd();
-            UsuarioJpaController usuarioDao = new UsuarioJpaController(emf);
+            UsuarioJpaControllerPlus usuarioDao = new UsuarioJpaControllerPlus(emf);
 
             Usuario usuario = new Usuario();
             //obtengo los daos de el login

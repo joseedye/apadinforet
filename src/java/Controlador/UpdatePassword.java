@@ -6,6 +6,7 @@
 package Controlador;
 
 import DAO.Conexion;
+import DAO.Plus.UsuarioJpaControllerPlus;
 import DAO.UsuarioJpaController;
 import DTO.Usuario;
 import Util.Utileria;
@@ -45,13 +46,13 @@ public class UpdatePassword extends HttpServlet {
             String contraguardada = user.get("contra");
             String usuarioo = user.get("user");
 
-            UsuarioJpaController usuarioDao = new UsuarioJpaController(emf);
+            UsuarioJpaControllerPlus usuarioDaoPlus = new UsuarioJpaControllerPlus(emf);
 
             if (anterior.equals(contraguardada)) {
-                Usuario usuario = usuarioDao.findUsuario(usuarioo);
+                Usuario usuario = usuarioDaoPlus.findUsuario(usuarioo);
                 usuario.setPassword(nueva);
-                usuarioDao.edit(usuario);
-                user = Utileria.usuarioToMap(usuarioDao.findUsuario(usuarioo));
+                usuarioDaoPlus.edit(usuario);
+                user = Utileria.usuarioToMap(usuarioDaoPlus.findUsuario(usuarioo));
                 req.getSession().setAttribute("user", user);
                 req.getSession().setAttribute("msg", "se ha cambiado exitosamente su contraseña");
                 if (Integer.parseInt(user.get("idtipou")) >= 5) {

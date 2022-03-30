@@ -39,21 +39,9 @@
             <!-- Page Content  -->
             <div id="content">
 
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <div class="container-fluid">
-
-                        <button type="button" id="sidebarCollapse" class="btn btn-info">
-                            <i class="fas fa-align-left"></i>
-                            <span>Menú</span>
-                        </button>
-                        <div>
-                            <h5><%=user.get("nombres").toUpperCase() + ""%></h5>
-                        </div>
-                        <div class="img-profile">
-                            <img src="<%=userImg%>">                        
-                        </div>
-                    </div>
-                </nav>     
+                <!-- NavBar  -->
+                <%@include file="../modules/navbar_admin.jsp" %>
+                <!-- NavBar  -->
 
                 <!-- Content  -->
                 <div style="justify-content:center;" class="form-row">
@@ -176,7 +164,6 @@
         <script src="../js/side-bar/extra/menu-button.js"></script>
         <script src="../js/side-bar/extra/bootstrap.min.js"></script>   
         <script src="../js/side-bar/admin/load-admin-1.0.js"></script>
-        <!--<script src="../js/side-bar/admin/load-admin-1.0.js"></script>--> 
         <!-- jQuery Side-bar -->        
 
 

@@ -19,7 +19,7 @@ import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author rozo
+ * @author Leonardo
  */
 public class DocumentoSolicitudJpaController implements Serializable {
 

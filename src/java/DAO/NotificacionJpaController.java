@@ -15,6 +15,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import DTO.EstadoNotificacion;
 import DTO.Notificacion;
+import DTO.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -22,7 +23,7 @@ import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author rozo
+ * @author Leonardo
  */
 public class NotificacionJpaController implements Serializable {
 
@@ -59,10 +60,19 @@ public class NotificacionJpaController implements Serializable {
                 estadoNotificacion = em.getReference(estadoNotificacion.getClass(), estadoNotificacion.getIdNotificacion());
                 notificacion.setEstadoNotificacion(estadoNotificacion);
             }
+            Usuario idUsuario = notificacion.getIdUsuario();
+            if (idUsuario != null) {
+                idUsuario = em.getReference(idUsuario.getClass(), idUsuario.getIdUsuario());
+                notificacion.setIdUsuario(idUsuario);
+            }
             em.persist(notificacion);
             if (estadoNotificacion != null) {
                 estadoNotificacion.setNotificacion(notificacion);
                 estadoNotificacion = em.merge(estadoNotificacion);
+            }
+            if (idUsuario != null) {
+                idUsuario.getNotificacionList().add(notificacion);
+                idUsuario = em.merge(idUsuario);
             }
             em.getTransaction().commit();
         } catch (Exception ex) {
@@ -85,6 +95,8 @@ public class NotificacionJpaController implements Serializable {
             Notificacion persistentNotificacion = em.find(Notificacion.class, notificacion.getIdNotificacion());
             EstadoNotificacion estadoNotificacionOld = persistentNotificacion.getEstadoNotificacion();
             EstadoNotificacion estadoNotificacionNew = notificacion.getEstadoNotificacion();
+            Usuario idUsuarioOld = persistentNotificacion.getIdUsuario();
+            Usuario idUsuarioNew = notificacion.getIdUsuario();
             List<String> illegalOrphanMessages = null;
             if (estadoNotificacionNew != null && !estadoNotificacionNew.equals(estadoNotificacionOld)) {
                 Notificacion oldNotificacionOfEstadoNotificacion = estadoNotificacionNew.getNotificacion();
@@ -102,6 +114,10 @@ public class NotificacionJpaController implements Serializable {
                 estadoNotificacionNew = em.getReference(estadoNotificacionNew.getClass(), estadoNotificacionNew.getIdNotificacion());
                 notificacion.setEstadoNotificacion(estadoNotificacionNew);
             }
+            if (idUsuarioNew != null) {
+                idUsuarioNew = em.getReference(idUsuarioNew.getClass(), idUsuarioNew.getIdUsuario());
+                notificacion.setIdUsuario(idUsuarioNew);
+            }
             notificacion = em.merge(notificacion);
             if (estadoNotificacionOld != null && !estadoNotificacionOld.equals(estadoNotificacionNew)) {
                 estadoNotificacionOld.setNotificacion(null);
@@ -110,6 +126,14 @@ public class NotificacionJpaController implements Serializable {
             if (estadoNotificacionNew != null && !estadoNotificacionNew.equals(estadoNotificacionOld)) {
                 estadoNotificacionNew.setNotificacion(notificacion);
                 estadoNotificacionNew = em.merge(estadoNotificacionNew);
+            }
+            if (idUsuarioOld != null && !idUsuarioOld.equals(idUsuarioNew)) {
+                idUsuarioOld.getNotificacionList().remove(notificacion);
+                idUsuarioOld = em.merge(idUsuarioOld);
+            }
+            if (idUsuarioNew != null && !idUsuarioNew.equals(idUsuarioOld)) {
+                idUsuarioNew.getNotificacionList().add(notificacion);
+                idUsuarioNew = em.merge(idUsuarioNew);
             }
             em.getTransaction().commit();
         } catch (Exception ex) {
@@ -144,6 +168,11 @@ public class NotificacionJpaController implements Serializable {
             if (estadoNotificacion != null) {
                 estadoNotificacion.setNotificacion(null);
                 estadoNotificacion = em.merge(estadoNotificacion);
+            }
+            Usuario idUsuario = notificacion.getIdUsuario();
+            if (idUsuario != null) {
+                idUsuario.getNotificacionList().remove(notificacion);
+                idUsuario = em.merge(idUsuario);
             }
             em.remove(notificacion);
             em.getTransaction().commit();

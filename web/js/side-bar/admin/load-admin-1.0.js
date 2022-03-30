@@ -119,6 +119,13 @@ function mostrarpdf(ruta) {
     var ruta = document.getElementById(ruta).innerHTML;
     window.open(ruta);
 }
+$(document).ready(function () {
+                $('[data-toggle="popover"]').popover();
+            });
+            
+function mostrarnoti() {
+    $("#ventana3").modal('show');
+}
 
 $('#getuno').change(function (event) {
     var tmppath = URL.createObjectURL(event.target.files[0]);

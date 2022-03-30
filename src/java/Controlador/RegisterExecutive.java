@@ -7,6 +7,7 @@ package Controlador;
 
 import DAO.Conexion;
 import DAO.PersonaJpaController;
+import DAO.Plus.UsuarioJpaControllerPlus;
 import DAO.TipoUsuarioJpaController;
 import DAO.UsuarioJpaController;
 import DTO.Persona;
@@ -62,20 +63,22 @@ public class RegisterExecutive extends HttpServlet {
         Date fecNacimiento = formato.parse(fecha);
         PersonaJpaController personajpa = new PersonaJpaController(emf);
 
-        Persona personaDTO = new Persona(documento, nombre, apellido1, apellido2, fecNacimiento, tipodoc, direccion, telefono1, telefono2, email);
+        Persona personaDTO = new Persona(documento, nombre, apellido1, apellido2, fecNacimiento, tipodoc, direccion, telefono1, email);
+        personaDTO.setTelefono2(telefono2);
         personaDTO.setGenero(genero);
         personajpa.create(personaDTO);
 
         //crear el usuario
-        UsuarioJpaController usuariojpa = new UsuarioJpaController(emf);
+        UsuarioJpaControllerPlus usuarioJpaPlus = new UsuarioJpaControllerPlus(emf);
         Date fecCreacion = new Date();
-        Usuario usuarioDto = new Usuario(email, documento, fecCreacion, "1");
+        String urlFoto = "/img/perfil-gerente.png";
+        Usuario usuarioDto = new Usuario(null, email, documento, fecCreacion, "1", urlFoto);
         usuarioDto.setIdTipoUsuario(tipousuario);
         usuarioDto.setIdPersona(personaDTO);
-        usuarioDto.setIdUsuario(usuariojpa.getUsuarioLast().getIdUsuario() + 1);
+        usuarioDto.setIdUsuario(usuarioJpaPlus.getUsuarioLast().getIdUsuario() + 1);
         try {
 
-            usuariojpa.create(usuarioDto);
+            usuarioJpaPlus.create(usuarioDto);
 
         } catch (Exception e) {
 

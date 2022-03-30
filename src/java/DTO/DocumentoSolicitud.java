@@ -24,18 +24,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author rozo
+ * @author Leonardo
  */
 @Entity
 @Table(name = "documento_solicitud")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "DocumentoSolicitud.findAll", query = "SELECT d FROM DocumentoSolicitud d"),
-    @NamedQuery(name = "DocumentoSolicitud.findByIdDocumento", query = "SELECT d FROM DocumentoSolicitud d WHERE d.idDocumento = :idDocumento"),
-    @NamedQuery(name = "DocumentoSolicitud.findByFechaDeSubida", query = "SELECT d FROM DocumentoSolicitud d WHERE d.fechaDeSubida = :fechaDeSubida"),
-    @NamedQuery(name = "DocumentoSolicitud.findByNombre", query = "SELECT d FROM DocumentoSolicitud d WHERE d.nombre = :nombre"),
-    @NamedQuery(name = "DocumentoSolicitud.findByRuta", query = "SELECT d FROM DocumentoSolicitud d WHERE d.ruta = :ruta")})
+    @NamedQuery(name = "DocumentoSolicitud.findAll", query = "SELECT d FROM DocumentoSolicitud d")
+    , @NamedQuery(name = "DocumentoSolicitud.findByIdDocumento", query = "SELECT d FROM DocumentoSolicitud d WHERE d.idDocumento = :idDocumento")
+    , @NamedQuery(name = "DocumentoSolicitud.findByFechaDeSubida", query = "SELECT d FROM DocumentoSolicitud d WHERE d.fechaDeSubida = :fechaDeSubida")
+    , @NamedQuery(name = "DocumentoSolicitud.findByNombre", query = "SELECT d FROM DocumentoSolicitud d WHERE d.nombre = :nombre")
+    , @NamedQuery(name = "DocumentoSolicitud.findByRuta", query = "SELECT d FROM DocumentoSolicitud d WHERE d.ruta = :ruta")})
 public class DocumentoSolicitud implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

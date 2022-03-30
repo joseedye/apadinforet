@@ -18,7 +18,7 @@ import javax.persistence.criteria.Root;
 
 /**
  *
- * @author rozo
+ * @author Leonardo
  */
 public class TextosJpaController implements Serializable {
 

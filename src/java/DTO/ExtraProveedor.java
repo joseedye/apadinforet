@@ -20,20 +20,21 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author rozo
+ * @author Leonardo
  */
 @Entity
 @Table(name = "extra_proveedor")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ExtraProveedor.findAll", query = "SELECT e FROM ExtraProveedor e"),
-    @NamedQuery(name = "ExtraProveedor.findByIdProveedor", query = "SELECT e FROM ExtraProveedor e WHERE e.idProveedor = :idProveedor"),
-    @NamedQuery(name = "ExtraProveedor.findByFechaRetenedor", query = "SELECT e FROM ExtraProveedor e WHERE e.fechaRetenedor = :fechaRetenedor"),
-    @NamedQuery(name = "ExtraProveedor.findByResolucionRetenedor", query = "SELECT e FROM ExtraProveedor e WHERE e.resolucionRetenedor = :resolucionRetenedor"),
-    @NamedQuery(name = "ExtraProveedor.findByFechaGranContr", query = "SELECT e FROM ExtraProveedor e WHERE e.fechaGranContr = :fechaGranContr"),
-    @NamedQuery(name = "ExtraProveedor.findByResolucionGranContri", query = "SELECT e FROM ExtraProveedor e WHERE e.resolucionGranContri = :resolucionGranContri"),
-    @NamedQuery(name = "ExtraProveedor.findByIca", query = "SELECT e FROM ExtraProveedor e WHERE e.ica = :ica")})
+    @NamedQuery(name = "ExtraProveedor.findAll", query = "SELECT e FROM ExtraProveedor e")
+    , @NamedQuery(name = "ExtraProveedor.findByIdProveedor", query = "SELECT e FROM ExtraProveedor e WHERE e.idProveedor = :idProveedor")
+    , @NamedQuery(name = "ExtraProveedor.findByFechaRetenedor", query = "SELECT e FROM ExtraProveedor e WHERE e.fechaRetenedor = :fechaRetenedor")
+    , @NamedQuery(name = "ExtraProveedor.findByResolucionRetenedor", query = "SELECT e FROM ExtraProveedor e WHERE e.resolucionRetenedor = :resolucionRetenedor")
+    , @NamedQuery(name = "ExtraProveedor.findByFechaGranContr", query = "SELECT e FROM ExtraProveedor e WHERE e.fechaGranContr = :fechaGranContr")
+    , @NamedQuery(name = "ExtraProveedor.findByResolucionGranContri", query = "SELECT e FROM ExtraProveedor e WHERE e.resolucionGranContri = :resolucionGranContri")
+    , @NamedQuery(name = "ExtraProveedor.findByIca", query = "SELECT e FROM ExtraProveedor e WHERE e.ica = :ica")})
 public class ExtraProveedor implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)

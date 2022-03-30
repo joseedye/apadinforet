@@ -33,29 +33,14 @@
                 String userImg = (String) request.getSession().getAttribute("userImg");
                 Map<String, String> tipos = (Map<String, String>) request.getSession().getAttribute("tipoSolicitud");
                 Map<String, String> textos = (Map<String, String>) request.getSession().getAttribute("textos");
-
-
+                Map<String, String> imagenes = (Map<String, String>) request.getSession().getAttribute("imagenes");
             %>
 
             <!-- Page Content  -->
             <div id="content">
-                <nav  class="navbar navbar-expand-lg navbar-light bg-light">
-
-                    <div class="container-fluid">
-
-                        <button type="button" id="sidebarCollapse" class="btn btn-info">
-                            <i class="fas fa-align-left"></i>
-                            <span>Menú</span>
-                        </button>
-                        <div>
-                            <h5><%=user.get("nombres").toUpperCase() + ""%></h5>
-                        </div>
-                        <div class="img-profile">
-                            <img src="<%=userImg%>">                        
-                        </div>
-
-                    </div>
-                </nav>
+                <!-- NavBar  -->
+                <%@include file="../modules/navbar_admin.jsp" %>
+                <!-- NavBar  -->
 
                 <!-- Content  -->
                 <div style="justify-content:center;" class="form-row">
@@ -71,11 +56,18 @@
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for="">Modificar imagen de :</label>
-                                    <select class="form-control" id="imgb">
+                                    <select class="form-control" id="imgbf" name="selecteliminar">
                                         <option  selected>Seleccionar</option>
-                                        <option value="../img/fondo.png" name="1">Login</option>
-                                        <option value="../img/ufps.png" name="2">Fondo login</option>
-                                        <option value="../assets/img/businessman.jpg" name="3">Index fondo</option>                                            
+
+                                        <%
+                                            if (!imagenes.isEmpty()) {
+                                                for (int i = 0; i < imagenes.size() / 3; i++) {
+
+                                        %>    
+
+                                        <option  value = "<%=imagenes.get(i + "n")%>"  data-url="<%=imagenes.get(i + "u")%>" name = "opcion<%=i%>" > <%=imagenes.get(i + "")%> </option> 
+                                        <%  }
+                                            }%>
                                     </select>
                                 </div>
 
@@ -84,15 +76,16 @@
                                     <label for="d"> .</label>
                                     <button style="display:block;width:120px; height:30px;" onclick="document.getElementById('getuno').click()">Subir</button>
                                 </div>
-                                <div class="form-group col-md-5">  
+                                <div class="form-group col-md-5" id="insert">  
 
                                     <img id="insertimg" src="../img/fondo.png" width="500" height="300">
+
                                 </div>
                             </div>
 
                             <form  name="form4" action="../Settings.do?id=1" method="post" enctype="multipart/form-data"> 
-                                <input type="file" id="getuno" name="imagen" style="display:none">  
-                                <input type="text" id="idimg" name="a"  style="display:none"> 
+                                <div id="envio">                                    
+                                </div>
                                 <button type="submit" name="subir" class="btn btn-primary">Enviar</button>
                             </form>
 
@@ -297,6 +290,15 @@
                                         $("#ventana2").modal('show');
                                     });
 
+
+                                    $('#imgbf').change(function (event) {
+                                        var cod = document.getElementById("imgbf");
+                                        var selectedOption = this.options[cod.selectedIndex];
+                                        document.getElementById("insert").innerHTML = '<img id="insertimg" src="../' + selectedOption.dataset.url + ' " width="500" height="300">';
+                                        document.getElementById("envio").innerHTML = '<input type = "file" id ="getuno" name = "imagen" style = "display:none" >'+
+                                               ' <input type = "text" id = "idimg" name = "idimg"  value="'+selectedOption.value+'" style = "display:none" >'+
+                                                '<input type = "text" id = "urll" name = "urll"  value="'+selectedOption.dataset.url+'" style = "display:none" >';
+                                    });
     </script> 
 
 
@@ -315,8 +317,8 @@
 
         function enviardatospagina() {
             var cod = document.getElementById("idtexto").value;
-            var contenido = document.getElementById("textos").value;           
-            window.location.href = "../Settings.do?id=4&&idtexto="+cod+"&&texto="+ contenido;         
+            var contenido = document.getElementById("textos").value;
+            window.location.href = "../Settings.do?id=4&&idtexto=" + cod + "&&texto=" + contenido;
         }
 
     </script> 

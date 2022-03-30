@@ -8,6 +8,7 @@ package Controlador;
 import DAO.Conexion;
 import DAO.DocumentoPropioJpaController;
 import DAO.DocumentoSolicitudJpaController;
+import DAO.Plus.UsuarioJpaControllerPlus;
 import DAO.UsuarioJpaController;
 import DTO.DocumentoPropio;
 import DTO.Solicitud;
@@ -49,6 +50,7 @@ public class QueryDocuments extends HttpServlet {
             DocumentoPropioJpaController docDao = new DocumentoPropioJpaController(emf);
             DocumentoSolicitudJpaController docSol = new DocumentoSolicitudJpaController(emf);
             UsuarioJpaController usuarioDao = new UsuarioJpaController(emf);
+            UsuarioJpaControllerPlus usuarioDaoPlus = new UsuarioJpaControllerPlus(emf);
 
             Map<String, Object> mapUsuarios = new HashMap<>();
             Map<String, String> mapcantidad = new HashMap<>();
@@ -94,7 +96,7 @@ public class QueryDocuments extends HttpServlet {
                 
                  if (user.get("TipoUsuario").equals("3")) {
                      //see documents
-                     Usuario u= usuarioDao.findUsuario(user.get("idUsuario"));
+                     Usuario u= usuarioDaoPlus.findUsuario(user.get("idUsuario"));
                    mapUsuarios.put(i+ "", Utileria.usuarioToMap(u));  
                    mapcantidad.put(i++ + "", Utileria.cantidadDocumento(u) + "");  
                  }
